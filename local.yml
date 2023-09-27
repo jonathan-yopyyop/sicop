@@ -48,7 +48,7 @@ services:
       - ./config:/app/config:z
       - ./sicop:/app/sicop:z
     ports:
-      - "9000:9000"
+      - "9090:9090"
     command: /start-docs
 
   redis:
