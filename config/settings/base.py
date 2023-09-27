@@ -9,8 +9,9 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 # sicop/
 APPS_DIR = BASE_DIR / "sicop"
 env = environ.Env()
+environ.Env.read_env()
 
-READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
+READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=True)
 if READ_DOT_ENV_FILE:
     # OS environment variables take precedence over variables from .env
     env.read_env(str(BASE_DIR / ".env"))
@@ -67,6 +68,8 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # "django.contrib.humanize", # Handy template tags
+    "admin_interface",
+    "colorfield",
     "django.contrib.admin",
     "django.forms",
 ]
@@ -75,13 +78,21 @@ THIRD_PARTY_APPS = [
     "crispy_bootstrap5",
     "allauth",
     "allauth.account",
-    "allauth.socialaccount",
+    # "allauth.socialaccount",
     "django_celery_beat",
 ]
 
 LOCAL_APPS = [
     "sicop.users",
-    # Your stuff: custom apps go here
+    "sicop.area",
+    "sicop.cost_center",
+    # "sicop.contractor",
+    "sicop.project",
+    "sicop.integration",
+    "sicop.budget",
+    "sicop.business_unit",
+    "sicop.expense_concept",
+    "sicop.expense_type",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -312,3 +323,4 @@ SOCIALACCOUNT_FORMS = {"signup": "sicop.users.forms.UserSocialSignupForm"}
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+X_FRAME_OPTIONS = "SAMEORIGIN"
