@@ -1,35 +1,31 @@
 from django.contrib import admin
 
-from sicop.integration.models import BusinessUnit, CostCenter, ExpenseType, Third
+from sicop.integration.models import ActiveIntegration, BusinessUnit, CostCenter, ExpenseType, Third
 
 
 @admin.register(Third)
 class ThirdAdmin(admin.ModelAdmin):
     list_display = (
-        "code",
-        "first_name",
-        "last_name",
+        "id",
+        "Nombre",
         "status",
         "created_at",
         "updated_at",
     )
     list_filter = (
-        "code",
-        "first_name",
-        "last_name",
+        "id",
+        "Nombre",
         "status",
         "created_at",
         "updated_at",
     )
     search_fields = (
-        "code",
-        "first_name",
-        "last_name",
+        "id",
+        "Nombre",
     )
     ordering = (
-        "code",
-        "first_name",
-        "last_name",
+        "id",
+        "Nombre",
         "created_at",
         "updated_at",
     )
@@ -42,26 +38,26 @@ class ThirdAdmin(admin.ModelAdmin):
 @admin.register(CostCenter)
 class CostCenterAdmin(admin.ModelAdmin):
     list_display = (
-        "code",
-        "name",
+        "id",
+        "Nombre",
         "status",
         "created_at",
         "updated_at",
     )
     list_filter = (
-        "code",
-        "name",
+        "id",
+        "Nombre",
         "status",
         "created_at",
         "updated_at",
     )
     search_fields = (
-        "code",
-        "name",
+        "id",
+        "Nombre",
     )
     ordering = (
-        "code",
-        "name",
+        "id",
+        "Nombre",
         "created_at",
         "updated_at",
     )
@@ -74,26 +70,26 @@ class CostCenterAdmin(admin.ModelAdmin):
 @admin.register(BusinessUnit)
 class BusinessUnitAdmin(admin.ModelAdmin):
     list_display = (
-        "code",
-        "name",
+        "id",
+        "Nombre",
         "status",
         "created_at",
         "updated_at",
     )
     list_filter = (
-        "code",
-        "name",
+        "id",
+        "Nombre",
         "status",
         "created_at",
         "updated_at",
     )
     search_fields = (
-        "code",
-        "name",
+        "id",
+        "Nombre",
     )
     ordering = (
-        "code",
-        "name",
+        "id",
+        "Nombre",
         "created_at",
         "updated_at",
     )
@@ -106,26 +102,62 @@ class BusinessUnitAdmin(admin.ModelAdmin):
 @admin.register(ExpenseType)
 class ExpenseTypeAdmin(admin.ModelAdmin):
     list_display = (
-        "code",
-        "name",
+        "id",
+        "Nombre",
         "status",
         "created_at",
         "updated_at",
     )
     list_filter = (
-        "code",
-        "name",
+        "id",
+        "Nombre",
         "status",
         "created_at",
         "updated_at",
     )
     search_fields = (
-        "code",
-        "name",
+        "id",
+        "Nombre",
     )
     ordering = (
-        "code",
+        "id",
+        "Nombre",
+        "created_at",
+        "updated_at",
+    )
+    readonly_fields = (
+        "created_at",
+        "updated_at",
+    )
+
+
+@admin.register(ActiveIntegration)
+class ActiveIntegrationAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
         "name",
+        "code",
+        "status",
+        "created_at",
+        "updated_at",
+    )
+    list_filter = (
+        "id",
+        "name",
+        "code",
+        "status",
+        "created_at",
+        "updated_at",
+    )
+    search_fields = (
+        "id",
+        "name",
+        "code",
+    )
+    ordering = (
+        "id",
+        "name",
+        "code",
         "created_at",
         "updated_at",
     )
