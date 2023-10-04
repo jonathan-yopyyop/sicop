@@ -25,6 +25,20 @@ class BusinessUnit(BaseModel):
         help_text=_("Name"),
         max_length=150,
     )
+    allocated_budget = models.DecimalField(
+        _("Allocated Budget"),
+        help_text=_("Allocated Budget"),
+        max_digits=10,
+        decimal_places=2,
+        default=0,
+    )
+    current_expenses = models.DecimalField(
+        _("Current Expenses"),
+        help_text=_("Current Expenses"),
+        max_digits=10,
+        decimal_places=2,
+        default=0,
+    )
 
     class Meta:
         """Meta definition for Business Unit."""

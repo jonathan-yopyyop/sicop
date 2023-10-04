@@ -1,0 +1,128 @@
+{% extends "sicop/users/base.html" %}
+
+{% load static %}
+{% load i18n %}
+{% load custom_tags %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}
+  {% translate "Sign Up" %}
+{% endblock head_title %}
+{% block inner %}
+  <div class="card border-grey border-lighten-3 m-0 col-12">
+    <div class="card-header border-0">
+      <div class="card-title text-center">
+        <div class="p-1">
+          <img src="{% static 'stack/app-assets/images/logo/stack-logo-dark.png' %}"
+               alt="branding logo" />
+        </div>
+      </div>
+      <h6 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2">
+        <span>{% trans 'Sign up in' %} {% get_app_name %}</span>
+      </h6>
+    </div>
+    <div class="card-content">
+      <div class="card-body">
+        {% if form.non_field_errors %}
+          {% for error in form.non_field_errors %}
+            <div class="alert alert-{% if message.tags %}alert-{{ message.tags }}{% endif %} alert-dismissible mb-2"
+                 role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+              <strong>{{ error }}</strong>
+            </div>
+          {% endfor %}
+        {% endif %}
+        {% if form.errors %}
+          {% for field in form %}
+            {% if field.errors %}
+              {% for error in field.errors %}
+                <div class="alert alert-danger alert-dismissible mb-2" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                  <strong>{{ error }}</strong>
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+          {% if form.non_field_errors %}
+            <div class="alert alert-danger alert-dismissible mb-2" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+              <strong>{{ form.non_field_errors }}</strong>
+            </div>
+          {% endif %}
+        {% endif %}
+        <form class="form-horizontal form-simple" novalidate method="post">
+          {% csrf_token %}
+          <fieldset class="form-group position-relative has-icon-left mb-1">
+            <input type="text"
+                   class="form-control form-control-lg"
+                   id="username"
+                   name="username"
+                   placeholder="{% trans 'Yop & Yop user' %}" />
+            <div class="form-control-position">
+              <i class="feather icon-user"></i>
+            </div>
+          </fieldset>
+          <fieldset class="form-group position-relative has-icon-left mb-1">
+            <input type="text"
+                   class="form-control form-control-lg"
+                   id="name"
+                   name="name"
+                   placeholder="{% trans 'Your name' %}" />
+            <div class="form-control-position">
+              <i class="feather icon-user"></i>
+            </div>
+          </fieldset>
+          <fieldset class="form-group position-relative has-icon-left mb-1">
+            <input type="email"
+                   class="form-control form-control-lg"
+                   id="email"
+                   name="email"
+                   placeholder="{% trans 'Your Email Address' %}"
+                   required />
+            <div class="form-control-position">
+              <i class="feather icon-mail"></i>
+            </div>
+          </fieldset>
+          <fieldset class="form-group position-relative has-icon-left mb-0">
+            <input type="password"
+                   class="form-control form-control-lg"
+                   id="password1"
+                   name="password1"
+                   placeholder="{% trans 'Enter Password' %}"
+                   required />
+            <div class="form-control-position">
+              <i class="fa fa-key"></i>
+            </div>
+          </fieldset>
+          <fieldset class="form-group position-relative has-icon-left mb-0">
+            <input type="password"
+                   class="form-control form-control-lg"
+                   id="password2"
+                   name="password2"
+                   placeholder="{% trans 'Confirm Password' %}"
+                   required />
+            <div class="form-control-position">
+              <i class="fa fa-key"></i>
+            </div>
+          </fieldset>
+          <button type="submit" class="btn btn-primary btn-lg btn-block">
+            <i class="feather icon-unlock"></i> {% trans 'Register' %}
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div>
+        <p class="float-sm-center text-center m-0">
+          {% trans 'I am already a user of' %} {% get_app_name %} <a href="{% url 'user_login' %}" class="card-link">{% trans 'Login' %}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock inner %}

@@ -1,0 +1,24 @@
+/*================================================================================
+	Item Name: Stack - Responsive Admin Theme
+	Author: PIXINVENT
+	Author URL: http://www.themeforest.net/user/pixinvent
+================================================================================
+
+NOTE:
+------
+PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
+WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+.div-image {
+	overflow: hidden;
+	clear: both;
+}
+.p-image {
+	margin-bottom: 10px;
+}
+.buton-input-right {
+	float: right;
+	margin-top: 0.5em;
+}
+.display-none {
+	display: none;
+}

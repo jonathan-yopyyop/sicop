@@ -2,7 +2,8 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from config.models import BaseModel
-from sicop.integration.models import CostCenter, ExpenseType
+from sicop.cost_center.models import CostCenter
+from sicop.expense_type.models import ExpenseType
 from sicop.project.models import Project
 
 
@@ -109,3 +110,7 @@ class Budget(BaseModel):
     def __str__(self):
         """Unicode representation of Budget."""
         return f"{self.project} - {self.cost_center} - {self.expense_type} - {self.budget_description}"
+
+    def save(self, *args, **kwargs):
+        self.initial_value = self.unit_value * self.quantity
+        super().save(*args, **kwargs)
