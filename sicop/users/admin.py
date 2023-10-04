@@ -1,49 +1,69 @@
-from django.conf import settings
 from django.contrib import admin
-from django.contrib.auth import admin as auth_admin
-from django.contrib.auth import decorators, get_user_model
-from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.admin import UserAdmin
 
-from sicop.users.forms import UserAdminChangeForm, UserAdminCreationForm
-
-User = get_user_model()
-
-if settings.DJANGO_ADMIN_FORCE_ALLAUTH:
-    # Force the `admin` sign in process to go through the `django-allauth` workflow:
-    # https://django-allauth.readthedocs.io/en/stable/advanced.html#admin
-    admin.site.login = decorators.login_required(admin.site.login)  # type: ignore[method-assign]
+from sicop.users.models import User
 
 
 @admin.register(User)
-class UserAdmin(auth_admin.UserAdmin):
-    form = UserAdminChangeForm
-    add_form = UserAdminCreationForm
+class UserAdmin(UserAdmin):
+    model = User
+    list_display = (
+        "id",
+        "name",
+        "email",
+        "is_staff",
+        "is_active",
+    )
+    list_filter = (
+        "email",
+        "is_staff",
+        "is_active",
+    )
     fieldsets = (
-        (None, {"fields": ("email", "password")}),
-        (_("Personal info"), {"fields": ("name",)}),
         (
-            _("Permissions"),
+            None,
             {
                 "fields": (
-                    "is_active",
+                    "username",
+                    "name",
+                    "email",
+                    "password",
+                    "phone",
+                    "profile_image",
+                )
+            },
+        ),
+        (
+            "Permissions",
+            {
+                "fields": (
                     "is_staff",
-                    "is_superuser",
+                    "is_active",
+                )
+            },
+        ),
+        (
+            "Group Permissions",
+            {
+                "classes": ("collapse",),
+                "fields": (
                     "groups",
                     "user_permissions",
                 ),
             },
         ),
-        (_("Important dates"), {"fields": ("last_login", "date_joined")}),
     )
-    list_display = ["email", "name", "is_superuser"]
-    search_fields = ["name"]
-    ordering = ["id"]
     add_fieldsets = (
         (
             None,
             {
                 "classes": ("wide",),
-                "fields": ("email", "password1", "password2"),
+                "fields": ("email", "password1", "password2", "is_staff", "is_active"),
             },
         ),
     )
+    search_fields = ("email",)
+    ordering = ("email",)
+
+    # def has_delete_permission(self, request, obj=None):
+    #     return False

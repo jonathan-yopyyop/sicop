@@ -52,3 +52,10 @@ class BudgetAdmin(admin.ModelAdmin):
         "budget_description",
         "status",
     )
+    readonly_fields = (
+        "initial_value",
+        "budget_addition",
+        "budget_decrease",
+        "created_at",
+        "updated_at",
+    )
