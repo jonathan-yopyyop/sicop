@@ -7,14 +7,15 @@ from sicop.expense_type.models import ExpenseType
 from sicop.project.models import Project
 
 
-class BudgetDescription(models.Model):
+class BudgetDescription(BaseModel):
     """Model definition for Budget Description."""
 
-    code = models.SlugField(
-        _("Code"),
-        help_text=_("Code"),
-        max_length=150,
-        unique=True,
+    expense_type = models.ForeignKey(
+        ExpenseType,
+        verbose_name=_("Expense type"),
+        help_text=_("Expense type"),
+        related_name="expense_type_budgets",
+        on_delete=models.CASCADE,
     )
     description = models.TextField(
         _("Description"),
@@ -29,7 +30,7 @@ class BudgetDescription(models.Model):
 
     def __str__(self):
         """Unicode representation of Budget Description."""
-        return self.code
+        return self.description
 
 
 class Budget(BaseModel):
@@ -47,13 +48,6 @@ class Budget(BaseModel):
         verbose_name=_("Cost center"),
         help_text=_("Cost center"),
         related_name="cost_center_budgets",
-        on_delete=models.CASCADE,
-    )
-    expense_type = models.ForeignKey(
-        ExpenseType,
-        verbose_name=_("Expense type"),
-        help_text=_("Expense type"),
-        related_name="expense_type_budgets",
         on_delete=models.CASCADE,
     )
     budget_description = models.ForeignKey(

@@ -34,4 +34,4 @@ class ExpenseType(BaseModel):
 
     def __str__(self):
         """Unicode representation of Expense Type."""
-        return self.code
+        return self.name

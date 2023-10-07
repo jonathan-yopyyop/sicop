@@ -7,6 +7,7 @@ from sicop.area.models import Area, AreaMember
 class AreaAdmin(admin.ModelAdmin):
     list_display = (
         "name",
+        "id",
         "description",
         "status",
         "created_at",
@@ -29,12 +30,15 @@ class AreaAdmin(admin.ModelAdmin):
     readonly_fields = (
         "created_at",
         "updated_at",
+        "id",
     )
 
 
 @admin.register(AreaMember)
 class AreaMembersAdmin(admin.ModelAdmin):
     list_display = (
+        "user_full_name",
+        "id",
         "user",
         "area",
         "created_at",
@@ -57,4 +61,5 @@ class AreaMembersAdmin(admin.ModelAdmin):
     readonly_fields = (
         "created_at",
         "updated_at",
+        "id",
     )

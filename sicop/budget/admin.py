@@ -6,11 +6,12 @@ from sicop.budget.models import Budget, BudgetDescription
 @admin.register(BudgetDescription)
 class BudgetDescriptionAdmin(admin.ModelAdmin):
     list_display = (
-        "code",
+        "id",
+        "expense_type",
         "description",
     )
     search_fields = (
-        "code",
+        "expense_type",
         "description",
     )
 
@@ -18,11 +19,8 @@ class BudgetDescriptionAdmin(admin.ModelAdmin):
 @admin.register(Budget)
 class BudgetAdmin(admin.ModelAdmin):
     list_display = (
-        "project",
+        "id",
         "cost_center",
-        "expense_type",
-        "budget_description",
-        "expense_type",
         "budget_description",
         "unit_value",
         "quantity",
@@ -37,18 +35,14 @@ class BudgetAdmin(admin.ModelAdmin):
     search_fields = (
         "project__name",
         "cost_center__code",
-        "expense_type__code",
         "budget_description__code",
-        "expense_type__code",
         "start_date",
         "budget_description__code",
     )
     list_filter = (
         "project",
         "cost_center",
-        "expense_type",
         "budget_description",
-        "expense_type",
         "budget_description",
         "status",
     )

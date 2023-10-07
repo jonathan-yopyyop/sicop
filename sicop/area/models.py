@@ -50,6 +50,10 @@ class AreaMember(BaseModel):
         on_delete=models.CASCADE,
     )
 
+    @property
+    def user_full_name(self):
+        return self.user.name
+
     class Meta:
         """Meta definition for Area Members."""
 

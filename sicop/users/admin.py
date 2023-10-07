@@ -24,12 +24,9 @@ class UserAdmin(UserAdmin):
             None,
             {
                 "fields": (
-                    "username",
                     "name",
                     "email",
                     "password",
-                    "phone",
-                    "profile_image",
                 )
             },
         ),

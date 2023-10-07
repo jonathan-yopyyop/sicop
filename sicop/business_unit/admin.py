@@ -6,11 +6,12 @@ from sicop.business_unit.models import BusinessUnit
 @admin.register(BusinessUnit)
 class BusinessUnitAdmin(admin.ModelAdmin):
     list_display = (
-        "code",
+        "id",
         "name",
         "status",
         "created_at",
         "updated_at",
+        "code",
     )
     list_filter = (
         "code",
@@ -32,4 +33,6 @@ class BusinessUnitAdmin(admin.ModelAdmin):
     readonly_fields = (
         "created_at",
         "updated_at",
+        "id",
+        "code",
     )

@@ -8,8 +8,8 @@ admin.site.register(ProjectStatus)
 
 class ProjectStatusAdmin(admin.ModelAdmin):
     list_display = (
-        "code",
         "name",
+        "id",
         "status",
         "created_at",
         "updated_at",
@@ -34,14 +34,16 @@ class ProjectStatusAdmin(admin.ModelAdmin):
     readonly_fields = (
         "created_at",
         "updated_at",
+        "id",
+        "code",
     )
 
 
 @admin.register(ProjectType)
 class ProjectTypeAdmin(admin.ModelAdmin):
     list_display = (
-        "code",
         "name",
+        "id",
         "status",
         "created_at",
         "updated_at",
@@ -66,6 +68,8 @@ class ProjectTypeAdmin(admin.ModelAdmin):
     readonly_fields = (
         "created_at",
         "updated_at",
+        "id",
+        "code",
     )
 
 
@@ -73,6 +77,7 @@ class ProjectTypeAdmin(admin.ModelAdmin):
 class ProjectAdmin(admin.ModelAdmin):
     list_display = (
         "name",
+        "id",
         "description",
         "budget",
         "project_status",
@@ -99,6 +104,7 @@ class ProjectAdmin(admin.ModelAdmin):
     readonly_fields = (
         "created_at",
         "updated_at",
+        "id",
     )
 
 
@@ -106,6 +112,7 @@ class ProjectAdmin(admin.ModelAdmin):
 class ProjectStatusHistoryAdmin(admin.ModelAdmin):
     list_display = (
         "project",
+        "id",
         "project_status",
         "created_at",
         "updated_at",
@@ -125,4 +132,5 @@ class ProjectStatusHistoryAdmin(admin.ModelAdmin):
     readonly_fields = (
         "created_at",
         "updated_at",
+        "id",
     )

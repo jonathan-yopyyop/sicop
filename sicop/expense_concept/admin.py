@@ -6,23 +6,18 @@ from sicop.expense_concept.models import ExpenseConcept
 @admin.register(ExpenseConcept)
 class ExpenseConceptAdmin(admin.ModelAdmin):
     list_display = (
-        "code",
         "name",
+        "id",
         "status",
         "created_at",
         "updated_at",
     )
     list_filter = (
-        "code",
-        "name",
         "status",
         "created_at",
         "updated_at",
     )
-    search_fields = (
-        "code",
-        "name",
-    )
+    search_fields = ("name",)
     ordering = (
         "code",
         "name",
@@ -32,4 +27,6 @@ class ExpenseConceptAdmin(admin.ModelAdmin):
     readonly_fields = (
         "created_at",
         "updated_at",
+        "id",
+        "code",
     )
