@@ -28,6 +28,22 @@
           </li>
         </ul>
       </li>
+      <li class="nav-item-sicop">
+        <a href="#">
+          <i class="feather icon-unlock"></i>
+          <span class="menu-title" data-i18n="Dashboard">{% trans 'Authorization' %}</span>
+        </a>
+        <ul class="menu-content">
+          <li {% if 'user/group/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'user_group_list' %}">{% trans 'Groups' %}</a>
+          </li>
+        </ul>
+        <ul class="menu-content">
+          <li {% if 'user/user/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'user_list' %}">{% trans 'Users' %}</a>
+          </li>
+        </ul>
+      </li>
     </ul>
   </div>
 </div>
