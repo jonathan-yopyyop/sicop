@@ -1,7 +1,7 @@
 from typing import Any
 
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.http import HttpRequest, HttpResponse
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
@@ -13,20 +13,22 @@ from sicop.area.models import Area, AreaMember
 from sicop.users.models import User
 
 
-class AreaMemberListView(LoginRequiredMixin, ListView):
+class AreaMemberListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
     """View for AreaMember list."""
 
     model = AreaMember
     template_name = "sicop/frontend/area/member/list.html"
     context_object_name = "members"
+    permission_required = "area.view_areamember"
 
 
-class AreaMemberDetailView(LoginRequiredMixin, DetailView):
+class AreaMemberDetailView(PermissionRequiredMixin, LoginRequiredMixin, DetailView):
     """View for AreaMember detail."""
 
     model = AreaMember
     template_name = "sicop/frontend/area/member/detail.html"
     context_object_name = "member"
+    permission_required = "area.view_areamember"
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
@@ -35,12 +37,13 @@ class AreaMemberDetailView(LoginRequiredMixin, DetailView):
         return context
 
 
-class AreaMemberUpdateView(LoginRequiredMixin, UpdateView):
+class AreaMemberUpdateView(PermissionRequiredMixin, LoginRequiredMixin, UpdateView):
     """View for AreaMember update."""
 
     model = AreaMember
     template_name = "sicop/frontend/area/member/update.html"
     context_object_name = "member"
+    permission_required = "area.change_areamember"
     fields = [
         "user",
         "area",
@@ -80,11 +83,12 @@ class AreaMemberUpdateView(LoginRequiredMixin, UpdateView):
         return super().post(request, *args, **kwargs)
 
 
-class AreaMemberCreateView(LoginRequiredMixin, CreateView):
+class AreaMemberCreateView(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
     """View for AreaMember create."""
 
     model = AreaMember
     template_name = "sicop/frontend/area/member/create.html"
+    permission_required = "area.add_areamember"
     fields = [
         "user",
         "area",

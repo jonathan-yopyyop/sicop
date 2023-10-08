@@ -108,3 +108,21 @@ a:hover {
 	background-color: #5C246A;
 	border-color: #703AD6;
 }
+
+.select2-container--classic .select2-selection--multiple .select2-selection__choice,
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+	padding: 2px 10px !important;
+	margin: 2px !important;
+	background-color: #703AD6 !important;
+	border: none;
+	color: #fff;
+	margin-right: 6px !important;
+}
+
+.info {
+	color: #5C246A !important;
+}
+
+.badge-warning {
+	background-color: #5C246A !important;
+}

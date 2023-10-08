@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.http import HttpRequest, HttpResponse
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
@@ -10,12 +10,13 @@ from django.views.generic.list import ListView
 from sicop.area.models import Area
 
 
-class AreaListView(LoginRequiredMixin, ListView):
+class AreaListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
     """View for Area list."""
 
     model = Area
     template_name = "sicop/frontend/area/area/list.html"
     context_object_name = "areas"
+    permission_required = "area.view_area"
 
 
 class AreaDetailView(LoginRequiredMixin, DetailView):
@@ -24,6 +25,7 @@ class AreaDetailView(LoginRequiredMixin, DetailView):
     model = Area
     template_name = "sicop/frontend/area/area/detail.html"
     context_object_name = "area"
+    permission_required = "area.view_area"
 
 
 class AreaUpdateView(LoginRequiredMixin, UpdateView):
@@ -37,6 +39,7 @@ class AreaUpdateView(LoginRequiredMixin, UpdateView):
         "status",
     ]
     context_object_name = "area"
+    permission_required = "area.change_area"
 
     def form_valid(self, form):
         """If the form is valid, save the associated model."""
@@ -76,6 +79,7 @@ class AreaCreateView(LoginRequiredMixin, CreateView):
         "status",
     ]
     context_object_name = "area"
+    permission_required = "area.add_area"
 
     def form_valid(self, form):
         """If the form is valid, save the associated model."""

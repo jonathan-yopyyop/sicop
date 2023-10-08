@@ -2,12 +2,21 @@ from django.contrib.auth import views as auth_views
 from django.urls import path
 
 from sicop.users.views import (
+    GroupCreateView,
+    GroupDetailView,
+    GroupListView,
+    GroupUpdateView,
     LoginView,
     ResetPasswordMessageView,
     ResetPasswordView,
     SignupView,
+    UserCreateView,
+    UserListView,
     UserPasswordChangeView,
+    UserProfileUpdateView,
     UserProfileView,
+    UserUpdateView,
+    UsetDetailView,
     logout_view,
 )
 
@@ -60,5 +69,50 @@ urlpatterns = [
         "profile/password/",
         UserPasswordChangeView.as_view(),
         name="user_password_change",
+    ),
+    path(
+        "group/list",
+        GroupListView.as_view(),
+        name="user_group_list",
+    ),
+    path(
+        "group/detail/<int:pk>",
+        GroupDetailView.as_view(),
+        name="user_group_detail",
+    ),
+    path(
+        "group/update/<int:pk>",
+        GroupUpdateView.as_view(),
+        name="user_group_update",
+    ),
+    path(
+        "group/create",
+        GroupCreateView.as_view(),
+        name="user_group_create",
+    ),
+    path(
+        "user/list",
+        UserListView.as_view(),
+        name="user_list",
+    ),
+    path(
+        "user/detail/<int:pk>",
+        UsetDetailView.as_view(),
+        name="user_detail",
+    ),
+    path(
+        "user/create",
+        UserCreateView.as_view(),
+        name="user_create",
+    ),
+    path(
+        "user/update/<int:pk>",
+        UserUpdateView.as_view(),
+        name="user_update",
+    ),
+    path(
+        "user/profile/update",
+        UserProfileUpdateView.as_view(),
+        name="user_profile_update",
     ),
 ]

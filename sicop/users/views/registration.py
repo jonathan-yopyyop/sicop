@@ -91,32 +91,6 @@ class UserProfileView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # user = self.request.user
-        # context["user"] = user
-        # context["coworker"] = Coworker.objects.filter(
-        #     email=self.request.user.email,
-        # ).first()
-        # permissions = user.user_permissions.all()
-
-        # permissions_dict = {}
-        # for permission in permissions:
-        #     permission_explode = permission.codename.split("_")
-        #     if permission_explode[1] not in permissions_dict:
-        #         permissions_dict[permission_explode[1]] = {
-        #             "add": False,
-        #             "change": False,
-        #             "delete": False,
-        #             "view": False,
-        #         }
-        #     if permission_explode[0] == "add":
-        #         permissions_dict[permission_explode[1]]["add"] = True
-        #     if permission_explode[0] == "change":
-        #         permissions_dict[permission_explode[1]]["change"] = True
-        #     if permission_explode[0] == "delete":
-        #         permissions_dict[permission_explode[1]]["delete"] = True
-        #     if permission_explode[0] == "view":
-        #         permissions_dict[permission_explode[1]]["view"] = True
-        # context["permissions"] = permissions_dict
         return context
 
 
