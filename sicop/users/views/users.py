@@ -91,20 +91,28 @@ class UserUpdateView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
             name = request.POST.get("name")
             email = request.POST.get("email")
             is_staff = request.POST.get("is_staff")
+            is_active = request.POST.get("is_active")
             group_id = request.POST.get("group")
             password = request.POST.get("password")
             if is_staff == "on":
-                is_staff = True
+                is_staff_bool = True
             else:
-                is_staff = False
+                is_staff_bool = False
+
+            if is_active == "on":
+                is_active_bool = True
+            else:
+                is_active_bool = False
+
             user = User.objects.get(pk=self.kwargs["pk"])
             user.name = name
             user.email = email
-            user.is_staff = is_staff
+            user.is_staff = is_staff_bool
+            user.is_active = is_active_bool
             user.groups.clear()
             group = Group.objects.get(id=group_id)
             group.user_set.add(user)
-            if password:
+            if password is not None and password != "":
                 user.set_password(password)
             user.save()
             messages.success(request, _(f"User {email} updated successfully"))

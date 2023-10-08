@@ -65,13 +65,12 @@
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label for="projectinput1">{% trans 'Email' %}</label>
+                                <input type="hidden" name="email" value="{{ user.email }}" required />
                                 <input type="email"
                                        id="projectinput1"
                                        class="form-control"
                                        placeholder="{% trans 'Email' %}"
                                        disabled
-                                       name="email"
-                                       required
                                        value="{{ user.email }}" />
                               </div>
                             </div>
@@ -83,7 +82,6 @@
                                        class="form-control"
                                        placeholder="{% trans 'Password' %}"
                                        name="password"
-                                       required
                                        value="" />
                               </div>
                             </div>
@@ -101,7 +99,7 @@
                                 </select>
                               </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                               <div class="form-group text-left">
                                 <label for="projectinput1">{% trans 'Is staff' %}</label>
                                 <br />
@@ -109,6 +107,17 @@
                                   <input type="checkbox"
                                          {% if user.is_staff %}checked{% endif %}
                                          name="is_staff" />
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-2">
+                              <div class="form-group text-left">
+                                <label for="projectinput1">{% trans 'Is active' %}</label>
+                                <br />
+                                <div class="skin.skin-square">
+                                  <input type="checkbox"
+                                         {% if user.is_active %}checked{% endif %}
+                                         name="is_active" />
                                 </div>
                               </div>
                             </div>

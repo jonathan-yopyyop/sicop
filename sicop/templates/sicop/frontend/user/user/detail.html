@@ -74,7 +74,7 @@
                                      value="{{ user.email }}" />
                             </div>
                           </div>
-                          <div class="col-md-4">
+                          <div class="col-md-6">
                             <div class="form-group">
                               <label for="projectinput1">{% trans 'Security group' %}</label>
                               <select class="select2 form-control"
@@ -92,7 +92,7 @@
                               </select>
                             </div>
                           </div>
-                          <div class="col-md-4">
+                          <div class="col-md-3">
                             <div class="form-group text-left">
                               <label for="projectinput1">{% trans 'Is staff' %}</label>
                               <br />
@@ -101,6 +101,18 @@
                                        type="checkbox"
                                        {% if user.is_staff %}checked{% endif %}
                                        name="is_staff" />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="form-group text-left">
+                              <label for="projectinput1">{% trans 'Is active' %}</label>
+                              <br />
+                              <div class="skin.skin-square">
+                                <input disabled
+                                       type="checkbox"
+                                       {% if user.is_active %}checked{% endif %}
+                                       name="is_active" />
                               </div>
                             </div>
                           </div>
