@@ -1,0 +1,15 @@
+{% load static %}
+{% load custom_tags %}
+{% load i18n %}
+{% load static i18n %}
+
+<footer class="footer footer-static footer-light navbar-border">
+  <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2">
+    <span class="float-md-left d-block d-md-inline-block">Copyright {% get_current_year %}
+      {% get_app_name %} {% get_app_version %}
+    </span>
+    <span class="float-md-right d-none d-lg-block">Hand-crafted & Made with
+      <i class="feather icon-heart pink"></i>
+    </span>
+  </p>
+</footer>

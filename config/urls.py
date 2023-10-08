@@ -4,17 +4,31 @@ from django.contrib import admin
 from django.urls import include, path
 from django.views import defaults as default_views
 
+from config.views import HomeView
+
 urlpatterns = [
     path(
         settings.ADMIN_URL,
         admin.site.urls,
     ),
-    # User management
+    path(
+        "home/",
+        HomeView.as_view(),
+        name="home",
+    ),
+    path(
+        "",
+        HomeView.as_view(),
+        name="index_home",
+    ),
     path(
         "user/",
         include("sicop.users.urls"),
     ),
-    # Your stuff: custom urls includes go here
+    path(
+        "area/",
+        include("sicop.area.urls"),
+    ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

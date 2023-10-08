@@ -1,0 +1,33 @@
+{% load static i18n %}
+
+<div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow"
+     data-scroll-to-active="true">
+  <div class="main-menu-content">
+    <ul class="navigation navigation-main navigation-sicop"
+        id="main-menu-navigation"
+        data-menu="menu-navigation">
+      <li class="navigation-header">
+        <span>{% trans "Configuration" %}</span>
+        <i class="feather icon-minus"
+           data-toggle="tooltip"
+           data-placement="right"
+           data-original-title="{% trans 'Configuration' %}">
+        </i>
+      </li>
+      <li class="nav-item-sicop">
+        <a href="#">
+          <i class="feather icon-users"></i>
+          <span class="menu-title" data-i18n="Dashboard">{% trans 'Area' %}</span>
+        </a>
+        <ul class="menu-content">
+          <li {% if '/area/areas/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'area_area_list' %}">{% trans 'Areas' %}</a>
+          </li>
+          <li {% if '/area/member/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'area_member_list' %}">{% trans 'Area members' %}</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

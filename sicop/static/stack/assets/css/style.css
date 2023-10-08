@@ -12,13 +12,99 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 	overflow: hidden;
 	clear: both;
 }
+
 .p-image {
 	margin-bottom: 10px;
 }
+
 .buton-input-right {
 	float: right;
 	margin-top: 0.5em;
 }
+
 .display-none {
 	display: none;
+}
+
+.btn-primary {
+	border-color: #E5E2FF !important;
+	background-color: #5C246A !important;
+	color: #E5E2FF;
+}
+
+.btn-primary:hover {
+	background-color: #703AD6 !important;
+	color: #5C246A;
+}
+
+a {
+	color: #5C246A;
+	text-decoration: none;
+	background-color: transparent;
+}
+
+/* create a hoover class for .a */
+a:hover {
+	color: #703AD6;
+	text-decoration: none;
+	background-color: transparent;
+}
+
+.main-menu.menu-dark {
+	color: #dcdcdc;
+	background: #5C246A;
+}
+
+.navbar-header {
+	background: #5C246A;
+}
+
+.navigation-sicop {
+	background: #5C246A !important;
+}
+
+.navbar-header {
+	background: #ffffff !important;
+	color: #5C246A !important;
+}
+
+.brand-text {
+	color: #5C246A !important;
+}
+
+.main-menu.menu-dark .navigation>li.hover>a,
+.main-menu.menu-dark .navigation>li:hover>a,
+.main-menu.menu-dark .navigation>li.active>a {
+	color: #c3c3c3;
+	background-color: #703AD6;
+}
+
+.main-menu.menu-dark .navigation>li ul .active>a {
+	color: #ffffff;
+	border: none;
+	font-weight: 500;
+}
+
+.main-menu.menu-dark .navigation>li .active>a {
+	color: #ffffff;
+	font-weight: 500;
+}
+
+.btn-success {
+	border-color: #703AD6 !important;
+	background-color: #5C246A !important;
+	color: #FFF !important;
+}
+
+.btn-success:hover {
+	border-color: #5C246A !important;
+	background-color: #703AD6 !important;
+	color: #FFF !important;
+}
+
+.page-item.active .page-link {
+	z-index: 3;
+	color: #fff;
+	background-color: #5C246A;
+	border-color: #703AD6;
 }
