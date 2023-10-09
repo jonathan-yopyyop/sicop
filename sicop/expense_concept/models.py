@@ -11,7 +11,8 @@ class ExpenseConcept(BaseModel):
         _("Code"),
         help_text=_("Code"),
         max_length=150,
-        unique=True,
+        blank=True,
+        null=True,
     )
     name = models.CharField(
         _("Name"),

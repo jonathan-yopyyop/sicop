@@ -4,7 +4,7 @@
 {% load i18n %}
 
 {% block page_title %}
-  {% trans 'Groups list' %}
+  {% trans 'Expense concept list' %}
 {% endblock page_title %}
 {% block content %}
   <section id="configuration">
@@ -12,12 +12,12 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">{% trans 'Groups list' %}</h4>
+            <h4 class="card-title">{% trans 'Expense concept list' %}</h4>
             <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
             <div class="heading-elements">
               <ul class="list-inline mb-0">
                 <li>
-                  <a href="{% url 'user_group_create' %}">
+                  <a href="{% url 'expense_concept_create' %}">
                     <button type="button" class="btn btn-icon btn-success mr-1 mb-1">
                       <i class="fa fa-plus"></i>
                     </button>
@@ -44,16 +44,24 @@
                   <tr>
                     <th>{% trans "ID" %}</th>
                     <th>{% trans "Name" %}</th>
+                    <th>{% trans 'Status' %}</th>
                     <th>{% trans 'Detail' %}</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {% for group in groups %}
+                  {% for expense_concept in expense_concepts %}
                     <tr>
-                      <td>{{ group.id }}</td>
-                      <td>{{ group.name }}</td>
+                      <td>{{ expense_concept.id }}</td>
+                      <td>{{ expense_concept.name }}</td>
                       <td>
-                        <a href="{% url 'user_group_detail' group.id %}">
+                        {% if expense_concept.status %}
+                          <div class="badge badge-success">{% trans 'Active' %}</div>
+                        {% else %}
+                          <div class="badge badge-warning">{% trans 'Inactive' %}</div>
+                        {% endif %}
+                      </td>
+                      <td>
+                        <a href="{% url 'expense_concept_detail' expense_concept.id %}">
                           <button type="button" class="btn btn-sm btn-icon btn-primary mr-1 mb-1">
                             <i class="fa fa-eye"></i>
                           </button>
@@ -66,6 +74,7 @@
                   <tr>
                     <th>{% trans "ID" %}</th>
                     <th>{% trans "Name" %}</th>
+                    <th>{% trans 'Status' %}</th>
                     <th>{% trans 'Detail' %}</th>
                   </tr>
                 </tfoot>

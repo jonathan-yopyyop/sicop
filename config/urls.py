@@ -29,6 +29,14 @@ urlpatterns = [
         "area/",
         include("sicop.area.urls"),
     ),
+    path(
+        "expense/",
+        include("sicop.expense_concept.urls"),
+    ),
+    path(
+        "expense/",
+        include("sicop.expense_type.urls"),
+    ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

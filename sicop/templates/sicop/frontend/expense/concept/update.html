@@ -4,7 +4,7 @@
 {% load i18n %}
 
 {% block page_title %}
-  {% trans 'Group update' %}
+  {% trans 'Expense concept Update' %}
 {% endblock page_title %}
 {% block content %}
   <section id="configuration">
@@ -12,12 +12,12 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">{% trans 'Group update' %}</h4>
+            <h4 class="card-title">{% trans 'Expense concept data' %}</h4>
             <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
             <div class="heading-elements">
               <ul class="list-inline mb-0">
                 <li>
-                  <a href="{% url 'user_group_list' %}">
+                  <a href="{% url 'expense_concept_list' %}">
                     <button type="button" class="btn btn-icon btn-success mr-1 mb-1">
                       <i class="fa fa-list"></i>
                     </button>
@@ -47,10 +47,10 @@
                         {% csrf_token %}
                         <div class="form-body">
                           <h4 class="form-section">
-                            <i class="feather icon-unlock"></i> {% trans 'Group Info' %}
+                            <i class="feather icon-users"></i> {% trans 'Expense concept Info' %}
                           </h4>
                           <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                               <div class="form-group">
                                 <label for="projectinput1">{% trans 'Name' %}</label>
                                 <input type="text"
@@ -58,26 +58,16 @@
                                        class="form-control"
                                        placeholder="{% trans 'Name' %}"
                                        name="name"
-                                       value="{{ group.name }}" />
+                                       value="{{ expense_concept.name }}" />
                               </div>
                             </div>
-                            <div class="col-md-12">
-                              <div class="form-group row">
-                                <label class="col-md-12 label-control required" for="projectinput4">{% trans "Permissions" %}</label>
-                                <div class="col-md-12">
-                                  <select multiple="multiple"
-                                          size="10"
-                                          class="duallistbox"
-                                          name="expense_concepts[]"
-                                          id="expense_concepts">
-                                    {% for premission in permissions %}
-                                      <option value="{{ premission.id }}"
-                                              {% if premission.id in group_permissions %}selected{% endif %}>
-                                        {{ premission.name }}
-                                      </option>
-                                    {% endfor %}
-                                  </select>
-                                </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="projectinput3">{% trans 'Status' %}</label>
+                                <select class="select2 form-control" name="status">
+                                  <option value="True" {% if expense_concept.status %}selected{% endif %}>{% trans 'Active' %}</option>
+                                  <option value="False" {% if not expense_concept.status %}selected{% endif %}>{% trans 'Inactive' %}</option>
+                                </select>
                               </div>
                             </div>
                           </div>

@@ -16,6 +16,22 @@
       </li>
       <li class="nav-item-sicop">
         <a href="#">
+          <i class="feather icon-unlock"></i>
+          <span class="menu-title" data-i18n="Dashboard">{% trans 'Authorization' %}</span>
+        </a>
+        <ul class="menu-content">
+          <li {% if 'user/group/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'user_group_list' %}">{% trans 'Groups' %}</a>
+          </li>
+        </ul>
+        <ul class="menu-content">
+          <li {% if 'user/user/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'user_list' %}">{% trans 'Users' %}</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item-sicop">
+        <a href="#">
           <i class="feather icon-users"></i>
           <span class="menu-title" data-i18n="Dashboard">{% trans 'Area' %}</span>
         </a>
@@ -30,17 +46,17 @@
       </li>
       <li class="nav-item-sicop">
         <a href="#">
-          <i class="feather icon-unlock"></i>
-          <span class="menu-title" data-i18n="Dashboard">{% trans 'Authorization' %}</span>
+          <i class="feather icon-percent"></i>
+          <span class="menu-title" data-i18n="Dashboard">{% trans 'Expense' %}</span>
         </a>
         <ul class="menu-content">
-          <li {% if 'user/group/' in request.path %}class="active"{% endif %}>
-            <a class="menu-item" href="{% url 'user_group_list' %}">{% trans 'Groups' %}</a>
+          <li {% if '/expense/concept/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'expense_concept_list' %}">{% trans 'Concepts' %}</a>
           </li>
         </ul>
         <ul class="menu-content">
-          <li {% if 'user/user/' in request.path %}class="active"{% endif %}>
-            <a class="menu-item" href="{% url 'user_list' %}">{% trans 'Users' %}</a>
+          <li {% if '/expense/type/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'expense_type_list' %}">{% trans 'Types' %}</a>
           </li>
         </ul>
       </li>
