@@ -12,7 +12,8 @@ class BusinessUnit(BaseModel):
         _("Code"),
         help_text=_("Code"),
         max_length=150,
-        unique=True,
+        blank=True,
+        null=True,
     )
     cost_centers = models.ManyToManyField(
         CostCenter,
