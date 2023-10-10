@@ -57,6 +57,13 @@ class ExpenseConceptUpdateView(LoginRequiredMixin, UpdateView):
         )
 
     def post(self, request: HttpRequest, *args: str, **kwargs) -> HttpResponse:
+        if request.POST.get("status") == "True":
+            request.POST._mutable = True
+            request.POST["status"] = True
+        else:
+            request.POST._mutable = True
+            request.POST["status"] = False
+        print(request.POST)
         return super().post(request, *args, **kwargs)
 
 
