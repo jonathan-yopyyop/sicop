@@ -41,6 +41,10 @@ urlpatterns = [
         "cost_center/",
         include("sicop.cost_center.urls"),
     ),
+    path(
+        "business_unit/",
+        include("sicop.business_unit.urls"),
+    ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

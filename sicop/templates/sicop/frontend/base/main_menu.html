@@ -71,6 +71,17 @@
           </li>
         </ul>
       </li>
+      <li class="nav-item-sicop">
+        <a href="#">
+          <i class="feather icon-briefcase"></i>
+          <span class="menu-title" data-i18n="Dashboard">{% trans 'Business unit' %}</span>
+        </a>
+        <ul class="menu-content">
+          <li {% if '/business_unit/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'business_unit_list' %}">{% trans 'Business units' %}</a>
+          </li>
+        </ul>
+      </li>
     </ul>
   </div>
 </div>
