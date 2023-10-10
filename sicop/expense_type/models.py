@@ -11,8 +11,9 @@ class ExpenseType(BaseModel):
     code = models.SlugField(
         _("Code"),
         help_text=_("Code"),
-        max_length=150,
-        unique=True,
+        max_length=250,
+        null=True,
+        blank=True,
     )
     name = models.CharField(
         _("Name"),

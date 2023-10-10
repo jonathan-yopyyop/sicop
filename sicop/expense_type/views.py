@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.http import HttpRequest, HttpResponseRedirect
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
@@ -24,23 +24,44 @@ class ExpenseTypeCreateView(PermissionRequiredMixin, LoginRequiredMixin, CreateV
     """View for Expense Type create."""
 
     model = ExpenseType
-    template_name = "sicop/frontend/expense/type/form.html"
+    template_name = "sicop/frontend/expense/type/create.html"
     fields = [
         "name",
         "expense_concepts",
     ]
-    success_url = reverse_lazy("expense_type_list")
     permission_required = "expense_type.add_expense_type"
 
-    def form_valid(self, form):
-        """If the form is valid, save the associated model."""
-        messages.success(self.request, _("Expense Type created successfully."))
-        return super().form_valid(form)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        expense_types = ExpenseType.objects.all()
+        expense_concepts = []
+        for expense_type in expense_types:
+            types = expense_type.expense_concepts.all()
+            for type_C in types:
+                expense_concepts.append(type_C.id)
 
-    def form_invalid(self, form):
-        """If the form is invalid, show the associated model."""
-        messages.error(self.request, _("Expense Type has not been created."))
-        return super().form_invalid(form)
+        context["expense_concepts_all"] = ExpenseConcept.objects.all().exclude(id__in=expense_concepts)
+        return context
+
+    def post(self, request, *args, **kwargs):
+        try:
+            name = request.POST["name"]
+            expense_concepts = request.POST.getlist("expense_concepts[]")
+            expense_type = ExpenseType.objects.create(name=name)
+            expense_type.expense_concepts.set(expense_concepts)
+            expense_type.save()
+            messages.success(request, _("Expense type created successfully"))
+
+        except Exception as e:
+            print(e)
+            messages.success(request, _("Expense type not created"))
+
+        return HttpResponseRedirect(
+            reverse(
+                "expense_type_detail",
+                kwargs={"pk": expense_type.id},
+            )
+        )
 
 
 class ExpenseTypeDetailView(PermissionRequiredMixin, LoginRequiredMixin, DetailView):
