@@ -12,7 +12,8 @@ class CostCenter(BaseModel):
         _("Cost Center ID"),
         help_text=_("Cost Center ID"),
         max_length=150,
-        unique=True,
+        blank=True,
+        null=True,
     )
     name = models.CharField(
         _("Cost Center name"),
