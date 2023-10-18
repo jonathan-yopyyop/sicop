@@ -1,0 +1,79 @@
+from django.urls import path
+
+from sicop.project.views import (
+    ProjectCreateView,
+    ProjectDetailView,
+    ProjectListView,
+    ProjectStatusCreateView,
+    ProjectStatusDetailView,
+    ProjectStatusListView,
+    ProjectStatusUpdateView,
+    ProjectTypeCreateView,
+    ProjectTypeDetailView,
+    ProjectTypeListView,
+    ProjectTypeUpdateView,
+    ProjectUpdateView,
+)
+
+urlpatterns = [
+    path(
+        "type/list/",
+        ProjectTypeListView.as_view(),
+        name="project_type_list",
+    ),
+    path(
+        "type/create/",
+        ProjectTypeCreateView.as_view(),
+        name="project_type_create",
+    ),
+    path(
+        "type/detail/<int:pk>/",
+        ProjectTypeDetailView.as_view(),
+        name="project_type_detail",
+    ),
+    path(
+        "type/update/<int:pk>/",
+        ProjectTypeUpdateView.as_view(),
+        name="project_type_update",
+    ),
+    path(
+        "status/list/",
+        ProjectStatusListView.as_view(),
+        name="project_status_list",
+    ),
+    path(
+        "status/create/",
+        ProjectStatusCreateView.as_view(),
+        name="project_status_create",
+    ),
+    path(
+        "status/detail/<int:pk>/",
+        ProjectStatusDetailView.as_view(),
+        name="project_status_detail",
+    ),
+    path(
+        "status/update/<int:pk>/",
+        ProjectStatusUpdateView.as_view(),
+        name="project_status_update",
+    ),
+    path(
+        "project/list/",
+        ProjectListView.as_view(),
+        name="project_list",
+    ),
+    path(
+        "project/detail/<int:pk>/",
+        ProjectDetailView.as_view(),
+        name="project_detail",
+    ),
+    path(
+        "project/update/<int:pk>/",
+        ProjectUpdateView.as_view(),
+        name="project_update",
+    ),
+    path(
+        "project/create/",
+        ProjectCreateView.as_view(),
+        name="project_create",
+    ),
+]

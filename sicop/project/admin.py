@@ -15,7 +15,6 @@ class ProjectStatusAdmin(admin.ModelAdmin):
         "updated_at",
     )
     list_filter = (
-        "code",
         "name",
         "status",
         "created_at",

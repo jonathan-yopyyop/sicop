@@ -3,15 +3,23 @@ FROM python:3.11.6-slim-bullseye as python
 
 
 # Python build stage
-FROM python as python-build-stage
+FROM python:3.11-bullseye as python-build-stage
 
 ENV PYTHONDONTWRITEBYTECODE 1
 
-RUN apt-get update && apt-get install --no-install-recommends -y \
+RUN apt-get update \
   # dependencies for building Python packages
-  build-essential \
+  && apt-get install -y build-essential \
   # psycopg2 dependencies
-  libpq-dev \
+  && apt-get install -y libpq-dev \
+  # Translations dependencies
+  && apt-get install -y gettext \
+  # Uncomment below lines to enable Sphinx output to latex and pdf
+  # && apt-get install -y texlive-latex-recommended \
+  # && apt-get install -y texlive-fonts-recommended \
+  # && apt-get install -y texlive-latex-extra \
+  # && apt-get install -y latexmk \
+  && pip install psycopg2 \
   # cleaning up unused files
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*

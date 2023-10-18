@@ -78,7 +78,6 @@ class CostCenterUpdateView(PermissionRequiredMixin, LoginRequiredMixin, UpdateVi
         else:
             request.POST._mutable = True
             request.POST["status"] = False
-        print(request.POST)
         return super().post(request, *args, **kwargs)
 
 
