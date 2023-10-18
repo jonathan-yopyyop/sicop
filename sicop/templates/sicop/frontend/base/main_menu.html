@@ -82,6 +82,34 @@
           </li>
         </ul>
       </li>
+      <li class="nav-item-sicop">
+        <a href="#">
+          <i class="feather icon-pie-chart"></i>
+          <span class="menu-title" data-i18n="Dashboard">{% trans 'Budget' %}</span>
+        </a>
+        <ul class="menu-content">
+          <li {% if '/budget/description/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'budget_description_list' %}">{% trans 'Descriptions' %}</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item-sicop">
+        <a href="#">
+          <i class="feather icon-bar-chart-2"></i>
+          <span class="menu-title" data-i18n="Dashboard">{% trans 'Project' %}</span>
+        </a>
+        <ul class="menu-content">
+          <li {% if '/project/type/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'project_type_list' %}">{% trans 'Types' %}</a>
+          </li>
+          <li {% if '/project/status/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'project_status_list' %}">{% trans 'Statuses' %}</a>
+          </li>
+          <li {% if '/project/project/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'project_list' %}">{% trans 'Projects' %}</a>
+          </li>
+        </ul>
+      </li>
     </ul>
   </div>
 </div>

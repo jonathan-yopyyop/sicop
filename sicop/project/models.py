@@ -13,7 +13,8 @@ class ProjectStatus(BaseModel):
         _("Code"),
         help_text=_("Code"),
         max_length=150,
-        unique=True,
+        blank=True,
+        null=True,
     )
     name = models.CharField(
         _("Name"),
@@ -39,7 +40,8 @@ class ProjectType(BaseModel):
         _("Code"),
         help_text=_("Code"),
         max_length=150,
-        unique=True,
+        blank=True,
+        null=True,
     )
     name = models.CharField(
         _("Name"),
@@ -70,6 +72,8 @@ class Project(BaseModel):
         _("Project ID"),
         help_text=_("Project ID"),
         max_length=150,
+        blank=True,
+        null=True,
     )
     description = models.CharField(
         _("Description"),

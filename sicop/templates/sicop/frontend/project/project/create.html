@@ -1,0 +1,191 @@
+{% extends 'sicop/frontend/base/base.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block page_title %}
+  {% trans 'Project create' %}
+{% endblock page_title %}
+{% block content %}
+  <section id="configuration">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">{% trans 'Project create' %}</h4>
+            <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+            <div class="heading-elements">
+              <ul class="list-inline mb-0">
+                <li>
+                  <a href="{% url 'project_list' %}">
+                    <button type="button" class="btn btn-icon btn-success mr-1 mb-1">
+                      <i class="fa fa-list"></i>
+                    </button>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-content collapse show">
+            <div class="card-body card-dashboard">
+              <section id="basic-form-layouts">
+                <div class="row match-height">
+                  <div class="col-md-12">
+                    <div class="card">
+                      {% if messages %}
+                        {% for message in messages %}
+                          <div class="alert alert-{{ message.tags }} alert-dismissible mb-2"
+                               role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">×</span>
+                            </button>
+                            {{ message }}
+                          </div>
+                        {% endfor %}
+                      {% endif %}
+                      <form method="post">
+                        {% csrf_token %}
+                        <div class="form-body">
+                          <h4 class="form-section">
+                            <i class="feather icon-users"></i> {% trans 'Project Info' %}
+                          </h4>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="projectinput1">{% trans 'Name' %}</label>
+                                <input type="text"
+                                       id="projectinput1"
+                                       class="form-control"
+                                       placeholder="{% trans 'Name' %}"
+                                       name="name"
+                                       value="{{ project.name }}" />
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="projectinput1">{% trans 'Description' %}</label>
+                                <input type="text"
+                                       id="projectinput1"
+                                       class="form-control"
+                                       placeholder="{% trans 'Description' %}"
+                                       name="description"
+                                       value="{{ project.description }}" />
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="projectinput1">{% trans 'Start at' %}</label>
+                                <input type="date"
+                                       id="projectinput1"
+                                       class="form-control"
+                                       placeholder="{% trans 'Start at' %}"
+                                       name="start_date"
+                                       value="{{ project.start_date|date:'Y-m-d' }}" />
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="projectinput1">{% trans 'End at' %}</label>
+                                <input type="date"
+                                       id="projectinput1"
+                                       class="form-control"
+                                       placeholder="{% trans 'End at' %}"
+                                       name="end_date"
+                                       value="{{ project.end_date|date:'Y-m-d' }}" />
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="projectinput1">{% trans 'Budget' %}</label>
+                                <input type="text"
+                                       id="projectinput1"
+                                       class="form-control"
+                                       placeholder="{% trans 'Budget' %}"
+                                       name="budget"
+                                       value="{{ project.budget }}" />
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="projectinput3">{% trans 'Area' %}</label>
+                                <select class="select2 form-control"  name="area">
+                                  <option value="">{% trans "Select an area" %}</option>
+                                  {% for area in areas %}
+                                    <option value="{{ area.id }}"
+                                            {% if area.id == project.area.id %}selected{% endif %}>
+                                      {{ area.name }}
+                                    </option>
+                                  {% endfor %}
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="projectinput3">{% trans 'Project Type' %}</label>
+                                <select class="select2 form-control"  name="project_type">
+                                  <option value="">{% trans "Select a project type" %}</option>
+                                  {% for project_type in project_types %}
+                                    <option value="{{ project_type.id }}"
+                                            {% if project_type.id == project.project_type.id %}selected{% endif %}>
+                                      {{ project_type.name }}
+                                    </option>
+                                  {% endfor %}
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="projectinput3">{% trans 'Project Status' %}</label>
+                                <select class="select2 form-control"  name="project_status">
+                                  <option value="">{% trans "Select a project status" %}</option>
+                                  {% for project_status in project_statuses %}
+                                    <option value="{{ project_status.id }}"
+                                            {% if project_status.id == project.project_status.id %}selected{% endif %}>
+                                      {{ project_status.name }}
+                                    </option>
+                                  {% endfor %}
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="projectinput3">{% trans 'Project Manager' %}</label>
+                                <select class="select2 form-control"  name="project_manager">
+                                  <option value="">{% trans "Select a project manager" %}</option>
+                                  {% for user in users %}
+                                    <option value="{{ user.id }}"
+                                            {% if user.id == project.project_manager.id %}selected{% endif %}>
+                                      {{ user.name }}
+                                    </option>
+                                  {% endfor %}
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="projectinput3">{% trans 'Is taxable?' %}</label>
+                                <select class="select2 form-control"  name="is_it_taxable">
+                                  <option value="True" {% if project.is_it_taxable %}selected{% endif %}>{% trans 'Yes' %}</option>
+                                  <option value="False" {% if not project.is_it_taxable %}selected{% endif %}>{% trans 'No' %}</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-actions">
+                          <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-edit"></i> {% trans 'Create' %}
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}
