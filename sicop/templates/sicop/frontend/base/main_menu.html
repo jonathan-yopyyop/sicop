@@ -16,22 +16,6 @@
       </li>
       <li class="nav-item-sicop">
         <a href="#">
-          <i class="feather icon-unlock"></i>
-          <span class="menu-title" data-i18n="Dashboard">{% trans 'Authorization' %}</span>
-        </a>
-        <ul class="menu-content">
-          <li {% if 'user/group/' in request.path %}class="active"{% endif %}>
-            <a class="menu-item" href="{% url 'user_group_list' %}">{% trans 'Groups' %}</a>
-          </li>
-        </ul>
-        <ul class="menu-content">
-          <li {% if 'user/user/' in request.path %}class="active"{% endif %}>
-            <a class="menu-item" href="{% url 'user_list' %}">{% trans 'Users' %}</a>
-          </li>
-        </ul>
-      </li>
-      <li class="nav-item-sicop">
-        <a href="#">
           <i class="feather icon-users"></i>
           <span class="menu-title" data-i18n="Dashboard">{% trans 'Area' %}</span>
         </a>
@@ -41,6 +25,28 @@
           </li>
           <li {% if '/area/member/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'area_member_list' %}">{% trans 'Area members' %}</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item-sicop">
+        <a href="#">
+          <i class="feather icon-briefcase"></i>
+          <span class="menu-title" data-i18n="Dashboard">{% trans 'Business unit' %}</span>
+        </a>
+        <ul class="menu-content">
+          <li {% if '/business_unit/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'business_unit_list' %}">{% trans 'Business units' %}</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item-sicop">
+        <a href="#">
+          <i class="feather icon-target"></i>
+          <span class="menu-title" data-i18n="Dashboard">{% trans 'Cost center' %}</span>
+        </a>
+        <ul class="menu-content">
+          <li {% if '/cost_center/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'cost_center_list' %}">{% trans 'Cost centers' %}</a>
           </li>
         </ul>
       </li>
@@ -62,23 +68,18 @@
       </li>
       <li class="nav-item-sicop">
         <a href="#">
-          <i class="feather icon-target"></i>
-          <span class="menu-title" data-i18n="Dashboard">{% trans 'Cost center' %}</span>
+          <i class="feather icon-bar-chart-2"></i>
+          <span class="menu-title" data-i18n="Dashboard">{% trans 'Project' %}</span>
         </a>
         <ul class="menu-content">
-          <li {% if '/cost_center/' in request.path %}class="active"{% endif %}>
-            <a class="menu-item" href="{% url 'cost_center_list' %}">{% trans 'Cost centers' %}</a>
+          <li {% if '/project/type/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'project_type_list' %}">{% trans 'Types' %}</a>
           </li>
-        </ul>
-      </li>
-      <li class="nav-item-sicop">
-        <a href="#">
-          <i class="feather icon-briefcase"></i>
-          <span class="menu-title" data-i18n="Dashboard">{% trans 'Business unit' %}</span>
-        </a>
-        <ul class="menu-content">
-          <li {% if '/business_unit/' in request.path %}class="active"{% endif %}>
-            <a class="menu-item" href="{% url 'business_unit_list' %}">{% trans 'Business units' %}</a>
+          <li {% if '/project/status/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'project_status_list' %}">{% trans 'Statuses' %}</a>
+          </li>
+          <li {% if '/project/project/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'project_list' %}">{% trans 'Projects' %}</a>
           </li>
         </ul>
       </li>
@@ -95,18 +96,17 @@
       </li>
       <li class="nav-item-sicop">
         <a href="#">
-          <i class="feather icon-bar-chart-2"></i>
-          <span class="menu-title" data-i18n="Dashboard">{% trans 'Project' %}</span>
+          <i class="feather icon-unlock"></i>
+          <span class="menu-title" data-i18n="Dashboard">{% trans 'Authorization' %}</span>
         </a>
         <ul class="menu-content">
-          <li {% if '/project/type/' in request.path %}class="active"{% endif %}>
-            <a class="menu-item" href="{% url 'project_type_list' %}">{% trans 'Types' %}</a>
+          <li {% if 'user/group/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'user_group_list' %}">{% trans 'Groups' %}</a>
           </li>
-          <li {% if '/project/status/' in request.path %}class="active"{% endif %}>
-            <a class="menu-item" href="{% url 'project_status_list' %}">{% trans 'Statuses' %}</a>
-          </li>
-          <li {% if '/project/project/' in request.path %}class="active"{% endif %}>
-            <a class="menu-item" href="{% url 'project_list' %}">{% trans 'Projects' %}</a>
+        </ul>
+        <ul class="menu-content">
+          <li {% if 'user/user/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'user_list' %}">{% trans 'Users' %}</a>
           </li>
         </ul>
       </li>

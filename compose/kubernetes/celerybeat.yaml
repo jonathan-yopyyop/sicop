@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: celerybeat
+  namespace: local
+  name: celerybeat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: celerybeat
+  template:
+    metadata:
+      labels:
+        service: celerybeat
+    spec:
+      containers:
+        - args:
+            - /start-celerybeat
+          envFrom:
+            - configMapRef:
+                name: envs-local-django
+            - configMapRef:
+                name: envs-local-postgres
+            - secretRef:
+                name: secrets-local-django
+            - secretRef:
+                name: secrets-local-postgres
+          # create a node using a doker image jonathanurzolamaldonado/sicop_local_celerybeat from docker hub
+          image: jonathanurzolamaldonado/sicop_local_celerybeat
+          name: celerybeat
+          resources: {}
+          volumeMounts:
+            - mountPath: /app/sicop/media
+              name: media-sicop
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+        - name: media-sicop
+          persistentVolumeClaim:
+            claimName: media-sicop

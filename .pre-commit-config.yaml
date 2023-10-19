@@ -11,6 +11,7 @@ repos:
       - id: check-toml
       - id: check-xml
       - id: check-yaml
+        args: [--allow-multiple-documents]
       - id: debug-statements
       - id: check-builtin-literals
       - id: check-case-conflict
@@ -18,10 +19,10 @@ repos:
       - id: detect-private-key
 
   - repo: https://github.com/adamchainz/django-upgrade
-    rev: '1.14.1'
+    rev: "1.14.1"
     hooks:
       - id: django-upgrade
-        args: ['--target-version', '4.2']
+        args: ["--target-version", "4.2"]
 
   - repo: https://github.com/asottile/pyupgrade
     rev: v3.12.0
