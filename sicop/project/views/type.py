@@ -16,7 +16,7 @@ class ProjectTypeListView(PermissionRequiredMixin, LoginRequiredMixin, ListView)
     model = ProjectType
     template_name = "sicop/frontend/project/type/list.html"
     context_object_name = "types"
-    permission_required = "project.view_type"
+    permission_required = "project.view_projecttype"
 
 
 class ProjectTypeDetailView(PermissionRequiredMixin, LoginRequiredMixin, DetailView):
@@ -25,7 +25,7 @@ class ProjectTypeDetailView(PermissionRequiredMixin, LoginRequiredMixin, DetailV
     model = ProjectType
     template_name = "sicop/frontend/project/type/detail.html"
     context_object_name = "type"
-    permission_required = "project.view_type"
+    permission_required = "project.view_projecttype"
 
 
 class ProjectTypeCreateView(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
@@ -36,7 +36,7 @@ class ProjectTypeCreateView(PermissionRequiredMixin, LoginRequiredMixin, CreateV
     fields = [
         "name",
     ]
-    permission_required = "project.add_type"
+    permission_required = "project.add_projecttype"
 
     def get_success_url(self) -> str:
         """Return to ProjectType list."""
@@ -63,7 +63,7 @@ class ProjectTypeUpdateView(PermissionRequiredMixin, LoginRequiredMixin, UpdateV
         "status",
     ]
     context_object_name = "type"
-    permission_required = "project.change_type"
+    permission_required = "project.change_projecttype"
 
     def get_success_url(self) -> str:
         """Return to ProjectType list."""

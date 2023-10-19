@@ -16,7 +16,7 @@ class ExpenseConceptListView(PermissionRequiredMixin, LoginRequiredMixin, ListVi
     model = ExpenseConcept
     template_name = "sicop/frontend/expense/concept/list.html"
     context_object_name = "expense_concepts"
-    permission_required = "expense_concept.view_expense_concept"
+    permission_required = "expense_concept.view_expenseconcept"
 
 
 class ExpenseConceptDetailView(LoginRequiredMixin, DetailView):
@@ -25,7 +25,7 @@ class ExpenseConceptDetailView(LoginRequiredMixin, DetailView):
     model = ExpenseConcept
     template_name = "sicop/frontend/expense/concept/detail.html"
     context_object_name = "expense_concept"
-    permission_required = "expense_concept.view_expense_concept"
+    permission_required = "expense_concept.view_expenseconcept"
 
 
 class ExpenseConceptUpdateView(LoginRequiredMixin, UpdateView):
@@ -38,7 +38,7 @@ class ExpenseConceptUpdateView(LoginRequiredMixin, UpdateView):
         "status",
     ]
     context_object_name = "expense_concept"
-    permission_required = "expense_concept.change_expense_concept"
+    permission_required = "expense_concept.change_expenseconcept"
 
     def form_valid(self, form):
         """If the form is valid, save the associated model."""
@@ -76,7 +76,7 @@ class ExpenseConceptCreateView(LoginRequiredMixin, CreateView):
         "name",
     ]
     context_object_name = "expense_concept"
-    permission_required = "expense_concept.add_expense_concept"
+    permission_required = "expense_concept.add_expenseconcept"
 
     def form_valid(self, form):
         """If the form is valid, save the associated model."""

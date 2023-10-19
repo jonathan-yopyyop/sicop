@@ -17,7 +17,7 @@ class ExpenseTypeListView(PermissionRequiredMixin, LoginRequiredMixin, ListView)
     model = ExpenseType
     template_name = "sicop/frontend/expense/type/list.html"
     context_object_name = "expense_types"
-    permission_required = "expense_type.view_expense_type"
+    permission_required = "expense_type.view_expensetype"
 
 
 class ExpenseTypeCreateView(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
@@ -29,7 +29,7 @@ class ExpenseTypeCreateView(PermissionRequiredMixin, LoginRequiredMixin, CreateV
         "name",
         "expense_concepts",
     ]
-    permission_required = "expense_type.add_expense_type"
+    permission_required = "expense_type.add_expensetype"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -70,7 +70,7 @@ class ExpenseTypeDetailView(PermissionRequiredMixin, LoginRequiredMixin, DetailV
     model = ExpenseType
     template_name = "sicop/frontend/expense/type/detail.html"
     context_object_name = "expense_type"
-    permission_required = "expense_type.view_expense_type"
+    permission_required = "expense_type.view_expensetype"
 
     def get_context_data(self, **kwargs):
         """Insert the single object into the context dict."""
@@ -81,7 +81,7 @@ class ExpenseTypeDetailView(PermissionRequiredMixin, LoginRequiredMixin, DetailV
 
 class ExpenseTypeUpdatingView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = "sicop/frontend/expense/type/update.html"
-    permission_required = "expense_type.change_expense_type"
+    permission_required = "expense_type.change_expensetype"
 
     def get_context_data(self, **kwargs):
         """Insert the single object into the context dict."""

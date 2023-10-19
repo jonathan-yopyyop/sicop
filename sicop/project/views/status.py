@@ -16,7 +16,7 @@ class ProjectStatusListView(PermissionRequiredMixin, LoginRequiredMixin, ListVie
     model = ProjectStatus
     template_name = "sicop/frontend/project/status/list.html"
     context_object_name = "statuses"
-    permission_required = "project.view_status"
+    permission_required = "project.view_projectstatus"
 
 
 class ProjectStatusDetailView(PermissionRequiredMixin, LoginRequiredMixin, DetailView):
@@ -25,7 +25,7 @@ class ProjectStatusDetailView(PermissionRequiredMixin, LoginRequiredMixin, Detai
     model = ProjectStatus
     template_name = "sicop/frontend/project/status/detail.html"
     context_object_name = "status"
-    permission_required = "project.view_status"
+    permission_required = "project.view_projectstatus"
 
 
 class ProjectStatusCreateView(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
@@ -36,7 +36,7 @@ class ProjectStatusCreateView(PermissionRequiredMixin, LoginRequiredMixin, Creat
     fields = [
         "name",
     ]
-    permission_required = "project.add_status"
+    permission_required = "project.add_projectstatus"
 
     def get_success_url(self) -> str:
         """Return to ProjectStatus list."""
@@ -63,7 +63,7 @@ class ProjectStatusUpdateView(PermissionRequiredMixin, LoginRequiredMixin, Updat
         "name",
         "status",
     ]
-    permission_required = "project.change_status"
+    permission_required = "project.change_projectstatus"
 
     def get_success_url(self) -> str:
         """Return to ProjectStatus list."""
