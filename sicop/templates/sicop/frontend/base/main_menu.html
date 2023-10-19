@@ -92,6 +92,9 @@
           <li {% if '/budget/description/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'budget_description_list' %}">{% trans 'Descriptions' %}</a>
           </li>
+          <li {% if '/budget/budget/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'budget_list' %}">{% trans 'Budget' %}</a>
+          </li>
         </ul>
       </li>
       <li class="nav-item-sicop">
