@@ -9,7 +9,6 @@ class CostCenterAdmin(admin.ModelAdmin):
         "name",
         "id",
         "description",
-        "area",
         "status",
         "created_at",
         "updated_at",

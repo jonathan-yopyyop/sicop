@@ -2,7 +2,6 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from config.models import BaseModel
-from sicop.area.models import Area
 
 
 class CostCenter(BaseModel):
@@ -25,14 +24,6 @@ class CostCenter(BaseModel):
         help_text=_("Cost Center description"),
         blank=True,
         null=True,
-    )
-    area = models.ForeignKey(
-        Area,
-        verbose_name=_("Area"),
-        help_text=_("Area"),
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True,
     )
 
     class Meta:

@@ -74,15 +74,6 @@
                                        value="" />
                               </div>
                             </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label for="projectinput3">{% trans 'Area' %}</label>
-                                <select class="select2 form-control" name="area" required>
-                                  <option value="">{% trans "Select an area" %}</option>
-                                  {% for area in areas %}<option value="{{ costcenter.id }}">{{ area.name }}</option>{% endfor %}
-                                </select>
-                              </div>
-                            </div>
                           </div>
                         </div>
                         <div class="form-actions">

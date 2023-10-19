@@ -45,14 +45,12 @@ class CostCenterUpdateView(PermissionRequiredMixin, LoginRequiredMixin, UpdateVi
         "name",
         "description",
         "status",
-        "area",
     ]
     context_object_name = "costcenter"
     permission_required = "cost_center.change_costcenter"
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        context["areas"] = Area.objects.all()
         return context
 
     def form_valid(self, form):
@@ -89,14 +87,12 @@ class CostCenterCreateView(PermissionRequiredMixin, LoginRequiredMixin, CreateVi
     fields = [
         "name",
         "description",
-        "area",
     ]
     context_object_name = "costcenter"
     permission_required = "cost_center.add_costcenter"
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        context["areas"] = Area.objects.all()
         return context
 
     def form_valid(self, form):
