@@ -75,7 +75,14 @@ class BudgetUpdateView(PermissionRequiredMixin, LoginRequiredMixin, UpdateView):
     model = Budget
     template_name = "sicop/frontend/budget/budget/update.html"
     context_object_name = "budget"
-    fields = ["project", "cost_center", "budget_description", "unit_value", "quantity", "status"]
+    fields = [
+        "project",
+        "cost_center",
+        "budget_description",
+        "unit_value",
+        "quantity",
+        "status",
+    ]
 
     permission_required = "budget.change_budget"
 

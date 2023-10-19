@@ -1,0 +1,44 @@
+                         List of relations
+ Schema |                   Name                    | Type  | Owner
+--------+-------------------------------------------+-------+-------
+ public | account_emailaddress                      | table | sicop
+ public | account_emailconfirmation                 | table | sicop
+ public | admin_interface_theme                     | table | sicop
+ public | area_area                                 | table | sicop
+ public | area_areamember                           | table | sicop
+ public | auth_group                                | table | sicop
+ public | auth_group_permissions                    | table | sicop
+ public | auth_permission                           | table | sicop
+ public | budget_budget                             | table | sicop
+ public | budget_budgetdescription                  | table | sicop
+ public | business_unit_businessunit                | table | sicop
+ public | business_unit_businessunit_cost_centers   | table | sicop
+ public | cost_center_costcenter                    | table | sicop
+ public | django_admin_log                          | table | sicop
+ public | django_celery_beat_clockedschedule        | table | sicop
+ public | django_celery_beat_crontabschedule        | table | sicop
+ public | django_celery_beat_intervalschedule       | table | sicop
+ public | django_celery_beat_periodictask           | table | sicop
+ public | django_celery_beat_periodictasks          | table | sicop
+ public | django_celery_beat_solarschedule          | table | sicop
+ public | django_content_type                       | table | sicop
+ public | django_migrations                         | table | sicop
+ public | django_session                            | table | sicop
+ public | django_site                               | table | sicop
+ public | expense_concept_expenseconcept            | table | sicop
+ public | expense_type_expensetype                  | table | sicop
+ public | expense_type_expensetype_expense_concepts | table | sicop
+ public | integration_activeintegration             | table | sicop
+ public | integration_businessunit                  | table | sicop
+ public | integration_costcenter                    | table | sicop
+ public | integration_expenseconcept                | table | sicop
+ public | integration_expensetype                   | table | sicop
+ public | integration_third                         | table | sicop
+ public | project_project                           | table | sicop
+ public | project_projectstatus                     | table | sicop
+ public | project_projectstatushistory              | table | sicop
+ public | project_projecttype                       | table | sicop
+ public | users_user                                | table | sicop
+ public | users_user_groups                         | table | sicop
+ public | users_user_user_permissions               | table | sicop
+(40 rows)

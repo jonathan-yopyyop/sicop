@@ -14,13 +14,13 @@ from sicop.users.models import User
 class UserListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
     model = User
     template_name = "sicop/frontend/user/user/list.html"
-    permission_required = "auth.view_user"
+    permission_required = "users.view_user"
     context_object_name = "users"
 
 
 class UsetDetailView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = "sicop/frontend/user/user/detail.html"
-    permission_required = "auth.view_user"
+    permission_required = "users.view_user"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -36,7 +36,7 @@ class UsetDetailView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
 
 class UserCreateView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = "sicop/frontend/user/user/create.html"
-    permission_required = "auth.add_user"
+    permission_required = "users.add_user"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -73,7 +73,7 @@ class UserCreateView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
 
 class UserUpdateView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = "sicop/frontend/user/user/update.html"
-    permission_required = "auth.change_user"
+    permission_required = "users.change_user"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -123,7 +123,7 @@ class UserUpdateView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
 
 class UserProfileUpdateView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = "sicop/frontend/user/user/profile.html"
-    permission_required = "auth.change_user"
+    permission_required = "user.change_user"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

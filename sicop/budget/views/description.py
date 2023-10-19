@@ -20,7 +20,7 @@ class BudgetDescriptionListView(PermissionRequiredMixin, LoginRequiredMixin, Lis
     model = BudgetDescription
     template_name = "sicop/frontend/budget/description/list.html"
     context_object_name = "budgetdescriptions"
-    permission_required = "budget_description.view_budgetdescription"
+    permission_required = "budget.view_budgetdescription"
 
 
 class BudgetDescriptionDetailView(PermissionRequiredMixin, LoginRequiredMixin, DetailView):
@@ -29,7 +29,7 @@ class BudgetDescriptionDetailView(PermissionRequiredMixin, LoginRequiredMixin, D
     model = BudgetDescription
     template_name = "sicop/frontend/budget/description/detail.html"
     context_object_name = "budgetdescription"
-    permission_required = "budget_description.view_budgetdescription"
+    permission_required = "budget.view_budgetdescription"
 
 
 class BudgetDescriptionCreateView(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
@@ -42,7 +42,7 @@ class BudgetDescriptionCreateView(PermissionRequiredMixin, LoginRequiredMixin, C
         "description",
     ]
     context_object_name = "budgetdescription"
-    permission_required = "budget_description.add_budgetdescription"
+    permission_required = "budget.add_budgetdescription"
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
@@ -82,7 +82,7 @@ class BudgetDescriptionUpdateView(PermissionRequiredMixin, LoginRequiredMixin, U
         "status",
     ]
     context_object_name = "budgetdescription"
-    permission_required = "budget_description.change_budgetdescription"
+    permission_required = "budget.change_budgetdescription"
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
