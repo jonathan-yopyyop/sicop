@@ -1,0 +1,166 @@
+{% extends 'sicop/frontend/base/base.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block page_title %}
+  {% trans 'Budget Detail' %}
+{% endblock page_title %}
+{% block content %}
+  <section id="configuration">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">{% trans 'Budget detail' %}</h4>
+            <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+            <div class="heading-elements">
+              <ul class="list-inline mb-0">
+                <li>
+                  <a href="{% url 'budget_list' %}">
+                    <button type="button" class="btn btn-icon btn-success mr-1 mb-1">
+                      <i class="fa fa-list"></i>
+                    </button>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-content collapse show">
+            <div class="card-body card-dashboard">
+              <section id="basic-form-layouts">
+                <div class="row match-height">
+                  <div class="col-md-12">
+                    <div class="card">
+                      {% if messages %}
+                        {% for message in messages %}
+                          <div class="alert alert-{{ message.tags }} alert-dismissible mb-2"
+                               role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">×</span>
+                            </button>
+                            {{ message }}
+                          </div>
+                        {% endfor %}
+                      {% endif %}
+                      <div class="form-body">
+                        <h4 class="form-section">
+                          <i class="feather icon-percent"></i> {% trans 'Budget Info' %}
+                        </h4>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="projectinput3">{% trans 'Project' %}</label>
+                              <select class="select2 form-control" name="project" required disabled>
+                                <option value="{{ budget.project.id }}">{{ budget.project.name }}</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="projectinput3">{% trans 'Cost center' %}</label>
+                              <select class="select2 form-control" name="cost_center" required disabled>
+                                <option value="{{ budget.cost_center.id }}">{{ budget.cost_center.name }}</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="projectinput3">{% trans 'Budget description' %}</label>
+                              <select class="select2 form-control"
+                                      name="budget_description"
+                                      required
+                                      disabled>
+                                <option value="{{ budget.budget_description.id }}">{{ budget.budget_description.description }}</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="projectinput1">{% trans 'Unit value' %}</label>
+                              <input type="text"
+                                     id="projectinput1"
+                                     class="form-control"
+                                     placeholder="{% trans 'Unit value' %}"
+                                     disabled
+                                     name="unit_value"
+                                     value="${{ budget.unit_value }}" />
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="projectinput1">{% trans 'Quantity' %}</label>
+                              <input type="text"
+                                     id="projectinput1"
+                                     class="form-control"
+                                     placeholder="{% trans 'Quantity' %}"
+                                     disabled
+                                     name="quantity"
+                                     value="{{ budget.quantity }}" />
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="projectinput1">{% trans 'Initial value' %}</label>
+                              <input type="text"
+                                     id="projectinput1"
+                                     class="form-control"
+                                     placeholder="{% trans 'Initial value' %}"
+                                     disabled
+                                     name="initial_value"
+                                     value="${{ budget.initial_value }}" />
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="projectinput1">{% trans 'Budget addition' %}</label>
+                              <input type="text"
+                                     id="projectinput1"
+                                     class="form-control"
+                                     placeholder="{% trans 'Budget addition' %}"
+                                     disabled
+                                     name="budget_addition"
+                                     value="{{ budget.budget_addition }}" />
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="projectinput1">{% trans 'Budget decrease' %}</label>
+                              <input type="text"
+                                     id="projectinput1"
+                                     class="form-control"
+                                     placeholder="{% trans 'Budget decrease' %}"
+                                     disabled
+                                     name="budget_decrease"
+                                     value="{{ budget.budget_decrease }}" />
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="projectinput3">{% trans 'Status' %}</label>
+                              <select class="select2 form-control" disabled name="status">
+                                <option value="True" {% if budget.status %}selected{% endif %}>{% trans 'Active' %}</option>
+                                <option value="False" {% if not budget.status %}selected{% endif %}>{% trans 'Inactive' %}</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-actions">
+                        <a href="{% url 'budget_update' budget.id %}">
+                          <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-edit"></i> {% trans 'Edit' %}
+                          </button>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}
