@@ -61,7 +61,7 @@
                             </div>
                             <div class="col-md-6">
                               <div class="form-group">
-                                <label for="projectinput3">{% trans 'Cost center' %}</label>
+                                <label for="projectinput3">{% trans 'Cost concepts' %}</label>
                                 <select class="select2 form-control" name="cost_center" required>
                                   <option value="">...</option>
                                   {% for cost_center in cost_centers %}<option value="{{ cost_center.id }}">{{ cost_center.name }}</option>{% endfor %}

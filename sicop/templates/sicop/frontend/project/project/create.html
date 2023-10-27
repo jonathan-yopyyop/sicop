@@ -108,7 +108,7 @@
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label for="projectinput3">{% trans 'Area' %}</label>
-                                <select class="select2 form-control"  name="area">
+                                <select class="select2 form-control"  name="area" id="area">
                                   <option value="">{% trans "Select an area" %}</option>
                                   {% for area in areas %}
                                     <option value="{{ area.id }}"
@@ -150,14 +150,10 @@
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label for="projectinput3">{% trans 'Project Manager' %}</label>
-                                <select class="select2 form-control"  name="project_manager">
+                                <select class="select2 form-control"
+                                        name="project_manager"
+                                        id="project_manager">
                                   <option value="">{% trans "Select a project manager" %}</option>
-                                  {% for user in users %}
-                                    <option value="{{ user.id }}"
-                                            {% if user.id == project.project_manager.id %}selected{% endif %}>
-                                      {{ user.name }}
-                                    </option>
-                                  {% endfor %}
                                 </select>
                               </div>
                             </div>
@@ -188,4 +184,35 @@
       </div>
     </div>
   </section>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+          integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+          crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(function() {
+      // Area on change
+      $("#area").change(function() {
+        var area = $("#area").val()
+        url = "{% url 'project_manager' 0 %}".replace('0', area);
+        $.get(url, function(data) {})
+          .done(function(data) {
+            let users = data.users;
+            $('#project_manager').empty();
+            $('#project_manager')
+              .append($("<option></option>")
+                .attr("value", "")
+                .text('...'));
+            $.each(users, function(key, value) {
+              $('#project_manager')
+                .append($("<option></option>")
+                  .attr("value", value[0])
+                  .text(value[1]));
+            });
+
+          })
+          .fail(function(data) {
+            console.log(`Error $("#area").change ${data}`);
+          })
+      });
+    });
+  </script>
 {% endblock content %}

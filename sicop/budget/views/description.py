@@ -11,7 +11,7 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
 
 from sicop.budget.models import BudgetDescription
-from sicop.expense_type.models import ExpenseType
+from sicop.expense_concept.models import ExpenseConcept
 
 
 class BudgetDescriptionListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
@@ -38,7 +38,7 @@ class BudgetDescriptionCreateView(PermissionRequiredMixin, LoginRequiredMixin, C
     model = BudgetDescription
     template_name = "sicop/frontend/budget/description/create.html"
     fields = [
-        "expense_type",
+        "expense_concept",
         "description",
     ]
     context_object_name = "budgetdescription"
@@ -47,10 +47,10 @@ class BudgetDescriptionCreateView(PermissionRequiredMixin, LoginRequiredMixin, C
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         budget_descriptions = BudgetDescription.objects.all()
-        current_expense_types = []
+        current_expense_concepts = []
         for budget_description in budget_descriptions:
-            current_expense_types.append(budget_description.expense_type.id)
-        context["expense_types"] = ExpenseType.objects.all().exclude(id__in=current_expense_types)
+            current_expense_concepts.append(budget_description.expense_concept.id)
+        context["expense_concepts"] = ExpenseConcept.objects.all().exclude(id__in=current_expense_concepts)
         return context
 
     def form_valid(self, form):
@@ -77,7 +77,7 @@ class BudgetDescriptionUpdateView(PermissionRequiredMixin, LoginRequiredMixin, U
     model = BudgetDescription
     template_name = "sicop/frontend/budget/description/update.html"
     fields = [
-        "expense_type",
+        "expense_concept",
         "description",
         "status",
     ]
@@ -87,10 +87,10 @@ class BudgetDescriptionUpdateView(PermissionRequiredMixin, LoginRequiredMixin, U
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         budget_descriptions = BudgetDescription.objects.all()
-        current_expense_types = []
+        current_expense_concepts = []
         for budget_description in budget_descriptions:
-            current_expense_types.append(budget_description.expense_type.id)
-        context["expense_types"] = ExpenseType.objects.all().exclude(id__in=current_expense_types)
+            current_expense_concepts.append(budget_description.expense_concept.id)
+        context["expense_concepts"] = ExpenseConcept.objects.all().exclude(id__in=current_expense_concepts)
         return context
 
     def form_valid(self, form):

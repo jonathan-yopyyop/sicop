@@ -2,9 +2,10 @@ from typing import Any
 
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
+from django.views.generic import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
@@ -96,6 +97,22 @@ class ProjectUpdateView(PermissionRequiredMixin, LoginRequiredMixin, UpdateView)
         current_budget = request.POST["budget"].replace(",", ".")
         request.POST["budget"] = float(current_budget)
         return super().post(request, *args, **kwargs)
+
+
+class ProjectManagerView(LoginRequiredMixin, TemplateView):
+    def get(self, request, *args, **kwargs):
+        area_id = kwargs["pk"]
+        area = Area.objects.get(id=area_id)
+        users = []
+        for user in area.areamember_set.all():
+            print(user.user.id)
+            users.append([user.user.id, user.user.name])
+        return JsonResponse(
+            {
+                "area_id": area_id,
+                "users": users,
+            }
+        )
 
 
 class ProjectCreateView(PermissionRequiredMixin, LoginRequiredMixin, CreateView):

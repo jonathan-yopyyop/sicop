@@ -4,6 +4,7 @@ from sicop.project.views import (
     ProjectCreateView,
     ProjectDetailView,
     ProjectListView,
+    ProjectManagerView,
     ProjectStatusCreateView,
     ProjectStatusDetailView,
     ProjectStatusListView,
@@ -75,5 +76,10 @@ urlpatterns = [
         "project/create/",
         ProjectCreateView.as_view(),
         name="project_create",
+    ),
+    path(
+        "project/manager/area/<pk>/",
+        ProjectManagerView.as_view(),
+        name="project_manager",
     ),
 ]

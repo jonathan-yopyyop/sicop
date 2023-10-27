@@ -3,18 +3,18 @@ from django.utils.translation import gettext_lazy as _
 
 from config.models import BaseModel
 from sicop.cost_center.models import CostCenter
-from sicop.expense_type.models import ExpenseType
+from sicop.expense_type.models import ExpenseConcept
 from sicop.project.models import Project
 
 
 class BudgetDescription(BaseModel):
     """Model definition for Budget Description."""
 
-    expense_type = models.ForeignKey(
-        ExpenseType,
-        verbose_name=_("Expense type"),
-        help_text=_("Expense type"),
-        related_name="expense_type_budgets",
+    expense_concept = models.ForeignKey(
+        ExpenseConcept,
+        verbose_name=_("Expense concept"),
+        help_text=_("Expense concept"),
+        related_name="expense_concepts_budgets",
         on_delete=models.CASCADE,
     )
     description = models.TextField(

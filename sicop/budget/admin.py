@@ -7,11 +7,11 @@ from sicop.budget.models import Budget, BudgetDescription
 class BudgetDescriptionAdmin(admin.ModelAdmin):
     list_display = (
         "id",
-        "expense_type",
+        "expense_concept",
         "description",
     )
     search_fields = (
-        "expense_type",
+        "expense_concept",
         "description",
     )
 

@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     unixodbc-dev
 
 # Requirements are installed here to ensure they will be cached.
-COPY ../../../requirements .
+COPY ./requirements .
 
 
 ARG BUILD_ENVIRONMENT=local

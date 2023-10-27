@@ -53,11 +53,22 @@ class BusinessUnitUpdateView(PermissionRequiredMixin, LoginRequiredMixin, Update
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        pk = self.kwargs["pk"]
         business_unit = BusinessUnit.objects.get(pk=self.kwargs["pk"])
+        # --
+        business_units = BusinessUnit.objects.all().exclude(id=self.kwargs["pk"])
+        cost_centers_to_exclude = []
+        for business_unit_temp in business_units:
+            cost_c = business_unit_temp.cost_centers.all()
+            for cost in cost_c:
+                cost_centers_to_exclude.append(cost.id)
+        # --
+        print(cost_centers_to_exclude)
         cost_centers = list(business_unit.cost_centers.all().values_list("id", flat=True))
+        print(f"======> {pk} {business_unit.id} {cost_centers}")
         context["business_unit"] = business_unit
         context["cost_centers"] = cost_centers
-        context["cost_center_all"] = CostCenter.objects.all()
+        context["cost_center_all"] = CostCenter.objects.all().exclude(id__in=cost_centers_to_exclude)
         return context
 
     def form_valid(self, form):
