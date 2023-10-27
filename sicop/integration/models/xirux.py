@@ -610,7 +610,7 @@ class BusinessUnit(BaseModel):
 
     def __str__(self):
         """Unicode representation of Business Unit."""
-        return self.Nombre
+        return str(self.id)
 
 
 class ExpenseType(BaseModel):

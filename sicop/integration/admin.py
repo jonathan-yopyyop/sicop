@@ -1,10 +1,18 @@
 from django.contrib import admin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 
 from sicop.integration.models import ActiveIntegration, BusinessUnit, CostCenter, ExpenseType, Third
 
 
+class ThirdResource(resources.ModelResource):
+    class Meta:
+        model = Third
+
+
 @admin.register(Third)
-class ThirdAdmin(admin.ModelAdmin):
+class ThirdAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [ThirdResource]
     list_display = (
         "id",
         "Nombre",
@@ -33,10 +41,16 @@ class ThirdAdmin(admin.ModelAdmin):
         "created_at",
         "updated_at",
     )
+
+
+class CostCenterResource(resources.ModelResource):
+    class Meta:
+        model = CostCenter
 
 
 @admin.register(CostCenter)
-class CostCenterAdmin(admin.ModelAdmin):
+class CostCenterAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [CostCenterResource]
     list_display = (
         "id",
         "Nombre",
@@ -65,10 +79,16 @@ class CostCenterAdmin(admin.ModelAdmin):
         "created_at",
         "updated_at",
     )
+
+
+class BusinessUnitResource(resources.ModelResource):
+    class Meta:
+        model = BusinessUnit
 
 
 @admin.register(BusinessUnit)
-class BusinessUnitAdmin(admin.ModelAdmin):
+class BusinessUnitAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [BusinessUnitResource]
     list_display = (
         "id",
         "Nombre",
@@ -99,8 +119,14 @@ class BusinessUnitAdmin(admin.ModelAdmin):
     )
 
 
+class ExpenseTypeResource(resources.ModelResource):
+    class Meta:
+        model = ExpenseType
+
+
 @admin.register(ExpenseType)
-class ExpenseTypeAdmin(admin.ModelAdmin):
+class ExpenseTypeAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [ExpenseTypeResource]
     list_display = (
         "id",
         "Nombre",

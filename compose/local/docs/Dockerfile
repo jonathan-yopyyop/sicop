@@ -1,6 +1,5 @@
 # define an alias for the specific python version used in this file.
-FROM python:3.11.6-slim-bullseye as python
-
+FROM python:3.11-bullseye as python
 
 # Python build stage
 FROM python:3.11-bullseye as python-build-stage
@@ -14,15 +13,17 @@ RUN apt-get update \
   && apt-get install -y libpq-dev \
   # Translations dependencies
   && apt-get install -y gettext \
-  # Uncomment below lines to enable Sphinx output to latex and pdf
-  # && apt-get install -y texlive-latex-recommended \
-  # && apt-get install -y texlive-fonts-recommended \
-  # && apt-get install -y texlive-latex-extra \
-  # && apt-get install -y latexmk \
+  && apt-get install unixodbc -y \
+  && apt-get install unixodbc-dev -y \
+  && apt-get install freetds-dev -y \
+  && apt-get install freetds-bin -y \
+  && apt-get install tdsodbc -y \
   && pip install psycopg2 \
+  && apt-get install python3-pyodbc \
   # cleaning up unused files
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*
+
 
 # Requirements are installed here to ensure they will be cached.
 COPY ./requirements /requirements
@@ -45,6 +46,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   make \
   # psycopg2 dependencies
   libpq-dev \
+  unixodbc-dev \
   # Translations dependencies
   gettext \
   # Uncomment below lines to enable Sphinx output to latex and pdf
@@ -55,6 +57,14 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   # cleaning up unused files
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*
+# install FreeTDS and dependencies
+RUN apt-get update \
+  && apt-get install unixodbc -y \
+  && apt-get install unixodbc-dev -y \
+  && apt-get install freetds-dev -y \
+  && apt-get install freetds-bin -y \
+  && apt-get install tdsodbc -y \
+  && apt-get install --reinstall build-essential -y
 
 # copy python dependency wheels from python-build-stage
 COPY --from=python-build-stage /usr/src/app/wheels /wheels

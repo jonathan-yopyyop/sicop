@@ -2,7 +2,7 @@
 FROM python:3.11-bullseye as python
 
 # Python build stage
-FROM python as python-build-stage
+FROM python:3.11-bullseye as python-build-stage
 
 ARG BUILD_ENVIRONMENT=local
 
@@ -11,7 +11,16 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   # dependencies for building Python packages
   build-essential \
   # psycopg2 dependencies
-  libpq-dev
+  libpq-dev \
+  unixodbc-dev
+# install FreeTDS and dependencies
+RUN apt-get update \
+  && apt-get install unixodbc -y \
+  && apt-get install unixodbc-dev -y \
+  && apt-get install freetds-dev -y \
+  && apt-get install freetds-bin -y \
+  && apt-get install tdsodbc -y \
+  && apt-get install --reinstall build-essential -y
 
 # Requirements are installed here to ensure they will be cached.
 COPY ./requirements .

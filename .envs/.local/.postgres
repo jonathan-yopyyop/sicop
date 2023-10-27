@@ -1,7 +1,7 @@
 # PostgreSQL
 # ------------------------------------------------------------------------------
-POSTGRES_HOST=postgres
-POSTGRES_PORT=5432
-POSTGRES_DB=sicop
-POSTGRES_USER=MAMmcsHHzrvMjMvviWtneEvXOXwnzqVo
-POSTGRES_PASSWORD=cMW6kMQgvuatTemCS7V31U9enSQIuDQL9gAr3RUN6pqL15M2AbggL2wgCaeiZ891
+POSTGRES_HOST = postgres
+POSTGRES_PORT = 5432
+POSTGRES_DB = sicop
+POSTGRES_USER = MAMmcsHHzrvMjMvviWtneEvXOXwnzqVo
+POSTGRES_PASSWORD = cMW6kMQgvuatTemCS7V31U9enSQIuDQL9gAr3RUN6pqL15M2AbggL2wgCaeiZ891

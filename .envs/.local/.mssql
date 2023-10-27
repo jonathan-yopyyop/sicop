@@ -1,0 +1,8 @@
+# MSSQL Xirux
+# ------------------------------------------------------------------------------
+MSSQL_XIRUX_HOST=10.0.1.156
+MSSQL_XIRUX_PORT=5432
+MSSQL_XIRUX_DB=xirux12
+MSSQL_XIRUX_USER=sicop
+MSSQL_XIRUX_PASSWORD=S1c0p2024+
+MSSQL_XIRUX_PORT=8443
