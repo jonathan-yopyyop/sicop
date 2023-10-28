@@ -19,6 +19,7 @@ services:
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
+      - ./.envs/.local/.mssql
     ports:
       - "8080:8080"
     command: /start
@@ -43,10 +44,12 @@ services:
       dockerfile: ./compose/local/docs/Dockerfile
     env_file:
       - ./.envs/.local/.django
+      - ./.envs/.local/.mssql
     volumes:
       - ./docs:/docs:z
       - ./config:/app/config:z
       - ./sicop:/app/sicop:z
+      - ./manage.py:/app/manage.py:z
     ports:
       - "9090:9090"
     command: /start-docs

@@ -13,14 +13,37 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   # psycopg2 dependencies
   libpq-dev \
   unixodbc-dev
-# install FreeTDS and dependencies
-RUN apt-get update \
-  && apt-get install unixodbc -y \
-  && apt-get install unixodbc-dev -y \
-  && apt-get install freetds-dev -y \
-  && apt-get install freetds-bin -y \
-  && apt-get install tdsodbc -y \
-  && apt-get install --reinstall build-essential -y
+# Database dependencies
+RUN apt-get update && apt-get install -y gcc \
+  && apt-get install -y g++ \
+  && apt-get install -y unixodbc unixodbc-dev \
+  && apt-get install -y freetds-dev freetds-bin \
+  && apt-get install -y --no-install-recommends apt-utils \
+  && apt-get install -y build-essential \
+  && apt-get install -y libpq-dev \
+  && apt-get install -y unixodbc-dev \
+  && apt-get -y install sudo \
+  && apt-get install -y lsb-release \
+  && apt-get install -y vim \
+  && apt-get install -y wget \
+  && apt-get install -y iputils-ping
+
+# MSSQL ODBC
+RUN apt-get update
+RUN apt-get install -y bash-completion
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+RUN curl https://packages.microsoft.com/config/ubuntu/18.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
+RUN apt-get update
+RUN ACCEPT_EULA=Y apt-get install -y --allow-unauthenticated msodbcsql18
+ADD main.py .
+# Copy openssl.cnf file to the image
+COPY openssl.cnf /tmp/openssl.cnf
+
+# Modify the paremeter CipherString in openssl.cnf
+RUN sed -i 's/CipherString = DEFAULT:@SECLEVEL=2/CipherString = DEFAULT:@SECLEVEL=0/' /tmp/openssl.cnf
+
+# Move the file to the original location
+RUN mv /tmp/openssl.cnf /etc/ssl/openssl.cnf
 
 # Requirements are installed here to ensure they will be cached.
 COPY ./requirements .
@@ -64,6 +87,38 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   && pip install psycopg2 \
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*
+
+# Database dependencies
+RUN apt-get update && apt-get install -y gcc \
+  && apt-get install -y g++ \
+  && apt-get install -y unixodbc unixodbc-dev \
+  && apt-get install -y freetds-dev freetds-bin \
+  && apt-get install -y --no-install-recommends apt-utils \
+  && apt-get install -y build-essential \
+  && apt-get install -y libpq-dev \
+  && apt-get install -y unixodbc-dev \
+  && apt-get -y install sudo \
+  && apt-get install -y lsb-release \
+  && apt-get install -y vim \
+  && apt-get install -y wget \
+  && apt-get install -y iputils-ping
+
+# MSSQL ODBC
+RUN apt-get update
+RUN apt-get install -y bash-completion
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+RUN curl https://packages.microsoft.com/config/ubuntu/18.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
+RUN apt-get update
+RUN ACCEPT_EULA=Y apt-get install -y --allow-unauthenticated msodbcsql18
+ADD main.py .
+# Copy openssl.cnf file to the image
+COPY openssl.cnf /tmp/openssl.cnf
+
+# Modify the paremeter CipherString in openssl.cnf
+RUN sed -i 's/CipherString = DEFAULT:@SECLEVEL=2/CipherString = DEFAULT:@SECLEVEL=0/' /tmp/openssl.cnf
+
+# Move the file to the original location
+RUN mv /tmp/openssl.cnf /etc/ssl/openssl.cnf
 
 # All absolute dir copies ignore workdir instruction. All relative dir copies are wrt to the workdir instruction
 # copy python dependency wheels from python-build-stage

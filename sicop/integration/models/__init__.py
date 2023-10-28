@@ -1,2 +1,2 @@
 from sicop.integration.models.config import ActiveIntegration  # noqa
-from sicop.integration.models.xirux import BusinessUnit, CostCenter, ExpenseType, Third  # noqa
+from sicop.integration.models.xirux import BusinessUnit, CostCenter, ExpenseConcept, ExpenseType, Third  # noqa

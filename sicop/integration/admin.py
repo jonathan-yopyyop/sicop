@@ -2,7 +2,7 @@ from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
-from sicop.integration.models import ActiveIntegration, BusinessUnit, CostCenter, ExpenseType, Third
+from sicop.integration.models import ActiveIntegration, BusinessUnit, CostCenter, ExpenseConcept, ExpenseType, Third
 
 
 class ThirdResource(resources.ModelResource):
@@ -184,6 +184,41 @@ class ActiveIntegrationAdmin(admin.ModelAdmin):
         "id",
         "name",
         "code",
+        "created_at",
+        "updated_at",
+    )
+    readonly_fields = (
+        "created_at",
+        "updated_at",
+    )
+
+
+@admin.register(ExpenseConcept)
+class ExpenseConceptAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "Nombre",
+        "Nemoni",
+        "status",
+        "created_at",
+        "updated_at",
+    )
+    list_filter = (
+        "id",
+        "Nombre",
+        "Nemoni",
+        "status",
+        "created_at",
+        "updated_at",
+    )
+    search_fields = (
+        "id",
+        "Nombre",
+        "Nemoni",
+    )
+    ordering = (
+        "id",
+        "Nombre",
         "created_at",
         "updated_at",
     )

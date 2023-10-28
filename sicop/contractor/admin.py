@@ -8,35 +8,28 @@ from sicop.contractor.models import Contractor, ContractorFile
 @admin.register(Contractor)
 class ContractorAdmin(admin.ModelAdmin):
     list_display = (
-        "first_name",
-        "last_name",
-        "email",
-        "phone",
-        "address",
+        "name",
+        "commertial_name",
         "dni",
-        "contractor_type",
         "status",
         "created_at",
         "updated_at",
     )
     list_filter = (
-        "contractor_type",
         "status",
         "created_at",
         "updated_at",
     )
     search_fields = (
-        "first_name",
-        "last_name",
-        "email",
-        "phone",
-        "address",
+        "name",
+        "commertial_name",
         "dni",
         "contractor_type",
     )
     ordering = (
-        "first_name",
-        "last_name",
+        "id",
+        "name",
+        "commertial_name",
         "created_at",
         "updated_at",
     )
@@ -56,9 +49,9 @@ class ContractorFileAdmin(admin.ModelAdmin):
         "updated_at",
     )
     list_filter = (
-        "contractor__email",
-        "contractor__first_name",
-        "contractor__last_name",
+        "contractor__name",
+        "contractor__commertial_name",
+        "contractor__dni",
         "status",
         "created_at",
         "updated_at",

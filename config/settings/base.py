@@ -88,7 +88,7 @@ LOCAL_APPS = [
     "sicop.users",
     "sicop.area",
     "sicop.cost_center",
-    # "sicop.contractor",
+    "sicop.contractor",
     "sicop.project",
     "sicop.integration",
     "sicop.budget",
