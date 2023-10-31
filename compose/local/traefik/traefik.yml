@@ -4,25 +4,20 @@ log:
 entryPoints:
   web:
     # http
-    address: ':80'
-    http:
-      # https://docs.traefik.io/routing/entrypoints/#entrypoint
-      redirections:
-        entryPoint:
-          to: web-secure
+    address: ":80"
 
   web-secure:
     # https
-    address: ':443'
+    address: ":443"
 
   flower:
-    address: ':5555'
+    address: ":5555"
 
 certificatesResolvers:
   letsencrypt:
     # https://docs.traefik.io/master/https/acme/#lets-encrypt
     acme:
-      email: 'jonathan.urzola@outlook.com'
+      email: "jonathanl@yopidoyopago.com"
       storage: /etc/traefik/acme/acme.json
       # https://docs.traefik.io/master/https/acme/#httpchallenge
       httpChallenge:
@@ -30,8 +25,19 @@ certificatesResolvers:
 
 http:
   routers:
+    web-router:
+      rule: "Host(`yopidoyopago.com`) || Host(`www.yopidoyopago.com`)"
+
+      entryPoints:
+        - web
+      middlewares:
+        - redirect
+        - csrf
+      service: django
+
     web-secure-router:
-      rule: 'Host(`sicop.maloka.org`)'
+      rule: "Host(`yopidoyopago.com`) || Host(`www.yopidoyopago.com`)"
+
       entryPoints:
         - web-secure
       middlewares:
@@ -42,7 +48,7 @@ http:
         certResolver: letsencrypt
 
     flower-secure-router:
-      rule: 'Host(`sicop.maloka.org`)'
+      rule: "Host(`yopidoyopago.com`)"
       entryPoints:
         - flower
       service: flower
@@ -51,22 +57,27 @@ http:
         certResolver: letsencrypt
 
   middlewares:
+    redirect:
+      # https://docs.traefik.io/master/middlewares/redirectscheme/
+      redirectScheme:
+        scheme: https
+        permanent: true
     csrf:
       # https://docs.traefik.io/master/middlewares/headers/#hostsproxyheaders
       # https://docs.djangoproject.com/en/dev/ref/csrf/#ajax
       headers:
-        hostsProxyHeaders: ['X-CSRFToken']
+        hostsProxyHeaders: ["X-CSRFToken"]
 
   services:
     django:
       loadBalancer:
         servers:
-          - url: http://django:5000
+          - url: http://django:8080
 
-    flower:
-      loadBalancer:
-        servers:
-          - url: http://flower:5555
+    # flower:
+    #   loadBalancer:
+    #     servers:
+    #       - url: http://flower:5555
 
 providers:
   # https://docs.traefik.io/master/providers/file/

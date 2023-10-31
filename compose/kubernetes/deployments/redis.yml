@@ -17,22 +17,33 @@ spec:
         service: redis
     spec:
       containers:
-        - image: redis:5.0
+        - image: redis:6
           name: redis
+          ports:
+            - containerPort: 6379
+              hostPort: 6379
+              protocol: TCP
+          resources:
+            requests:
+              memory: "250Mi"
+              cpu: "250m"
+            limits:
+              memory: "500Mi"
+              cpu: "500m"
       restartPolicy: Always
-      volumes: null
+status: {}
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    service: redis
   namespace: local
   name: redis
+  labels:
+    service: redis
 spec:
   ports:
-    - name: "6378"
-      protocol: TCP
+    - name: "6379"
       port: 6379
+      targetPort: 6379
   selector:
     service: redis

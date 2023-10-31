@@ -99,7 +99,7 @@ class Project(BaseModel):
     budget = models.DecimalField(
         _("Budget"),
         help_text=_("Budget"),
-        max_digits=10,
+        max_digits=20,
         decimal_places=2,
         null=True,
         blank=True,

@@ -22,7 +22,7 @@ spec:
           name: django
           ports:
             - name: gunicorn
-              containerPort: 5000
+              containerPort: 8080
           envFrom:
             - configMapRef:
                 name: envs-local-django
@@ -37,13 +37,19 @@ spec:
               value: $(REDIS_URL)
             - name: DATABASE_URL
               value: postgres://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@$(POSTGRES_HOST):$(POSTGRES_PORT)/$(POSTGRES_DB)
-          resources: {}
+          resources:
+            requests:
+              memory: "250Mi"
+              cpu: "250m"
+            limits:
+              memory: "500Mi"
+              cpu: "500m"
           volumeMounts:
-            - mountPath: /app/sicop/media
-              name: media-sicop
+            - mountPath: /sicop/sicop/media
+              name: media
           livenessProbe:
             httpGet:
-              path: /healthy
+              path: /
               port: gunicorn
             initialDelaySeconds: 30
             periodSeconds: 30
@@ -51,7 +57,7 @@ spec:
             failureThreshold: 2
           readinessProbe:
             httpGet:
-              path: /readiness
+              path: /
               port: gunicorn
             initialDelaySeconds: 30
             periodSeconds: 30
@@ -59,9 +65,9 @@ spec:
             failureThreshold: 2
       restartPolicy: Always
       volumes:
-        - name: media-sicop
+        - name: media
           persistentVolumeClaim:
-            claimName: media-sicop
+            claimName: media
 ---
 apiVersion: v1
 kind: Service
@@ -72,8 +78,8 @@ metadata:
     service: django
 spec:
   ports:
-    - port: 5000
-      targetPort: 5000
+    - port: 8080
+      targetPort: 8080
       name: http
   selector:
     service: django
