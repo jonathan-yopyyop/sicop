@@ -52,7 +52,7 @@ class Migration(migrations.Migration):
                         blank=True,
                         decimal_places=2,
                         help_text="Budget",
-                        max_digits=20,
+                        max_digits=22,
                         null=True,
                         verbose_name="Budget",
                     ),

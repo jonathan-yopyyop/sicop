@@ -56,7 +56,7 @@ class Migration(migrations.Migration):
                 (
                     "unit_value",
                     models.DecimalField(
-                        decimal_places=2, default=0, help_text="Unit value", max_digits=20, verbose_name="Unit value"
+                        decimal_places=2, default=0, help_text="Unit value", max_digits=22, verbose_name="Unit value"
                     ),
                 ),
                 ("quantity", models.PositiveIntegerField(default=0, help_text="Quantity", verbose_name="Quantity")),
@@ -66,7 +66,7 @@ class Migration(migrations.Migration):
                         decimal_places=2,
                         default=0,
                         help_text="Initial value",
-                        max_digits=20,
+                        max_digits=22,
                         verbose_name="Initial value",
                     ),
                 ),
@@ -76,7 +76,7 @@ class Migration(migrations.Migration):
                         decimal_places=2,
                         default=0,
                         help_text="Budget addition",
-                        max_digits=20,
+                        max_digits=22,
                         verbose_name="Budget addition",
                     ),
                 ),
@@ -86,7 +86,7 @@ class Migration(migrations.Migration):
                         decimal_places=2,
                         default=0,
                         help_text="Budget decrease",
-                        max_digits=20,
+                        max_digits=22,
                         verbose_name="Budget decrease",
                     ),
                 ),
