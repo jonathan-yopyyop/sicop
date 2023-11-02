@@ -72,7 +72,7 @@ DJANGO_APPS = [
     "colorfield",
     "django.contrib.admin",
     "django.forms",
-    "humanize",
+    "django.contrib.humanize",
 ]
 THIRD_PARTY_APPS = [
     "crispy_forms",

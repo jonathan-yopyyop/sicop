@@ -60,7 +60,7 @@ class Budget(BaseModel):
     unit_value = models.DecimalField(
         _("Unit value"),
         help_text=_("Unit value"),
-        max_digits=22,
+        max_digits=12,
         decimal_places=2,
         default=0,
     )
@@ -72,21 +72,21 @@ class Budget(BaseModel):
     initial_value = models.DecimalField(
         _("Initial value"),
         help_text=_("Initial value"),
-        max_digits=22,
+        max_digits=12,
         decimal_places=2,
         default=0,
     )
     budget_addition = models.DecimalField(
         _("Budget addition"),
         help_text=_("Budget addition"),
-        max_digits=22,
+        max_digits=12,
         decimal_places=2,
         default=0,
     )
     budget_decrease = models.DecimalField(
         _("Budget decrease"),
         help_text=_("Budget decrease"),
-        max_digits=22,
+        max_digits=12,
         decimal_places=2,
         default=0,
     )

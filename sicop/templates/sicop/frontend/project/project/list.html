@@ -2,6 +2,7 @@
 
 {% load static %}
 {% load i18n %}
+{% load humanize %}
 
 {% block page_title %}
   {% trans 'Project list' %}
@@ -57,7 +58,7 @@
                       <td>{{ project.id }}</td>
                       <td>{{ project.name }}</td>
                       <td>{{ project.description }}</td>
-                      <td>${{ project.budget }}</td>
+                      <td>${{ project.budget|intcomma }}</td>
                       <td>{{ project.area }}</td>
                       <td>
                         {% if project.status %}
