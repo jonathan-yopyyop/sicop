@@ -521,6 +521,56 @@ class XiruxIntegration:
 
         return True
 
+    def relation_cost_center_and_bussiness_unit(self):
+        business_units = BusinessUnit.objects.all()
+        relation = {}
+        for business_unit in business_units:
+            cost_centers = CostCenter.objects.filter(
+                IdTipCen=business_unit.IdTipCen,
+            )
+            relation_temp = []
+            for cost_center in cost_centers:
+                relation_temp.append(cost_center.IdCenCos)
+            relation[business_unit.IdTipCen] = relation_temp
+        for key, value in relation.items():
+            business_unit_id = key
+            sicop_business_unit = SicopBusinessUnit.objects.get(
+                code=business_unit_id,
+            )
+            sicop_business_unit.cost_centers.clear()
+            for cost_center_id in value:
+                sicop_business_unit.cost_centers.add(
+                    SicopCostCenter.objects.get(
+                        cost_center_id=cost_center_id,
+                    ),
+                )
+
+    def relation_expense_concept_and_expense_type(self):
+        expense_types = ExpenseType.objects.all()
+        relation = {}
+        for expense_type in expense_types:
+            expense_concepts = ExpenseConcept.objects.filter(
+                IdTipGas=expense_type.IdTipGas,
+            )
+            relation_temp = []
+            for expense_concept in expense_concepts:
+                relation_temp.append(
+                    expense_concept.IdConGas,
+                )
+            relation[expense_type.IdTipGas] = relation_temp
+        for key, value in relation.items():
+            expense_type_id = key
+            sicop_expense_type = SicopExpenseType.objects.get(
+                code=expense_type_id,
+            )
+            sicop_expense_type.expense_concepts.clear()
+            for expense_concept_id in value:
+                sicop_expense_type.expense_concepts.add(
+                    SicopExpenseConcept.objects.get(
+                        code=expense_concept_id,
+                    ),
+                )
+
     def run(self):
         ping_status = self.check_ping()
 
@@ -548,6 +598,11 @@ class XiruxIntegration:
             self.expense_concepts()
             print(f"== Expense concepts ends at {datetime.now()} ==")
             print("============== Xirux integration ends ==============")
+
+            print("============== Xirux relation start ==============")
+            self.relation_cost_center_and_bussiness_unit()
+            self.relation_expense_concept_and_expense_type()
+            print("============== Xirux relation ends ==============")
         else:
             print("VPN is down, activating the vpn")
             cmd = "sudo openfortivpn -c /etc/openfortivpn/config > /var/log/openfortivpn/openfortivpn.log 2>&1 &"
