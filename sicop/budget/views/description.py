@@ -50,7 +50,7 @@ class BudgetDescriptionCreateView(PermissionRequiredMixin, LoginRequiredMixin, C
         current_expense_concepts = []
         for budget_description in budget_descriptions:
             current_expense_concepts.append(budget_description.expense_concept.id)
-        context["expense_concepts"] = ExpenseConcept.objects.all().exclude(id__in=current_expense_concepts)
+        context["expense_concepts"] = ExpenseConcept.objects.all()
         return context
 
     def form_valid(self, form):
@@ -90,7 +90,7 @@ class BudgetDescriptionUpdateView(PermissionRequiredMixin, LoginRequiredMixin, U
         current_expense_concepts = []
         for budget_description in budget_descriptions:
             current_expense_concepts.append(budget_description.expense_concept.id)
-        context["expense_concepts"] = ExpenseConcept.objects.all().exclude(id__in=current_expense_concepts)
+        context["expense_concepts"] = ExpenseConcept.objects.all()
         return context
 
     def form_valid(self, form):
