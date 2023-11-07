@@ -1,7 +1,9 @@
 {% extends 'sicop/frontend/base/base.html' %}
 
+{% load humanize %}
 {% load static %}
 {% load i18n %}
+{% load l10n %}
 
 {% block page_title %}
   {% trans 'Budget Detail' %}
@@ -84,7 +86,7 @@
                                      placeholder="{% trans 'Unit value' %}"
                                      disabled
                                      name="unit_value"
-                                     value="${{ budget.unit_value }}" />
+                                     value="${{ budget.unit_value|floatformat:2|intcomma }}" />
                             </div>
                           </div>
                           <div class="col-md-6">
@@ -108,7 +110,7 @@
                                      placeholder="{% trans 'Initial value' %}"
                                      disabled
                                      name="initial_value"
-                                     value="${{ budget.initial_value }}" />
+                                     value="${{ budget.initial_value|floatformat:2|intcomma }}" />
                             </div>
                           </div>
                           <div class="col-md-6">

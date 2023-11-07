@@ -55,10 +55,10 @@
                                 <label for="projectinput3">{% trans 'Expense type' %}</label>
                                 <select class="select2 form-control" name="expense_concept" required>
                                   <option value="{{ budgetdescription.expense_concept.id }}" selected>
-                                    {{ budgetdescription.expense_concept.name }}
+                                    {{ budgetdescription.expense_concept.code }} - {{ budgetdescription.expense_concept.name }}
                                   </option>
                                   {% for expense_concept in expense_concepts %}
-                                    <option value="{{ expense_concept.id }}">{{ expense_concept.name }}</option>
+                                    <option value="{{ expense_concept.id }}">{{ expense_concept.code }} - {{ expense_concept.name }}</option>
                                   {% endfor %}
                                 </select>
                               </div>
