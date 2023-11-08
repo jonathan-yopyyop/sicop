@@ -8,6 +8,10 @@ from sicop.area.views import (
     AreaMemberDetailView,
     AreaMemberListView,
     AreaMemberUpdateView,
+    AreaRoleCreateView,
+    AreaRoleDetailView,
+    AreaRoleListView,
+    AreaRoleUpdateView,
     AreaUpdateView,
 )
 
@@ -51,5 +55,25 @@ urlpatterns = [
         "member/create",
         AreaMemberCreateView.as_view(),
         name="area_member_create",
+    ),
+    path(
+        "roles/list",
+        AreaRoleListView.as_view(),
+        name="area_role_list",
+    ),
+    path(
+        "roles/detail/<int:pk>",
+        AreaRoleDetailView.as_view(),
+        name="area_role_detail",
+    ),
+    path(
+        "roles/update/<int:pk>",
+        AreaRoleUpdateView.as_view(),
+        name="area_role_update",
+    ),
+    path(
+        "roles/create",
+        AreaRoleCreateView.as_view(),
+        name="area_role_create",
     ),
 ]

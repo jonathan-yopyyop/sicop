@@ -5,3 +5,4 @@ from sicop.area.views.members import (  # noqa
     AreaMemberListView,
     AreaMemberUpdateView,
 )
+from sicop.area.views.roles import AreaRoleCreateView, AreaRoleDetailView, AreaRoleListView, AreaRoleUpdateView  # noqa

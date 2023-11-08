@@ -49,6 +49,14 @@ class AreaMember(BaseModel):
         help_text=_("Area"),
         on_delete=models.CASCADE,
     )
+    role = models.ForeignKey(
+        "AreaRole",
+        verbose_name=_("Area Role"),
+        help_text=_("Area Role"),
+        on_delete=models.DO_NOTHING,
+        null=True,
+        blank=True,
+    )
 
     @property
     def user_full_name(self):
@@ -63,3 +71,30 @@ class AreaMember(BaseModel):
     def __str__(self):
         """Unicode representation of Area Members."""
         return str(self.user)
+
+
+class AreaRole(BaseModel):
+    """Model definition for Area Role."""
+
+    code = models.CharField(
+        _("Area Role code"),
+        help_text=_("Area Role code"),
+        max_length=150,
+        unique=True,
+    )
+    name = models.CharField(
+        _("Area Role name"),
+        help_text=_("Area Role name"),
+        max_length=150,
+        unique=True,
+    )
+
+    class Meta:
+        """Meta definition for Area Role."""
+
+        verbose_name = "Area Role"
+        verbose_name_plural = "Area Roles"
+
+    def __str__(self):
+        """Unicode representation of Area Role."""
+        return self.name

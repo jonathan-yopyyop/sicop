@@ -26,6 +26,9 @@
           <li {% if '/area/member/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'area_member_list' %}">{% trans 'Area members' %}</a>
           </li>
+          <li {% if '/area/roles/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'area_role_list' %}">{% trans 'Area roles' %}</a>
+          </li>
         </ul>
       </li>
       <li class="nav-item-sicop">
