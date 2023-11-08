@@ -9,7 +9,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
 
-from sicop.area.models import Area, AreaMember
+from sicop.area.models import Area, AreaMember, AreaRole
 from sicop.users.models import User
 
 
@@ -34,6 +34,7 @@ class AreaMemberDetailView(PermissionRequiredMixin, LoginRequiredMixin, DetailVi
         context = super().get_context_data(**kwargs)
         context["areas"] = Area.objects.filter(status=True)
         context["users"] = User.objects.filter(is_active=True)
+        context["roles"] = AreaRole.objects.filter(status=True)
         return context
 
 
@@ -48,12 +49,14 @@ class AreaMemberUpdateView(PermissionRequiredMixin, LoginRequiredMixin, UpdateVi
         "user",
         "area",
         "status",
+        "role",
     ]
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context["areas"] = Area.objects.filter(status=True)
         context["users"] = User.objects.filter(is_active=True)
+        context["roles"] = AreaRole.objects.filter(status=True)
         return context
 
     def form_valid(self, form):
@@ -92,6 +95,7 @@ class AreaMemberCreateView(PermissionRequiredMixin, LoginRequiredMixin, CreateVi
     fields = [
         "user",
         "area",
+        "role",
     ]
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
@@ -100,6 +104,7 @@ class AreaMemberCreateView(PermissionRequiredMixin, LoginRequiredMixin, CreateVi
         users_in_areas = list(AreaMember.objects.filter().values_list("id", flat=True))
         context["areas"] = Area.objects.filter(status=True)
         context["users"] = User.objects.filter(is_active=True).exclude(id__in=users_in_areas)
+        context["roles"] = AreaRole.objects.filter(status=True)
         return context
 
     def form_valid(self, form):

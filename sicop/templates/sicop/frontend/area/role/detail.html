@@ -4,7 +4,7 @@
 {% load i18n %}
 
 {% block page_title %}
-  {% trans 'Area member Detail' %}
+  {% trans 'Roles Detail' %}
 {% endblock page_title %}
 {% block content %}
   <section id="configuration">
@@ -12,12 +12,12 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">{% trans 'Area member data' %}</h4>
+            <h4 class="card-title">{% trans 'Roles detail' %}</h4>
             <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
             <div class="heading-elements">
               <ul class="list-inline mb-0">
                 <li>
-                  <a href="{% url 'area_member_list' %}">
+                  <a href="{% url 'area_role_list' %}">
                     <button type="button" class="btn btn-icon btn-success mr-1 mb-1">
                       <i class="fa fa-list"></i>
                     </button>
@@ -45,61 +45,46 @@
                       {% endif %}
                       <div class="form-body">
                         <h4 class="form-section">
-                          <i class="feather icon-users"></i> {% trans 'Area member Info' %}
+                          <i class="feather icon-users"></i> {% trans 'Roles Info' %}
                         </h4>
                         <div class="row">
                           <div class="col-md-6">
                             <div class="form-group">
-                              <label for="projectinput3">{% trans 'Member' %}</label>
-                              <select class="select2 form-control" disabled name="user">
-                                {% for user in users %}
-                                  <option value="{{ area.id }}"
-                                          {% if user.id == member.user.id %}selected{% endif %}>
-                                    {{ user.name }}
-                                  </option>
-                                {% endfor %}
-                              </select>
+                              <label for="projectinput1">{% trans 'Name' %}</label>
+                              <input type="text"
+                                     id="projectinput1"
+                                     class="form-control"
+                                     placeholder="{% trans 'Name' %}"
+                                     disabled_role
+                                     name="name"
+                                     value="{{ area_role.name }}" />
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
-                              <label for="projectinput3">{% trans 'Area' %}</label>
-                              <select class="select2 form-control" disabled name="status">
-                                {% for area in areas %}
-                                  <option value="{{ area.id }}"
-                                          {% if area.id == member.area.id %}selected{% endif %}>
-                                    {{ area.name }}
-                                  </option>
-                                {% endfor %}
-                              </select>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="projectinput3">{% trans 'Role' %}</label>
-                              <select class="select2 form-control" disabled name="role">
-                                {% for role in roles %}
-                                  <option value="{{ role.id }}"
-                                          {% if role.id == member.role.id %}selected{% endif %}>
-                                    {{ role.name }}
-                                  </option>
-                                {% endfor %}
-                              </select>
+                              <label for="projectinput1">{% trans 'Code' %}</label>
+                              <input type="text"
+                                     id="projectinput1"
+                                     class="form-control"
+                                     placeholder="{% trans 'Description' %}"
+                                     disabled
+                                     name="code"
+                                     value="{{ area_role.code }}" />
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
                               <label for="projectinput3">{% trans 'Status' %}</label>
                               <select class="select2 form-control" disabled name="status">
-                                <option value="True" {% if member.status %}selected{% endif %}>{% trans 'Active' %}</option>
-                                <option value="False" {% if not member.status %}selected{% endif %}>{% trans 'Inactive' %}</option>
+                                <option value="True" {% if area_role.status %}selected{% endif %}>{% trans 'Active' %}</option>
+                                <option value="False" {% if not area_role.status %}selected{% endif %}>{% trans 'Inactive' %}</option>
                               </select>
                             </div>
                           </div>
                         </div>
                       </div>
                       <div class="form-actions">
-                        <a href="{% url 'area_member_update' member.id %}">
+                        <a href="{% url 'area_role_update' area_role.id %}">
                           <button type="submit" class="btn btn-primary">
                             <i class="fa fa-edit"></i> {% trans 'Edit' %}
                           </button>
