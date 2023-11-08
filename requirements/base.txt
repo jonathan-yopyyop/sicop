@@ -24,7 +24,7 @@ django-admin-interface==0.26.1
 django-colorfield==0.10.1
 
 #Others
-twilio==8.10.0
+twilio==8.10.1
 sendgrid==6.10.0
 django-import-export==3.3.1
 
