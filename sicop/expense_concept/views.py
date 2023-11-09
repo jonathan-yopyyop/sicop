@@ -47,7 +47,7 @@ class ExpenseConceptUpdateView(LoginRequiredMixin, UpdateView):
 
     def form_invalid(self, form):
         """If the form is invalid, render the invalid form."""
-        messages.error(self.request, _("Expense Concept not updated, please review the data"))
+        messages.warning(self.request, _("Expense Concept not updated, please review the data"))
         return super().form_invalid(form)
 
     def get_success_url(self) -> str:
@@ -85,7 +85,7 @@ class ExpenseConceptCreateView(LoginRequiredMixin, CreateView):
 
     def form_invalid(self, form):
         """If the form is invalid, render the invalid form."""
-        messages.error(self.request, _("Expense Concept not created, please review the data"))
+        messages.warning(self.request, _("Expense Concept not created, please review the data"))
         return super().form_invalid(form)
 
     def get_success_url(self) -> str:

@@ -48,7 +48,7 @@ class AreaUpdateView(LoginRequiredMixin, UpdateView):
 
     def form_invalid(self, form):
         """If the form is invalid, render the invalid form."""
-        messages.error(self.request, _("Area not updated, please review the data"))
+        messages.warning(self.request, _("Area not updated, please review the data"))
         return super().form_invalid(form)
 
     def get_success_url(self) -> str:
@@ -88,7 +88,7 @@ class AreaCreateView(LoginRequiredMixin, CreateView):
 
     def form_invalid(self, form):
         """If the form is invalid, render the invalid form."""
-        messages.error(self.request, _("Area not created, please review the data"))
+        messages.warning(self.request, _("Area not created, please review the data"))
         return super().form_invalid(form)
 
     def get_success_url(self) -> str:

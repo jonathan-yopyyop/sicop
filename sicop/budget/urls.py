@@ -1,6 +1,10 @@
 from django.urls import path
 
 from sicop.budget.views import (
+    BudgetCapCreateView,
+    BudgetCapDetailView,
+    BudgetCapListView,
+    BudgetCapUpdateView,
     BudgetCreateView,
     BudgetDescriptionCreateView,
     BudgetDescriptionDetailView,
@@ -33,23 +37,43 @@ urlpatterns = [
         name="budget_description_update",
     ),
     path(
-        "budget/budget/list/",
+        "budget/list/",
         BudgetListView.as_view(),
         name="budget_list",
     ),
     path(
-        "budget/budget/<int:pk>/",
+        "budget/<int:pk>/",
         BudgetDetailView.as_view(),
         name="budget_detail",
     ),
     path(
-        "budget/budget/create/",
+        "budget/create/",
         BudgetCreateView.as_view(),
         name="budget_create",
     ),
     path(
-        "budget/budget/<int:pk>/update/",
+        "budget/<int:pk>/update/",
         BudgetUpdateView.as_view(),
         name="budget_update",
+    ),
+    path(
+        "budget/cap/list/",
+        BudgetCapListView.as_view(),
+        name="budget_cap_list",
+    ),
+    path(
+        "budget/cap/create/",
+        BudgetCapCreateView.as_view(),
+        name="budget_cap_create",
+    ),
+    path(
+        "budget/cap/<int:pk>/",
+        BudgetCapDetailView.as_view(),
+        name="budget_cap_detail",
+    ),
+    path(
+        "budget/cap/<int:pk>/update/",
+        BudgetCapUpdateView.as_view(),
+        name="budget_cap_update",
     ),
 ]

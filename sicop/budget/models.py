@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from config.models import BaseModel
+from sicop.business_unit.models import BusinessUnit
 from sicop.cost_center.models import CostCenter
 from sicop.expense_type.models import ExpenseConcept
 from sicop.project.models import Project
@@ -108,3 +109,34 @@ class Budget(BaseModel):
     def save(self, *args, **kwargs):
         self.initial_value = self.unit_value * self.quantity
         super().save(*args, **kwargs)
+
+
+class BudgetCap(BaseModel):
+    """Model definition for Budget Cap."""
+
+    business_unit = models.ForeignKey(
+        BusinessUnit,
+        verbose_name=_("Business unit"),
+        help_text=_("Business unit"),
+        related_name="business_unit_budget_caps",
+        on_delete=models.CASCADE,
+    )
+    cap = models.FloatField(
+        _("Cap"),
+        help_text=_("Cap"),
+        default=0,
+    )
+    description = models.TextField(
+        _("Description"),
+        help_text=_("Description"),
+    )
+
+    class Meta:
+        """Meta definition for Budget Cap."""
+
+        verbose_name = "Budget Cap"
+        verbose_name_plural = "Budget Caps"
+
+    def __str__(self):
+        """Unicode representation of Budget Cap."""
+        return self.description

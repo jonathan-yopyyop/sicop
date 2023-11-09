@@ -59,7 +59,7 @@ class BudgetDescriptionCreateView(PermissionRequiredMixin, LoginRequiredMixin, C
         return super().form_valid(form)
 
     def form_invalid(self, form: BaseModelForm) -> HttpResponse:
-        messages.error(self.request, _("Budget description not created"))
+        messages.warning(self.request, _("Budget description not created"))
         return super().form_invalid(form)
 
     def get_success_url(self):
@@ -99,7 +99,7 @@ class BudgetDescriptionUpdateView(PermissionRequiredMixin, LoginRequiredMixin, U
         return super().form_valid(form)
 
     def form_invalid(self, form: BaseModelForm) -> HttpResponse:
-        messages.error(self.request, _("Budget description not updated"))
+        messages.warning(self.request, _("Budget description not updated"))
         return super().form_invalid(form)
 
     def get_success_url(self):

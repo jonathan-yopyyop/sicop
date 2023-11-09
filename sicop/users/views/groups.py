@@ -55,7 +55,7 @@ class GroupUpdateView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView)
             messages.success(request, _("Group updated successfully"))
         except Exception as e:
             print(e)
-            messages.error(request, _("Group not updated"))
+            messages.warning(request, _("Group not updated"))
         return HttpResponseRedirect(
             reverse(
                 "user_group_update",

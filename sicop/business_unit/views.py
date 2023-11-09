@@ -78,7 +78,7 @@ class BusinessUnitUpdateView(PermissionRequiredMixin, LoginRequiredMixin, Update
 
     def form_invalid(self, form):
         """If the form is invalid, show the invalid form."""
-        messages.error(self.request, _("Business unit not updated, please review the data"))
+        messages.warning(self.request, _("Business unit not updated, please review the data"))
         return super().form_invalid(form)
 
     def post(self, request: HttpRequest, *args: str, **kwargs):
@@ -105,7 +105,7 @@ class BusinessUnitUpdateView(PermissionRequiredMixin, LoginRequiredMixin, Update
 
         except Exception as e:
             print(e)
-            messages.error(request, _("Business unit not updated."))
+            messages.warning(request, _("Business unit not updated."))
             return HttpResponseRedirect(
                 reverse(
                     "business_unit_detail",
@@ -144,7 +144,7 @@ class BusinessUnitCreateView(PermissionRequiredMixin, LoginRequiredMixin, Create
 
     def form_invalid(self, form: BaseModelForm) -> HttpResponse:
         """If the form is invalid, show the invalid form."""
-        messages.error(self.request, _("Business unit not created, please review the data"))
+        messages.warning(self.request, _("Business unit not created, please review the data"))
         return super().form_invalid(form)
 
     def post(self, request: HttpRequest, *args: str, **kwargs) -> HttpResponse:
@@ -163,7 +163,7 @@ class BusinessUnitCreateView(PermissionRequiredMixin, LoginRequiredMixin, Create
             )
         except Exception as e:
             print(e)
-            messages.error(request, _("Business unit not created."))
+            messages.warning(request, _("Business unit not created."))
             return HttpResponseRedirect(
                 reverse(
                     "business_unit_create",
