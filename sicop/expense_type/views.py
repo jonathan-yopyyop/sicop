@@ -116,7 +116,7 @@ class ExpenseTypeUpdatingView(PermissionRequiredMixin, LoginRequiredMixin, Templ
             )
         except Exception as e:
             print(e)
-            messages.error(request, _("Expense Type not updated."))
+            messages.warning(request, _("Expense Type not updated."))
             return HttpResponseRedirect(
                 reverse(
                     "expense_type_detail",

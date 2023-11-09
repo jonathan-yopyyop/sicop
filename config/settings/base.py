@@ -326,4 +326,4 @@ SOCIALACCOUNT_FORMS = {"signup": "sicop.users.forms.UserSocialSignupForm"}
 # Your stuff...
 # ------------------------------------------------------------------------------
 X_FRAME_OPTIONS = "SAMEORIGIN"
-USE_THOUSAND_SEPARATOR = True
+# USE_THOUSAND_SEPARATOR = True

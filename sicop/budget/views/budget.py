@@ -103,7 +103,7 @@ class BudgetUpdateView(PermissionRequiredMixin, LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
     def form_invalid(self, form: BaseModelForm) -> HttpResponse:
-        messages.error(self.request, _("Budget not updated"))
+        messages.warning(self.request, _("Budget not updated"))
         return super().form_invalid(form)
 
     def post(self, request: HttpRequest, *args: str, **kwargs) -> HttpResponse:

@@ -49,7 +49,7 @@ class ProjectStatusCreateView(PermissionRequiredMixin, LoginRequiredMixin, Creat
 
     def form_invalid(self, form: HttpRequest) -> HttpResponse:
         """Invalidate form."""
-        messages.error(self.request, _("Project status could not be created."))
+        messages.warning(self.request, _("Project status could not be created."))
         return super().form_invalid(form)
 
 
@@ -76,5 +76,5 @@ class ProjectStatusUpdateView(PermissionRequiredMixin, LoginRequiredMixin, Updat
 
     def form_invalid(self, form: HttpRequest) -> HttpResponse:
         """Invalidate form."""
-        messages.error(self.request, _("Project status could not be updated."))
+        messages.warning(self.request, _("Project status could not be updated."))
         return super().form_invalid(form)

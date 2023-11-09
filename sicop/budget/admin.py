@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from sicop.budget.models import Budget, BudgetDescription
+from sicop.budget.models import Budget, BudgetCap, BudgetDescription
 
 
 @admin.register(BudgetDescription)
@@ -50,6 +50,33 @@ class BudgetAdmin(admin.ModelAdmin):
         "initial_value",
         "budget_addition",
         "budget_decrease",
+        "created_at",
+        "updated_at",
+    )
+
+
+@admin.register(BudgetCap)
+class BudgetCapAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "business_unit",
+        "cap",
+        "description",
+        "status",
+        "created_at",
+        "updated_at",
+    )
+    search_fields = (
+        "business_unit__code",
+        "description",
+    )
+    list_filter = (
+        "business_unit",
+        "description",
+        "status",
+    )
+    readonly_fields = (
+        "id",
         "created_at",
         "updated_at",
     )

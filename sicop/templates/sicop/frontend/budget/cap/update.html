@@ -4,7 +4,7 @@
 {% load i18n %}
 
 {% block page_title %}
-  {% trans 'Area member update' %}
+  {% trans 'Budget cap update' %}
 {% endblock page_title %}
 {% block content %}
   <section id="configuration">
@@ -12,12 +12,12 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">{% trans 'Area member data' %}</h4>
+            <h4 class="card-title">{% trans 'Budget cap data' %}</h4>
             <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
             <div class="heading-elements">
               <ul class="list-inline mb-0">
                 <li>
-                  <a href="{% url 'area_member_list' %}">
+                  <a href="{% url 'budget_cap_list' %}">
                     <button type="button" class="btn btn-icon btn-success mr-1 mb-1">
                       <i class="fa fa-list"></i>
                     </button>
@@ -47,18 +47,17 @@
                         {% csrf_token %}
                         <div class="form-body">
                           <h4 class="form-section">
-                            <i class="feather icon-users"></i> {% trans 'Area member Info' %}
+                            <i class="feather icon-users"></i> {% trans 'Budget cap Info' %}
                           </h4>
                           <div class="row">
                             <div class="col-md-6">
                               <div class="form-group">
-                                <label for="projectinput3">{% trans 'Member' %}</label>
-                                <input type="hidden" value="{{ member.user.id }}" name="user" />
-                                <select class="select2 form-control" disabled>
-                                  {% for user in users %}
-                                    <option value="{{ user.id }}"
-                                            {% if user.id == member.user.id %}selected{% endif %}>
-                                      {{ user.name }}
+                                <label for="projectinput3">{% trans 'Business unit' %}</label>
+                                <select class="select2 form-control" name="business_unit">
+                                  {% for business_unit in business_units %}
+                                    <option value="{{ business_unit.id }}"
+                                            {% if business_unit.id == budget_cap.business_unit.id %}selected{% endif %}>
+                                      {{ business_unit.name }}
                                     </option>
                                   {% endfor %}
                                 </select>
@@ -66,36 +65,32 @@
                             </div>
                             <div class="col-md-6">
                               <div class="form-group">
-                                <label for="projectinput3">{% trans 'Area' %}</label>
-                                <select class="select2 form-control" name="area">
-                                  {% for area in areas %}
-                                    <option value="{{ area.id }}"
-                                            {% if area.id == member.area.id %}selected{% endif %}>
-                                      {{ area.name }}
-                                    </option>
-                                  {% endfor %}
-                                </select>
+                                <label for="projectinput1">{% trans 'Cap' %}</label>
+                                <input type="text"
+                                       id="projectinput1"
+                                       class="form-control"
+                                       placeholder="{% trans 'Cap' %}"
+                                       name="cap"
+                                       value="{{ budget_cap.cap }}" />
                               </div>
                             </div>
                             <div class="col-md-6">
                               <div class="form-group">
-                                <label for="projectinput3">{% trans 'Role' %}</label>
-                                <select class="select2 form-control" name="role">
-                                  {% for role in roles %}
-                                    <option value="{{ role.id }}"
-                                            {% if role.id == member.role.id %}selected{% endif %}>
-                                      {{ role.name }}
-                                    </option>
-                                  {% endfor %}
-                                </select>
+                                <label for="projectinput1">{% trans 'Description' %}</label>
+                                <input type="text"
+                                       id="projectinput1"
+                                       class="form-control"
+                                       placeholder="{% trans 'Description' %}"
+                                       name="description"
+                                       value="{{ budget_cap.description }}" />
                               </div>
                             </div>
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label for="projectinput3">{% trans 'Status' %}</label>
                                 <select class="select2 form-control" name="status">
-                                  <option value="True" {% if member.status %}selected{% endif %}>{% trans 'Active' %}</option>
-                                  <option value="False" {% if not member.status %}selected{% endif %}>{% trans 'Inactive' %}</option>
+                                  <option value="True" {% if budget_cap.status %}selected{% endif %}>{% trans 'Active' %}</option>
+                                  <option value="False" {% if not budget_cap.status %}selected{% endif %}>{% trans 'Inactive' %}</option>
                                 </select>
                               </div>
                             </div>
