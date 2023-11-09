@@ -1,0 +1,2136 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-09 12:12-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: config/models.py:7
+msgid "status"
+msgstr "estado"
+
+#: config/models.py:8
+msgid "Designates whether this record is active or not."
+msgstr "Designa si este registro está activo o no."
+
+#: config/models.py:12
+msgid "created at"
+msgstr "creado en"
+
+#: config/models.py:13
+msgid "Date time on which the object was created."
+msgstr "Fecha y hora en la que se creó el objeto."
+
+#: config/models.py:17
+msgid "updated at"
+msgstr "actualizado en"
+
+#: config/models.py:18
+msgid "Date time on which the object was last updated."
+msgstr "Fecha y hora en la que se actualizó por última vez el objeto."
+
+#: config/settings/base.py:34
+msgid "Spanish"
+msgstr "Español"
+
+#: config/settings/base.py:35
+msgid "English"
+msgstr "Inglés"
+
+#: sicop/area/apps.py:8 sicop/area/models.py:29 sicop/area/models.py:48
+#: sicop/area/models.py:49 sicop/project/models.py:126
+#: sicop/project/models.py:127
+#: sicop/templates/sicop/frontend/area/member/create.html:82
+#: sicop/templates/sicop/frontend/area/member/detail.html:66
+#: sicop/templates/sicop/frontend/area/member/list.html:48
+#: sicop/templates/sicop/frontend/area/member/list.html:84
+#: sicop/templates/sicop/frontend/area/member/update.html:69
+#: sicop/templates/sicop/frontend/base/main_menu.html:20
+#: sicop/templates/sicop/frontend/project/project/create.html:110
+#: sicop/templates/sicop/frontend/project/project/detail.html:114
+#: sicop/templates/sicop/frontend/project/project/list.html:50
+#: sicop/templates/sicop/frontend/project/project/list.html:86
+#: sicop/templates/sicop/frontend/project/project/update.html:110
+msgid "Area"
+msgstr "Área"
+
+#: sicop/area/models.py:14 sicop/area/models.py:15
+msgid "Area name"
+msgstr "Nombre del área"
+
+#: sicop/area/models.py:20 sicop/area/models.py:21
+msgid "Area description"
+msgstr "Descripción del área"
+
+#: sicop/area/models.py:30
+#: sicop/templates/sicop/frontend/base/main_menu.html:24
+msgid "Areas"
+msgstr "Áreas"
+
+#: sicop/area/models.py:42 sicop/area/models.py:43
+msgid "User"
+msgstr "Usuario"
+
+#: sicop/area/models.py:54 sicop/area/models.py:55
+msgid "Area Role"
+msgstr "Rol del área"
+
+#: sicop/area/models.py:68
+msgid "Area Member"
+msgstr "Miembro del área"
+
+#: sicop/area/models.py:69
+msgid "Area Members"
+msgstr "Miembros del área"
+
+#: sicop/area/models.py:80 sicop/area/models.py:81
+msgid "Area Role code"
+msgstr "Código de rol del área"
+
+#: sicop/area/models.py:86 sicop/area/models.py:87
+msgid "Area Role name"
+msgstr "Nombre del rol del área"
+
+#: sicop/area/views/area.py:46
+msgid "Area updated successfully"
+msgstr "Área actualizada con éxito"
+
+#: sicop/area/views/area.py:51
+msgid "Area not updated, please review the data"
+msgstr "Área no actualizada, por favor revise los datos"
+
+#: sicop/area/views/area.py:86
+msgid "Area created successfully"
+msgstr "Área creada con éxito"
+
+#: sicop/area/views/area.py:91
+msgid "Area not created, please review the data"
+msgstr "Área no creada, por favor revise los datos"
+
+#: sicop/area/views/members.py:64
+msgid "Area member updated successfully"
+msgstr "Miembro del área actualizado con éxito"
+
+#: sicop/area/views/members.py:69
+msgid "Area member not updated, please review the data"
+msgstr "Miembro del área no actualizado, por favor revise los datos"
+
+#: sicop/area/views/members.py:112
+msgid "Area member created successfully"
+msgstr "Miembro del área creado con éxito"
+
+#: sicop/area/views/members.py:117
+msgid "Area member not created, please review the data"
+msgstr "Miembro del área no creado, por favor revise los datos"
+
+#: sicop/area/views/roles.py:88
+msgid "AreaRole created successfully"
+msgstr "Rol de área creado con éxito"
+
+#: sicop/area/views/roles.py:93
+msgid "AreaRole not created, please review the data"
+msgstr "Rol de área no creado, por favor revise los datos"
+
+#: sicop/area/views/roles.py:124
+msgid "AreaRole updated successfully"
+msgstr "Rol de área actualizado con éxito"
+
+#: sicop/area/views/roles.py:129
+msgid "AreaRole not updated, please review the data"
+msgstr "Rol de área no actualizado, por favor revise los datos"
+
+#: sicop/budget/apps.py:8 sicop/budget/models.py:102
+#: sicop/project/models.py:100 sicop/project/models.py:101
+#: sicop/templates/sicop/frontend/base/main_menu.html:92
+#: sicop/templates/sicop/frontend/base/main_menu.html:99
+#: sicop/templates/sicop/frontend/project/project/create.html:99
+#: sicop/templates/sicop/frontend/project/project/create.html:103
+#: sicop/templates/sicop/frontend/project/project/detail.html:102
+#: sicop/templates/sicop/frontend/project/project/detail.html:106
+#: sicop/templates/sicop/frontend/project/project/list.html:49
+#: sicop/templates/sicop/frontend/project/project/list.html:85
+#: sicop/templates/sicop/frontend/project/project/update.html:99
+#: sicop/templates/sicop/frontend/project/project/update.html:103
+msgid "Budget"
+msgstr "Presupuesto"
+
+#: sicop/budget/models.py:16 sicop/budget/models.py:17
+#: sicop/templates/sicop/frontend/budget/description/create.html:55
+#: sicop/templates/sicop/frontend/budget/description/list.html:46
+#: sicop/templates/sicop/frontend/budget/description/list.html:78
+msgid "Expense concept"
+msgstr "Concepto de gasto"
+
+#: sicop/budget/models.py:22 sicop/budget/models.py:23
+#: sicop/budget/models.py:130 sicop/budget/models.py:131
+#: sicop/project/models.py:79 sicop/project/models.py:80
+#: sicop/templates/sicop/frontend/area/area/create.html:66
+#: sicop/templates/sicop/frontend/area/area/create.html:70
+#: sicop/templates/sicop/frontend/area/area/detail.html:65
+#: sicop/templates/sicop/frontend/area/area/detail.html:69
+#: sicop/templates/sicop/frontend/area/area/list.html:47
+#: sicop/templates/sicop/frontend/area/area/list.html:79
+#: sicop/templates/sicop/frontend/area/area/update.html:66
+#: sicop/templates/sicop/frontend/area/area/update.html:70
+#: sicop/templates/sicop/frontend/area/role/detail.html:69
+#: sicop/templates/sicop/frontend/budget/cap/create.html:76
+#: sicop/templates/sicop/frontend/budget/cap/create.html:80
+#: sicop/templates/sicop/frontend/budget/cap/detail.html:79
+#: sicop/templates/sicop/frontend/budget/cap/detail.html:84
+#: sicop/templates/sicop/frontend/budget/cap/list.html:49
+#: sicop/templates/sicop/frontend/budget/cap/list.html:83
+#: sicop/templates/sicop/frontend/budget/cap/update.html:79
+#: sicop/templates/sicop/frontend/budget/cap/update.html:83
+#: sicop/templates/sicop/frontend/budget/description/create.html:65
+#: sicop/templates/sicop/frontend/budget/description/create.html:69
+#: sicop/templates/sicop/frontend/budget/description/detail.html:62
+#: sicop/templates/sicop/frontend/budget/description/detail.html:66
+#: sicop/templates/sicop/frontend/budget/description/update.html:68
+#: sicop/templates/sicop/frontend/budget/description/update.html:72
+#: sicop/templates/sicop/frontend/cost_center/create.html:67
+#: sicop/templates/sicop/frontend/cost_center/create.html:71
+#: sicop/templates/sicop/frontend/cost_center/detail.html:65
+#: sicop/templates/sicop/frontend/cost_center/detail.html:69
+#: sicop/templates/sicop/frontend/cost_center/update.html:66
+#: sicop/templates/sicop/frontend/cost_center/update.html:70
+#: sicop/templates/sicop/frontend/project/project/create.html:66
+#: sicop/templates/sicop/frontend/project/project/create.html:70
+#: sicop/templates/sicop/frontend/project/project/detail.html:66
+#: sicop/templates/sicop/frontend/project/project/detail.html:70
+#: sicop/templates/sicop/frontend/project/project/list.html:48
+#: sicop/templates/sicop/frontend/project/project/list.html:84
+#: sicop/templates/sicop/frontend/project/project/update.html:66
+#: sicop/templates/sicop/frontend/project/project/update.html:70
+msgid "Description"
+msgstr "Descripción"
+
+#: sicop/budget/models.py:29
+msgid "Budget Description"
+msgstr "Descripción del presupuesto"
+
+#: sicop/budget/models.py:30
+msgid "Budget Descriptions"
+msgstr "Descripciones de presupuesto"
+
+#: sicop/budget/models.py:42 sicop/budget/models.py:43 sicop/project/apps.py:8
+#: sicop/project/models.py:153 sicop/project/models.py:154
+#: sicop/templates/sicop/frontend/base/main_menu.html:75
+#: sicop/templates/sicop/frontend/budget/budget/create.html:55
+#: sicop/templates/sicop/frontend/budget/budget/detail.html:55
+#: sicop/templates/sicop/frontend/budget/budget/list.html:46
+#: sicop/templates/sicop/frontend/budget/budget/list.html:82
+#: sicop/templates/sicop/frontend/budget/budget/update.html:55
+msgid "Project"
+msgstr "Proyecto"
+
+#: sicop/budget/models.py:49 sicop/budget/models.py:50
+#: sicop/templates/sicop/frontend/base/main_menu.html:48
+#: sicop/templates/sicop/frontend/budget/budget/detail.html:63
+#: sicop/templates/sicop/frontend/budget/budget/list.html:47
+#: sicop/templates/sicop/frontend/budget/budget/list.html:83
+#: sicop/templates/sicop/frontend/budget/budget/update.html:69
+msgid "Cost center"
+msgstr "Centro de costos"
+
+#: sicop/budget/models.py:56 sicop/budget/models.py:57
+#: sicop/templates/sicop/frontend/budget/budget/create.html:73
+#: sicop/templates/sicop/frontend/budget/budget/detail.html:71
+#: sicop/templates/sicop/frontend/budget/budget/list.html:48
+#: sicop/templates/sicop/frontend/budget/budget/list.html:84
+#: sicop/templates/sicop/frontend/budget/budget/update.html:83
+msgid "Budget description"
+msgstr "Descripción del presupuesto"
+
+#: sicop/budget/models.py:62 sicop/budget/models.py:63
+#: sicop/templates/sicop/frontend/budget/budget/create.html:84
+#: sicop/templates/sicop/frontend/budget/budget/create.html:88
+#: sicop/templates/sicop/frontend/budget/budget/detail.html:82
+#: sicop/templates/sicop/frontend/budget/budget/detail.html:86
+#: sicop/templates/sicop/frontend/budget/budget/list.html:49
+#: sicop/templates/sicop/frontend/budget/budget/list.html:85
+#: sicop/templates/sicop/frontend/budget/budget/update.html:97
+#: sicop/templates/sicop/frontend/budget/budget/update.html:101
+msgid "Unit value"
+msgstr "Valor unitario"
+
+#: sicop/budget/models.py:69 sicop/budget/models.py:70
+#: sicop/templates/sicop/frontend/budget/budget/create.html:95
+#: sicop/templates/sicop/frontend/budget/budget/create.html:99
+#: sicop/templates/sicop/frontend/budget/budget/detail.html:94
+#: sicop/templates/sicop/frontend/budget/budget/detail.html:98
+#: sicop/templates/sicop/frontend/budget/budget/update.html:108
+#: sicop/templates/sicop/frontend/budget/budget/update.html:112
+msgid "Quantity"
+msgstr "Cantidad"
+
+#: sicop/budget/models.py:74 sicop/budget/models.py:75
+#: sicop/templates/sicop/frontend/budget/budget/detail.html:106
+#: sicop/templates/sicop/frontend/budget/budget/detail.html:110
+msgid "Initial value"
+msgstr "Valor inicial"
+
+#: sicop/budget/models.py:81 sicop/budget/models.py:82
+#: sicop/templates/sicop/frontend/budget/budget/detail.html:118
+#: sicop/templates/sicop/frontend/budget/budget/detail.html:122
+msgid "Budget addition"
+msgstr "Adición al presupuesto"
+
+#: sicop/budget/models.py:88 sicop/budget/models.py:89
+#: sicop/templates/sicop/frontend/budget/budget/detail.html:130
+#: sicop/templates/sicop/frontend/budget/budget/detail.html:134
+msgid "Budget decrease"
+msgstr "Disminución del presupuesto"
+
+#: sicop/budget/models.py:103
+msgid "Budgets"
+msgstr "Presupuestos"
+
+#: sicop/budget/models.py:119 sicop/budget/models.py:120
+#: sicop/templates/sicop/frontend/base/main_menu.html:37
+#: sicop/templates/sicop/frontend/budget/cap/create.html:55
+#: sicop/templates/sicop/frontend/budget/cap/detail.html:54
+#: sicop/templates/sicop/frontend/budget/cap/list.html:47
+#: sicop/templates/sicop/frontend/budget/cap/list.html:81
+#: sicop/templates/sicop/frontend/budget/cap/update.html:55
+msgid "Business unit"
+msgstr "Unidad de negocio"
+
+#: sicop/budget/models.py:125 sicop/budget/models.py:126
+#: sicop/templates/sicop/frontend/budget/cap/create.html:65
+#: sicop/templates/sicop/frontend/budget/cap/create.html:69
+#: sicop/templates/sicop/frontend/budget/cap/detail.html:67
+#: sicop/templates/sicop/frontend/budget/cap/detail.html:72
+#: sicop/templates/sicop/frontend/budget/cap/list.html:48
+#: sicop/templates/sicop/frontend/budget/cap/list.html:82
+#: sicop/templates/sicop/frontend/budget/cap/update.html:68
+#: sicop/templates/sicop/frontend/budget/cap/update.html:72
+msgid "Cap"
+msgstr "Límite"
+#: sicop/budget/views/budget.py:64
+msgid "Budget created successfully."
+msgstr "Presupuesto creado exitosamente."
+
+#: sicop/budget/views/budget.py:102
+msgid "Budget updated successfully."
+msgstr "Presupuesto actualizado exitosamente."
+
+#: sicop/budget/views/budget.py:106
+msgid "Budget not updated"
+msgstr "Presupuesto no actualizado."
+
+#: sicop/budget/views/cap.py:60
+msgid "Budget cap created successfully"
+msgstr "Límite de presupuesto creado exitosamente."
+
+#: sicop/budget/views/cap.py:64
+msgid "Budget cap not created"
+msgstr "Límite de presupuesto no creado."
+
+#: sicop/budget/views/cap.py:111
+msgid "Budget cap updated successfully"
+msgstr "Límite de presupuesto actualizado exitosamente."
+
+#: sicop/budget/views/cap.py:115
+msgid "Budget cap not updated"
+msgstr "Límite de presupuesto no actualizado."
+
+#: sicop/budget/views/description.py:58
+msgid "Budget description created successfully"
+msgstr "Descripción de presupuesto creada exitosamente."
+
+#: sicop/budget/views/description.py:62
+msgid "Budget description not created"
+msgstr "Descripción de presupuesto no creada."
+
+#: sicop/budget/views/description.py:98
+msgid "Budget description updated successfully"
+msgstr "Descripción de presupuesto actualizada exitosamente."
+
+#: sicop/budget/views/description.py:102
+msgid "Budget description not updated"
+msgstr "Descripción de presupuesto no actualizada."
+
+#: sicop/business_unit/apps.py:8
+msgid "Business Unit"
+msgstr "Unidad de Negocio"
+
+#: sicop/business_unit/models.py:12 sicop/business_unit/models.py:13
+#: sicop/expense_concept/models.py:11 sicop/expense_concept/models.py:12
+#: sicop/expense_type/models.py:12 sicop/expense_type/models.py:13
+#: sicop/integration/models/config.py:16 sicop/project/models.py:13
+#: sicop/project/models.py:14 sicop/project/models.py:40
+#: sicop/project/models.py:41
+#: sicop/templates/sicop/frontend/area/role/detail.html:65
+#: sicop/templates/sicop/frontend/area/role/list.html:47
+#: sicop/templates/sicop/frontend/area/role/list.html:79
+msgid "Code"
+msgstr "Código"
+
+#: sicop/business_unit/models.py:20 sicop/business_unit/models.py:21
+#: sicop/templates/sicop/frontend/base/main_menu.html:52
+#: sicop/templates/sicop/frontend/business_unit/create.html:66
+#: sicop/templates/sicop/frontend/business_unit/detail.html:74
+#: sicop/templates/sicop/frontend/business_unit/update.html:75
+msgid "Cost centers"
+msgstr "Centros de Costo"
+
+#: sicop/business_unit/models.py:25 sicop/business_unit/models.py:26
+#: sicop/contractor/models.py:11 sicop/contractor/models.py:12
+#: sicop/expense_concept/models.py:18 sicop/expense_concept/models.py:19
+#: sicop/expense_type/models.py:19 sicop/expense_type/models.py:20
+#: sicop/integration/models/config.py:11 sicop/project/models.py:20
+#: sicop/project/models.py:21 sicop/project/models.py:47
+#: sicop/project/models.py:48 sicop/project/models.py:67
+#: sicop/project/models.py:68
+#: sicop/templates/sicop/frontend/area/area/create.html:55
+#: sicop/templates/sicop/frontend/area/area/create.html:59
+#: sicop/templates/sicop/frontend/area/area/detail.html:53
+#: sicop/templates/sicop/frontend/area/area/detail.html:57
+#: sicop/templates/sicop/frontend/area/area/list.html:46
+#: sicop/templates/sicop/frontend/area/area/list.html:78
+#: sicop/templates/sicop/frontend/area/area/update.html:55
+#: sicop/templates/sicop/frontend/area/area/update.html:59
+#: sicop/templates/sicop/frontend/area/member/list.html:46
+#: sicop/templates/sicop/frontend/area/member/list.html:82
+#: sicop/templates/sicop/frontend/area/role/create.html:55
+#: sicop/templates/sicop/frontend/area/role/create.html:59
+#: sicop/templates/sicop/frontend/area/role/detail.html:53
+#: sicop/templates/sicop/frontend/area/role/detail.html:57
+#: sicop/templates/sicop/frontend/area/role/list.html:46
+#: sicop/templates/sicop/frontend/area/role/list.html:78
+#: sicop/templates/sicop/frontend/area/role/update.html:55
+#: sicop/templates/sicop/frontend/area/role/update.html:59
+#: sicop/templates/sicop/frontend/budget/description/list.html:47
+#: sicop/templates/sicop/frontend/budget/description/list.html:79
+#: sicop/templates/sicop/frontend/business_unit/list.html:46
+#: sicop/templates/sicop/frontend/business_unit/list.html:76
+#: sicop/templates/sicop/frontend/cost_center/create.html:55
+#: sicop/templates/sicop/frontend/cost_center/create.html:59
+#: sicop/templates/sicop/frontend/cost_center/detail.html:53
+#: sicop/templates/sicop/frontend/cost_center/detail.html:57
+#: sicop/templates/sicop/frontend/cost_center/list.html:46
+#: sicop/templates/sicop/frontend/cost_center/list.html:76
+#: sicop/templates/sicop/frontend/cost_center/update.html:55
+#: sicop/templates/sicop/frontend/cost_center/update.html:59
+#: sicop/templates/sicop/frontend/expense/concept/create.html:55
+#: sicop/templates/sicop/frontend/expense/concept/create.html:59
+#: sicop/templates/sicop/frontend/expense/concept/detail.html:53
+#: sicop/templates/sicop/frontend/expense/concept/detail.html:57
+#: sicop/templates/sicop/frontend/expense/concept/list.html:46
+#: sicop/templates/sicop/frontend/expense/concept/list.html:76
+#: sicop/templates/sicop/frontend/expense/concept/update.html:55
+#: sicop/templates/sicop/frontend/expense/concept/update.html:59
+#: sicop/templates/sicop/frontend/expense/type/list.html:46
+#: sicop/templates/sicop/frontend/expense/type/list.html:76
+#: sicop/templates/sicop/frontend/project/project/create.html:55
+#: sicop/templates/sicop/frontend/project/project/create.html:59
+#: sicop/templates/sicop/frontend/project/project/detail.html:54
+#: sicop/templates/sicop/frontend/project/project/detail.html:58
+#: sicop/templates/sicop/frontend/project/project/list.html:47
+#: sicop/templates/sicop/frontend/project/project/list.html:83
+#: sicop/templates/sicop/frontend/project/project/update.html:55
+#: sicop/templates/sicop/frontend/project/project/update.html:59
+#: sicop/templates/sicop/frontend/project/status/create.html:55
+#: sicop/templates/sicop/frontend/project/status/create.html:59
+#: sicop/templates/sicop/frontend/project/status/detail.html:53
+#: sicop/templates/sicop/frontend/project/status/detail.html:57
+#: sicop/templates/sicop/frontend/project/status/list.html:46
+#: sicop/templates/sicop/frontend/project/status/list.html:76
+#: sicop/templates/sicop/frontend/project/status/update.html:55
+#: sicop/templates/sicop/frontend/project/status/update.html:59
+#: sicop/templates/sicop/frontend/project/type/create.html:55
+#: sicop/templates/sicop/frontend/project/type/create.html:59
+#: sicop/templates/sicop/frontend/project/type/detail.html:53
+#: sicop/templates/sicop/frontend/project/type/detail.html:57
+#: sicop/templates/sicop/frontend/project/type/list.html:46
+#: sicop/templates/sicop/frontend/project/type/list.html:76
+#: sicop/templates/sicop/frontend/project/type/update.html:55
+#: sicop/templates/sicop/frontend/project/type/update.html:59
+#: sicop/templates/sicop/frontend/user/group/create.html:55
+#: sicop/templates/sicop/frontend/user/group/create.html:59
+#: sicop/templates/sicop/frontend/user/group/detail.html:53
+#: sicop/templates/sicop/frontend/user/group/detail.html:57
+#: sicop/templates/sicop/frontend/user/group/list.html:46
+#: sicop/templates/sicop/frontend/user/group/list.html:68
+#: sicop/templates/sicop/frontend/user/group/update.html:55
+#: sicop/templates/sicop/frontend/user/group/update.html:59
+#: sicop/templates/sicop/frontend/user/user/create.html:55
+#: sicop/templates/sicop/frontend/user/user/create.html:59
+#: sicop/templates/sicop/frontend/user/user/detail.html:53
+#: sicop/templates/sicop/frontend/user/user/detail.html:57
+#: sicop/templates/sicop/frontend/user/user/list.html:46
+#: sicop/templates/sicop/frontend/user/user/list.html:86
+#: sicop/templates/sicop/frontend/user/user/profile.html:55
+#: sicop/templates/sicop/frontend/user/user/profile.html:59
+#: sicop/templates/sicop/frontend/user/user/update.html:55
+#: sicop/templates/sicop/frontend/user/user/update.html:59
+msgid "Name"
+msgstr "Nombre"
+#: sicop/business_unit/views.py:76
+msgid "Business unit updated successfully"
+msgstr "Unidad de negocio actualizada exitosamente"
+
+#: sicop/business_unit/views.py:81
+msgid "Business unit not updated, please review the data"
+msgstr "Unidad de negocio no actualizada, por favor revise los datos"
+
+#: sicop/business_unit/views.py:98
+msgid "Business unit updated successfully."
+msgstr "Unidad de negocio actualizada exitosamente."
+
+#: sicop/business_unit/views.py:108
+msgid "Business unit not updated."
+msgstr "Unidad de negocio no actualizada."
+
+#: sicop/business_unit/views.py:142
+msgid "Business unit created successfully"
+msgstr "Unidad de negocio creada exitosamente"
+
+#: sicop/business_unit/views.py:147
+msgid "Business unit not created, please review the data"
+msgstr "Unidad de negocio no creada, por favor revise los datos"
+
+#: sicop/business_unit/views.py:157
+msgid "Business unit created successfully."
+msgstr "Unidad de negocio creada exitosamente."
+
+#: sicop/business_unit/views.py:166
+msgid "Business unit not created."
+msgstr "Unidad de negocio no creada."
+
+#: sicop/contractor/apps.py:8 sicop/contractor/models.py:44
+#: sicop/contractor/models.py:57 sicop/contractor/models.py:58
+msgid "Contractor"
+msgstr "Contratista"
+
+#: sicop/contractor/models.py:16 sicop/contractor/models.py:17
+msgid "Commertial name"
+msgstr "Nombre comercial"
+
+#: sicop/contractor/models.py:21 sicop/contractor/models.py:22
+msgid "Phone"
+msgstr "Teléfono"
+
+#: sicop/contractor/models.py:28 sicop/contractor/models.py:29
+msgid "Address"
+msgstr "Dirección"
+
+#: sicop/contractor/models.py:35 sicop/contractor/models.py:36
+msgid "DNI"
+msgstr "DNI"
+
+#: sicop/contractor/models.py:45
+msgid "Contractors"
+msgstr "Contratistas"
+
+#: sicop/contractor/models.py:62 sicop/contractor/models.py:63
+msgid "File"
+msgstr "Archivo"
+
+#: sicop/contractor/models.py:70
+msgid "Contractor File"
+msgstr "Archivo de contratista"
+
+#: sicop/contractor/models.py:71
+msgid "Contractor Files"
+msgstr "Archivos de contratista"
+
+#: sicop/cost_center/apps.py:8 sicop/cost_center/models.py:32
+msgid "Cost Center"
+msgstr "Centro de Costo"
+
+#: sicop/cost_center/models.py:11 sicop/cost_center/models.py:12
+msgid "Cost Center ID"
+msgstr "ID del Centro de Costo"
+
+#: sicop/cost_center/models.py:18 sicop/cost_center/models.py:19
+msgid "Cost Center name"
+msgstr "Nombre del Centro de Costo"
+
+#: sicop/cost_center/models.py:23 sicop/cost_center/models.py:24
+msgid "Cost Center description"
+msgstr "Descripción del Centro de Costo"
+
+#: sicop/cost_center/models.py:33
+msgid "Cost Centers"
+msgstr "Centros de Costo"
+
+#: sicop/cost_center/views.py:58
+msgid "Cost center updated successfully"
+msgstr "Centro de costo actualizado exitosamente"
+
+#: sicop/cost_center/views.py:63
+msgid "Cost center not updated, please review the data"
+msgstr "Centro de costo no actualizado, por favor revise los datos"
+
+#: sicop/cost_center/views.py:100
+msgid "Cost center created successfully"
+msgstr "Centro de costo creado exitosamente"
+
+#: sicop/cost_center/views.py:105
+msgid "Cost center not created, please review the data"
+msgstr "Centro de costo no creado, por favor revise los datos"
+
+#: sicop/expense_concept/apps.py:8
+msgid "Expense Concept"
+msgstr "Concepto de Gasto"
+
+#: sicop/expense_concept/views.py:45
+msgid "Expense Concept updated successfully"
+msgstr "Concepto de gasto actualizado exitosamente"
+
+#: sicop/expense_concept/views.py:50
+msgid "Expense Concept not updated, please review the data"
+msgstr "Concepto de gasto no actualizado, por favor revise los datos"
+
+#: sicop/expense_concept/views.py:83
+msgid "Expense Concept created successfully"
+msgstr "Concepto de gasto creado exitosamente"
+
+#: sicop/expense_concept/views.py:88
+msgid "Expense Concept not created, please review the data"
+msgstr "Concepto de gasto no creado, por favor revise los datos"
+
+#: sicop/expense_type/apps.py:8
+msgid "Expense Type"
+msgstr "Tipo de Gasto"
+
+#: sicop/expense_type/models.py:25 sicop/expense_type/models.py:26
+msgid "Expense Concepts"
+msgstr "Conceptos de Gasto"
+#: sicop/expense_type/views.py:53
+msgid "Expense type created successfully"
+msgstr "Tipo de gasto creado exitosamente"
+
+#: sicop/expense_type/views.py:57
+msgid "Expense type not created"
+msgstr "Tipo de gasto no creado"
+
+#: sicop/expense_type/views.py:110
+msgid "Expense Type updated successfully."
+msgstr "Tipo de gasto actualizado exitosamente."
+
+#: sicop/expense_type/views.py:119
+msgid "Expense Type not updated."
+msgstr "Tipo de gasto no actualizado."
+
+#: sicop/integration/apps.py:8
+msgid "Integration"
+msgstr "Integración"
+
+#: sicop/integration/models/config.py:12
+msgid "Name of the integration"
+msgstr "Nombre de la integración"
+
+#: sicop/integration/models/config.py:17
+msgid "Code of the integration"
+msgstr "Código de la integración"
+
+#: sicop/integration/models/xirux.py:11 sicop/integration/models/xirux.py:14
+#: sicop/integration/models/xirux.py:457 sicop/integration/models/xirux.py:460
+msgid "IdEmpres"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:18 sicop/integration/models/xirux.py:21
+#: sicop/integration/models/xirux.py:464 sicop/integration/models/xirux.py:467
+msgid "IdSucurs"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:25 sicop/integration/models/xirux.py:28
+msgid "IdTercer"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:32 sicop/integration/models/xirux.py:35
+#: sicop/integration/models/xirux.py:478 sicop/integration/models/xirux.py:481
+#: sicop/integration/models/xirux.py:570 sicop/integration/models/xirux.py:573
+#: sicop/integration/models/xirux.py:627 sicop/integration/models/xirux.py:630
+#: sicop/integration/models/xirux.py:698 sicop/integration/models/xirux.py:701
+msgid "Nombre"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:39 sicop/integration/models/xirux.py:42
+msgid "Razon"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:46 sicop/integration/models/xirux.py:49
+msgid "TipoId"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:53 sicop/integration/models/xirux.py:56
+msgid "Nit"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:60 sicop/integration/models/xirux.py:63
+msgid "Direcc"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:67 sicop/integration/models/xirux.py:70
+msgid "Telefo"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:74 sicop/integration/models/xirux.py:77
+msgid "Fax"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:81 sicop/integration/models/xirux.py:84
+msgid "Ciudad"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:88 sicop/integration/models/xirux.py:91
+msgid "Pais"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:95 sicop/integration/models/xirux.py:98
+msgid "Contac"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:102 sicop/integration/models/xirux.py:105
+msgid "TelContac"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:109 sicop/integration/models/xirux.py:112
+msgid "Observ"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:116 sicop/integration/models/xirux.py:119
+msgid "IdViades"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:123 sicop/integration/models/xirux.py:126
+msgid "IdCodVen"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:130 sicop/integration/models/xirux.py:133
+msgid "IdCajBan"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:137 sicop/integration/models/xirux.py:140
+msgid "TipoCta"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:144 sicop/integration/models/xirux.py:147
+msgid "NroCuenta"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:151 sicop/integration/models/xirux.py:154
+msgid "CupoAsig"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:158 sicop/integration/models/xirux.py:161
+msgid "CupoDisp"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:165 sicop/integration/models/xirux.py:168
+msgid "FecIngreso"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:172 sicop/integration/models/xirux.py:175
+msgid "PorDesc"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:179 sicop/integration/models/xirux.py:182
+msgid "PorRecargo"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:186 sicop/integration/models/xirux.py:189
+msgid "PorTarjeta"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:193 sicop/integration/models/xirux.py:196
+msgid "PorVenta"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:200 sicop/integration/models/xirux.py:203
+msgid "PorCobro"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:207 sicop/integration/models/xirux.py:210
+msgid "ClaseA"
+msgstr ""
+#: sicop/integration/models/xirux.py:214 sicop/integration/models/xirux.py:217
+msgid "ClaseB"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:221 sicop/integration/models/xirux.py:224
+msgid "ClaseC"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:228 sicop/integration/models/xirux.py:231
+msgid "ClaseD"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:235 sicop/integration/models/xirux.py:238
+msgid "ClaseE"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:242 sicop/integration/models/xirux.py:245
+msgid "Url"
+msgstr "URL"
+
+#: sicop/integration/models/xirux.py:249 sicop/integration/models/xirux.py:252
+msgid "IdAgeIva"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:256 sicop/integration/models/xirux.py:259
+msgid "IdAgeIca"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:263 sicop/integration/models/xirux.py:266
+msgid "IdActIca"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:270 sicop/integration/models/xirux.py:273
+msgid "Autoreten"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:277 sicop/integration/models/xirux.py:280
+msgid "SujRetFte"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:284 sicop/integration/models/xirux.py:287
+msgid "IdVended"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:291 sicop/integration/models/xirux.py:294
+msgid "IdLisPre"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:298 sicop/integration/models/xirux.py:301
+#: sicop/integration/models/xirux.py:520 sicop/integration/models/xirux.py:523
+msgid "NivAccDat"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:305 sicop/integration/models/xirux.py:308
+msgid "SujRetCREE"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:312 sicop/integration/models/xirux.py:315
+msgid "PriApell"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:319 sicop/integration/models/xirux.py:322
+msgid "SegApell"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:326 sicop/integration/models/xirux.py:329
+msgid "PriNombre"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:333 sicop/integration/models/xirux.py:336
+msgid "OtrosNom"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:340 sicop/integration/models/xirux.py:343
+msgid "IdBarrio"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:347 sicop/integration/models/xirux.py:350
+msgid "IdSector"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:354 sicop/integration/models/xirux.py:357
+msgid "IngAnuales"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:361 sicop/integration/models/xirux.py:364
+msgid "NumEmp"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:368 sicop/integration/models/xirux.py:371
+msgid "PaginaWeb"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:375 sicop/integration/models/xirux.py:378
+msgid "CanalEntrega"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:382 sicop/integration/models/xirux.py:385
+msgid "MatMercantil"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:389 sicop/integration/models/xirux.py:392
+msgid "IdRespFiscal"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:396 sicop/integration/models/xirux.py:399
+msgid "Correo2"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:403 sicop/integration/models/xirux.py:406
+msgid "Correo3"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:410 sicop/integration/models/xirux.py:413
+msgid "Campo20"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:417 sicop/integration/models/xirux.py:420
+#: sicop/integration/models/xirux.py:527 sicop/integration/models/xirux.py:530
+#: sicop/integration/models/xirux.py:584 sicop/integration/models/xirux.py:587
+#: sicop/integration/models/xirux.py:655 sicop/integration/models/xirux.py:658
+#: sicop/integration/models/xirux.py:824 sicop/integration/models/xirux.py:827
+msgid "IdUsuari"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:424 sicop/integration/models/xirux.py:427
+#: sicop/integration/models/xirux.py:534 sicop/integration/models/xirux.py:537
+#: sicop/integration/models/xirux.py:591 sicop/integration/models/xirux.py:594
+#: sicop/integration/models/xirux.py:662 sicop/integration/models/xirux.py:665
+#: sicop/integration/models/xirux.py:831 sicop/integration/models/xirux.py:834
+msgid "Operac"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:431 sicop/integration/models/xirux.py:434
+#: sicop/integration/models/xirux.py:541 sicop/integration/models/xirux.py:544
+#: sicop/integration/models/xirux.py:598 sicop/integration/models/xirux.py:601
+#: sicop/integration/models/xirux.py:669 sicop/integration/models/xirux.py:672
+#: sicop/integration/models/xirux.py:838 sicop/integration/models/xirux.py:841
+msgid "FecMod"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:471 sicop/integration/models/xirux.py:474
+msgid "IdCenCos"
+msgstr ""
+
+#: sicop/integration/models/xirux.py:485 sicop/integration/models/xirux.py:488
+#: sicop/integration/models/xirux.py:577 sicop/integration/models/xirux.py:580
+#: sicop/integration/models/xirux.py:634 sicop/integration/models/xirux.py:637
+#: sicop/integration/models/xirux.py:705 sicop/integration/models/xirux.py:708
+msgid "Nemoni"
+msgstr ""
+
+#: sicop/project/views/status.py:74
+msgid "Project status updated successfully."
+msgstr "Estado del proyecto actualizado correctamente."
+
+#: sicop/project/views/status.py:79
+msgid "Project status could not be updated."
+msgstr "No se pudo actualizar el estado del proyecto."
+
+#: sicop/project/views/type.py:47
+msgid "Project type created successfully."
+msgstr "Tipo de proyecto creado correctamente."
+
+#: sicop/project/views/type.py:52
+msgid "Project type could not be created."
+msgstr "No se pudo crear el tipo de proyecto."
+
+#: sicop/project/views/type.py:74
+msgid "Project type updated successfully."
+msgstr "Tipo de proyecto actualizado correctamente."
+
+#: sicop/project/views/type.py:79
+msgid "Project type could not be updated."
+msgstr "No se pudo actualizar el tipo de proyecto."
+
+#: sicop/templates/sicop/frontend/area/area/create.html:7
+msgid "Area Create"
+msgstr "Crear área"
+
+#: sicop/templates/sicop/frontend/area/area/create.html:15
+#: sicop/templates/sicop/frontend/area/area/update.html:15
+msgid "Area data"
+msgstr "Datos del área"
+
+#: sicop/templates/sicop/frontend/area/area/create.html:50
+#: sicop/templates/sicop/frontend/area/area/detail.html:48
+#: sicop/templates/sicop/frontend/area/area/update.html:50
+msgid "Area Info"
+msgstr "Información del área"
+
+#: sicop/templates/sicop/frontend/area/area/create.html:77
+#: sicop/templates/sicop/frontend/area/area/detail.html:77
+#: sicop/templates/sicop/frontend/area/area/list.html:48
+#: sicop/templates/sicop/frontend/area/area/list.html:80
+#: sicop/templates/sicop/frontend/area/area/update.html:77
+#: sicop/templates/sicop/frontend/area/member/detail.html:92
+#: sicop/templates/sicop/frontend/area/member/list.html:50
+#: sicop/templates/sicop/frontend/area/member/list.html:86
+#: sicop/templates/sicop/frontend/area/member/update.html:95
+#: sicop/templates/sicop/frontend/area/role/detail.html:77
+#: sicop/templates/sicop/frontend/area/role/list.html:48
+#: sicop/templates/sicop/frontend/area/role/list.html:80
+#: sicop/templates/sicop/frontend/area/role/update.html:66
+#: sicop/templates/sicop/frontend/budget/budget/create.html:106
+#: sicop/templates/sicop/frontend/budget/budget/detail.html:142
+#: sicop/templates/sicop/frontend/budget/budget/list.html:50
+#: sicop/templates/sicop/frontend/budget/budget/list.html:86
+#: sicop/templates/sicop/frontend/budget/budget/update.html:119
+#: sicop/templates/sicop/frontend/budget/cap/detail.html:91
+#: sicop/templates/sicop/frontend/budget/cap/list.html:50
+#: sicop/templates/sicop/frontend/budget/cap/list.html:84
+#: sicop/templates/sicop/frontend/budget/cap/update.html:90
+#: sicop/templates/sicop/frontend/budget/description/detail.html:74
+#: sicop/templates/sicop/frontend/budget/description/list.html:48
+#: sicop/templates/sicop/frontend/budget/description/list.html:80
+#: sicop/templates/sicop/frontend/budget/description/update.html:79
+#: sicop/templates/sicop/frontend/business_unit/detail.html:65
+#: sicop/templates/sicop/frontend/business_unit/list.html:47
+#: sicop/templates/sicop/frontend/business_unit/list.html:77
+#: sicop/templates/sicop/frontend/cost_center/detail.html:77
+#: sicop/templates/sicop/frontend/cost_center/list.html:47
+#: sicop/templates/sicop/frontend/cost_center/list.html:77
+#: sicop/templates/sicop/frontend/cost_center/update.html:77
+#: sicop/templates/sicop/frontend/expense/concept/detail.html:65
+#: sicop/templates/sicop/frontend/expense/concept/list.html:47
+#: sicop/templates/sicop/frontend/expense/concept/list.html:77
+#: sicop/templates/sicop/frontend/expense/concept/update.html:66
+#: sicop/templates/sicop/frontend/expense/type/detail.html:65
+#: sicop/templates/sicop/frontend/expense/type/list.html:47
+#: sicop/templates/sicop/frontend/expense/type/list.html:77
+#: sicop/templates/sicop/frontend/project/project/detail.html:175
+#: sicop/templates/sicop/frontend/project/project/list.html:51
+#: sicop/templates/sicop/frontend/project/project/list.html:87
+#: sicop/templates/sicop/frontend/project/project/update.html:171
+#: sicop/templates/sicop/frontend/project/status/detail.html:65
+#: sicop/templates/sicop/frontend/project/status/list.html:47
+#: sicop/templates/sicop/frontend/project/status/list.html:77
+#: sicop/templates/sicop/frontend/project/status/update.html:66
+#: sicop/templates/sicop/frontend/project/type/detail.html:65
+#: sicop/templates/sicop/frontend/project/type/list.html:47
+#: sicop/templates/sicop/frontend/project/type/list.html:77
+#: sicop/templates/sicop/frontend/project/type/update.html:66
+#: sicop/users/models.py:22
+msgid "Status"
+msgstr "Estado"
+
+#: sicop/templates/sicop/frontend/area/area/create.html:79
+#: sicop/templates/sicop/frontend/area/area/detail.html:79
+#: sicop/templates/sicop/frontend/area/area/list.html:60
+#: sicop/templates/sicop/frontend/area/area/update.html:79
+#: sicop/templates/sicop/frontend/area/member/detail.html:94
+#: sicop/templates/sicop/frontend/area/member/list.html:64
+#: sicop/templates/sicop/frontend/area/member/update.html:97
+#: sicop/templates/sicop/frontend/area/role/detail.html:79
+#: sicop/templates/sicop/frontend/area/role/list.html:60
+#: sicop/templates/sicop/frontend/area/role/update.html:68
+#: sicop/templates/sicop/frontend/budget/budget/create.html:108
+#: sicop/templates/sicop/frontend/budget/budget/detail.html:144
+#: sicop/templates/sicop/frontend/budget/budget/list.html:64
+#: sicop/templates/sicop/frontend/budget/budget/update.html:121
+#: sicop/templates/sicop/frontend/budget/cap/detail.html:93
+#: sicop/templates/sicop/frontend/budget/cap/list.html:63
+#: sicop/templates/sicop/frontend/budget/cap/update.html:92
+#: sicop/templates/sicop/frontend/budget/description/detail.html:76
+#: sicop/templates/sicop/frontend/budget/description/list.html:60
+#: sicop/templates/sicop/frontend/budget/description/update.html:81
+#: sicop/templates/sicop/frontend/business_unit/detail.html:67
+#: sicop/templates/sicop/frontend/business_unit/list.html:58
+#: sicop/templates/sicop/frontend/business_unit/update.html:68
+#: sicop/templates/sicop/frontend/cost_center/detail.html:79
+#: sicop/templates/sicop/frontend/cost_center/list.html:58
+#: sicop/templates/sicop/frontend/cost_center/update.html:79
+#: sicop/templates/sicop/frontend/expense/concept/detail.html:67
+#: sicop/templates/sicop/frontend/expense/concept/list.html:58
+#: sicop/templates/sicop/frontend/expense/concept/update.html:68
+#: sicop/templates/sicop/frontend/expense/type/detail.html:67
+#: sicop/templates/sicop/frontend/expense/type/list.html:58
+#: sicop/templates/sicop/frontend/expense/type/update.html:68
+#: sicop/templates/sicop/frontend/project/project/detail.html:177
+#: sicop/templates/sicop/frontend/project/project/list.html:65
+#: sicop/templates/sicop/frontend/project/project/update.html:173
+#: sicop/templates/sicop/frontend/project/status/detail.html:67
+#: sicop/templates/sicop/frontend/project/status/list.html:58
+#: sicop/templates/sicop/frontend/project/status/update.html:68
+#: sicop/templates/sicop/frontend/project/type/detail.html:67
+#: sicop/templates/sicop/frontend/project/type/list.html:58
+#: sicop/templates/sicop/frontend/project/type/update.html:68
+#: sicop/templates/sicop/frontend/user/user/list.html:61
+msgid "Active"
+msgstr "Activo"
+
+#: sicop/templates/sicop/frontend/area/area/create.html:80
+#: sicop/templates/sicop/frontend/area/area/detail.html:80
+#: sicop/templates/sicop/frontend/area/area/list.html:62
+#: sicop/templates/sicop/frontend/area/area/update.html:80
+#: sicop/templates/sicop/frontend/area/member/detail.html:95
+#: sicop/templates/sicop/frontend/area/member/list.html:66
+#: sicop/templates/sicop/frontend/area/member/update.html:98
+#: sicop/templates/sicop/frontend/area/role/detail.html:80
+#: sicop/templates/sicop/frontend/area/role/list.html:62
+#: sicop/templates/sicop/frontend/area/role/update.html:69
+#: sicop/templates/sicop/frontend/budget/budget/create.html:109
+#: sicop/templates/sicop/frontend/budget/budget/detail.html:145
+#: sicop/templates/sicop/frontend/budget/budget/list.html:66
+#: sicop/templates/sicop/frontend/budget/budget/update.html:122
+#: sicop/templates/sicop/frontend/budget/cap/detail.html:94
+#: sicop/templates/sicop/frontend/budget/cap/list.html:65
+#: sicop/templates/sicop/frontend/budget/cap/update.html:93
+#: sicop/templates/sicop/frontend/budget/description/detail.html:79
+#: sicop/templates/sicop/frontend/budget/description/list.html:62
+#: sicop/templates/sicop/frontend/budget/description/update.html:84
+#: sicop/templates/sicop/frontend/business_unit/detail.html:68
+#: sicop/templates/sicop/frontend/business_unit/list.html:60
+#: sicop/templates/sicop/frontend/business_unit/update.html:69
+#: sicop/templates/sicop/frontend/cost_center/detail.html:80
+#: sicop/templates/sicop/frontend/cost_center/list.html:60
+#: sicop/templates/sicop/frontend/cost_center/update.html:80
+#: sicop/templates/sicop/frontend/expense/concept/detail.html:68
+#: sicop/templates/sicop/frontend/expense/concept/list.html:60
+#: sicop/templates/sicop/frontend/expense/concept/update.html:69
+#: sicop/templates/sicop/frontend/expense/type/detail.html:68
+#: sicop/templates/sicop/frontend/expense/type/list.html:60
+#: sicop/templates/sicop/frontend/expense/type/update.html:69
+#: sicop/templates/sicop/frontend/project/project/detail.html:178
+#: sicop/templates/sicop/frontend/project/project/list.html:67
+#: sicop/templates/sicop/frontend/project/project/update.html:174
+#: sicop/templates/sicop/frontend/project/status/detail.html:68
+#: sicop/templates/sicop/frontend/project/status/list.html:60
+#: sicop/templates/sicop/frontend/project/status/update.html:69
+#: sicop/templates/sicop/frontend/project/type/detail.html:68
+#: sicop/templates/sicop/frontend/project/type/list.html:60
+#: sicop/templates/sicop/frontend/project/type/update.html:69
+#: sicop/templates/sicop/frontend/user/user/list.html:63
+msgid "Inactive"
+msgstr "Inactivo"
+
+#: sicop/templates/sicop/frontend/area/area/create.html:88
+#: sicop/templates/sicop/frontend/area/member/create.html:98
+#: sicop/templates/sicop/frontend/area/role/create.html:69
+#: sicop/templates/sicop/frontend/budget/budget/create.html:117
+#: sicop/templates/sicop/frontend/budget/cap/create.html:89
+#: sicop/templates/sicop/frontend/budget/description/create.html:79
+#: sicop/templates/sicop/frontend/business_unit/create.html:84
+#: sicop/templates/sicop/frontend/cost_center/create.html:81
+#: sicop/templates/sicop/frontend/expense/concept/create.html:68
+#: sicop/templates/sicop/frontend/expense/type/create.html:84
+#: sicop/templates/sicop/frontend/project/project/create.html:173
+#: sicop/templates/sicop/frontend/project/status/create.html:68
+#: sicop/templates/sicop/frontend/project/type/create.html:68
+#: sicop/templates/sicop/frontend/user/group/create.html:82
+#: sicop/templates/sicop/frontend/user/user/create.html:111
+msgid "Create"
+msgstr "Crear"
+
+#: sicop/templates/sicop/frontend/area/area/detail.html:7
+msgid "Area Detail"
+msgstr "Detalle del área"
+
+#: sicop/templates/sicop/frontend/area/area/detail.html:15
+msgid "Area detail"
+msgstr "Detalle del área"
+
+#: sicop/templates/sicop/frontend/area/area/detail.html:89
+#: sicop/templates/sicop/frontend/area/member/detail.html:104
+#: sicop/templates/sicop/frontend/area/role/detail.html:89
+#: sicop/templates/sicop/frontend/budget/budget/detail.html:154
+#: sicop/templates/sicop/frontend/budget/cap/detail.html:103
+#: sicop/templates/sicop/frontend/budget/description/detail.html:89
+#: sicop/templates/sicop/frontend/business_unit/detail.html:90
+#: sicop/templates/sicop/frontend/cost_center/detail.html:89
+#: sicop/templates/sicop/frontend/expense/concept/detail.html:77
+#: sicop/templates/sicop/frontend/expense/type/detail.html:90
+#: sicop/templates/sicop/frontend/project/project/detail.html:187
+#: sicop/templates/sicop/frontend/project/project/update.html:182
+#: sicop/templates/sicop/frontend/project/status/detail.html:77
+#: sicop/templates/sicop/frontend/project/type/detail.html:77
+#: sicop/templates/sicop/frontend/user/group/detail.html:84
+msgid "Edit"
+msgstr "Editar"
+
+#: sicop/templates/sicop/frontend/area/area/list.html:7
+#: sicop/templates/sicop/frontend/area/area/list.html:15
+msgid "Areas list"
+msgstr "Lista de áreas"
+
+#: sicop/templates/sicop/frontend/area/area/list.html:45
+#: sicop/templates/sicop/frontend/area/area/list.html:77
+#: sicop/templates/sicop/frontend/area/member/list.html:45
+#: sicop/templates/sicop/frontend/area/member/list.html:81
+#: sicop/templates/sicop/frontend/area/role/list.html:45
+#: sicop/templates/sicop/frontend/area/role/list.html:77
+#: sicop/templates/sicop/frontend/budget/budget/list.html:45
+#: sicop/templates/sicop/frontend/budget/budget/list.html:81
+#: sicop/templates/sicop/frontend/budget/cap/list.html:46
+#: sicop/templates/sicop/frontend/budget/cap/list.html:80
+#: sicop/templates/sicop/frontend/budget/description/list.html:45
+#: sicop/templates/sicop/frontend/budget/description/list.html:77
+#: sicop/templates/sicop/frontend/business_unit/list.html:45
+#: sicop/templates/sicop/frontend/business_unit/list.html:75
+#: sicop/templates/sicop/frontend/cost_center/list.html:45
+#: sicop/templates/sicop/frontend/cost_center/list.html:75
+#: sicop/templates/sicop/frontend/expense/concept/list.html:45
+#: sicop/templates/sicop/frontend/expense/concept/list.html:75
+#: sicop/templates/sicop/frontend/expense/type/list.html:45
+#: sicop/templates/sicop/frontend/expense/type/list.html:75
+#: sicop/templates/sicop/frontend/project/project/list.html:46
+#: sicop/templates/sicop/frontend/project/project/list.html:82
+#: sicop/templates/sicop/frontend/project/status/list.html:45
+#: sicop/templates/sicop/frontend/project/status/list.html:75
+#: sicop/templates/sicop/frontend/project/type/list.html:45
+#: sicop/templates/sicop/frontend/project/type/list.html:75
+#: sicop/templates/sicop/frontend/user/group/list.html:45
+#: sicop/templates/sicop/frontend/user/group/list.html:67
+#: sicop/templates/sicop/frontend/user/user/list.html:45
+#: sicop/templates/sicop/frontend/user/user/list.html:85
+msgid "ID"
+msgstr "ID"
+
+#: sicop/templates/sicop/frontend/area/area/list.html:49
+#: sicop/templates/sicop/frontend/area/area/list.html:81
+#: sicop/templates/sicop/frontend/area/member/list.html:51
+#: sicop/templates/sicop/frontend/area/member/list.html:87
+#: sicop/templates/sicop/frontend/area/role/list.html:49
+#: sicop/templates/sicop/frontend/area/role/list.html:81
+#: sicop/templates/sicop/frontend/budget/budget/list.html:51
+#: sicop/templates/sicop/frontend/budget/budget/list.html:87
+#: sicop/templates/sicop/frontend/budget/cap/list.html:51
+#: sicop/templates/sicop/frontend/budget/cap/list.html:85
+#: sicop/templates/sicop/frontend/budget/description/list.html:49
+#: sicop/templates/sicop/frontend/budget/description/list.html:81
+#: sicop/templates/sicop/frontend/business_unit/list.html:48
+#: sicop/templates/sicop/frontend/business_unit/list.html:78
+#: sicop/templates/sicop/frontend/cost_center/list.html:48
+#: sicop/templates/sicop/frontend/cost_center/list.html:78
+#: sicop/templates/sicop/frontend/expense/concept/list.html:48
+#: sicop/templates/sicop/frontend/expense/concept/list.html:78
+#: sicop/templates/sicop/frontend/expense/type/list.html:48
+#: sicop/templates/sicop/frontend/expense/type/list.html:78
+#: sicop/templates/sicop/frontend/project/project/list.html:52
+#: sicop/templates/sicop/frontend/project/project/list.html:88
+#: sicop/templates/sicop/frontend/project/status/list.html:48
+#: sicop/templates/sicop/frontend/project/status/list.html:78
+#: sicop/templates/sicop/frontend/project/type/list.html:48
+#: sicop/templates/sicop/frontend/project/type/list.html:78
+#: sicop/templates/sicop/frontend/user/group/list.html:47
+#: sicop/templates/sicop/frontend/user/group/list.html:69
+#: sicop/templates/sicop/frontend/user/user/list.html:50
+#: sicop/templates/sicop/frontend/user/user/list.html:90
+msgid "Detail"
+msgstr "Detalle"
+
+#: sicop/templates/sicop/frontend/area/area/update.html:7
+msgid "Area Update"
+msgstr "Actualizar área"
+
+#: sicop/templates/sicop/frontend/area/area/update.html:88
+#: sicop/templates/sicop/frontend/area/member/update.html:106
+#: sicop/templates/sicop/frontend/area/role/update.html:77
+#: sicop/templates/sicop/frontend/budget/budget/update.html:130
+#: sicop/templates/sicop/frontend/budget/cap/update.html:101
+#: sicop/templates/sicop/frontend/budget/description/update.html:93
+#: sicop/templates/sicop/frontend/business_unit/update.html:96
+#: sicop/templates/sicop/frontend/cost_center/update.html:88
+#: sicop/templates/sicop/frontend/expense/concept/update.html:77
+#: sicop/templates/sicop/frontend/expense/type/update.html:96
+#: sicop/templates/sicop/frontend/project/status/update.html:77
+#: sicop/templates/sicop/frontend/project/type/update.html:77
+#: sicop/templates/sicop/frontend/user/group/update.html:87
+#: sicop/templates/sicop/frontend/user/user/detail.html:124
+#: sicop/templates/sicop/frontend/user/user/update.html:128
+msgid "Update"
+msgstr "Actualizar"
+
+#: sicop/templates/sicop/frontend/area/member/create.html:7
+#: sicop/templates/sicop/frontend/area/member/create.html:15
+msgid "Area member create"
+msgstr "Crear miembro de área"
+
+#: sicop/templates/sicop/frontend/area/member/create.html:50
+#: sicop/templates/sicop/frontend/area/member/detail.html:48
+#: sicop/templates/sicop/frontend/area/member/update.html:50
+msgid "Area member Info"
+msgstr "Información del miembro del área"
+
+#: sicop/templates/sicop/frontend/area/member/create.html:55
+#: sicop/templates/sicop/frontend/area/member/detail.html:53
+#: sicop/templates/sicop/frontend/area/member/update.html:55
+msgid "Member"
+msgstr "Miembro"
+
+#: sicop/templates/sicop/frontend/area/member/create.html:57
+msgid "Select an user"
+msgstr "Seleccionar un usuario"
+
+#: sicop/templates/sicop/frontend/area/member/create.html:69
+#: sicop/templates/sicop/frontend/area/member/detail.html:79
+#: sicop/templates/sicop/frontend/area/member/list.html:49
+#: sicop/templates/sicop/frontend/area/member/list.html:85
+#: sicop/templates/sicop/frontend/area/member/update.html:82
+msgid "Role"
+msgstr "Rol"
+
+#: sicop/templates/sicop/frontend/area/member/create.html:84
+#: sicop/templates/sicop/frontend/project/project/create.html:112
+msgid "Select an area"
+msgstr "Seleccionar un área"
+
+#: sicop/templates/sicop/frontend/area/member/detail.html:7
+msgid "Area member Detail"
+msgstr "Detalle del miembro del área"
+
+#: sicop/templates/sicop/frontend/area/member/detail.html:15
+#: sicop/templates/sicop/frontend/area/member/update.html:15
+msgid "Area member data"
+msgstr "Datos del miembro del área"
+
+#: sicop/templates/sicop/frontend/area/member/list.html:7
+#: sicop/templates/sicop/frontend/area/member/list.html:15
+msgid "Area members list"
+msgstr "Lista de miembros del área"
+
+#: sicop/templates/sicop/frontend/area/member/list.html:47
+#: sicop/templates/sicop/frontend/area/member/list.html:83
+#: sicop/templates/sicop/frontend/user/user/create.html:67
+#: sicop/templates/sicop/frontend/user/user/create.html:71
+#: sicop/templates/sicop/frontend/user/user/detail.html:66
+#: sicop/templates/sicop/frontend/user/user/detail.html:70
+#: sicop/templates/sicop/frontend/user/user/list.html:47
+#: sicop/templates/sicop/frontend/user/user/list.html:87
+#: sicop/templates/sicop/frontend/user/user/profile.html:68
+#: sicop/templates/sicop/frontend/user/user/profile.html:72
+#: sicop/templates/sicop/frontend/user/user/update.html:67
+#: sicop/templates/sicop/frontend/user/user/update.html:72
+msgid "Email"
+msgstr "Correo electrónico"
+
+#: sicop/templates/sicop/frontend/area/member/update.html:7
+msgid "Area member update"
+msgstr "Actualizar miembro del área"
+
+#: sicop/templates/sicop/frontend/area/role/create.html:7
+msgid "Role Create"
+msgstr "Crear rol"
+
+#: sicop/templates/sicop/frontend/area/role/create.html:15
+#: sicop/templates/sicop/frontend/area/role/update.html:15
+msgid "Role data"
+msgstr "Datos de rol"
+
+#: sicop/templates/sicop/frontend/area/role/create.html:50
+#: sicop/templates/sicop/frontend/area/role/update.html:50
+msgid "Role Info"
+msgstr "Información de rol"
+
+#: sicop/templates/sicop/frontend/area/role/detail.html:7
+msgid "Roles Detail"
+msgstr "Detalle de roles"
+
+#: sicop/templates/sicop/frontend/area/role/detail.html:15
+msgid "Roles detail"
+msgstr "Detalle de roles"
+
+#: sicop/templates/sicop/frontend/area/role/detail.html:48
+msgid "Roles Info"
+msgstr "Información de roles"
+
+#: sicop/templates/sicop/frontend/area/role/list.html:7
+#: sicop/templates/sicop/frontend/area/role/list.html:15
+msgid "Roles list"
+msgstr "Lista de roles"
+
+#: sicop/templates/sicop/frontend/area/role/update.html:7
+msgid "Role Update"
+msgstr "Actualizar rol"
+
+#: sicop/templates/sicop/frontend/base/header.html:217
+msgid "Edit Profile"
+msgstr "Editar perfil"
+
+#: sicop/templates/sicop/frontend/base/header.html:221
+msgid "Logout"
+msgstr "Cerrar sesión"
+
+#: sicop/templates/sicop/frontend/base/main_menu.html:10
+#: sicop/templates/sicop/frontend/base/main_menu.html:14
+msgid "Configuration"
+msgstr "Configuración"
+
+#: sicop/templates/sicop/frontend/base/main_menu.html:27
+msgid "Area members"
+msgstr "Miembros del área"
+
+#: sicop/templates/sicop/frontend/base/main_menu.html:30
+msgid "Area roles"
+msgstr "Roles del área"
+
+#: sicop/templates/sicop/frontend/base/main_menu.html:41
+msgid "Business units"
+msgstr "Unidades de negocio"
+
+#: sicop/templates/sicop/frontend/base/main_menu.html:59
+msgid "Expense"
+msgstr "Gasto"
+
+#: sicop/templates/sicop/frontend/base/main_menu.html:63
+msgid "Concepts"
+msgstr "Conceptos"
+
+#: sicop/templates/sicop/frontend/base/main_menu.html:68
+#: sicop/templates/sicop/frontend/base/main_menu.html:79
+msgid "Types"
+msgstr "Tipos"
+
+#: sicop/templates/sicop/frontend/base/main_menu.html:82
+#: sicop/templates/sicop/frontend/business_unit/update.html:66
+#: sicop/templates/sicop/frontend/expense/type/update.html:66
+msgid "Statuses"
+msgstr "Estados"
+
+#: sicop/templates/sicop/frontend/base/main_menu.html:85
+msgid "Projects"
+msgstr "Proyectos"
+
+#: sicop/templates/sicop/frontend/base/main_menu.html:96
+msgid "Descriptions"
+msgstr "Descripciones"
+
+#: sicop/templates/sicop/frontend/base/main_menu.html:102
+msgid "Budget cap"
+msgstr "Límite de presupuesto"
+
+#: sicop/templates/sicop/frontend/base/main_menu.html:109
+msgid "Authorization"
+msgstr "Autorización"
+
+#: sicop/templates/sicop/frontend/base/main_menu.html:113
+msgid "Groups"
+msgstr "Grupos"
+
+#: sicop/templates/sicop/frontend/base/main_menu.html:118 sicop/users/apps.py:7
+msgid "Users"
+msgstr "Usuarios"
+
+#: sicop/templates/sicop/frontend/budget/budget/create.html:7
+msgid "Budget Create"
+msgstr "Crear presupuesto"
+
+#: sicop/templates/sicop/frontend/budget/budget/create.html:15
+msgid "Budget create"
+msgstr "Crear presupuesto"
+
+#: sicop/templates/sicop/frontend/budget/budget/create.html:50
+#: sicop/templates/sicop/frontend/budget/budget/detail.html:50
+#: sicop/templates/sicop/frontend/budget/budget/update.html:50
+msgid "Budget Info"
+msgstr "Información del presupuesto"
+
+#: sicop/templates/sicop/frontend/budget/budget/create.html:64
+msgid "Cost concepts"
+msgstr "Conceptos de costos"
+
+#: sicop/templates/sicop/frontend/budget/budget/detail.html:9
+msgid "Budget Detail"
+msgstr "Detalle del presupuesto"
+
+#: sicop/templates/sicop/frontend/budget/budget/detail.html:17
+msgid "Budget detail"
+msgstr "Detalle del presupuesto"
+
+#: sicop/templates/sicop/frontend/budget/budget/list.html:7
+#: sicop/templates/sicop/frontend/budget/budget/list.html:15
+msgid "Budget list"
+msgstr "Lista de presupuestos"
+
+#: sicop/templates/sicop/frontend/budget/budget/update.html:7
+msgid "Budget Update"
+msgstr "Actualizar presupuesto"
+
+#: sicop/templates/sicop/frontend/budget/budget/update.html:15
+msgid "Budget update"
+msgstr "Actualizar presupuesto"
+
+#: sicop/templates/sicop/frontend/budget/cap/create.html:7
+#: sicop/templates/sicop/frontend/budget/cap/create.html:15
+msgid "Budget cap create"
+msgstr "Crear límite de presupuesto"
+
+#: sicop/templates/sicop/frontend/budget/cap/create.html:50
+#: sicop/templates/sicop/frontend/budget/cap/detail.html:49
+#: sicop/templates/sicop/frontend/budget/cap/update.html:50
+msgid "Budget cap Info"
+msgstr "Información del límite de presupuesto"
+
+#: sicop/templates/sicop/frontend/budget/cap/detail.html:8
+msgid "Budget cap Detail"
+msgstr "Detalle del límite de presupuesto"
+
+#: sicop/templates/sicop/frontend/budget/cap/detail.html:16
+#: sicop/templates/sicop/frontend/budget/cap/update.html:15
+msgid "Budget cap data"
+msgstr "Datos del límite de presupuesto"
+
+#: sicop/templates/sicop/frontend/budget/cap/list.html:8
+#: sicop/templates/sicop/frontend/budget/cap/list.html:16
+msgid "Budget caps list"
+msgstr "Lista de límites de presupuesto"
+
+#: sicop/templates/sicop/frontend/budget/cap/update.html:7
+msgid "Budget cap update"
+msgstr "Actualizar límite de presupuesto"
+
+#: sicop/templates/sicop/frontend/budget/description/create.html:7
+msgid "Budget descrition Create"
+msgstr "Crear descripción de presupuesto"
+
+#: sicop/templates/sicop/frontend/budget/description/create.html:15
+msgid "Budget descrition data"
+msgstr "Datos de descripción de presupuesto"
+
+#: sicop/templates/sicop/frontend/budget/description/create.html:50
+#: sicop/templates/sicop/frontend/budget/description/detail.html:49
+msgid "Budget descrition Info"
+msgstr "Información de descripción de presupuesto"
+
+#: sicop/templates/sicop/frontend/budget/description/detail.html:8
+msgid "Budget descrition Detail"
+msgstr "Detalle de descripción de presupuesto"
+
+#: sicop/templates/sicop/frontend/budget/description/detail.html:16
+msgid "Budget descrition detail"
+msgstr "Detalle de descripción de presupuesto"
+
+#: sicop/templates/sicop/frontend/budget/description/detail.html:54
+#: sicop/templates/sicop/frontend/budget/description/update.html:55
+msgid "Expense type"
+msgstr "Tipo de gasto"
+
+#: sicop/templates/sicop/frontend/budget/description/list.html:7
+#: sicop/templates/sicop/frontend/budget/description/list.html:15
+msgid "Budget descriptions list"
+msgstr "Lista de descripciones de presupuesto"
+
+#: sicop/templates/sicop/frontend/budget/description/update.html:7
+msgid "Budget description Update"
+msgstr "Actualizar descripción de presupuesto"
+
+#: sicop/templates/sicop/frontend/budget/description/update.html:15
+msgid "Budget description data"
+msgstr "Datos de descripción de presupuesto"
+
+#: sicop/templates/sicop/frontend/budget/description/update.html:50
+msgid "Budget description Info"
+msgstr "Información de descripción de presupuesto"
+
+#: sicop/templates/sicop/frontend/business_unit/create.html:7
+#: sicop/templates/sicop/frontend/business_unit/create.html:15
+msgid "Business unit create"
+msgstr "Crear unidad de negocio"
+
+#: sicop/templates/sicop/frontend/business_unit/create.html:50
+#: sicop/templates/sicop/frontend/business_unit/detail.html:48
+msgid "Business unit Info"
+msgstr "Información de la unidad de negocio"
+
+#: sicop/templates/sicop/frontend/business_unit/create.html:55
+#: sicop/templates/sicop/frontend/business_unit/create.html:59
+#: sicop/templates/sicop/frontend/business_unit/detail.html:53
+#: sicop/templates/sicop/frontend/business_unit/detail.html:57
+#: sicop/templates/sicop/frontend/business_unit/update.html:55
+#: sicop/templates/sicop/frontend/business_unit/update.html:59
+msgid "Business unit name"
+msgstr "Nombre de la unidad de negocio"
+
+#: sicop/templates/sicop/frontend/business_unit/detail.html:7
+msgid "Business unit Detail"
+msgstr "Detalle de la unidad de negocio"
+
+#: sicop/templates/sicop/frontend/business_unit/detail.html:15
+#: sicop/templates/sicop/frontend/business_unit/update.html:15
+msgid "Business unit data"
+msgstr "Datos de la unidad de negocio"
+
+#: sicop/templates/sicop/frontend/business_unit/list.html:7
+#: sicop/templates/sicop/frontend/business_unit/list.html:15
+msgid "Business unit list"
+msgstr "Lista de unidades de negocio"
+
+#: sicop/templates/sicop/frontend/business_unit/update.html:7
+msgid "Business unit update"
+msgstr "Actualizar unidad de negocio"
+
+#: sicop/templates/sicop/frontend/business_unit/update.html:50
+msgid "Business unit Information"
+msgstr "Información de la unidad de negocio"
+
+#: sicop/templates/sicop/frontend/cost_center/create.html:7
+#: sicop/templates/sicop/frontend/cost_center/create.html:15
+msgid "Cost centers create"
+msgstr "Crear centros de costos"
+
+#: sicop/templates/sicop/frontend/cost_center/create.html:50
+#: sicop/templates/sicop/frontend/cost_center/detail.html:48
+#: sicop/templates/sicop/frontend/cost_center/update.html:50
+msgid "Cost centers Info"
+msgstr "Información de centros de costos"
+
+#: sicop/templates/sicop/frontend/cost_center/detail.html:7
+msgid "Cost centers Detail"
+msgstr "Detalle de centros de costos"
+
+#: sicop/templates/sicop/frontend/cost_center/detail.html:15
+#: sicop/templates/sicop/frontend/cost_center/update.html:15
+msgid "Cost centers data"
+msgstr "Datos de centros de costos"
+
+#: sicop/templates/sicop/frontend/cost_center/list.html:7
+#: sicop/templates/sicop/frontend/cost_center/list.html:15
+msgid "Cost centers list"
+msgstr "Lista de centros de costos"
+
+#: sicop/templates/sicop/frontend/cost_center/update.html:7
+msgid "Cost centers update"
+msgstr "Actualizar centros de costos"
+
+#: sicop/templates/sicop/frontend/expense/concept/create.html:7
+msgid "Expense concept Create"
+msgstr "Crear concepto de gasto"
+
+#: sicop/templates/sicop/frontend/expense/concept/create.html:15
+#: sicop/templates/sicop/frontend/expense/concept/update.html:15
+msgid "Expense concept data"
+msgstr "Datos de concepto de gasto"
+
+#: sicop/templates/sicop/frontend/expense/concept/create.html:50
+#: sicop/templates/sicop/frontend/expense/concept/detail.html:48
+#: sicop/templates/sicop/frontend/expense/concept/update.html:50
+msgid "Expense concept Info"
+msgstr "Información de concepto de gasto"
+
+#: sicop/templates/sicop/frontend/expense/concept/detail.html:7
+msgid "Expense concept Detail"
+msgstr "Detalle de concepto de gasto"
+
+#: sicop/templates/sicop/frontend/expense/concept/detail.html:15
+msgid "Expense concept detail"
+msgstr "Detalle de concepto de gasto"
+
+#: sicop/templates/sicop/frontend/expense/concept/list.html:7
+#: sicop/templates/sicop/frontend/expense/concept/list.html:15
+msgid "Expense concept list"
+msgstr "Lista de conceptos de gasto"
+
+#: sicop/templates/sicop/frontend/expense/concept/update.html:7
+msgid "Expense concept Update"
+msgstr "Actualizar concepto de gasto"
+
+#: sicop/templates/sicop/frontend/expense/type/create.html:7
+#: sicop/templates/sicop/frontend/expense/type/create.html:15
+msgid "Expense type create"
+msgstr "Crear tipo de gasto"
+
+#: sicop/templates/sicop/frontend/expense/type/create.html:50
+#: sicop/templates/sicop/frontend/expense/type/detail.html:48
+msgid "Expense type Info"
+msgstr "Información de tipo de gasto"
+
+#: sicop/templates/sicop/frontend/expense/type/create.html:55
+#: sicop/templates/sicop/frontend/expense/type/create.html:59
+#: sicop/templates/sicop/frontend/expense/type/detail.html:53
+#: sicop/templates/sicop/frontend/expense/type/detail.html:57
+#: sicop/templates/sicop/frontend/expense/type/update.html:55
+#: sicop/templates/sicop/frontend/expense/type/update.html:59
+msgid "Expense type name"
+msgstr "Nombre del tipo de gasto"
+
+#: sicop/templates/sicop/frontend/expense/type/create.html:66
+#: sicop/templates/sicop/frontend/expense/type/detail.html:74
+#: sicop/templates/sicop/frontend/expense/type/update.html:75
+msgid "Expense concepts"
+msgstr "Conceptos de gasto"
+
+#: sicop/templates/sicop/frontend/expense/type/detail.html:7
+msgid "Expense type Detail"
+msgstr "Detalle de tipo de gasto"
+
+#: sicop/templates/sicop/frontend/expense/type/detail.html:15
+#: sicop/templates/sicop/frontend/expense/type/update.html:15
+msgid "Expense type data"
+msgstr "Datos de tipo de gasto"
+
+#: sicop/templates/sicop/frontend/expense/type/list.html:7
+#: sicop/templates/sicop/frontend/expense/type/list.html:15
+msgid "Expense types list"
+msgstr "Lista de tipos de gasto"
+
+#: sicop/templates/sicop/frontend/expense/type/update.html:7
+msgid "Expense type update"
+msgstr "Actualizar tipo de gasto"
+
+#: sicop/templates/sicop/frontend/expense/type/update.html:50
+msgid "Expense type Information"
+msgstr "Información del tipo de gasto"
+
+#: sicop/templates/sicop/frontend/project/project/create.html:7
+#: sicop/templates/sicop/frontend/project/project/create.html:15
+msgid "Project create"
+msgstr "Crear proyecto"
+
+#: sicop/templates/sicop/frontend/project/project/create.html:50
+#: sicop/templates/sicop/frontend/project/project/detail.html:49
+#: sicop/templates/sicop/frontend/project/project/update.html:50
+msgid "Project Info"
+msgstr "Información del proyecto"
+
+#: sicop/templates/sicop/frontend/project/project/create.html:77
+#: sicop/templates/sicop/frontend/project/project/create.html:81
+#: sicop/templates/sicop/frontend/project/project/detail.html:78
+#: sicop/templates/sicop/frontend/project/project/detail.html:82
+#: sicop/templates/sicop/frontend/project/project/update.html:77
+#: sicop/templates/sicop/frontend/project/project/update.html:81
+msgid "Start at"
+msgstr "Comienza en"
+
+#: sicop/templates/sicop/frontend/project/project/create.html:88
+#: sicop/templates/sicop/frontend/project/project/create.html:92
+#: sicop/templates/sicop/frontend/project/project/detail.html:90
+#: sicop/templates/sicop/frontend/project/project/detail.html:94
+#: sicop/templates/sicop/frontend/project/project/update.html:88
+#: sicop/templates/sicop/frontend/project/project/update.html:92
+msgid "End at"
+msgstr "Finaliza en"
+
+#: sicop/templates/sicop/frontend/project/project/create.html:124
+#: sicop/templates/sicop/frontend/project/project/detail.html:127
+#: sicop/templates/sicop/frontend/project/project/update.html:123
+msgid "Project Type"
+msgstr "Tipo de proyecto"
+
+#: sicop/templates/sicop/frontend/project/project/create.html:126
+msgid "Select a project type"
+msgstr "Seleccionar un tipo de proyecto"
+
+#: sicop/templates/sicop/frontend/project/project/create.html:138
+#: sicop/templates/sicop/frontend/project/project/detail.html:140
+#: sicop/templates/sicop/frontend/project/project/update.html:136
+msgid "Project Status"
+msgstr "Estado del proyecto"
+
+#: sicop/templates/sicop/frontend/project/project/create.html:140
+msgid "Select a project status"
+msgstr "Seleccionar un estado de proyecto"
+
+#: sicop/templates/sicop/frontend/project/project/create.html:152
+#: sicop/templates/sicop/frontend/project/project/detail.html:153
+#: sicop/templates/sicop/frontend/project/project/update.html:149
+msgid "Project Manager"
+msgstr "Gerente de proyecto"
+
+#: sicop/templates/sicop/frontend/project/project/create.html:156
+msgid "Select a project manager"
+msgstr "Seleccionar un gerente de proyecto"
+
+#: sicop/templates/sicop/frontend/project/project/create.html:162
+#: sicop/templates/sicop/frontend/project/project/detail.html:166
+#: sicop/templates/sicop/frontend/project/project/update.html:162
+msgid "Is taxable?"
+msgstr "¿Es gravable?"
+
+#: sicop/templates/sicop/frontend/project/project/create.html:164
+#: sicop/templates/sicop/frontend/project/project/detail.html:168
+#: sicop/templates/sicop/frontend/project/project/update.html:164
+msgid "Yes"
+msgstr "Sí"
+
+#: sicop/templates/sicop/frontend/project/project/create.html:165
+#: sicop/templates/sicop/frontend/project/project/detail.html:169
+#: sicop/templates/sicop/frontend/project/project/update.html:165
+msgid "No"
+msgstr "No"
+
+#: sicop/templates/sicop/frontend/project/project/detail.html:8
+msgid "Project Detail"
+msgstr "Detalle del proyecto"
+
+#: sicop/templates/sicop/frontend/project/project/detail.html:16
+msgid "Project detail"
+msgstr "Detalle del proyecto"
+
+#: sicop/templates/sicop/frontend/project/project/list.html:8
+#: sicop/templates/sicop/frontend/project/project/list.html:16
+msgid "Project list"
+msgstr "Lista de proyectos"
+
+#: sicop/templates/sicop/frontend/project/project/update.html:7
+#: sicop/templates/sicop/frontend/project/project/update.html:15
+msgid "Project update"
+msgstr "Actualizar proyecto"
+
+#: sicop/templates/sicop/frontend/project/status/create.html:7
+msgid "Project status Create"
+msgstr "Crear estado de proyecto"
+
+#: sicop/templates/sicop/frontend/project/status/create.html:15
+#: sicop/templates/sicop/frontend/project/status/update.html:15
+msgid "Project status data"
+msgstr "Datos de estado de proyecto"
+
+#: sicop/templates/sicop/frontend/project/status/create.html:50
+#: sicop/templates/sicop/frontend/project/status/detail.html:48
+#: sicop/templates/sicop/frontend/project/status/update.html:50
+msgid "Project status Info"
+msgstr "Información de estado de proyecto"
+
+#: sicop/templates/sicop/frontend/project/status/detail.html:7
+#: sicop/templates/sicop/frontend/project/status/detail.html:15
+msgid "Project status detail"
+msgstr "Detalle de estado de proyecto"
+
+#: sicop/templates/sicop/frontend/project/status/list.html:7
+#: sicop/templates/sicop/frontend/project/status/list.html:15
+msgid "Projects statuses list"
+msgstr "Lista de estados de proyectos"
+
+#: sicop/templates/sicop/frontend/project/status/update.html:7
+msgid "Project status Update"
+msgstr "Actualizar estado de proyecto"
+
+#: sicop/templates/sicop/frontend/project/type/create.html:7
+msgid "Project type Create"
+msgstr "Crear tipo de proyecto"
+
+#: sicop/templates/sicop/frontend/project/type/create.html:15
+#: sicop/templates/sicop/frontend/project/type/update.html:15
+msgid "Project type data"
+msgstr "Datos de tipo de proyecto"
+
+#: sicop/templates/sicop/frontend/project/type/create.html:50
+#: sicop/templates/sicop/frontend/project/type/detail.html:48
+#: sicop/templates/sicop/frontend/project/type/update.html:50
+msgid "Project type Info"
+msgstr "Información de tipo de proyecto"
+
+#: sicop/templates/sicop/frontend/project/type/detail.html:7
+msgid "Project type Detail"
+msgstr "Detalle del tipo de proyecto"
+
+#: sicop/templates/sicop/frontend/project/type/detail.html:15
+msgid "Project type detail"
+msgstr "Detalle del tipo de proyecto"
+
+#: sicop/templates/sicop/frontend/project/type/list.html:7
+#: sicop/templates/sicop/frontend/project/type/list.html:15
+msgid "Project types list"
+msgstr "Lista de tipos de proyectos"
+
+#: sicop/templates/sicop/frontend/project/type/update.html:7
+msgid "Project type Update"
+msgstr "Actualizar tipo de proyecto"
+
+#: sicop/templates/sicop/frontend/user/group/create.html:7
+#: sicop/templates/sicop/frontend/user/group/create.html:15
+msgid "Group create"
+msgstr "Crear grupo"
+
+#: sicop/templates/sicop/frontend/user/group/create.html:50
+#: sicop/templates/sicop/frontend/user/group/detail.html:48
+#: sicop/templates/sicop/frontend/user/group/update.html:50
+msgid "Group Info"
+msgstr "Información del grupo"
+
+#: sicop/templates/sicop/frontend/user/group/detail.html:7
+msgid "Group Detail"
+msgstr "Detalle del grupo"
+
+#: sicop/templates/sicop/frontend/user/group/detail.html:15
+msgid "Group detail"
+msgstr "Detalle del grupo"
+
+#: sicop/templates/sicop/frontend/user/group/detail.html:65
+#: sicop/templates/sicop/frontend/user/group/update.html:66
+msgid "Permissions"
+msgstr "Permisos"
+
+#: sicop/templates/sicop/frontend/user/group/list.html:7
+#: sicop/templates/sicop/frontend/user/group/list.html:15
+msgid "Groups list"
+msgstr "Lista de grupos"
+
+#: sicop/templates/sicop/frontend/user/group/update.html:7
+#: sicop/templates/sicop/frontend/user/group/update.html:15
+msgid "Group update"
+msgstr "Actualizar grupo"
+
+#: sicop/templates/sicop/frontend/user/user/create.html:7
+#: sicop/templates/sicop/frontend/user/user/create.html:15
+msgid "User create"
+msgstr "Crear usuario"
+
+#: sicop/templates/sicop/frontend/user/user/create.html:50
+#: sicop/templates/sicop/frontend/user/user/detail.html:48
+#: sicop/templates/sicop/frontend/user/user/profile.html:50
+#: sicop/templates/sicop/frontend/user/user/update.html:50
+msgid "User Info"
+msgstr "Información del usuario"
+
+#: sicop/templates/sicop/frontend/user/user/create.html:79
+#: sicop/templates/sicop/frontend/user/user/create.html:83
+#: sicop/templates/sicop/frontend/user/user/profile.html:123
+#: sicop/templates/sicop/frontend/user/user/profile.html:127
+#: sicop/templates/sicop/frontend/user/user/update.html:79
+#: sicop/templates/sicop/frontend/user/user/update.html:83
+msgid "Password"
+msgstr "Contraseña"
+
+#: sicop/templates/sicop/frontend/user/user/create.html:91
+#: sicop/templates/sicop/frontend/user/user/detail.html:79
+#: sicop/templates/sicop/frontend/user/user/profile.html:81
+#: sicop/templates/sicop/frontend/user/user/update.html:90
+msgid "Security group"
+msgstr "Grupo de seguridad"
+
+#: sicop/templates/sicop/frontend/user/user/create.html:93
+#: sicop/templates/sicop/frontend/user/user/detail.html:85
+#: sicop/templates/sicop/frontend/user/user/profile.html:87
+#: sicop/templates/sicop/frontend/user/user/update.html:92
+msgid "Select a group"
+msgstr "Seleccionar un grupo"
+
+#: sicop/templates/sicop/frontend/user/user/create.html:100
+#: sicop/templates/sicop/frontend/user/user/detail.html:97
+#: sicop/templates/sicop/frontend/user/user/list.html:49
+#: sicop/templates/sicop/frontend/user/user/list.html:89
+#: sicop/templates/sicop/frontend/user/user/profile.html:99
+#: sicop/templates/sicop/frontend/user/user/update.html:104
+msgid "Is staff"
+msgstr "Es personal"
+
+#: sicop/templates/sicop/frontend/user/user/detail.html:7
+#: sicop/templates/sicop/frontend/user/user/detail.html:15
+msgid "User detail"
+msgstr "Detalle del usuario"
+
+#: sicop/templates/sicop/frontend/user/user/detail.html:109
+#: sicop/templates/sicop/frontend/user/user/list.html:48
+#: sicop/templates/sicop/frontend/user/user/list.html:88
+#: sicop/templates/sicop/frontend/user/user/profile.html:111
+#: sicop/templates/sicop/frontend/user/user/update.html:115
+msgid "Is active"
+msgstr "Está activo"
+
+#: sicop/templates/sicop/frontend/user/user/list.html:7
+#: sicop/templates/sicop/frontend/user/user/list.html:15
+msgid "Users list"
+msgstr "Lista de usuarios"
+
+#: sicop/templates/sicop/frontend/user/user/list.html:68
+msgid "Staff"
+msgstr "Personal"
+
+#: sicop/templates/sicop/frontend/user/user/list.html:70
+msgid "No staff"
+msgstr "No es personal"
+
+#: sicop/templates/sicop/frontend/user/user/profile.html:7
+#: sicop/templates/sicop/frontend/user/user/profile.html:15
+msgid "User profile"
+msgstr "Perfil de usuario"
+
+#: sicop/templates/sicop/frontend/user/user/profile.html:135
+#: sicop/templates/sicop/frontend/user/user/profile.html:139
+msgid "Password confirmation"
+msgstr "Confirmación de contraseña"
+
+#: sicop/templates/sicop/frontend/user/user/profile.html:149
+msgid "Update profile"
+msgstr "Actualizar perfil"
+
+#: sicop/templates/sicop/frontend/user/user/update.html:7
+#: sicop/templates/sicop/frontend/user/user/update.html:15
+msgid "User update"
+msgstr "Actualizar usuario"
+
+#: sicop/templates/sicop/users/login/login.html:9
+msgid "Sign In"
+msgstr "Iniciar sesión"
+
+#: sicop/templates/sicop/users/login/login.html:21
+msgid "Login on"
+msgstr "Inicio de sesión en"
+
+#: sicop/templates/sicop/users/login/login.html:39
+msgid "Please fix the following errors"
+msgstr "Por favor corrija los siguientes errores"
+
+#: sicop/templates/sicop/users/login/login.html:57
+msgid "Your Username"
+msgstr "Tu nombre de usuario"
+
+#: sicop/templates/sicop/users/login/login.html:68
+#: sicop/templates/sicop/users/signup/signup.html:97
+msgid "Enter Password"
+msgstr "Introducir contraseña"
+
+#: sicop/templates/sicop/users/login/login.html:78
+msgid "Remember Me"
+msgstr "Recuérdame"
+
+#: sicop/templates/sicop/users/login/login.html:82
+msgid "Forgot Password?"
+msgstr "¿Olvidaste tu contraseña?"
+
+#: sicop/templates/sicop/users/login/login.html:86
+#: sicop/templates/sicop/users/reset/password_reset_complete.html:32
+#: sicop/templates/sicop/users/reset/password_reset_confirm.html:92
+#: sicop/templates/sicop/users/reset/reset_password.html:81
+#: sicop/templates/sicop/users/reset/reset_password_message.html:34
+#: sicop/templates/sicop/users/signup/signup.html:123
+msgid "Login"
+msgstr "Iniciar sesión"
+
+#: sicop/templates/sicop/users/login/login.html:93
+msgid "New to"
+msgstr "Nuevo en"
+
+#: sicop/templates/sicop/users/login/login.html:93
+#: sicop/templates/sicop/users/signup/signup.html:9
+msgid "Sign Up"
+msgstr "Registrarse"
+
+#: sicop/templates/sicop/users/reset/password_reset_complete.html:9
+#: sicop/templates/sicop/users/reset/password_reset_confirm.html:9
+#: sicop/templates/sicop/users/reset/reset_password_message.html:9
+msgid "Password reset confirm"
+msgstr "Confirmación de restablecimiento de contraseña"
+
+#: sicop/templates/sicop/users/reset/password_reset_complete.html:21
+#: sicop/templates/sicop/users/reset/password_reset_confirm.html:21
+#: sicop/templates/sicop/users/reset/reset_password_message.html:22
+msgid "Password reset confirm in"
+msgstr "Confirmación de restablecimiento de contraseña en"
+
+#: sicop/templates/sicop/users/reset/password_reset_complete.html:26
+msgid "Your password has been set. You may go ahead and"
+msgstr "Tu contraseña ha sido establecida. Puedes continuar y"
+
+#: sicop/templates/sicop/users/reset/password_reset_complete.html:26
+msgid "Login Here"
+msgstr "Inicia sesión aquí"
+
+#: sicop/templates/sicop/users/reset/password_reset_complete.html:32
+#: sicop/templates/sicop/users/reset/password_reset_confirm.html:92
+#: sicop/templates/sicop/users/reset/reset_password.html:81
+#: sicop/templates/sicop/users/reset/reset_password_message.html:34
+#: sicop/templates/sicop/users/signup/signup.html:123
+msgid "I am already a user of"
+msgstr "Ya soy usuario de"
+
+#: sicop/templates/sicop/users/reset/password_reset_confirm.html:66
+msgid "new Password"
+msgstr "Nueva contraseña"
+
+#: sicop/templates/sicop/users/reset/password_reset_confirm.html:77
+msgid "new Password confirmation"
+msgstr "Confirmación de nueva contraseña"
+
+#: sicop/templates/sicop/users/reset/password_reset_confirm.html:84
+msgid "Password reset confirmation"
+msgstr "Confirmación de restablecimiento de contraseña"
+
+#: sicop/templates/sicop/users/reset/reset_password.html:9
+#: sicop/templates/sicop/users/reset/reset_password.html:73
+msgid "Password reset"
+msgstr "Restablecimiento de contraseña"
+
+#: sicop/templates/sicop/users/reset/reset_password.html:21
+msgid "Password reset in"
+msgstr "Restablecimiento de contraseña en"
+
+#: sicop/templates/sicop/users/reset/reset_password.html:66
+#: sicop/templates/sicop/users/signup/signup.html:86
+msgid "Your Email Address"
+msgstr "Tu dirección de correo electrónico"
+
+#: sicop/templates/sicop/users/reset/reset_password_message.html:27
+msgid ""
+"We have emailed you instructions for setting your password, if an account "
+"exists with the email you entered. You should receive them shortly. If you "
+"don't receive an email, please make sure you've entered the address you "
+"registered with, and check your spam folder."
+msgstr ""
+"Le hemos enviado un correo electrónico con instrucciones para establecer su "
+"contraseña, si existe una cuenta con el correo electrónico que ingresó. Debe "
+"recibirlos en breve. Si no recibe un correo electrónico, asegúrese de haber "
+"ingresado la dirección con la que se registró y verifique su carpeta de "
+"correo no deseado."
+
+#: sicop/templates/sicop/users/signup/signup.html:21
+msgid "Sign up in"
+msgstr "Registrarse en"
+
+#: sicop/templates/sicop/users/signup/signup.html:66
+msgid "Yop & Yop user"
+msgstr "Usuario de Yop & Yop"
+
+#: sicop/templates/sicop/users/signup/signup.html:76
+msgid "Your name"
+msgstr "Tu nombre"
+
+#: sicop/templates/sicop/users/signup/signup.html:108
+msgid "Confirm Password"
+msgstr "Confirmar contraseña"
+
+#: sicop/templates/sicop/users/signup/signup.html:115
+msgid "Register"
+msgstr "Registrarse"
+
+#: sicop/users/models.py:17
+msgid "Name of User"
+msgstr "Nombre de usuario"
+
+#: sicop/users/models.py:20
+msgid "email address"
+msgstr "dirección de correo electrónico"
+
+#: sicop/users/templatetags/custom_tags.py:11
+#: sicop/users/templatetags/custom_tags.py:16
+msgid "SICOP"
+msgstr "SICOP"
+
+#: sicop/users/templatetags/custom_tags.py:21
+msgid "V1.7.0"
+msgstr "V1.7.0"
+
+#: sicop/users/views/groups.py:55
+msgid "Group updated successfully"
+msgstr "Grupo actualizado con éxito"
+
+#: sicop/users/views/groups.py:58
+msgid "Group not updated"
+msgstr "Grupo no actualizado"
+
+#: sicop/users/views/groups.py:90
+msgid "Group created successfully"
+msgstr "Grupo creado con éxito"
+#: sicop/users/views/groups.py:95
+msgid "Group not created"
+msgstr "Grupo no creado"
+
+#: sicop/users/views/registration.py:47
+msgid "Tu usuario fue creado exitosamente, ahora puedes iniciar sesión."
+msgstr "Tu usuario ha sido creado exitosamente, ahora puedes iniciar sesión."
+
+#: sicop/users/views/registration.py:112
+msgid "Tu contraseña fue cambiada exitosamente."
+msgstr "Tu contraseña ha sido cambiada exitosamente."
+
+#: sicop/users/views/registration.py:114
+msgid "Las contraseñas no coinciden."
+msgstr "Las contraseñas no coinciden."
+
+#: sicop/users/views/users.py:66
+#, python-brace-format
+msgid "User {email} created successfully"
+msgstr "Usuario {email} creado exitosamente"
+
+#: sicop/users/views/users.py:118
+#, python-brace-format
+msgid "User {email} updated successfully"
+msgstr "Usuario {email} actualizado exitosamente"
+
+#: sicop/users/views/users.py:154
+#, python-brace-format
+msgid "User {user.email} updated successfully"
+msgstr "Usuario {user.email} actualizado exitosamente"
