@@ -1,6 +1,6 @@
 from django.urls import path
 
-from sicop.project.views import (
+from sicop.project.views import (  # noqa,
     ProjectCreateView,
     ProjectDetailView,
     ProjectListView,

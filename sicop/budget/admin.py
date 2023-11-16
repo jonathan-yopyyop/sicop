@@ -20,7 +20,6 @@ class BudgetDescriptionAdmin(admin.ModelAdmin):
 class BudgetAdmin(admin.ModelAdmin):
     list_display = (
         "id",
-        "cost_center",
         "budget_description",
         "unit_value",
         "quantity",
@@ -34,14 +33,12 @@ class BudgetAdmin(admin.ModelAdmin):
     )
     search_fields = (
         "project__name",
-        "cost_center__code",
         "budget_description__code",
         "start_date",
         "budget_description__code",
     )
     list_filter = (
         "project",
-        "cost_center",
         "budget_description",
         "budget_description",
         "status",

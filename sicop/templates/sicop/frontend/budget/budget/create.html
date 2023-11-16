@@ -32,6 +32,16 @@
                 <div class="row match-height">
                   <div class="col-md-12">
                     <div class="card">
+                      
+                      {% if form.errors %}
+                      <div class="alert alert-warning alert-dismissible mb-2"
+                            role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                        {{form.errors}}
+                      </div>
+                      {% endif %}
                       {% if messages %}
                         {% for message in messages %}
                           <div class="alert alert-{{ message.tags }} alert-dismissible mb-2"
@@ -50,63 +60,66 @@
                             <i class="feather icon-percent"></i> {% trans 'Budget Info' %}
                           </h4>
                           <div class="row">
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label for="projectinput3">{% trans 'Project' %}</label>
-                                <select class="select2 form-control" name="project" required>
-                                  <option value="">...</option>
-                                  {% for project in projects %}<option value="{{ project.id }}">{{ project.name }}</option>{% endfor %}
-                                </select>
+                            <div class="col-4">
+                              <div class="row">
+                                <div class="col-12">
+                                  <div class="form-group">
+                                    <label for="projectinput3">{% trans 'Project' %}</label>
+                                    <select class="select2 form-control" name="project" required>
+                                      <option value="">...</option>
+                                      {% for project in projects %}<option value="{{ project.id }}">{{ project.name }}</option>{% endfor %}
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="col-12">
+                                  <div class="form-group">
+                                    <label for="projectinput3">{% trans 'Budget description' %}</label>
+                                    <select class="select2 form-control" name="budget_description" required>
+                                      <option value="">...</option>
+                                      {% for budget_description in budget_descriptions %}
+                                        <option value="{{ budget_description.id }}">{{ budget_description.description }}</option>
+                                      {% endfor %}
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="col-12">
+                                  <div class="form-group">
+                                    <label for="projectinput1">{% trans 'Unit value' %}</label>
+                                    <input type="text"
+                                           id="projectinput1"
+                                           class="form-control"
+                                           placeholder="{% trans 'Unit value' %}"
+                                           name="unit_value"
+                                           value="" />
+                                  </div>
+                                </div>
+                                <div class="col-12">
+                                  <div class="form-group">
+                                    <label for="projectinput1">{% trans 'Quantity' %}</label>
+                                    <input type="text"
+                                           id="projectinput1"
+                                           class="form-control"
+                                           placeholder="{% trans 'Quantity' %}"
+                                           name="quantity"
+                                           value="" />
+                                  </div>
+                                </div>
                               </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-8">
                               <div class="form-group">
                                 <label for="projectinput3">{% trans 'Cost concepts' %}</label>
-                                <select class="select2 form-control" name="cost_center" required>
-                                  <option value="">...</option>
-                                  {% for cost_center in cost_centers %}<option value="{{ cost_center.id }}">{{ cost_center.name }}</option>{% endfor %}
-                                </select>
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label for="projectinput3">{% trans 'Budget description' %}</label>
-                                <select class="select2 form-control" name="budget_description" required>
-                                  <option value="">...</option>
-                                  {% for budget_description in budget_descriptions %}
-                                    <option value="{{ budget_description.id }}">{{ budget_description.description }}</option>
-                                  {% endfor %}
-                                </select>
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label for="projectinput1">{% trans 'Unit value' %}</label>
-                                <input type="text"
-                                       id="projectinput1"
-                                       class="form-control"
-                                       placeholder="{% trans 'Unit value' %}"
-                                       name="unit_value"
-                                       value="" />
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label for="projectinput1">{% trans 'Quantity' %}</label>
-                                <input type="text"
-                                       id="projectinput1"
-                                       class="form-control"
-                                       placeholder="{% trans 'Quantity' %}"
-                                       name="quantity"
-                                       value="" />
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label for="projectinput3">{% trans 'Status' %}</label>
-                                <select class="select2 form-control"  name="status">
-                                  <option value="True">{% trans 'Active' %}</option>
-                                  <option value="False">{% trans 'Inactive' %}</option>
+                                <select multiple="multiple"
+                                          size="10"
+                                          class="duallistbox"
+                                          name="cost_centers"
+                                          id="cost_centers">
+                                    {% for cost_center in cost_centers %}
+                                      <option value="{{ cost_center.id }}"
+                                              {% if cost_center.id in cost_centers %}selected{% endif %}>
+                                        {{ cost_center.name }}
+                                      </option>
+                                    {% endfor %}
                                 </select>
                               </div>
                             </div>

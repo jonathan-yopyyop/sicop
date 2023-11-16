@@ -54,8 +54,6 @@ class AreaMember(BaseModel):
         verbose_name=_("Area Role"),
         help_text=_("Area Role"),
         on_delete=models.DO_NOTHING,
-        null=True,
-        blank=True,
     )
 
     @property

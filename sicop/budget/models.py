@@ -44,12 +44,12 @@ class Budget(BaseModel):
         related_name="project_budgets",
         on_delete=models.CASCADE,
     )
-    cost_center = models.ForeignKey(
+    cost_centers = models.ManyToManyField(
         CostCenter,
-        verbose_name=_("Cost center"),
-        help_text=_("Cost center"),
-        related_name="cost_center_budgets",
-        on_delete=models.CASCADE,
+        verbose_name=_("Cost centers"),
+        help_text=_("Cost centers"),
+        related_name="cost_centers_budgets",
+        blank=True,
     )
     budget_description = models.ForeignKey(
         BudgetDescription,
@@ -58,11 +58,9 @@ class Budget(BaseModel):
         related_name="budget_description_budgets",
         on_delete=models.CASCADE,
     )
-    unit_value = models.DecimalField(
+    unit_value = models.FloatField(
         _("Unit value"),
         help_text=_("Unit value"),
-        max_digits=12,
-        decimal_places=2,
         default=0,
     )
     quantity = models.PositiveIntegerField(
@@ -70,25 +68,19 @@ class Budget(BaseModel):
         help_text=_("Quantity"),
         default=0,
     )
-    initial_value = models.DecimalField(
+    initial_value = models.FloatField(
         _("Initial value"),
         help_text=_("Initial value"),
-        max_digits=12,
-        decimal_places=2,
         default=0,
     )
-    budget_addition = models.DecimalField(
+    budget_addition = models.FloatField(
         _("Budget addition"),
         help_text=_("Budget addition"),
-        max_digits=12,
-        decimal_places=2,
         default=0,
     )
-    budget_decrease = models.DecimalField(
+    budget_decrease = models.FloatField(
         _("Budget decrease"),
         help_text=_("Budget decrease"),
-        max_digits=12,
-        decimal_places=2,
         default=0,
     )
 
@@ -104,10 +96,10 @@ class Budget(BaseModel):
 
     def __str__(self):
         """Unicode representation of Budget."""
-        return f"{self.project} - {self.cost_center} - {self.budget_description}"
+        return f"{self.project} - {self.budget_description}"
 
     def save(self, *args, **kwargs):
-        self.initial_value = self.unit_value * self.quantity
+        self.initial_value = float(self.unit_value) * float(self.quantity)
         super().save(*args, **kwargs)
 
 

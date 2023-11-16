@@ -130,7 +130,7 @@
           </li>
           {% endif %}
           {% if perms.budget.view_budget %}
-          <li {% if '/budget/budget/' in request.path %}class="active"{% endif %}>
+          <li {% if '/budget/budget/' in request.path and '/provision/' not in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'budget_list' %}">{% trans 'Budget' %}</a>
           </li>
           {% endif %}
@@ -166,7 +166,7 @@
         id="main-menu-navigation"
         data-menu="menu-navigation">
       <li class="navigation-header">
-        <span>{% trans "Procesos" %}</span>
+        <span>{% trans "Processess" %}</span>
         <i class="feather icon-minus"
            data-toggle="tooltip"
            data-placement="right"
@@ -176,11 +176,11 @@
       <li class="nav-item-sicop">
         <a href="#">
           <i class="feather icon-users"></i>
-          <span class="menu-title" data-i18n="Dashboard">{% trans 'Area' %}</span>
+          <span class="menu-title" data-i18n="Dashboard">{% trans 'Budget' %}</span>
         </a>
         <ul class="menu-content">
-          <li {% if '/area/areas/' in request.path %}class="active"{% endif %}>
-            <a class="menu-item" href="{% url 'area_area_list' %}">{% trans 'Areas' %}</a>
+          <li {% if '/budget/provision/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'budget_provision_create' %}">{% trans 'Provision' %}</a>
           </li>
         </ul>
       </li>
