@@ -60,14 +60,6 @@
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
-                              <label for="projectinput3">{% trans 'Cost center' %}</label>
-                              <select class="select2 form-control" name="cost_center" required disabled>
-                                <option value="{{ budget.cost_center.id }}">{{ budget.cost_center.name }}</option>
-                              </select>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
                               <label for="projectinput3">{% trans 'Budget description' %}</label>
                               <select class="select2 form-control"
                                       name="budget_description"
@@ -143,6 +135,19 @@
                               <select class="select2 form-control" disabled name="status">
                                 <option value="True" {% if budget.status %}selected{% endif %}>{% trans 'Active' %}</option>
                                 <option value="False" {% if not budget.status %}selected{% endif %}>{% trans 'Inactive' %}</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label for="projectinput1">{% trans 'Cost centers' %}</label>
+                              <select class="select2 form-control"
+                                      disabled
+                                      name="concepts"
+                                      multiple="multiple">
+                                {% for cost_center in budget.cost_centers.all %}
+                                  <option value="{{ cost_center.id }}" selected>{{ cost_center.name }}</option>
+                                {% endfor %}
                               </select>
                             </div>
                           </div>
