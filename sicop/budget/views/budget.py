@@ -121,13 +121,15 @@ class GetBudgetsByCostCenter(LoginRequiredMixin, TemplateView):
     def get(self, request, *args, **kwargs):
         cost_center_id = kwargs["pk"]
         cost_center = CostCenter.objects.get(id=cost_center_id)
-        budgets = Budget.objects.filter(cost_center=cost_center, status=True)
+        budgets = Budget.objects.filter(cost_centers__in=[cost_center], status=True)
         items = []
+
         for budget in budgets:
+            amount = f"{float(budget.current_budget):0,.2f}"
             items.append(
                 [
                     budget.id,
-                    f"{budget.project} - {budget.cost_center} - {budget.budget_description}",
+                    f"{budget.budget_description} - ${amount}",
                     budget.current_budget,
                 ]
             )
@@ -135,5 +137,19 @@ class GetBudgetsByCostCenter(LoginRequiredMixin, TemplateView):
             {
                 "cost_center_id": cost_center_id,
                 "items": items,
+            }
+        )
+
+
+class GetBudgetDetailById(LoginRequiredMixin, TemplateView):
+    def get(self, request, *args, **kwargs):
+        budget_id = kwargs["pk"]
+        budget = Budget.objects.get(id=budget_id)
+        amount = budget.current_budget
+
+        return JsonResponse(
+            {
+                "budget_id": budget_id,
+                "amount": amount,
             }
         )

@@ -14,6 +14,7 @@ from sicop.budget.views import (
     BudgetListView,
     BudgetProvisionCreate,
     BudgetUpdateView,
+    GetBudgetDetailById,
     GetBudgetsByCostCenter,
 )
 
@@ -87,5 +88,10 @@ urlpatterns = [
         "budget/provision/create/",
         BudgetProvisionCreate.as_view(),
         name="budget_provision_create",
+    ),
+    path(
+        "budget/<int:pk>/detail/",
+        GetBudgetDetailById.as_view(),
+        name="get_budget_detail_by_id",
     ),
 ]

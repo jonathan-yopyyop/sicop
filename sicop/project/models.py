@@ -96,13 +96,12 @@ class Project(BaseModel):
         null=True,
         blank=True,
     )
-    budget = models.DecimalField(
+    budget = models.FloatField(
         _("Budget"),
         help_text=_("Budget"),
-        max_digits=12,
-        decimal_places=2,
         null=True,
         blank=True,
+        default=0.0,
     )
     project_status = models.ForeignKey(
         ProjectStatus,

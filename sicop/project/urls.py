@@ -1,6 +1,7 @@
 from django.urls import path
 
 from sicop.project.views import (  # noqa,
+    GetProjectByID,
     ProjectCreateView,
     ProjectDetailView,
     ProjectListView,
@@ -81,5 +82,10 @@ urlpatterns = [
         "project/manager/area/<pk>/",
         ProjectManagerView.as_view(),
         name="project_manager",
+    ),
+    path(
+        "project/get/<pk>/",
+        GetProjectByID.as_view(),
+        name="get_project_by_id",
     ),
 ]

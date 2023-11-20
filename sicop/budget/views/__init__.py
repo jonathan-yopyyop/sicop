@@ -3,6 +3,7 @@ from sicop.budget.views.budget import (  # noqa
     BudgetDetailView,
     BudgetListView,
     BudgetUpdateView,
+    GetBudgetDetailById,
     GetBudgetsByCostCenter,
 )
 from sicop.budget.views.cap import (  # noqa
