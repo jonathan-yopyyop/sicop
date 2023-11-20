@@ -7,6 +7,15 @@
   {% trans 'Budget provition Create' %}
 {% endblock page_title %}
 {% block content %}
+  <style>
+    .label-project{
+      font-size: 10px;
+    }
+    .blank-label{
+      font-size: 10px;
+      color: white;
+    }
+  </style>
   <section id="configuration">
     <div class="row">
       <div class="col-12">
@@ -54,53 +63,156 @@
                               <div class="form-group">
                                 <div class="row">
                                   <div class="col-12">
-                                    <label for="projectinput3">{% trans 'Projects' %}</label>
-                                    <select class="select2 form-control" name="project" required>
-                                      <option value="">{% trans "Select a project" %}</option>
-                                      {% for project in projects %}
-                                        <option value="{{ project.id }}">{{ project.name }}</option>
-                                      {% endfor %}
-                                    </select>
+                                    <h4 class="form-section">
+                                      {% trans "Project information" %}
+                                    </h4>
+                                    <div class="row">
+                                      <div class="col-12">
+                                        <select class="select2 form-control" name="project" id="project" required>
+                                          <option value="">{% trans "Select a project" %}</option>
+                                          {% for project in projects %}
+                                            <option value="{{ project.id }}">{{ project.name }}</option>
+                                          {% endfor %}
+                                        </select>
+                                      </div>
+                                      <div class="col-4">
+                                        <label class="label-project" for="project_name">{% trans 'Project' %}</label>
+                                        <input type="text" id="project_name" class="form-control form-control-sm" placeholder="Project name" value="" readonly/>
+                                        <input type="hidden" name="project_id" id="project_id">
+                                      </div>
+                                      <div class="col-8">
+                                        <label class="label-project" for="project_description">{% trans 'Project description' %}</label>
+                                        <input type="text" id="project_description" class="form-control form-control-sm" placeholder="Project description" value="" readonly/>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-3">
+                                        <label class="label-project" for="project_start_date">{% trans 'Start date' %}</label>
+                                        <input type="text" id="project_start_date" class="form-control form-control-sm" placeholder="Project start date" value="" readonly/>
+                                      </div>
+                                      <div class="col-3">
+                                        <label class="label-project" for="project_end_date">{% trans 'End date' %}</label>
+                                        <input type="text" id="project_end_date" class="form-control form-control-sm" placeholder="Project end date" value="" readonly/>
+                                      </div>
+                                      <div class="col-3">
+                                        <label class="label-project" for="project_budget">{% trans 'Project budget' %}</label>
+                                        <input type="text" id="project_budget" class="form-control form-control-sm" placeholder="Project budget" value="" readonly/>
+                                      </div>
+                                      <div class="col-3">
+                                        <label class="label-project" for="project_area">{% trans 'Project area' %}</label>
+                                        <input type="text" id="project_area" class="form-control form-control-sm" placeholder="Project area" value="" readonly/>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-3">
+                                        <label class="label-project" for="project_type">{% trans 'Project type' %}</label>
+                                        <input type="text" id="project_type" class="form-control form-control-sm" placeholder="Project type" value="" readonly/>
+                                      </div>
+                                      <div class="col-3">
+                                        <label class="label-project" for="project_status">{% trans 'Project status' %}</label>
+                                        <input type="text" id="project_status" class="form-control form-control-sm" placeholder="Project status" value="" readonly/>
+                                      </div>
+                                      <div class="col-4">
+                                        <label class="label-project" for="project_manager">{% trans 'Project manager' %}</label>
+                                        <input type="text" id="project_manager" class="form-control form-control-sm" placeholder="Project manager" value="" readonly/>
+                                      </div>
+                                      <div class="col-2">
+                                        <label class="label-project" for="project_is_it_taxable">{% trans 'Project is taxable?' %}</label>
+                                        <input type="text" id="project_is_it_taxable" class="form-control form-control-sm" placeholder="Project budget" value="" readonly/>
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
-                                
                               </div>
                             </div>
                             <div class="col-md-12">
                               <div class="form-group row">
+                                <div class="col-12">
+                                  <h4 class="form-section">
+                                    {% trans "Project budget" %}
+                                  </h4>
+                                </div>
                                 <div class="col-4">
                                   <label for="projectinput3">{% trans 'Cost centers' %}</label>
-                                  <select class="select2 form-control" name="costcenter" required>
+                                  <select class="select2 form-control" name="costcenter" required id="costcenter" disabled>
                                     <option value="">{% trans "Select a cost center" %}</option>
                                     {% for cost_center in cost_centers %}
                                       <option value="{{ cost_center.id }}">{{ cost_center.name }}</option>
                                     {% endfor %}
                                   </select>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                   <div class="form-group row">
                                     <label class="col-md-12 label-control required" for="projectinput4">{% trans "Items" %}</label>
-                                    <select multiple="multiple"
-                                          size="10"
-                                          class="duallistbox"
-                                          name="cost_centers[]"
-                                          id="cost_centers">
-                                    {% for cost_center in cost_centers %}
-                                      <option value="{{ cost_center.id }}"
-                                              {% if cost_center.id in cost_centers %}selected{% endif %}>
-                                        {{ cost_center.name }}
-                                      </option>
-                                    {% endfor %}
+                                    <select  name="items" class="form-control" id="items" size="4" disabled>
+                                      <option value="">{% trans "Please select a cost center" %}</option>
                                   </select>
+                                  </div>
+                                </div>
+                                <div class="col-md-2">
+                                  <label class="col-md-12 label-control required blank-label" for="projectinput4">{% trans "Add" %}</label>
+                                  <button type="button" class="btn btn-primary btn-block" disabled id="add_button">
+                                    <i class="fa fa-plus"></i> {% trans 'Add' %}
+                                  </button>
+                                </div>
+                                <div class="col-12">
+                                  <table class="table" id="items_table">
+                                    <thead>
+                                        <tr>
+                                            <th>{% trans 'Item' %}</th>
+                                            <th>{% trans 'Available' %}</th>
+                                            <th>{% trans 'Taked' %}</th>
+                                            <th>{% trans 'Remove' %}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="items_table_body">
+                                        
+                                    </tbody>
+                                  </table>
+                                </div>
+                                <div class="col-12">
+                                  <h4 class="form-section">
+                                    {% trans "Project Totals" %}
+                                  </h4>
+                                </div>
+                                <div class="col-7">
+
+                                </div>
+                                <div class="col-5">
+                                  <div class="row">
+                                    <div class="col-5">
+                                      <label class="col-md-12 label-control required" for="projectinput4">{% trans "Required" %}</label>
+                                    </div>
+                                    <div class="col-7">
+                                      <input type="text" id="project_total" class="form-control form-control-sm" value="$0" readonly/>
+                                      <input type="hidden" id="project_total_hidden" value="0"/>
+                                    </div>
+                                  </div>
+                                  <div class="row pt-1">
+                                    <div class="col-5">
+                                      <label class="col-md-12 label-control required" for="projectinput4">{% trans "Provisioned" %}</label>
+                                    </div>
+                                    <div class="col-7">
+                                      <input type="text" id="project_provision" class="form-control form-control-sm" value="$0" readonly/>
+                                      <input type="hidden" id="project_provision_hidden" value="0" >
+                                    </div>
+                                  </div>
+                                  <div class="row pt-1">
+                                    <div class="col-5">
+                                      <label class="col-md-12 label-control required" for="projectinput4">{% trans "Missing" %}</label>
+                                    </div>
+                                    <div class="col-7">
+                                      <input type="text" id="project_missing" class="form-control form-control-sm" value="$0" readonly/>
+                                      <input type="hidden" id="project_missing_hidden" value="0"/>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                            
                           </div>
                         </div>
                         <div class="form-actions">
-                          <button type="submit" class="btn btn-primary">
+                          <button type="submit" class="btn btn-primary" >
                             <i class="fa fa-edit"></i> {% trans 'Create' %}
                           </button>
                         </div>
@@ -115,4 +227,160 @@
       </div>
     </div>
   </section>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+          integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+          crossorigin="anonymous"></script>
+  <script>
+    function remove_item(id){
+      var row_id = 'row_' + id;
+      $('#' + row_id).remove();
+    }
+    function provisioningValues(id){
+      var taked_id = 'taked_' + id;
+      var budget_value_id = 'budget_value_id_' + id;
+      var taked_value = parseFloat( $('#' + taked_id).val());
+      var budget_value = parseFloat( $('#' + budget_value_id).val());
+      
+      if (budget_value >= taked_value) {
+        var project_provision_hidden = parseFloat($('#project_provision_hidden').val());
+        var total_taked = 0;
+        $("#items_table tr").each(function() {
+          var temp_row_id = this.id;
+          if (temp_row_id != "") {
+            var temp_row_id_array = temp_row_id.split("_");
+            var temp_taked_id = 'taked_' + temp_row_id_array[1];
+            var taked = parseFloat( $('#' + temp_taked_id).val());
+            if (isNaN(taked)) {
+              taked = 0;
+            }
+            total_taked = total_taked + taked;
+          }
+        });
+        var formated_total_taked = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+        }).format(total_taked);
+        
+        $("#project_provision").val(formated_total_taked);
+        $("#project_provision_hidden").val(total_taked);
+
+        var project_total_hidden = parseFloat($('#project_total_hidden').val());
+        var project_missing_hidden = project_total_hidden - total_taked;
+        var formated_project_missing_hidden = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+        }).format(project_missing_hidden);
+        $("#project_missing").val(formated_project_missing_hidden);
+        $("#project_missing_hidden").val(project_missing_hidden);
+      } else {
+        Swal.fire({
+          title: "{% trans 'Error' %}",
+          text: "{% trans 'The value to be used in the provision cannot be greater than the available value.' %}",
+          type: 'error',
+          confirmButtonText: "{% trans 'Ok' %}"
+        });
+      }
+      
+
+    }
+    $(document).ready(function() {
+      // Project selecion
+      $("#project").change(function() {
+        var project_id = $("#project").val()
+        url = "{% url 'get_project_by_id' 0 %}".replace('0', project_id);
+        $.get(url, function(data) {})
+          .done(function(data) {
+            var budget = data.project_budget;
+            // format budget as money
+            budget = new Intl.NumberFormat('en-US', {
+              style: 'currency',
+              currency: 'USD',
+            }).format(budget);
+            //Setting the values
+            $('#project_id').val(data.project_id);  
+            $('#project_name').val(data.project_name);
+            $('#project_description').val(data.project_description);
+            $('#project_start_date').val(data.project_start_date);
+            $('#project_end_date').val(data.project_end_date);
+            $('#project_budget').val(budget);
+            $('#project_area').val(data.project_area);
+            $('#project_type').val(data.project_type);
+            $('#project_status').val(data.project_status);
+            $('#project_manager').val(data.project_manager);
+            $('#project_is_it_taxable').val(data.project_is_it_taxable);
+            // Enabling fields
+            $('#costcenter').prop('disabled', false);
+            $('#items').prop('disabled', false);
+            // Totals
+            $('#project_total').val(budget);
+            $('#project_provision').val('$0');
+            $('#project_missing').val(budget);
+            $('#project_total_hidden').val(data.project_budget);
+            $('#project_provision_hidden').val('0');
+            $('#project_missing_hidden').val(data.project_budget);
+          })
+          .fail(function(data) {
+            console.log(`Error $("#area").change ${data}`);
+          })
+      });
+      // Area on change
+      $("#costcenter").change(function() {
+        var cost_center = $("#costcenter").val()
+        url = "{% url 'get_budgets_by_cost_center' 0 %}".replace('0', cost_center);
+        $.get(url, function(data) {})
+          .done(function(data) {
+            let items = data.items;
+            try {
+              $('#items').empty();
+              $.each(items, function(key, value) {
+                $('#items')
+                  .append($("<option></option>")
+                    .attr("value", value[0])
+                    .text(value[1]));
+              });
+              // Enabling button
+              $('#add_button').prop('disabled', false);
+            } catch (e) {
+              console.log(e);
+            }
+          })
+          .fail(function(data) {
+            console.log(`Error $("#area").change ${data}`);
+          })
+      });
+      // Add item to a table
+      $("#add_button").click(function() {
+        var item_id = $("#items").val();
+        url = "{% url 'get_budget_detail_by_id' 0 %}".replace('0', item_id);
+        $.get(url, function(data) {})
+          .done(function(data) {
+            var budget = data.amount;
+            var row_id = 'row_' + data.budget_id;
+            // check if an element with ID row_id exists
+            if ($('#' + row_id).length) {
+              // if exists, get the value of the input
+              Swal.fire({
+                title: "{% trans 'Error' %}",
+                text: "{% trans 'This item has already selected' %}",
+                type: 'error',
+                confirmButtonText: "{% trans 'Ok' %}"
+              });
+            } else {
+              // format budget as money
+              budget = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+              }).format(budget);
+              // Add a new row to the table with id items_table using jquery
+              $('#items_table_body').append('<tr id="row_' + data.budget_id + '"><td>' + data.budget_id + '</td><td>' + budget + '<input type="hidden" id="budget_value_id_'+ data.budget_id+'" value ="'+ data.amount +'"></td><td><input type="text" id="taked_' + data.budget_id + '" class="form-control form-control-sm table_item_class" value="" onkeyup="provisioningValues('+data.budget_id+')"/></td><td><button type="button" class="btn btn-danger btn-sm" onclick="remove_item(' + data.budget_id + ')"><i class="fa fa-trash"></i></button></td></tr>');
+
+            }
+            
+          })
+          .fail(function(data) {
+            console.log(`Error $("#area").change ${data}`);
+          })
+      });
+    });
+  </script>
 {% endblock content %}

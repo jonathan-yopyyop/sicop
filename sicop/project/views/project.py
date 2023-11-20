@@ -164,3 +164,24 @@ class ProjectCreateView(PermissionRequiredMixin, LoginRequiredMixin, CreateView)
         current_budget = request.POST["budget"].replace(",", ".")
         request.POST["budget"] = float(current_budget)
         return super().post(request, *args, **kwargs)
+
+
+class GetProjectByID(LoginRequiredMixin, TemplateView):
+    def get(self, request, *args, **kwargs):
+        project_id = kwargs["pk"]
+        project = Project.objects.get(id=project_id)
+        return JsonResponse(
+            {
+                "project_id": project_id,
+                "project_name": project.name,
+                "project_description": project.description,
+                "project_start_date": project.start_date,
+                "project_end_date": project.end_date,
+                "project_budget": project.budget,
+                "project_area": project.area.name,
+                "project_type": project.project_type.name,
+                "project_status": project.project_status.name,
+                "project_manager": project.project_manager.name,
+                "project_is_it_taxable": project.is_it_taxable,
+            }
+        )

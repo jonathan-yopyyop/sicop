@@ -1,4 +1,5 @@
 from sicop.project.views.project import (  # noqa
+    GetProjectByID,
     ProjectCreateView,
     ProjectDetailView,
     ProjectListView,
