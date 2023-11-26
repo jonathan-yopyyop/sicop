@@ -1,6 +1,7 @@
 from django.urls import path
 
 from sicop.budget.views import (
+    AddItemToProvisionInCart,
     BudgetCapCreateView,
     BudgetCapDetailView,
     BudgetCapListView,
@@ -14,8 +15,12 @@ from sicop.budget.views import (
     BudgetListView,
     BudgetProvisionCreate,
     BudgetUpdateView,
+    EditItemProvisionAmountInCart,
     GetBudgetDetailById,
     GetBudgetsByCostCenter,
+    RemoveItemToProvisionInCart,
+    UpdateProjectInCart,
+    UpdateTotalsInCart,
 )
 
 urlpatterns = [
@@ -93,5 +98,30 @@ urlpatterns = [
         "budget/<int:pk>/detail/",
         GetBudgetDetailById.as_view(),
         name="get_budget_detail_by_id",
+    ),
+    path(
+        "budget/provision/cart/<int:cart_id>/project/<int:project_id>/",
+        UpdateProjectInCart.as_view(),
+        name="update_project_in_cart",
+    ),
+    path(
+        "budget/provision/cart/<int:cart_id>/",
+        UpdateTotalsInCart.as_view(),
+        name="update_totals_in_cart",
+    ),
+    path(
+        "budget/provision/cart/<int:cart_id>/add-item/<int:budget_id>",
+        AddItemToProvisionInCart.as_view(),
+        name="add_item_to_provision_in_cart",
+    ),
+    path(
+        "budget/provision/cart/<int:cart_id>/remove-item/<int:budget_id>",
+        RemoveItemToProvisionInCart.as_view(),
+        name="remove_item_to_provision_in_cart",
+    ),
+    path(
+        "budget/provision/cart/<int:cart_id>/edit-item",
+        EditItemProvisionAmountInCart.as_view(),
+        name="edit_item_provision_amount_in_cart",
     ),
 ]

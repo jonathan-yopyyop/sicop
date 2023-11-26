@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from sicop.budget.models import Budget, BudgetCap, BudgetDescription
+from sicop.budget.models import Budget, BudgetCap, BudgetDescription, ProvisionCart, ProvisionCartBudget
 
 
 @admin.register(BudgetDescription)
@@ -70,6 +70,59 @@ class BudgetCapAdmin(admin.ModelAdmin):
     list_filter = (
         "business_unit",
         "description",
+        "status",
+    )
+    readonly_fields = (
+        "id",
+        "created_at",
+        "updated_at",
+    )
+
+
+@admin.register(ProvisionCart)
+class ProvisionCartAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "project",
+        "user",
+        "total_provisioned_amount",
+        "created_at",
+        "updated_at",
+        "status",
+    )
+    search_fields = (
+        "project__name",
+        "user__username",
+    )
+    list_filter = (
+        "project",
+        "user",
+        "status",
+    )
+    readonly_fields = (
+        "id",
+        "created_at",
+        "updated_at",
+    )
+
+
+@admin.register(ProvisionCartBudget)
+class ProvisionCartBudgetAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "provision_cart",
+        "budget",
+        "created_at",
+        "updated_at",
+        "status",
+    )
+    search_fields = (
+        "provision_cart__id",
+        "budget__id",
+    )
+    list_filter = (
+        "provision_cart",
+        "budget",
         "status",
     )
     readonly_fields = (
