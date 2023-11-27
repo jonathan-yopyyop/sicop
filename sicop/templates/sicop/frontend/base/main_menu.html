@@ -70,28 +70,22 @@
         {% endif %}
       </li>
       {% endif %}
-      {% if perms.expense.view_expenseconcept or perms.expense.view_expensetype %}
       <li class="nav-item-sicop">
         <a href="#">
           <i class="feather icon-percent"></i>
           <span class="menu-title" data-i18n="Dashboard">{% trans 'Expense' %}</span>
         </a>
-        {% if perms.expense.view_expenseconcept %}
         <ul class="menu-content">
           <li {% if '/expense/concept/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'expense_concept_list' %}">{% trans 'Concepts' %}</a>
           </li>
         </ul>
-        {% endif %}
-        {% if perms.expense.view_expensetype %}
         <ul class="menu-content">
           <li {% if '/expense/type/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'expense_type_list' %}">{% trans 'Types' %}</a>
           </li>
         </ul>
-        {% endif %}
       </li>
-      {% endif %}
       {% if perms.project.view_projecttype or perms.project.view_projectstatus or perms.project.view_project %}
       <li class="nav-item-sicop">
         <a href="#">
