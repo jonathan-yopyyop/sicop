@@ -148,7 +148,7 @@
                                 </div>
                                 <div class="col-md-2">
                                   <label class="col-md-12 label-control required blank-label" for="projectinput4">{% trans "Add" %}</label>
-                                  <button type="button" class="btn btn-primary btn-block" disabled id="add_button">
+                                  <button type="button" class="btn btn-primary btn-block"  id="add_button">
                                     <i class="fa fa-plus"></i> {% trans 'Add' %}
                                   </button>
                                 </div>
@@ -358,11 +358,11 @@
             console.log(`Error ${JSON.stringify(data)}`)
           }
         });
-        if (project_missing_hidden == 0) {
-          $('#create_budget').prop('disabled', false);
-        } else {
-          $('#create_budget').prop('disabled', true);
-        }
+        // if (project_missing_hidden == 0) {
+        //   $('#create_budget').prop('disabled', false);
+        // } else {
+        //   $('#create_budget').prop('disabled', true);
+        // }
         
 
       } else {
