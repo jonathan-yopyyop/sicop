@@ -18,7 +18,12 @@ from sicop.budget.views.description import (  # noqa
     BudgetDescriptionListView,
     BudgetDescriptionUpdateView,
 )
-from sicop.budget.views.processes.arrange_the_budget import BudgetProvisionCreate  # noqa
+from sicop.budget.views.processes.arrange_the_budget import (  # noqa
+    BudgetProvisionCreate,
+    BudgetProvisionDetail,
+    BudgetProvisionList,
+    ProvisionCertificateView,
+)
 from sicop.budget.views.processes.cart import (  # noqa
     AddItemToProvisionInCart,
     EditItemProvisionAmountInCart,

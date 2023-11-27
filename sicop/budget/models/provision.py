@@ -46,6 +46,11 @@ class ProvisionCart(BaseModel):
         null=True,
         blank=True,
     )
+    finished = models.BooleanField(
+        _("Finished"),
+        help_text=_("Finished"),
+        default=False,
+    )
 
     class Meta:
         """Meta definition for Provision Cart."""

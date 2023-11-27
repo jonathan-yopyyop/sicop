@@ -1,0 +1,208 @@
+{% extends 'sicop/frontend/base/base.html' %}
+
+{% load static %}
+{% load i18n %}
+{% load humanize %}
+{% block page_title %}
+  {% trans 'Budget provition detail' %}
+{% endblock page_title %}
+{% block content %}
+  <style>
+    .label-project{
+      font-size: 10px;
+    }
+    .blank-label{
+      font-size: 10px;
+      color: white;
+    }
+  </style>
+  <section id="configuration">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">{% trans 'Budget provision data' %}</h4>
+            <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+            <div class="heading-elements">
+              <ul class="list-inline mb-0">
+                <li>
+                  <a href="{% url 'budget_provision_list' %}">
+                    <button type="button" class="btn btn-icon btn-success mr-1 mb-1">
+                      <i class="fa fa-list"></i>
+                    </button>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-content collapse show">
+            <div class="card-body card-dashboard">
+              <section id="basic-form-layouts">
+                <div class="row match-height">
+                  <div class="col-md-12">
+                    <div class="card">
+                      {% if messages %}
+                        {% for message in messages %}
+                          <div class="alert alert-{{ message.tags }} alert-dismissible mb-2"
+                               role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">×</span>
+                            </button>
+                            {{ message }}
+                          </div>
+                        {% endfor %}
+                      {% endif %}
+                      <div class="form-body">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <div class="row">
+                                <div class="col-12">
+                                  <h4 class="form-section">
+                                    {% trans "Project information" %}
+                                  </h4>
+                                  <div class="row">
+                                    <div class="col-4">
+                                      <label class="label-project" for="project_name">{% trans 'Project' %}</label>
+                                      <input type="text" id="project_name" class="form-control form-control-sm" placeholder="Project name" value="{{provision_cart.project.name}}" readonly/>
+                                      <input type="hidden" name="project_id" id="project_id">
+                                    </div>
+                                    <div class="col-8">
+                                      <label class="label-project" for="project_description">{% trans 'Project description' %}</label>
+                                      <input type="text" id="project_description" class="form-control form-control-sm" placeholder="Project description" value="{{provision_cart.project.description}}" readonly/>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-3">
+                                      <label class="label-project" for="project_start_date">{% trans 'Start date' %}</label>
+                                      <input type="text" id="project_start_date" class="form-control form-control-sm" placeholder="Project start date" value="{{provision_cart.project.start_date}}" readonly/>
+                                    </div>
+                                    <div class="col-3">
+                                      <label class="label-project" for="project_end_date">{% trans 'End date' %}</label>
+                                      <input type="text" id="project_end_date" class="form-control form-control-sm" placeholder="Project end date" value="{{provision_cart.project.end_date}}" readonly/>
+                                    </div>
+                                    <div class="col-3">
+                                      <label class="label-project" for="project_budget">{% trans 'Project budget' %}</label>
+                                      <input type="text" id="project_budget" class="form-control form-control-sm" placeholder="Project budget" value="{{provision_cart.project.budget}}" readonly/>
+                                    </div>
+                                    <div class="col-3">
+                                      <label class="label-project" for="project_area">{% trans 'Project area' %}</label>
+                                      <input type="text" id="project_area" class="form-control form-control-sm" placeholder="Project area" value="{{provision_cart.projectarea.}}" readonly/>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-3">
+                                      <label class="label-project" for="project_type">{% trans 'Project type' %}</label>
+                                      <input type="text" id="project_type" class="form-control form-control-sm" placeholder="Project type" value="{{provision_cart.project.project_type}}" readonly/>
+                                    </div>
+                                    <div class="col-3">
+                                      <label class="label-project" for="project_status">{% trans 'Project status' %}</label>
+                                      <input type="text" id="project_status" class="form-control form-control-sm" placeholder="Project status" value="{{provision_cart.project.project_status}}" readonly/>
+                                    </div>
+                                    <div class="col-4">
+                                      <label class="label-project" for="project_manager">{% trans 'Project manager' %}</label>
+                                      <input type="text" id="project_manager" class="form-control form-control-sm" placeholder="Project manager" value="{{provision_cart.project.project_manager}}" readonly/>
+                                    </div>
+                                    <div class="col-2">
+                                      <label class="label-project" for="project_is_it_taxable">{% trans 'Project is taxable?' %}</label>
+                                      <input type="text" id="project_is_it_taxable" class="form-control form-control-sm" placeholder="Project budget" value="{{provision_cart.project.is_it_taxable}}" readonly/>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <div class="form-group row">
+                              <div class="col-12">
+                                <h4 class="form-section">
+                                  {% trans "Project budget" %}
+                                </h4>
+                              </div>
+                              <div class="col-12">
+                                <table class="table" id="items_table">
+                                  <thead>
+                                      <tr>
+                                          <th>{% trans 'Item' %}</th>
+                                          <th>{% trans 'Available' %}</th>
+                                          <th>{% trans 'Taked' %}</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody id="items_table_body">
+                                    
+                                    {% for provision_cart_budget in provision_cart.provision_cart_provision_budgets.all %}
+                                      
+                                      <tr id="row_{{provision_cart_budget.budget.id}}">
+                                        <td>
+                                          {{provision_cart_budget.budget}}
+                                        </td>
+                                        <td>
+                                          ${{provision_cart_budget.budget.initial_value|intcomma}}
+                                          <input type="hidden" id="budget_value_id_{{provision_cart_budget.budget.id}}" value ="{{provision_cart_budget.budget.initial_value}}">
+                                        </td>
+                                        <td>
+                                          <input 
+                                            type="text" id="taked_{{provision_cart_budget.budget.id}}" 
+                                            class="form-control form-control-sm table_item_class" 
+                                            value ="{% if provision_cart_budget.provosioned_amount > 0 %} {{provision_cart_budget.provosioned_amount}}{% endif %}" 
+                                            disabled
+                                          />
+                                        </td>
+                                        
+                                      </tr>  
+                                    {% endfor %}
+                                  </tbody>
+                                </table>
+                              </div>
+                              <div class="col-12">
+                                <h4 class="form-section">
+                                  {% trans "Project Totals" %}
+                                </h4>
+                              </div>
+                              <div class="col-7">
+
+                              </div>
+                              <div class="col-5">
+                                <div class="row">
+                                  <div class="col-5">
+                                    <label class="col-md-12 label-control required" for="projectinput4">{% trans "Required" %}</label>
+                                  </div>
+                                  <div class="col-7">
+                                    <input type="text" id="project_total" class="form-control form-control-sm" value="${{provision_cart.total_required_amount}}" readonly/>
+                                    <input type="hidden" id="project_total_hidden" value="{{provision_cart.total_required_amount}}"/>
+                                  </div>
+                                </div>
+                                <div class="row pt-1">
+                                  <div class="col-5">
+                                    <label class="col-md-12 label-control required" for="projectinput4">{% trans "Provisioned" %}</label>
+                                  </div>
+                                  <div class="col-7">
+                                    <input type="text" id="project_provision" class="form-control form-control-sm" value="${{provision_cart.total_provisioned_amount}}" readonly/>
+                                    <input type="hidden" id="project_provision_hidden" if value="{{provision_cart.total_provisioned_amount}}" >
+                                  </div>
+                                </div>
+                                <div class="row pt-1">
+                                  <div class="col-5">
+                                    <label class="col-md-12 label-control required" for="projectinput4">{% trans "Missing" %}</label>
+                                  </div>
+                                  <div class="col-7">
+                                    <input type="text" id="project_missing" class="form-control form-control-sm" value="${{provision_cart.total_missing_amount}}" readonly/>
+                                    <input type="hidden" id="project_missing_hidden" value="{{provision_cart.total_missing_amount}}"/>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}
