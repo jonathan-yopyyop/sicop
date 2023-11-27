@@ -240,13 +240,7 @@
                         {% csrf_token %}
                         <div class="form-actions">
                           <input type="hidden" name="cart_id" id="cart_id" value="{{provision_cart.id}}">
-                          <button type="submit" class="btn btn-primary" id="create_budget" 
-                            {% if provision_cart.total_missing_amount == 0 %}
-                              enabled
-                            {% else %}
-                              disabled
-                            {% endif %}
-                            >
+                          <button type="submit" class="btn btn-primary" id="create_budget" >
                             <i class="fa fa-edit"></i> {% trans 'Create' %}
                           </button>
                         </div>
