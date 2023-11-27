@@ -19,7 +19,7 @@ class AreaMemberListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
     model = AreaMember
     template_name = "sicop/frontend/area/member/list.html"
     context_object_name = "members"
-    permission_required = " "
+    permission_required = "area.view_areamember"
 
 
 class AreaMemberDetailView(PermissionRequiredMixin, LoginRequiredMixin, DetailView):
