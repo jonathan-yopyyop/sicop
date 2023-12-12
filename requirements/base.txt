@@ -21,7 +21,7 @@ django-json-widget==1.1.1
 
 # Theme
 django-admin-interface==0.26.1
-django-colorfield==0.10.1
+django-colorfield==0.11.0
 
 #Others
 twilio==8.10.2
