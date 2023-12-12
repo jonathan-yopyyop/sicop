@@ -15,6 +15,7 @@ class UpdateProjectInCart(LoginRequiredMixin, TemplateView):
             budget = ProvisionCart.objects.get(id=cart_id)
             project = Project.objects.get(id=project_id)
             budget.project = project
+            budget.total_required_amount = project.budget
             budget.save()
 
             return JsonResponse(
@@ -132,6 +133,7 @@ class EditItemProvisionAmountInCart(LoginRequiredMixin, TemplateView):
             cart_id = kwargs["cart_id"]
             budget_id = request.POST.get("budget_id")
             provision_amount = request.POST.get("provision_amount")
+            available_budget = request.POST.get("available_budget")
             cart = ProvisionCart.objects.get(id=cart_id)
             budget = Budget.objects.get(id=budget_id)
             provision_cart_budget = ProvisionCartBudget.objects.filter(
@@ -139,6 +141,7 @@ class EditItemProvisionAmountInCart(LoginRequiredMixin, TemplateView):
                 budget=budget,
             ).first()
             provision_cart_budget.provosioned_amount = provision_amount
+            provision_cart_budget.available_budget = available_budget
             provision_cart_budget.save()
 
             return JsonResponse(
@@ -156,5 +159,39 @@ class EditItemProvisionAmountInCart(LoginRequiredMixin, TemplateView):
                     "cart_id": cart_id,
                     "budget_id": budget_id,
                     "result": f"error on amount change: {str(e)}",
+                }
+            )
+
+
+class GetCostCentersByProject(LoginRequiredMixin, TemplateView):
+    def get(self, request, *args, **kwargs):
+        try:
+            project_id = kwargs["pk"]
+            project = Project.objects.get(id=project_id)
+            budgets = Budget.objects.filter(project=project)
+            cost_centers_list = []
+            cost_centers_ids = []
+            for budget in budgets:
+                cost_centers = budget.cost_centers.all()
+                for cost_center in cost_centers:
+                    if cost_center.id not in cost_centers_ids:
+                        cost_centers_list.append(
+                            {
+                                "id": cost_center.id,
+                                "name": cost_center.name,
+                            }
+                        )
+                    cost_centers_ids.append(cost_center.id)
+            return JsonResponse(
+                {
+                    "project_id": project_id,
+                    "cost_centers": cost_centers_list,
+                }
+            )
+        except Exception as e:
+            return JsonResponse(
+                {
+                    "project_id": project_id,
+                    "result": f"error: {str(e)}",
                 }
             )

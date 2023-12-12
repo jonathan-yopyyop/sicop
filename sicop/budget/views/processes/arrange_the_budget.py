@@ -7,8 +7,9 @@ from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 
-from sicop.budget.models.provision import ProvisionCart
-from sicop.cost_center.models import CostCenter
+from sicop.area.models import AreaMember
+from sicop.budget.models import Budget
+from sicop.budget.models.provision import ProvisionCart, ProvisionCartBudget
 from sicop.project.models import Project
 
 
@@ -35,13 +36,29 @@ class BudgetProvisionCreate(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["projects"] = Project.objects.filter(status=True)
-        context["cost_centers"] = CostCenter.objects.filter(status=True)
         user = self.request.user
         if ProvisionCart.objects.filter(user=user, status=True).exists():
-            context["provision_cart"] = ProvisionCart.objects.get(user=user, status=True)
+            provision_cart = ProvisionCart.objects.get(user=user, status=True)
         else:
             provision_cart = ProvisionCart.objects.create(user=user)
-            context["provision_cart"] = provision_cart
+        cost_centers_list = []
+        cost_centers_ids = []
+        if provision_cart.project is not None:
+            budgets = Budget.objects.filter(project=provision_cart.project)
+
+            for budget in budgets:
+                cost_centers = budget.cost_centers.all()
+                for cost_center in cost_centers:
+                    if cost_center.id not in cost_centers_ids:
+                        cost_centers_list.append(
+                            {
+                                "id": cost_center.id,
+                                "name": cost_center.name,
+                            }
+                        )
+                    cost_centers_ids.append(cost_center.id)
+        context["provision_cart"] = provision_cart
+        context["cost_centers"] = cost_centers_list
         return context
 
     def post(self, request, *args, **kwargs):
@@ -101,5 +118,43 @@ class ProvisionCertificateView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         pk = self.kwargs.get("pk")
-        context["provision_cart"] = ProvisionCart.objects.get(id=pk)
+        cart = ProvisionCart.objects.get(id=pk)
+        user = cart.user
+        area_member = AreaMember.objects.get(user=user)
+        area_rol = area_member.role
+        context["provision_cart"] = cart
+        context["area_rol"] = area_rol
         return context
+
+
+class GetBudgetIncart(LoginRequiredMixin, TemplateView):
+    def get(self, request, *args, **kwargs):
+        try:
+            cart_id = kwargs["cart_id"]
+            budget_id = kwargs["budget_id"]
+            cart = ProvisionCart.objects.get(id=cart_id)
+            budget = Budget.objects.get(id=budget_id)
+            provision_cart_budget = ProvisionCartBudget.objects.filter(
+                provision_cart_id=cart.id,
+                budget_id=budget_id,
+            ).first()
+            return JsonResponse(
+                {
+                    "cart_id": cart_id,
+                    "budget_id": budget_id,
+                    "budget_item": str(budget),
+                    "provision_cart_budget_id": provision_cart_budget.id,
+                    "provosioned_amount": provision_cart_budget.provosioned_amount,
+                    "available_budget": provision_cart_budget.available_budget,
+                    "current_budget": budget.current_budget,
+                    "result": "ok",
+                }
+            )
+        except Exception as e:
+            print(e)
+            return JsonResponse(
+                {
+                    "cart_id": cart_id,
+                    "result": f"error: {str(e)}",
+                }
+            )

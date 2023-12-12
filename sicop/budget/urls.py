@@ -19,7 +19,9 @@ from sicop.budget.views import (
     BudgetUpdateView,
     EditItemProvisionAmountInCart,
     GetBudgetDetailById,
+    GetBudgetIncart,
     GetBudgetsByCostCenter,
+    GetCostCentersByProject,
     ProvisionCertificateView,
     RemoveItemToProvisionInCart,
     UpdateProjectInCart,
@@ -141,5 +143,15 @@ urlpatterns = [
         "budget/provision/<int:pk>/certificate/",
         ProvisionCertificateView.as_view(),
         name="provision_certificate",
+    ),
+    path(
+        "budget/cost_center_by_project_id/<int:pk>/",
+        GetCostCentersByProject.as_view(),
+        name="get_cost_centers_by_project",
+    ),
+    path(
+        "budget/provision/cart/<int:cart_id>/budget/<int:budget_id>/",
+        GetBudgetIncart.as_view(),
+        name="get_budget_in_cart",
     ),
 ]

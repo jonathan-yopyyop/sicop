@@ -44,7 +44,6 @@
                   <tr>
                     <th>{% trans "ID" %}</th>
                     <th>{% trans "Project" %}</th>
-                    <th>{% trans "Cost center" %}</th>
                     <th>{% trans 'Budget description' %}</th>
                     <th>{% trans "Unit value" %}</th>
                     <th>{% trans "Status" %}</th>
@@ -56,7 +55,6 @@
                     <tr>
                       <td>{{ budget.id }}</td>
                       <td>{{ budget.project }}</td>
-                      <td>{{ budget.cost_center }}</td>
                       <td>{{ budget.budget_description }}</td>
                       <td>${{ budget.unit_value }}</td>
                       <td>
@@ -82,7 +80,6 @@
                     <th>{% trans "Project" %}</th>
                     <th>{% trans "Cost center" %}</th>
                     <th>{% trans 'Budget description' %}</th>
-                    <th>{% trans "Unit value" %}</th>
                     <th>{% trans "Status" %}</th>
                     <th>{% trans 'Detail' %}</th>
                   </tr>

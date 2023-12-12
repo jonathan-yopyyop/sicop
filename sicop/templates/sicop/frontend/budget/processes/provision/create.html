@@ -115,7 +115,13 @@
                                       </div>
                                       <div class="col-2">
                                         <label class="label-project" for="project_is_it_taxable">{% trans 'Project is taxable?' %}</label>
-                                        <input type="text" id="project_is_it_taxable" class="form-control form-control-sm" placeholder="Project budget" value="{{provision_cart.project.is_it_taxable}}" readonly/>
+                                        <input type="text" id="project_is_it_taxable" class="form-control form-control-sm" placeholder="Project budget" value="
+                                        {% if provision_cart.project.is_it_taxable %}
+                                        {% trans 'Yes' %}
+                                        {% else %}
+                                        {% trans 'No' %}
+                                        {% endif %}
+                                          " readonly/>
                                       </div>
                                     </div>
                                   </div>
@@ -159,6 +165,7 @@
                                             <th>{% trans 'Item' %}</th>
                                             <th>{% trans 'Available' %}</th>
                                             <th>{% trans 'Taked' %}</th>
+                                            <th>{% trans 'Remaining' %}</th>
                                             <th>{% trans 'Remove' %}</th>
                                         </tr>
                                     </thead>
@@ -178,8 +185,16 @@
                                             <input 
                                               type="text" id="taked_{{provision_cart_budget.budget.id}}" 
                                               class="form-control form-control-sm table_item_class" 
-                                              value ="{% if provision_cart_budget.provosioned_amount > 0 %} {{provision_cart_budget.provosioned_amount}}{% endif %}" 
+                                              value ="{{provision_cart_budget.provosioned_amount}}" 
                                               onkeyup="provisioningValues('{{provision_cart_budget.budget.id}}')"/>
+                                          </td>
+                                          <td>
+                                            <input 
+                                              readonly
+                                              type="text" 
+                                              class="form-control form-control-sm table_item_class" 
+                                              id="budget_show_value_id_{{provision_cart_budget.budget.id}}" 
+                                              value="${{provision_cart_budget.available_budget|intcomma}}">
                                           </td>
                                           <td>
                                             <button 
@@ -191,7 +206,6 @@
                                           </td>
                                         </tr>  
                                       {% endfor %}
-                                          
                                     </tbody>
                                   </table>
                                 </div>
@@ -224,10 +238,10 @@
                                   </div>
                                   <div class="row pt-1">
                                     <div class="col-5">
-                                      <label class="col-md-12 label-control required" for="projectinput4">{% trans "Missing" %}</label>
+                                      <label class="col-md-12 label-control required text-white" for="projectinput4">{% trans "Missing" %}</label>
                                     </div>
                                     <div class="col-7">
-                                      <input type="text" id="project_missing" class="form-control form-control-sm" value="${{provision_cart.total_missing_amount}}" readonly/>
+                                      <input type="hidden" id="project_missing" class="form-control form-control-sm" value="${{provision_cart.total_missing_amount}}" readonly/>
                                       <input type="hidden" id="project_missing_hidden" value="{{provision_cart.total_missing_amount}}"/>
                                     </div>
                                   </div>
@@ -266,7 +280,7 @@
       $('#' + row_id).remove();
       $.get(url_update_item_incart, function(data) {})
         .done(function(data) {
-          console.log(data);
+          
         })
         .fail(function(data) {
           console.log(`Error $("#project").change ${data}`);
@@ -275,11 +289,20 @@
     function provisioningValues(id){
       var taked_id = 'taked_' + id;
       var budget_value_id = 'budget_value_id_' + id;
+      var budget_value_id = 'budget_value_id_' + id;
+
       var taked_value = parseFloat( $('#' + taked_id).val());
+      var budget_value = parseFloat( $('#' + budget_value_id).val());
+      var available_budget = budget_value - taked_value;
+      var formated_available_budget = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(available_budget);
+      $('#budget_show_value_id_' + id).val(formated_available_budget);
+      
       budget_text_value = $('#' + budget_value_id).val() + "";
       budget_text_value = budget_text_value.replace(',', '.');
       var budget_value = parseFloat( budget_text_value);
-      console.log(`taked_value = ${taked_value}`);
       if (budget_value >= taked_value) {
         var project_provision_hidden = parseFloat($('#project_provision_hidden').val());
         var total_taked = 0;
@@ -330,7 +353,7 @@
           },
           data: post_values,
           success: function (response) {
-            console.log(`${JSON.stringify(response)}`)
+            
           },
           error:function(data) {
             console.log(`Error ${JSON.stringify(data)}`)
@@ -340,7 +363,8 @@
         url_update_item_in_cart = "{% url 'edit_item_provision_amount_in_cart' 0 %}".replace('0', cart_id);
         post_values={
           'provision_amount': taked_value,
-          'budget_id':id
+          'budget_id':id,
+          'available_budget':available_budget
         }
         post_object=$.extend({}, post_values);
         $.ajax({
@@ -352,7 +376,7 @@
           },
           data: post_values,
           success: function (response) {
-            console.log(`Result = ${JSON.stringify(response)}`)
+            
           },
           error:function(data) {
             console.log(`Error ${JSON.stringify(data)}`)
@@ -403,8 +427,7 @@
             $('#project_status').val(data.project_status);
             $('#project_manager').val(data.project_manager);
             $('#project_is_it_taxable').val(data.project_is_it_taxable);
-            // Enabling fields
-            $('#costcenter').prop('disabled', false);
+            
             $('#items').prop('disabled', false);
             // Totals
             $('#project_total').val(budget);
@@ -417,10 +440,37 @@
             url_update_project_incart = "{% url 'update_project_in_cart' 888888888888888 999999999999999 %}".replace('888888888888888', cart_id).replace('999999999999999', project_id);
             $.get(url_update_project_incart, function(data) {})
               .done(function(data) {
-                console.log(data);
+                
               })
               .fail(function(data) {
                 console.log(`Error $("#project").change ${data}`);
+              })
+            //GEt cost centers from project
+            url = "{% url 'get_cost_centers_by_project' 0 %}".replace('0', project_id);
+            $.get(url, function(data) {})
+              .done(function(data) {
+                
+                let cost_centers = data.cost_centers;
+                try {
+                  $('#costcenter').empty();
+                  $('#costcenter')
+                    .append($("<option></option>")
+                      .attr("value", "")
+                      .text("..."));
+                  $.each(cost_centers, function(key, value) {
+                    $('#costcenter')
+                      .append($("<option></option>")
+                        .attr("value", value["id"])
+                        .text(value["name"]));
+                  });
+                // Enabling fields
+                $('#costcenter').prop('disabled', false);
+                } catch (e) {
+                  console.log(e);
+                }
+              })
+              .fail(function(data) {
+                console.log(`Error $("#area").change ${data}`);
               })
 
           })
@@ -476,18 +526,50 @@
                 style: 'currency',
                 currency: 'USD',
               }).format(budget);
-              // Add a new row to the table with id items_table using jquery
-              $('#items_table_body').append('<tr id="row_' + data.budget_id + '"><td>' + data.budget_id + '</td><td>' + budget + '<input type="hidden" id="budget_value_id_'+ data.budget_id+'" value ="'+ data.amount +'"></td><td><input type="text" id="taked_' + data.budget_id + '" class="form-control form-control-sm table_item_class" value="" onkeyup="provisioningValues('+data.budget_id+')"/></td><td><button type="button" class="btn btn-danger btn-sm" onclick="remove_item(' + data.budget_id + ')"><i class="fa fa-trash"></i></button></td></tr>');
+              
               // Add new item to cart
               cart_id = $('#cart_id').val();
               url_update_item_incart = "{% url 'add_item_to_provision_in_cart' 888888888888888 999999999999999 %}".replace('888888888888888', cart_id).replace('999999999999999', data.budget_id);
               $.get(url_update_item_incart, function(data) {})
                 .done(function(data) {
-                  console.log(data);
+                  //Get budget cart
+                  url = "{% url 'get_budget_in_cart' 888888888888888 999999999999999 %}".replace('888888888888888', cart_id).replace('999999999999999', data.budget_id);
+                  $.get(url, function(data) {})
+                    .done(function(data) {
+                      console.log(`Result = ${JSON.stringify(data)}`)
+                      var budget = data.budget;
+                      var budget_value = data.budget_value;
+                      var available_budget = data.available_budget;
+                      var taked_value = data.taked_value;
+                      var current_budget = data.current_budget;
+                      var budget_item = data.budget_item;
+                      
+                      var formated_available_budget = new Intl.NumberFormat('en-US', {
+                        style: 'currency',
+                        currency: 'USD',
+                      }).format(available_budget);
+                      
+                      var formated_taked_value = new Intl.NumberFormat('en-US', {
+                        style: 'currency',
+                        currency: 'USD',
+                      }).format(taked_value);
+
+                      var formated_current_budget = new Intl.NumberFormat('en-US', {
+                        style: 'currency',
+                        currency: 'USD',
+                      }).format(current_budget);
+                      // Add a new row to the table with id items_table using jquery
+                      $('#items_table_body').append('<tr id="row_' + data.budget_id + '"><td>' + budget_item + '</td><td>' + formated_current_budget + '<input type="hidden" id="budget_value_id_'+ data.budget_id+'" value ="'+ current_budget +'"></td><td><input type="text" id="taked_' + data.budget_id + '" class="form-control form-control-sm table_item_class" value="0" onkeyup="provisioningValues('+data.budget_id+')"/></td><td><input type="text" id="budget_show_value_id_' + data.budget_id + '" class="form-control form-control-sm table_item_class" value="$0" readonly/></td><td><button type="button" class="btn btn-danger btn-sm" onclick="remove_item(' + data.budget_id + ')"><i class="fa fa-trash"></i></button></td></tr>');
+                    })
+                    .fail(function(data) {
+                      console.log(`Error $("#area").change ${data}`);
+                    })
                 })
                 .fail(function(data) {
                   console.log(`Error $("#project").change ${data}`);
                 })
+              
+              
             }
             
           })

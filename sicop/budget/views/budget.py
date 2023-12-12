@@ -129,7 +129,7 @@ class GetBudgetsByCostCenter(LoginRequiredMixin, TemplateView):
             items.append(
                 [
                     budget.id,
-                    f"{budget.budget_description} - ${amount}",
+                    f"{budget.budget_description} (${amount})",
                     budget.current_budget,
                 ]
             )

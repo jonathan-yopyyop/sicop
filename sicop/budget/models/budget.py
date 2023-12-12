@@ -96,7 +96,7 @@ class Budget(BaseModel):
 
     def __str__(self):
         """Unicode representation of Budget."""
-        return f"{self.project} - {self.budget_description}"
+        return f"{self.project} ({self.budget_description})"
 
     def save(self, *args, **kwargs):
         self.initial_value = float(self.unit_value) * float(self.quantity)

@@ -26,8 +26,8 @@ class ProvisionCart(BaseModel):
         on_delete=models.CASCADE,
     )
     total_required_amount = models.FloatField(
-        _("Total provisioned amount"),
-        help_text=_("Total provisioned amount"),
+        _("Total required amount"),
+        help_text=_("Total required amount"),
         default=0,
         null=True,
         blank=True,
@@ -40,8 +40,8 @@ class ProvisionCart(BaseModel):
         blank=True,
     )
     total_missing_amount = models.FloatField(
-        _("Total provisioned amount"),
-        help_text=_("Total provisioned amount"),
+        _("Total missing amount"),
+        help_text=_("Total missing amount"),
         default=0,
         null=True,
         blank=True,
@@ -83,6 +83,11 @@ class ProvisionCartBudget(BaseModel):
     provosioned_amount = models.FloatField(
         _("Provosioned amount"),
         help_text=_("Provosioned amount"),
+        default=0,
+    )
+    available_budget = models.FloatField(
+        _("Budget taked"),
+        help_text=_("Budget taked"),
         default=0,
     )
 

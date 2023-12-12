@@ -7,6 +7,1700 @@
   {% trans 'Budget provision list' %}
 {% endblock page_title %}
 {% block content %}
+    <!-- style start -->
+    <style type="text/css">
+        /* create a css for td and th name row-style*/
+        .style0 {
+          vertical-align: bottom;
+          border-bottom: none #000000;
+          border-top: none #000000;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style0 {
+          vertical-align: bottom;
+          border-bottom: none #000000;
+          border-top: none #000000;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style1 {
+          vertical-align: bottom;
+          border-bottom: none #000000;
+          border-top: none #000000;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style1 {
+          vertical-align: bottom;
+          border-bottom: none #000000;
+          border-top: none #000000;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style2 {
+          vertical-align: middle;
+          border-bottom: none #000000;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style2 {
+          vertical-align: middle;
+          border-bottom: none #000000;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style3 {
+          vertical-align: middle;
+          border-bottom: none #000000;
+          border-top: none #000000;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style3 {
+          vertical-align: middle;
+          border-bottom: none #000000;
+          border-top: none #000000;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style4 {
+          vertical-align: bottom;
+          border-bottom: none #000000;
+          border-top: none #000000;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style4 {
+          vertical-align: bottom;
+          border-bottom: none #000000;
+          border-top: none #000000;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style5 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: #CC99FF
+        }
+  
+        .style5 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: #CC99FF
+        }
+  
+        .style6 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: none #000000;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #7030A0;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style6 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: none #000000;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #7030A0;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style7 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: none #000000;
+          border-left: none #000000;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #7030A0;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style7 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: none #000000;
+          border-left: none #000000;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #7030A0;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style8 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: none #000000;
+          border-left: none #000000;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #7030A0;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style8 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: none #000000;
+          border-left: none #000000;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #7030A0;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style9 {
+          vertical-align: middle;
+          border-bottom: none #000000;
+          border-top: none #000000;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: #FFFFFF
+        }
+  
+        .style9 {
+          vertical-align: middle;
+          border-bottom: none #000000;
+          border-top: none #000000;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: #FFFFFF
+        }
+  
+        .style10 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Calibri';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style10 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Calibri';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style11 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          color: #000000;
+          font-family: 'Calibri';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style11 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          color: #000000;
+          font-family: 'Calibri';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style12 {
+          vertical-align: middle;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          color: #000000;
+          font-family: 'Calibri';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style12 {
+          vertical-align: middle;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          color: #000000;
+          font-family: 'Calibri';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style13 {
+          vertical-align: top;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          color: #000000;
+          font-family: 'Calibri';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style13 {
+          vertical-align: top;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          color: #000000;
+          font-family: 'Calibri';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style14 {
+          vertical-align: bottom;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          color: #000000;
+          font-family: 'Calibri';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style14 {
+          vertical-align: bottom;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          color: #000000;
+          font-family: 'Calibri';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style15 {
+          vertical-align: bottom;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style15 {
+          vertical-align: bottom;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style16 {
+          vertical-align: bottom;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: 1px solid #000000 !important;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style17 {
+          vertical-align: middle;
+          border-bottom: none #000000;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style17 {
+          vertical-align: bottom;
+          border-bottom: none #000000;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style18 {
+          vertical-align: middle;
+          text-align: left;
+          padding-left: 0px;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: #CC99FF
+        }
+  
+        .style18 {
+          vertical-align: middle;
+          text-align: left;
+          padding-left: 0px;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: #CC99FF
+        }
+  
+        .style19 {
+          vertical-align: middle;
+          text-align: left;
+          padding-left: 0px;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          color: #7030A0;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style19 {
+          vertical-align: middle;
+          text-align: left;
+          padding-left: 0px;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          color: #7030A0;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style20 {
+          vertical-align: middle;
+          text-align: left;
+          padding-left: 0px;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #FFFFFF;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: #642D90
+        }
+  
+        .style20 {
+          vertical-align: middle;
+          text-align: left;
+          padding-left: 0px;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #FFFFFF;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: #642D90
+        }
+  
+        .style21 {
+          vertical-align: bottom;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style21 {
+          vertical-align: bottom;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style22 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: #CC99FF
+        }
+  
+        .style22 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: #CC99FF
+        }
+  
+        
+        .style23 {
+          vertical-align: middle;
+          text-align: left;
+          padding-left: 0px;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          color: #7030A0;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style24 {
+          vertical-align: middle;
+          text-align: left;
+          padding-left: 0px;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          color: #7030A0;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style24 {
+          vertical-align: middle;
+          text-align: left;
+          padding-left: 0px;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          color: #7030A0;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style25 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style25 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style26 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #7030A0;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style26 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #7030A0;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style27 {
+          vertical-align: middle;
+          text-align: left;
+          padding-left: 0px;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #6600CC;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style27 {
+          vertical-align: middle;
+          text-align: left;
+          padding-left: 0px;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #6600CC;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style28 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: none #000000;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 11pt;
+          background-color: white
+        }
+  
+        .style28 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: none #000000;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 11pt;
+          background-color: white
+        }
+  
+        .style29 {
+          vertical-align: bottom;
+          border-bottom: none #000000;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style29 {
+          vertical-align: bottom;
+          border-bottom: none #000000;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style30 {
+          vertical-align: bottom;
+          border-bottom: none #000000;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: 1px solid #000000 !important;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style30 {
+          vertical-align: bottom;
+          border-bottom: none #000000;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: 1px solid #000000 !important;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style31 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style32 {
+          vertical-align: bottom;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style32 {
+          vertical-align: bottom;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style33 {
+          vertical-align: middle;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: 1px solid #000000 !important;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style33 {
+          vertical-align: middle;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: 1px solid #000000 !important;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style34 {
+          vertical-align: bottom;
+          border-bottom: 1px solid #000000 !important;
+          border-top: none #000000;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style34 {
+          vertical-align: bottom;
+          border-bottom: 1px solid #000000 !important;
+          border-top: none #000000;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style35 {
+          vertical-align: bottom;
+          border-bottom: 1px solid #000000 !important;
+          border-top: none #000000;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style35 {
+          vertical-align: bottom;
+          border-bottom: 1px solid #000000 !important;
+          border-top: none #000000;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        
+        .style36 {
+          vertical-align: middle;
+          border-bottom: 1px solid #000000 !important;
+          border-top: none #000000;
+          border-left: none #000000;
+          border-right: 1px solid #000000 !important;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        
+        .style37 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: none #000000;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        
+        .style38 {
+          vertical-align: middle;
+          border-bottom: none #000000;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: 1px solid #000000 !important;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style39 {
+          vertical-align: bottom;
+          border-bottom: none #000000;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style39 {
+          vertical-align: bottom;
+          border-bottom: none #000000;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style40 {
+          vertical-align: middle;
+          text-align: left;
+          padding-left: 0px;
+          border-bottom: none #000000;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #FFFFFF;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: #642D90
+        }
+  
+        .style40 {
+          vertical-align: middle;
+          text-align: left;
+          padding-left: 0px;
+          border-bottom: none #000000;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #FFFFFF;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: #642D90
+        }
+  
+        .style41 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: #CC99FF
+        }
+  
+        .style41 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: #CC99FF
+        }
+  
+        .style42 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: #CC99FF
+        }
+  
+        .style42 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: #CC99FF
+        }
+  
+        .style43 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #7030A0;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style43 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #7030A0;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style44 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          color: #7030A0;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        
+        .style45 {
+          vertical-align: middle;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style46 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #7030A0;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style46 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #7030A0;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style47 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #7030A0;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style47 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #7030A0;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style48 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 16pt;
+          background-color: white
+        }
+  
+        .style48 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 16pt;
+          background-color: white
+        }
+  
+        .style49 {
+          vertical-align: bottom;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 16pt;
+          background-color: white
+        }
+  
+        .style49 {
+          vertical-align: bottom;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 16pt;
+          background-color: white
+        }
+  
+        .style50 {
+          vertical-align: bottom;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: 1px solid #000000 !important;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 9pt;
+          background-color: white
+        }
+  
+        .style51 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: none #000000;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: #FFFF00
+        }
+  
+        .style52 {
+          vertical-align: bottom;
+          border-bottom: none #000000;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: #FFFF00
+        }
+  
+        .style52 {
+          vertical-align: bottom;
+          border-bottom: none #000000;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: #FFFF00
+        }
+  
+        .style53 {
+          vertical-align: middle;
+          border-bottom: none #000000;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: 1px solid #000000 !important;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 7pt;
+          background-color: #FFFF00
+        }
+  
+        .style54 {
+          vertical-align: middle;
+          text-align: left;
+          padding-left: 0px;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #7030A0;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style54 {
+          vertical-align: middle;
+          text-align: left;
+          padding-left: 0px;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: none #000000;
+          color: #7030A0;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: white
+        }
+  
+        .style55 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style55 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style56 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style56 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: none #000000;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style57 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style57 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: none #000000;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 5pt;
+          background-color: white
+        }
+  
+        .style58 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: #FFFF00
+        }
+  
+        .style58 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: #FFFF00
+        }
+  
+        .style59 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: #FFFF00
+        }
+  
+        .style59 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: #FFFF00
+        }
+  
+        .style60 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: #FFFF00
+        }
+  
+        .style60 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: #FFFF00
+        }
+  
+        .style61 {
+          vertical-align: middle;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          color: #000000;
+          font-family: 'Arial';
+          font-size: 7pt;
+          background-color: #FFFF00
+        }
+  
+        .style62 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: #FFFF00
+        }
+  
+        .style62 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: 1px solid #000000 !important;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: #FFFF00
+        }
+  
+        .style63 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: none #000000;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: #FFFF00
+        }
+  
+        .style63 {
+          vertical-align: middle;
+          text-align: center;
+          border-bottom: none #000000;
+          border-top: 1px solid #000000 !important;
+          border-left: 1px solid #000000 !important;
+          border-right: 1px solid #000000 !important;
+          font-weight: bold;
+          color: #000000;
+          font-family: 'Arial Narrow';
+          font-size: 7pt;
+          background-color: #FFFF00
+        }
+  
+        table.sheet0 col.col0 {
+          width: 10.84444432pt
+        }
+  
+        table.sheet0 col.col1 {
+          width: 88.78888787pt
+        }
+  
+        table.sheet0 col.col2 {
+          width: 60.32222153pt
+        }
+  
+        table.sheet0 col.col3 {
+          width: 83.36666571pt
+        }
+  
+        table.sheet0 col.col4 {
+          width: 83.36666571pt
+        }
+  
+        table.sheet0 col.col5 {
+          width: 36.59999958pt
+        }
+  
+        table.sheet0 col.col6 {
+          width: 36.59999958pt
+        }
+  
+        table.sheet0 col.col7 {
+          width: 36.59999958pt
+        }
+  
+        table.sheet0 col.col8 {
+          width: 63.03333261pt
+        }
+  
+        table.sheet0 col.col9 {
+          width: 69.81111031pt
+        }
+  
+        table.sheet0 col.col10 {
+          width: 34.56666627pt
+        }
+  
+        table.sheet0 col.col11 {
+          width: 34.56666627pt
+        }
+  
+        table.sheet0 col.col12 {
+          width: 48.79999944pt
+        }
+  
+        table.sheet0 col.col13 {
+          width: 48.79999944pt
+        }
+  
+        table.sheet0 col.col14 {
+          width: 138.94444285pt
+        }
+  
+        table.sheet0 col.col15 {
+          width: 48.79999944pt
+        }
+  
+        table.sheet0 col.col16 {
+          width: 48.79999944pt
+        }
+  
+        table.sheet0 col.col17 {
+          width: 22.36666641pt
+        }
+  
+        table.sheet0 tr {
+          height: 15pt
+        }
+  
+        table.sheet0 tr.row0 {
+          height: 17.25pt
+        }
+  
+        table.sheet0 tr.row1 {
+          height: 20.25pt
+        }
+  
+        table.sheet0 tr.row2 {
+          height: 20.25pt
+        }
+  
+        table.sheet0 tr.row3 {
+          height: 27pt
+        }
+  
+        table.sheet0 tr.row4 {
+          height: 24.75pt
+        }
+  
+        table.sheet0 tr.row5 {
+          height: 33pt
+        }
+  
+        table.sheet0 tr.row6 {
+          height: 33pt
+        }
+  
+        table.sheet0 tr.row7 {
+          height: 7.5pt
+        }
+  
+        table.sheet0 tr.row8 {
+          height: 24.75pt
+        }
+  
+        table.sheet0 tr.row9 {
+          height: 80.25pt
+        }
+  
+        table.sheet0 tr.row10 {
+          height: 54pt
+        }
+  
+        table.sheet0 tr.row11 {
+          height: 50.25pt
+        }
+  
+        table.sheet0 tr.row12 {
+          height: 50.25pt
+        }
+  
+        table.sheet0 tr.row13 {
+          height: 73.5pt
+        }
+  
+        table.sheet0 tr.row14 {
+          height: 11.25pt
+        }
+  
+        table.sheet0 tr.row15 {
+          height: 21.75pt
+        }
+  
+        table.sheet0 tr.row16 {
+          height: 43.5pt
+        }
+  
+        table.sheet0 tr.row17 {
+          height: 25.5pt
+        }
+  
+        table.sheet0 tr.row18 {
+          height: 12.75pt
+        }
+      </style>
+    <!-- Style end -->
   <!-- App invoice wrapper -->
   <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
   <section class="app-invoice-wrapper">
@@ -16,113 +1710,194 @@
             <div class="card">
                 <!-- card body -->
                 <div class="card-body p-2">
-                    <!-- card-header -->
-                    <div class="card-header px-0">
-                        <div class="row">
-                            <div class="col-md-12 col-lg-7 col-xl-4 mb-50">
-                                <span class="invoice-id font-weight-bold">CAP#</span>
-                                <span>{{provision_cart.id}}</span>
-                            </div>
-                            <div class="col-md-12 col-lg-5 col-xl-8">
-                                <div class="d-flex align-items-center justify-content-end justify-content-xs-start">
-                                    <div class="issue-date pr-2">
-                                        <span class="font-weight-bold no-wrap">{% trans "Creation date" %}: </span>
-                                        <span>{{provision_cart.updated_at}}</span>
-                                    </div>
+                    <table cellpadding="0" cellspacing="0" id="sheet0" class="sheet0">
+                        <col class="col0">
+                        <col class="col1">
+                        <col class="col2">
+                        <col class="col3">
+                        <col class="col4">
+                        <col class="col5">
+                        <col class="col6">
+                        <col class="col7">
+                        <col class="col8">
+                        <col class="col9">
+                        <col class="col10">
+                        <col class="col11">
+                        <col class="col12">
+                        <col class="col13">
+                        <col class="col14">
+                        <col class="col15">
+                        <col class="col16">
+                        <col class="col17">
+                        <tbody>
+                        <tr class="row0">
+                            <td class="column0 style1 null"></td>
+                            <td class="column1 style1 null"></td>
+                            <td class="column2 style1 null"></td>
+                            <td class="column3 style1 null"></td>
+                            <td class="column4 style1 null"></td>
+                            <td class="column5 style1 null"></td>
+                            <td class="column6 style1 null"></td>
+                            <td class="column7 style1 null"></td>
+                            <td class="column8 style1 null"></td>
+                            <td class="column9 style1 null"></td>
+                            <td class="column10 style1 null"></td>
+                            <td class="column11 style1 null"></td>
+                            <td class="column12 style1 null"></td>
+                            <td class="column13 style1 null"></td>
+                            <td class="column14 style1 null"></td>
+                            <td class="column15 style1 null"></td>
+                            <td class="column16 style1 null"></td>
+                            <td class="column17 style1 null"></td>
+                        </tr>
+                        <tr class="row1">
+                            <td class="column0 style1 null"></td>
+                            <td class="column1 style2 null">
+                                <div style="position: relative;">
+                                    <img style="position: absolute; z-index: 1; left: 10px; top: -10px; width: 50px; height: 50px;" src="{% static 'stack/app-assets/images/logo/Logo-Maloka.png' %}" border="0" />
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- invoice logo and title -->
-                    <div class="invoice-logo-title row py-2">
-                        <div class="col-6 d-flex flex-column justify-content-center align-items-start">
-                            <h2 class="text-primary">{{provision_cart.project}}</h2>
-                        </div>
-                        <div class="col-6 d-flex justify-content-end invoice-logo">
-                            <div id="qrcode"></div>
-                        </div>
-                    </div>
-                    <hr>
-
-                    <!-- invoice address and contacts -->
-                    <div class="row invoice-adress-info py-2">
-                        <div class="col-6 mt-1 from-info">
-                            <div class="company-name mb-1">
-                                <span class="text-muted">{% trans "Name" %}: {{provision_cart.project.name}}</span>
-                            </div>
-                            <div class="company-address mb-1">
-                                <span class="text-muted">{% trans "Description" %}: {{provision_cart.project.description}}</span>
-                            </div>
-                            <div class="company-email  mb-1 mb-1">
-                                <span class="text-muted">{% trans "Start at" %}: {{provision_cart.project.start_date}}</span>
-                            </div>
-                            <div class="company-phone  mb-1">
-                                <span class="text-muted">{% trans "End at" %}: {{provision_cart.project.end_date}}</span>
-                            </div>
-                            <div class="company-phone  mb-1">
-                                <span class="text-muted">{% trans "Budget" %}: ${{provision_cart.project.budget|intcomma}}</span>
-                            </div>
-                        </div>
-                        <div class="col-6 mt-1 to-info">
-                            <div class="company-name mb-1">
-                                <span class="text-muted">{% trans "Project status" %}: {{provision_cart.project.project_status}}</span>
-                            </div>
-                            <div class="company-address mb-1">
-                                <span class="text-muted">{% trans "Project type" %}: {{provision_cart.project}}</span>
-                            </div>
-                            <div class="company-email mb-1">
-                                <span class="text-muted">{% trans "Is it taxable?" %}: 
-                                {% if provision_cart.project.is_it_taxable %}
-                                    {% trans "Yes" %}
-                                {% else %}
-                                    {% trans "No" %}
-                                {% endif %}
-                                </span>
-                            </div>
-                            <div class="company-phone  mb-1">
-                                <span class="text-muted">{% trans "Project manager" %}: {{provision_cart.project.project_manager.name}}</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--product details table -->
-                    <div class="product-details-table py-2 table-responsive">
-                        <table class="table table-borderless">
-                            <thead>
-                                <tr>
-                                    <th>{% trans 'Item' %}</th>
-                                    <th>{% trans 'Taked' %}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for provision_cart_budget in provision_cart.provision_cart_provision_budgets.all %}
-                                <tr>
-                                    <td>{{provision_cart_budget.budget}}</td>
-                                    <td class="font-weight-bold">$ {{provision_cart_budget.provosioned_amount|intcomma}}</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                    <hr>
-
-                    <!-- invoice total -->
-                    <div class="invoice-total py-2">
-                        <div class="row">
-                            <div class="col-4 col-sm-6 mt-75">
-                                <p>{{provision_cart.project.comment}}</p>
-                            </div>
-                            <div class="col-8 col-sm-6 d-flex justify-content-end mt-75">
-                                <ul class="list-group cost-list">
-                                    <li class="list-group-item each-cost border-0 p-50 d-flex justify-content-between">
-                                        <span class="cost-title mr-2">{% trans "Total provisioned" %} </span>
-                                        <span class="cost-value">$ {{provision_cart.project.budget|intcomma}}</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                            </td>
+                            <td class="column2 style28 s style36" colspan="9" rowspan="2">CERTIFICADO DE APROBACIÓN PRESUPUESTAL</td>
+                            <td class="column11 style31 s style33" colspan="6">Código: {{provision_cart.id}}</td>
+                            <td class="column17 style3 null"></td>
+                        </tr>
+                        <tr class="row2">
+                            <td class="column0 style1 null"></td>
+                            <td class="column1 style4 null"></td>
+                            <td class="column11 style37 s style38" colspan="2">Versión 1</td>
+                            <td class="column13 style37 s style38" colspan="4">Fecha versión: 2023/12/10</td>
+                            <td class="column17 style3 null"></td>
+                        </tr>
+                        <tr class="row3">
+                            <td class="column0 style1 null"></td>
+                            <td class="column1 style18 s style16" colspan="3">FECHA SOLICITUD</td>
+                            <td class="column4 style19 n style54" colspan="7">{{provision_cart.updated_at}}</td>
+                            <td class="column11 style18 s style16" colspan="3">CODIGO</td>
+                            <td class="column14 style55 n style57" colspan="3">{{provision_cart.id}}</td>
+                            <td class="column17 style3 null"></td>
+                        </tr>
+                        <tr class="row8">
+                            <td class="column0 style1 null"></td>
+                            <td class="column1 style40 s style17" colspan="16">INFORMACIÓN GENERAL</td>
+                            <td class="column17 style3 null"></td>
+                        </tr>
+                        <tr class="row5">
+                            <td class="column0 style1 null"></td>
+                            <td class="column1 style22 s style16" colspan="3">NOMBRE DEL PROYECTO</td>
+                            <td class="column4 style23 s style16" colspan="13">{{provision_cart.project}}</td>
+                            <td class="column17 style3 null"></td>
+                        </tr>
+                        <tr class="row6">
+                            <td class="column0 style1 null"></td>
+                            <td class="column1 style22 s style16" colspan="3">NOMBRE SOLICITANTE</td>
+                            <td class="column4 style23 s style16" colspan="5">{{provision_cart.project.project_manager.name}}</td>
+                            <td class="column9 style5 s">CARGO</td>
+                            <td class="column10 style24 s style16" colspan="7">{{area_rol}}</td>
+                            <td class="column17 style3 null"></td>
+                        </tr>
+                        <tr class="row7">
+                            <td class="column0 style1 null"></td>
+                            <td class="column1 style25 null style16" colspan="16"></td>
+                            <td class="column17 style3 null"></td>
+                        </tr>
+                        <tr class="row8">
+                            <td class="column0 style1 null"></td>
+                            <td class="column1 style40 s style17" colspan="16">DATOS SOLICITUD</td>
+                            <td class="column17 style3 null"></td>
+                        </tr>
+                        <tr class="row9">
+                            <td class="column0 style1 null"></td>
+                            <td class="column1 style41 s">CENTRO DE COSTO</td>
+                            <td class="column2 style41 s">CONCEPTO DE GASTO</td>
+                            <td class="column3 style42 s style42" colspan="2">ÍTEM PRESUPUESTAL</td>
+                            <td class="column5 style42 s style42" colspan="5">DESCRIPCIÓN</td>
+                            <td class="column10 style42 s style42" colspan="2">VALOR SOLICITADO</td>
+                            <td class="column12 style58 s style58" colspan="2">VALOR PRESUPUESTO</td>
+                            <td class="column14 style59 s">PRESUPUESTO COMPROMETIDO Y/O SOLICITADO ACUMULADO ANTES DE ESTA SOLICITUD</td>
+                            <td class="column15 style58 s style58" colspan="2">SALDO POR DISPONER</td>
+                            <td class="column17 style3 null"></td>
+                        </tr>
+                        {% for provision_cart_budget in provision_cart.provision_cart_provision_budgets.all %}
+                        <tr class="row10">
+                            <td class="column0 style1 null"></td>
+                            <td class="column1 style43 s">{{provision_cart_budget.budget.cost_centers.id}}</td>
+                            <td class="column2 style43 s">{{provision_cart_budget.budget.cost_centers}}</td>
+                            <td class="column3 style44 s style45" colspan="2">{{provision_cart_budget.budget}}</td>
+                            <td class="column5 style46 s style45" colspan="5">{{provision_cart_budget.budget.budget_description}}</td>
+                            <td class="column10 style47 n style45" colspan="2">$ {{provision_cart_budget.provosioned_amount|intcomma}}</td>
+                            <td class="column12 style60 n style61" colspan="2">0</td>
+                            <td class="column14 style62 n">0</td>
+                            <td class="column15 style60 f style61" colspan="2">0</td>
+                            <td class="column17 style3 null"></td>
+                        </tr>
+                        {% endfor %}
+                        
+                        <tr class="row13">
+                            <td class="column0 style1 null"></td>
+                            <td class="column1 style5 s">OBSERVACIONES</td>
+                            <td class="column2 style27 null style16" colspan="15"></td>
+                            <td class="column17 style3 null"></td>
+                        </tr>
+                        <tr class="row14">
+                            <td class="column0 style1 null"></td>
+                            <td class="column1 style6 null"></td>
+                            <td class="column2 style7 null"></td>
+                            <td class="column3 style7 null"></td>
+                            <td class="column4 style7 null"></td>
+                            <td class="column5 style7 null"></td>
+                            <td class="column6 style7 null"></td>
+                            <td class="column7 style7 null"></td>
+                            <td class="column8 style7 null"></td>
+                            <td class="column9 style7 null"></td>
+                            <td class="column10 style7 null"></td>
+                            <td class="column11 style7 null"></td>
+                            <td class="column12 style7 null"></td>
+                            <td class="column13 style7 null"></td>
+                            <td class="column14 style7 null"></td>
+                            <td class="column15 style7 null"></td>
+                            <td class="column16 style8 null"></td>
+                            <td class="column17 style3 null"></td>
+                        </tr>
+                        <tr class="row8">
+                            <td class="column0 style1 null"></td>
+                            <td class="column1 style40 s style17" colspan="16">APROBACIÓN</td>
+                            <td class="column17 style3 null"></td>
+                        </tr>
+                        <tr class="row16">
+                            <td class="column0 style1 null"></td>
+                            <td class="column1 style5 s">NOMBRE</td>
+                            <td class="column2 style26 s style16" colspan="7">Indicar el nombre</td>
+                            <td class="column9 style63 s">FIRMA</td>
+                            <td class="column10 style51 s style53" colspan="7">Será una anunciado que relacione el usuario que aprueba</td>
+                            <td class="column17 style3 null"></td>
+                        </tr>
+                        <tr class="row17">
+                            <td class="column0 style1 null"></td>
+                            <td class="column1 style48 s style50" colspan="16">Por medio del presente documento se confirma aprobación presupuestal de acuerdo a la información relacionada</td>
+                            <td class="column17 style3 null"></td>
+                        </tr>
+                        <tr class="row18">
+                            <td class="column0 style1 null"></td>
+                            <td class="column1 style9 null"></td>
+                            <td class="column2 style9 null"></td>
+                            <td class="column3 style9 null"></td>
+                            <td class="column4 style9 null"></td>
+                            <td class="column5 style9 null"></td>
+                            <td class="column6 style9 null"></td>
+                            <td class="column7 style9 null"></td>
+                            <td class="column8 style9 null"></td>
+                            <td class="column9 style9 null"></td>
+                            <td class="column10 style9 null"></td>
+                            <td class="column11 style9 null"></td>
+                            <td class="column12 style9 null"></td>
+                            <td class="column13 style9 null"></td>
+                            <td class="column14 style9 null"></td>
+                            <td class="column15 style9 null"></td>
+                            <td class="column16 style9 null"></td>
+                            <td class="column17 style3 null"></td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
