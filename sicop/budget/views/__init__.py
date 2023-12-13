@@ -4,7 +4,7 @@ from sicop.budget.views.budget import (  # noqa
     BudgetListView,
     BudgetUpdateView,
     GetBudgetDetailById,
-    GetBudgetsByCostCenter,
+    GetBudgetsByCostCenterAndProject,
 )
 from sicop.budget.views.cap import (  # noqa
     BudgetCapCreateView,

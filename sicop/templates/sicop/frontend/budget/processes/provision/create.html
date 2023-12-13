@@ -40,6 +40,7 @@
               <section id="basic-form-layouts">
                 <div class="row match-height">
                   <div class="col-md-12">
+                    --{{cost_centers}}--
                     <div class="card">
                       {% if messages %}
                         {% for message in messages %}
@@ -481,7 +482,8 @@
       // Area on change
       $("#costcenter").change(function() {
         var cost_center = $("#costcenter").val()
-        url = "{% url 'get_budgets_by_cost_center' 0 %}".replace('0', cost_center);
+        var project_id = $("#project").val()
+        url = "{% url 'get_budgets_by_cost_center' 888888888888888 999999999999999 %}".replace('888888888888888', cost_center).replace('999999999999999', project_id);
         $.get(url, function(data) {})
           .done(function(data) {
             let items = data.items;

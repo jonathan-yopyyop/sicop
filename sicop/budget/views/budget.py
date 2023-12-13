@@ -117,11 +117,17 @@ class BudgetUpdateView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView
         )
 
 
-class GetBudgetsByCostCenter(LoginRequiredMixin, TemplateView):
+class GetBudgetsByCostCenterAndProject(LoginRequiredMixin, TemplateView):
     def get(self, request, *args, **kwargs):
         cost_center_id = kwargs["pk"]
+        project_id = kwargs["project_id"]
         cost_center = CostCenter.objects.get(id=cost_center_id)
-        budgets = Budget.objects.filter(cost_centers__in=[cost_center], status=True)
+        project = Project.objects.get(id=project_id)
+        budgets = Budget.objects.filter(
+            project=project,
+            cost_centers__in=[cost_center],
+            status=True,
+        )
         items = []
 
         for budget in budgets:

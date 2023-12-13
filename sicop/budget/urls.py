@@ -20,7 +20,7 @@ from sicop.budget.views import (
     EditItemProvisionAmountInCart,
     GetBudgetDetailById,
     GetBudgetIncart,
-    GetBudgetsByCostCenter,
+    GetBudgetsByCostCenterAndProject,
     GetCostCentersByProject,
     ProvisionCertificateView,
     RemoveItemToProvisionInCart,
@@ -90,8 +90,8 @@ urlpatterns = [
         name="budget_cap_update",
     ),
     path(
-        "budget/cost_center/<int:pk>/",
-        GetBudgetsByCostCenter.as_view(),
+        "budget/cost_center/<int:pk>/project/<int:project_id>/",
+        GetBudgetsByCostCenterAndProject.as_view(),
         name="get_budgets_by_cost_center",
     ),
     path(
