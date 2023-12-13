@@ -94,17 +94,10 @@ class BudgetProvisionCreate(LoginRequiredMixin, TemplateView):
             )
         except Exception as e:
             print(e)
-            creation = BudgetDecreaseTransaction.objects.create(
-                budget=budget,
-                old_amount=old_value,
-                new_amount=new_value,
-                project=project,
-            )
             return JsonResponse(
                 {
                     "cart": cart_id,
                     "result": f"error: {str(e)}",
-                    "query": creation.query,
                 }
             )
 
