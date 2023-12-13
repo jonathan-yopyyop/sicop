@@ -103,7 +103,7 @@ class Budget(BaseModel):
         super().save(*args, **kwargs)
 
 
-class BudetTransaction(BaseModel):
+class BudgetDecreaseTransaction(BaseModel):
     """Model definition for Budet Transaction."""
 
     budget = models.ForeignKey(
@@ -134,11 +134,11 @@ class BudetTransaction(BaseModel):
     class Meta:
         """Meta definition for Budet Transaction."""
 
-        verbose_name = _("Budget Transaction")
-        verbose_name_plural = _("Budget Transactions")
+        verbose_name = _("Budget Decrease Transaction")
+        verbose_name_plural = _("Budget Decrease Transactions")
 
     def __str__(self):
-        """Unicode representation of Budet Transaction."""
+        """Unicode representation of Budet Decrease Transaction."""
         return f"{self.budget} ({self.project})"
 
 

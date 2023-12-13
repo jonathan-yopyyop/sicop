@@ -1,9 +1,9 @@
 from django.contrib import admin
 
 from sicop.budget.models import (
-    BudetTransaction,
     Budget,
     BudgetCap,
+    BudgetDecreaseTransaction,
     BudgetDescription,
     ProvisionCart,
     ProvisionCartBudget,
@@ -139,8 +139,8 @@ class ProvisionCartBudgetAdmin(admin.ModelAdmin):
     )
 
 
-@admin.register(BudetTransaction)
-class BudetTransactionAdmin(admin.ModelAdmin):
+@admin.register(BudgetDecreaseTransaction)
+class BudgetDecreaseTransactionAdmin(admin.ModelAdmin):
     list_display = (
         "id",
         "budget",

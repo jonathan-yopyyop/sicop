@@ -8,7 +8,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 
 from sicop.area.models import AreaMember
-from sicop.budget.models import BudetTransaction, Budget
+from sicop.budget.models import Budget, BudgetDecreaseTransaction
 from sicop.budget.models.provision import ProvisionCart, ProvisionCartBudget
 from sicop.project.models import Project
 
@@ -75,7 +75,7 @@ class BudgetProvisionCreate(LoginRequiredMixin, TemplateView):
                 provosioned_amount = provision_cart_budget.provosioned_amount
                 budget.budget_decrease = budget.budget_decrease + provosioned_amount
                 budget.save()
-                BudetTransaction.objects.create(
+                BudgetDecreaseTransaction.objects.create(
                     budget=budget,
                     old_amount=old_value,
                     new_amount=new_value,

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-13 12:42-0500\n"
+"POT-Creation-Date: 2023-12-13 12:50-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -321,12 +321,12 @@ msgid "New amount"
 msgstr "Nuevo monto"
 
 #: sicop/budget/models/budget.py:137
-msgid "Budget Transaction"
-msgstr "Transacción de presupuesto"
+msgid "Budget Decrease Transaction"
+msgstr "Transacción de decrecimiento de presupuesto"
 
 #: sicop/budget/models/budget.py:138
-msgid "Budget Transactions"
-msgstr "Transacciones de presupuesto"
+msgid "Budget Decrease Transactions"
+msgstr "Transacciones de decrecimiento de presupuesto"
 
 #: sicop/budget/models/budget.py:150 sicop/budget/models/budget.py:151
 #: sicop/templates/sicop/frontend/base/main_menu.html:38
