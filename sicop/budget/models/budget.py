@@ -88,6 +88,10 @@ class Budget(BaseModel):
     def current_budget(self) -> float:
         return self.initial_value + self.budget_addition - self.budget_decrease
 
+    @property
+    def old_budget(self) -> float:
+        return self.initial_value - (self.initial_value + self.budget_addition - self.budget_decrease)
+
     class Meta:
         """Meta definition for Budget."""
 
