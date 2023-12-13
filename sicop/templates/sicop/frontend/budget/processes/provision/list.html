@@ -46,7 +46,6 @@
                     <th>{% trans "Project" %}</th>
                     <th>{% trans "Managed by" %}</th>
                     <th>{% trans 'Requerido' %}</th>
-                    <th>{% trans "Provisionado" %}</th>
                     <th>{% trans "Finished?" %}</th>
                     <th>{% trans 'Detail' %}</th>
                   </tr>
@@ -57,7 +56,6 @@
                       <td>{{ provision_cart.id }}</td>
                       <td>{{ provision_cart.project }}</td>
                       <td>{{ provision_cart.user }}</td>
-                      <td>${{ provision_cart.total_required_amount| intcomma }}</td>
                       <td>${{ provision_cart.total_provisioned_amount| intcomma }}</td>
                       <td>
                         <div class="row">
@@ -92,10 +90,9 @@
                   <tr>
                     <th>{% trans "ID" %}</th>
                     <th>{% trans "Project" %}</th>
-                    <th>{% trans "Cost center" %}</th>
-                    <th>{% trans 'Budget provision description' %}</th>
-                    <th>{% trans "Unit value" %}</th>
-                    <th>{% trans "Status" %}</th>
+                    <th>{% trans "Managed by" %}</th>
+                    <th>{% trans 'Requerido' %}</th>
+                    <th>{% trans "Finished?" %}</th>
                     <th>{% trans 'Detail' %}</th>
                   </tr>
                 </tfoot>
