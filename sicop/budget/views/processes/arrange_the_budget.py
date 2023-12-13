@@ -8,7 +8,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 
 from sicop.area.models import AreaMember
-from sicop.budget.models import Budget
+from sicop.budget.models import BudetTransaction, Budget
 from sicop.budget.models.provision import ProvisionCart, ProvisionCartBudget
 from sicop.project.models import Project
 
@@ -43,6 +43,7 @@ class BudgetProvisionCreate(LoginRequiredMixin, TemplateView):
             provision_cart = ProvisionCart.objects.create(user=user)
         cost_centers_list = []
         cost_centers_ids = []
+
         if provision_cart.project is not None:
             budgets = Budget.objects.filter(project=provision_cart.project)
 
@@ -65,6 +66,21 @@ class BudgetProvisionCreate(LoginRequiredMixin, TemplateView):
         try:
             cart_id = request.POST.get("cart_id")
             cart = ProvisionCart.objects.get(id=cart_id)
+            project = cart.project
+            provision_cart_budgets = ProvisionCartBudget.objects.filter(provision_cart=cart)
+            for provision_cart_budget in provision_cart_budgets:
+                budget = provision_cart_budget.budget
+                old_value = budget.current_budget
+                new_value = old_value - provision_cart_budget.provosioned_amount
+                provosioned_amount = provision_cart_budget.provosioned_amount
+                budget.budget_decrease = budget.budget_decrease + provosioned_amount
+                budget.save()
+                BudetTransaction.objects.create(
+                    budget=budget,
+                    old_amount=old_value,
+                    new_amount=new_value,
+                    project=project,
+                )
             cart.finished = True
             cart.status = False
             cart.save()

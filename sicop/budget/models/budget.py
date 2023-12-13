@@ -103,6 +103,45 @@ class Budget(BaseModel):
         super().save(*args, **kwargs)
 
 
+class BudetTransaction(BaseModel):
+    """Model definition for Budet Transaction."""
+
+    budget = models.ForeignKey(
+        Budget,
+        verbose_name=_("Budget"),
+        help_text=_("Budget"),
+        related_name="budget_transactions",
+        on_delete=models.DO_NOTHING,
+    )
+    old_amount = models.FloatField(
+        _("Old amount"),
+        help_text=_("Old amount"),
+        default=0,
+    )
+    new_amount = models.FloatField(
+        _("New amount"),
+        help_text=_("New amount"),
+        default=0,
+    )
+    project = models.ForeignKey(
+        Project,
+        verbose_name=_("Project"),
+        help_text=_("Project"),
+        related_name="project_transactions",
+        on_delete=models.DO_NOTHING,
+    )
+
+    class Meta:
+        """Meta definition for Budet Transaction."""
+
+        verbose_name = _("Budget Transaction")
+        verbose_name_plural = _("Budget Transactions")
+
+    def __str__(self):
+        """Unicode representation of Budet Transaction."""
+        return f"{self.budget} ({self.project})"
+
+
 class BudgetCap(BaseModel):
     """Model definition for Budget Cap."""
 
