@@ -1995,7 +1995,7 @@ msgstr "Datos de apropiación presupuestal"
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:15
 #: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:7
 msgid "Budget provision list"
-msgstr "Lista de provisión de presupuesto"
+msgstr "Lista de apropiación de presupuesto"
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:47
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:93
