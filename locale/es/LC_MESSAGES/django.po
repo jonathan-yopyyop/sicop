@@ -1858,7 +1858,7 @@ msgstr "Crear provisión de presupuesto"
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:24
 #: sicop/templates/sicop/frontend/budget/processes/provision/detail.html:24
 msgid "Budget provision data"
-msgstr "Datos de provisión de presupuesto"
+msgstr "Datos de apropiación presupuestal"
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:64
 #: sicop/templates/sicop/frontend/budget/processes/provision/detail.html:62
@@ -1989,7 +1989,7 @@ msgstr "Éste ítem ya ha sido seleccionado"
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/detail.html:7
 msgid "Budget provition detail"
-msgstr "Datos de provisión de presupuesto"
+msgstr "Datos de apropiación presupuestal"
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:7
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:15
