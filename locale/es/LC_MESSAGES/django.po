@@ -2009,7 +2009,7 @@ msgstr "¿Terminado?"
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1878
 msgid "This CAP has not yet been approved"
-msgstr "Este CAP no ha sido aprobado aúb"
+msgstr "Este CAP no ha sido aprobado aún"
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1918
 msgid "Print"
