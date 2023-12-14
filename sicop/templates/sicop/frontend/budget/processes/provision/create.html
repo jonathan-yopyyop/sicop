@@ -220,10 +220,10 @@
                                 <div class="col-5">
                                   <div class="row">
                                     <div class="col-5">
-                                      <label class="col-md-12 label-control required" for="projectinput4">{% trans "Required" %}</label>
+                                      <label class="col-md-12 label-control required text-white" for="projectinput4">{% trans "Required" %}</label>
                                     </div>
                                     <div class="col-7">
-                                      <input type="text" id="project_total" class="form-control form-control-sm" value="${{provision_cart.total_required_amount}}" readonly/>
+                                      <input type="hidden" id="project_total" class="form-control form-control-sm" value="${{provision_cart.total_required_amount}}" readonly/>
                                       <input type="hidden" id="project_total_hidden" value="{{provision_cart.total_required_amount}}"/>
                                     </div>
                                   </div>
@@ -252,11 +252,19 @@
                         </div>
                       <form method="post">
                         {% csrf_token %}
-                        <div class="form-actions">
-                          <input type="hidden" name="cart_id" id="cart_id" value="{{provision_cart.id}}">
-                          <button type="submit" class="btn btn-primary" id="create_budget" >
-                            <i class="fa fa-edit"></i> {% trans 'Create' %}
-                          </button>
+                        <div class="col-md-12">
+                          <div class="form-group row">
+                            <div class="col-12">
+                              <label class="col-md-12 label-control required" for="projectinput4">{% trans "Observation" %}</label>
+                              <textarea class="form-control form-control-sm" name="observation" id="" cols="30" rows="10"></textarea>
+                            </div>
+                          </div>
+                          <div class="form-actions">
+                            <input type="hidden" name="cart_id" id="cart_id" value="{{provision_cart.id}}">
+                            <button type="submit" class="btn btn-primary" id="create_budget" >
+                              <i class="fa fa-edit"></i> {% trans 'Create' %}
+                            </button>
+                          </div>
                         </div>
                       </form>
                     </div>
@@ -337,6 +345,7 @@
         
         cart_id = $('#cart_id').val();
         // To update totals in cart
+        var project_provision_hidden = parseFloat($('#project_provision_hidden').val());
         post_values={
           'total_required_amount': project_total_hidden,
           'total_provisioned_amount': project_provision_hidden,
@@ -402,6 +411,7 @@
 
     }
     $(document).ready(function() {
+      
       // Project selecion
       $("#project").change(function() {
         var project_id = $("#project").val()

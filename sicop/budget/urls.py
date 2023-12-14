@@ -22,6 +22,8 @@ from sicop.budget.views import (
     GetBudgetIncart,
     GetBudgetsByCostCenterAndProject,
     GetCostCentersByProject,
+    ProvisionCartApprovalList,
+    ProvisionCartApprovalUpdateView,
     ProvisionCertificateView,
     RemoveItemToProvisionInCart,
     UpdateProjectInCart,
@@ -153,5 +155,15 @@ urlpatterns = [
         "budget/provision/cart/<int:cart_id>/budget/<int:budget_id>/",
         GetBudgetIncart.as_view(),
         name="get_budget_in_cart",
+    ),
+    path(
+        "budget/provision/approval/list/",
+        ProvisionCartApprovalList.as_view(),
+        name="provision_cart_approval_list",
+    ),
+    path(
+        "budget/provision/approval/update/<int:pk>/",
+        ProvisionCartApprovalUpdateView.as_view(),
+        name="provision_cart_approval_update",
     ),
 ]

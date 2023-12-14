@@ -48,6 +48,11 @@ class ProjectType(BaseModel):
         help_text=_("Name"),
         max_length=150,
     )
+    cap = models.FloatField(
+        _("Cap"),
+        help_text=_("Cap"),
+        default=0.0,
+    )
 
     class Meta:
         """Meta definition for Project Type."""

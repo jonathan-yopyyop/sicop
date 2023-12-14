@@ -1825,8 +1825,8 @@
                             <td class="column2 style43 s">{{provision_cart_budget.budget.cost_centers.first.name}}</td>
                             <td class="column3 style44 s style45" colspan="2">{{provision_cart_budget.budget}}</td>
                             <td class="column5 style46 s style45" colspan="5">{{provision_cart_budget.budget.budget_description}}</td>
-                            <td class="column10 style47 n style45" colspan="2">$ {{provision_cart.total_required_amount|intcomma}}</td>
-                            <td class="column12 style60 n style61" colspan="2">$ {{provision_cart_budget.provosioned_amount|intcomma}}</td>
+                            <td class="column10 style47 n style45" colspan="2">$ {{provision_cart_budget.provosioned_amount|intcomma}}</td>
+                            <td class="column12 style60 n style61" colspan="2">$ {{provision_cart.total_required_amount|intcomma}}</td>
                             <td class="column14 style62 n">$ {{provision_cart_budget.budget.old_budget|intcomma}}</td>
                             <td class="column15 style60 f style61" colspan="2">$ {{provision_cart_budget.budget.current_budget|intcomma}}</td>
                             <td class="column17 style3 null"></td>
@@ -1836,7 +1836,7 @@
                         <tr class="row13">
                             <td class="column0 style1 null"></td>
                             <td class="column1 style5 s">OBSERVACIONES</td>
-                            <td class="column2 style27 null style16" colspan="15"></td>
+                            <td class="column2 style27 null style16" colspan="15">{{provision_cart.observation}}</td>
                             <td class="column17 style3 null"></td>
                         </tr>
                         <tr class="row14">
@@ -1864,14 +1864,22 @@
                             <td class="column1 style40 s style17" colspan="16">APROBACIÓN</td>
                             <td class="column17 style3 null"></td>
                         </tr>
-                        <tr class="row16">
-                            <td class="column0 style1 null"></td>
-                            <td class="column1 style5 s">NOMBRE</td>
-                            <td class="column2 style26 s style16" colspan="7">Indicar el nombre</td>
-                            <td class="column9 style63 s">FIRMA</td>
-                            <td class="column10 style51 s style53" colspan="7">Será una anunciado que relacione el usuario que aprueba</td>
-                            <td class="column17 style3 null"></td>
-                        </tr>
+                        <tr class="row13">
+                          <td class="column0 style1 null"></td>
+                          <td class="column1 style5 s">NOMBRE</td>
+                          <td class="column2 style27 null style16" colspan="15">
+                            {% if provision_cart.approved %}
+                              {% if provision_cart.total_provisioned_amount >= project.project_type.cap %}
+                              This CAP has already been approved
+                              {% else %}
+                              This CAP does not require approval
+                              {% endif %}
+                            {% else %}
+                              {% trans "This CAP has not yet been approved" %}
+                            {% endif %}
+                          </td>
+                          <td class="column17 style3 null"></td>
+                      </tr>
                         <tr class="row17">
                             <td class="column0 style1 null"></td>
                             <td class="column1 style48 s style50" colspan="16">Por medio del presente documento se confirma aprobación presupuestal de acuerdo a la información relacionada</td>
@@ -1902,13 +1910,14 @@
                 </div>
             </div>
         </div>
-
         <!-- buttons section -->
         <div class="col-xl-3 col-md-4 col-12 action-btns">
             <div class="card">
                 <div class="card-body p-2">
-                    <a href="#" class="btn btn-primary btn-block mb-1 print-invoice"> <i class="feather icon-printer mr-25 common-size"></i> {% trans "Print" %}</a>
-                    <a href="{% url 'budget_provision_list' %}" class="btn btn-info btn-block mb-1"><i class="feather icon-list mr-25 common-size"></i> {% trans "Go to list" %}</a>
+                  {% if provision_cart.approved %}
+                  <a href="#" class="btn btn-primary btn-block mb-1 print-invoice"> <i class="feather icon-printer mr-25 common-size"></i> {% trans "Print" %}</a>  
+                  {% endif %}
+                  <a href="{% url 'budget_provision_list' %}" class="btn btn-info btn-block mb-1"><i class="feather icon-list mr-25 common-size"></i> {% trans "Go to list" %}</a>
                 </div>
             </div>
         </div>

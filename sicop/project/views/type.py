@@ -35,6 +35,7 @@ class ProjectTypeCreateView(PermissionRequiredMixin, LoginRequiredMixin, CreateV
     template_name = "sicop/frontend/project/type/create.html"
     fields = [
         "name",
+        "cap",
     ]
     permission_required = "project.add_projecttype"
 
@@ -60,6 +61,7 @@ class ProjectTypeUpdateView(PermissionRequiredMixin, LoginRequiredMixin, UpdateV
     template_name = "sicop/frontend/project/type/update.html"
     fields = [
         "name",
+        "cap",
         "status",
     ]
     context_object_name = "type"

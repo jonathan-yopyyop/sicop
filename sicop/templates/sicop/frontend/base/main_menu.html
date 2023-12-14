@@ -141,6 +141,9 @@
           <li {% if '/budget/provision/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'budget_provision_list' %}">{% trans 'Apropiation' %}</a>
           </li>
+          <li {% if 'budget/provision/approval/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'provision_cart_approval_list' %}">{% trans 'Approval' %}</a>
+          </li>
         </ul>
       </li>
     </ul>

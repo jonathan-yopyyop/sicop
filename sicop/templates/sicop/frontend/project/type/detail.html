@@ -62,6 +62,18 @@
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
+                              <label for="projectinput1">{% trans 'Cap' %}</label>
+                              <input type="text"
+                                     id="projectinput1"
+                                     class="form-control"
+                                     placeholder="{% trans 'Cap' %}"
+                                     disabled
+                                     name="cap"
+                                     value="{{ type.cap }}" />
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
                               <label for="projectinput3">{% trans 'Status' %}</label>
                               <select class="select2 form-control" disabled name="status">
                                 <option value="True" {% if type.status %}selected{% endif %}>{% trans 'Active' %}</option>

@@ -6,6 +6,7 @@ from sicop.budget.models import (
     BudgetDecreaseTransaction,
     BudgetDescription,
     ProvisionCart,
+    ProvisionCartApproval,
     ProvisionCartBudget,
 )
 
@@ -177,3 +178,20 @@ class BudgetDecreaseTransactionAdmin(admin.ModelAdmin):
 
     def has_delete_permission(self, request, obj=None):
         return False
+
+
+@admin.register(ProvisionCartApproval)
+class ProvisionCartApprovalAdmin(admin.ModelAdmin):
+    list_display = [
+        "provision_cart",
+        "id",
+        "must_be_approved_by",
+        "approved",
+    ]
+    readonly_fields = [
+        "id",
+        "provision_cart",
+        "must_be_approved_by",
+        "created_at",
+        "updated_at",
+    ]

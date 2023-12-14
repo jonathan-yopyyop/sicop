@@ -23,6 +23,8 @@ from sicop.budget.views.processes.arrange_the_budget import (  # noqa
     BudgetProvisionDetail,
     BudgetProvisionList,
     GetBudgetIncart,
+    ProvisionCartApprovalList,
+    ProvisionCartApprovalUpdateView,
     ProvisionCertificateView,
 )
 from sicop.budget.views.processes.cart import (  # noqa

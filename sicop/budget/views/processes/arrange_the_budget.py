@@ -1,15 +1,16 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect, JsonResponse
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import UpdateView
 from django.views.generic.list import ListView
 
 from sicop.area.models import AreaMember
 from sicop.budget.models import Budget, BudgetDecreaseTransaction
-from sicop.budget.models.provision import ProvisionCart, ProvisionCartBudget
+from sicop.budget.models.provision import ProvisionCart, ProvisionCartApproval, ProvisionCartBudget
 from sicop.project.models import Project
 
 
@@ -65,22 +66,40 @@ class BudgetProvisionCreate(LoginRequiredMixin, TemplateView):
     def post(self, request, *args, **kwargs):
         try:
             cart_id = request.POST.get("cart_id")
+            observation = request.POST.get("observation")
             cart = ProvisionCart.objects.get(id=cart_id)
+            cart.observation = observation
             project = cart.project
             provision_cart_budgets = ProvisionCartBudget.objects.filter(provision_cart=cart)
+            project_type = project.project_type
+            if cart.total_provisioned_amount >= project_type.cap:
+                cart.requires_approval = True
+                cart.approved = False
+            else:
+                cart.requires_approval = False
+                cart.approved = True
+            cart.save()
             for provision_cart_budget in provision_cart_budgets:
-                budget = provision_cart_budget.budget
-                old_value = budget.current_budget
-                new_value = old_value - provision_cart_budget.provosioned_amount
-                provosioned_amount = provision_cart_budget.provosioned_amount
-                budget.budget_decrease = budget.budget_decrease + provosioned_amount
-                budget.save()
-                BudgetDecreaseTransaction.objects.create(
-                    budget=budget,
-                    old_amount=old_value,
-                    new_amount=new_value,
-                    project=project,
-                )
+                if not cart.requires_approval:
+                    budget = provision_cart_budget.budget
+                    old_value = budget.current_budget
+                    new_value = old_value - provision_cart_budget.provosioned_amount
+                    provosioned_amount = provision_cart_budget.provosioned_amount
+                    budget.budget_decrease = budget.budget_decrease + provosioned_amount
+                    budget.save()
+                    BudgetDecreaseTransaction.objects.create(
+                        budget=budget,
+                        old_amount=old_value,
+                        new_amount=new_value,
+                        project=project,
+                    )
+                    cart.approved = True
+                    cart.save()
+                else:
+                    ProvisionCartApproval.objects.create(
+                        provision_cart=cart,
+                        must_be_approved_by=cart.user,
+                    )
             cart.finished = True
             cart.status = False
             cart.save()
@@ -88,7 +107,7 @@ class BudgetProvisionCreate(LoginRequiredMixin, TemplateView):
             messages.success(request, _("Budget provision created successfully."))
             return HttpResponseRedirect(
                 reverse(
-                    "budget_provision_detail",
+                    "provision_certificate",
                     kwargs={"pk": cart_id},
                 )
             )
@@ -140,6 +159,7 @@ class ProvisionCertificateView(TemplateView):
         area_rol = area_member.role
         context["provision_cart"] = cart
         context["area_rol"] = area_rol
+        context["project"] = cart.project
         return context
 
 
@@ -174,3 +194,75 @@ class GetBudgetIncart(LoginRequiredMixin, TemplateView):
                     "result": f"error: {str(e)}",
                 }
             )
+
+
+class ProvisionCartApprovalList(LoginRequiredMixin, ListView):
+    template_name = "sicop/frontend/budget/processes/provision/approval/list.html"
+    model = ProvisionCartApproval
+    context_object_name = "provision_carts"
+
+    def get_queryset(self):
+        user = self.request.user
+        queryset = ProvisionCartApproval.objects.filter(
+            approved=False,
+            must_be_approved_by=user,
+        )
+        return queryset
+
+
+class ProvisionCartApprovalUpdateView(LoginRequiredMixin, UpdateView):
+    """View for Area update."""
+
+    model = ProvisionCartApproval
+    template_name = "sicop/frontend/budget/processes/provision/approval/update.html"
+    fields = [
+        "approved",
+        "observation",
+    ]
+    context_object_name = "provision_cart_approval"
+    # permission_required = "area.change_area"
+
+    def form_valid(self, form):
+        """If the form is valid, save the associated model."""
+        messages.success(self.request, _("Approval updated successfully"))
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        """If the form is invalid, render the invalid form."""
+        messages.warning(self.request, _("Approval not updated, please review the data"))
+        return super().form_invalid(form)
+
+    def get_success_url(self) -> str:
+        return reverse_lazy(
+            "provision_cart_approval_list",
+        )
+
+    def post(self, request, *args: str, **kwargs):
+        request.POST._mutable = True
+        if request.POST.get("approved") == "True":
+            request.POST["approved"] = True
+            # Go to approve
+            provision_cart_approval = ProvisionCartApproval.objects.get(id=kwargs["pk"])
+            provision_cart = provision_cart_approval.provision_cart
+            provision_cart_budgets = ProvisionCartBudget.objects.filter(provision_cart=provision_cart)
+            cart = provision_cart_approval.provision_cart
+            project = cart.project
+            cart.approved = True
+            cart.save()
+            for provision_cart_budget in provision_cart_budgets:
+                budget = provision_cart_budget.budget
+                old_value = budget.current_budget
+                new_value = old_value - provision_cart_budget.provosioned_amount
+                provosioned_amount = provision_cart_budget.provosioned_amount
+                budget.budget_decrease = budget.budget_decrease + provosioned_amount
+                budget.save()
+                BudgetDecreaseTransaction.objects.create(
+                    budget=budget,
+                    old_amount=old_value,
+                    new_amount=new_value,
+                    project=project,
+                )
+        else:
+            request.POST["approved"] = False
+        print(request.POST)
+        return super().post(request, *args, **kwargs)
