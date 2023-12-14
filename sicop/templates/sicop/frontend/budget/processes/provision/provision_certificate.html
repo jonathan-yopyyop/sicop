@@ -1836,7 +1836,7 @@
                         <tr class="row13">
                             <td class="column0 style1 null"></td>
                             <td class="column1 style5 s">OBSERVACIONES</td>
-                            <td class="column2 style27 null style16" colspan="15">{{provision_cart.observation}}</td>
+                            <td class="column2 style27 null style16" colspan="15">{% if provision_cart.observation is None %}{% else %}{{provision_cart.observation}}{% endif %}</td>
                             <td class="column17 style3 null"></td>
                         </tr>
                         <tr class="row14">
