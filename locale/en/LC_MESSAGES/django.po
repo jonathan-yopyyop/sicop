@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-15 11:08-0500\n"
+"POT-Creation-Date: 2023-12-15 12:08-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -166,6 +166,8 @@ msgstr ""
 #: sicop/templates/sicop/frontend/base/main_menu.html:93
 #: sicop/templates/sicop/frontend/base/main_menu.html:100
 #: sicop/templates/sicop/frontend/base/main_menu.html:138
+#: sicop/templates/sicop/frontend/budget/kardex/list.html:24
+#: sicop/templates/sicop/frontend/budget/kardex/list.html:48
 #: sicop/templates/sicop/frontend/project/project/create.html:99
 #: sicop/templates/sicop/frontend/project/project/create.html:103
 #: sicop/templates/sicop/frontend/project/project/detail.html:102
@@ -185,7 +187,7 @@ msgid "Expense concept"
 msgstr ""
 
 #: sicop/budget/models/budget.py:22 sicop/budget/models/budget.py:23
-#: sicop/budget/models/budget.py:165 sicop/budget/models/budget.py:166
+#: sicop/budget/models/budget.py:179 sicop/budget/models/budget.py:180
 #: sicop/project/models.py:84 sicop/project/models.py:85
 #: sicop/templates/sicop/frontend/area/area/create.html:66
 #: sicop/templates/sicop/frontend/area/area/create.html:70
@@ -236,7 +238,7 @@ msgid "Budget Descriptions"
 msgstr ""
 
 #: sicop/budget/models/budget.py:42 sicop/budget/models/budget.py:43
-#: sicop/budget/models/budget.py:132 sicop/budget/models/budget.py:133
+#: sicop/budget/models/budget.py:137 sicop/budget/models/budget.py:138
 #: sicop/budget/models/provision.py:14 sicop/budget/models/provision.py:15
 #: sicop/project/apps.py:8 sicop/project/models.py:157
 #: sicop/project/models.py:158
@@ -246,6 +248,8 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/budget/list.html:46
 #: sicop/templates/sicop/frontend/budget/budget/list.html:80
 #: sicop/templates/sicop/frontend/budget/budget/update.html:57
+#: sicop/templates/sicop/frontend/budget/kardex/list.html:25
+#: sicop/templates/sicop/frontend/budget/kardex/list.html:49
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:34
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:66
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:76
@@ -323,18 +327,26 @@ msgid "Old amount"
 msgstr ""
 
 #: sicop/budget/models/budget.py:126 sicop/budget/models/budget.py:127
+msgid "Requiered amount"
+msgstr ""
+
+#: sicop/budget/models/budget.py:131 sicop/budget/models/budget.py:132
 msgid "New amount"
 msgstr ""
 
-#: sicop/budget/models/budget.py:141
+#: sicop/budget/models/budget.py:144 sicop/budget/models/budget.py:145
+msgid "Provision cart"
+msgstr ""
+
+#: sicop/budget/models/budget.py:155
 msgid "Budget Decrease Transaction"
 msgstr ""
 
-#: sicop/budget/models/budget.py:142
+#: sicop/budget/models/budget.py:156
 msgid "Budget Decrease Transactions"
 msgstr ""
 
-#: sicop/budget/models/budget.py:154 sicop/budget/models/budget.py:155
+#: sicop/budget/models/budget.py:168 sicop/budget/models/budget.py:169
 #: sicop/templates/sicop/frontend/base/main_menu.html:38
 #: sicop/templates/sicop/frontend/budget/cap/create.html:55
 #: sicop/templates/sicop/frontend/budget/cap/detail.html:54
@@ -344,7 +356,7 @@ msgstr ""
 msgid "Business unit"
 msgstr ""
 
-#: sicop/budget/models/budget.py:160 sicop/budget/models/budget.py:161
+#: sicop/budget/models/budget.py:174 sicop/budget/models/budget.py:175
 #: sicop/project/models.py:52 sicop/project/models.py:53
 #: sicop/templates/sicop/frontend/budget/cap/create.html:65
 #: sicop/templates/sicop/frontend/budget/cap/create.html:69
@@ -462,15 +474,15 @@ msgstr ""
 msgid "Budget description not updated"
 msgstr ""
 
-#: sicop/budget/views/processes/arrange_the_budget.py:107
+#: sicop/budget/views/processes/arrange_the_budget.py:109
 msgid "Budget provision created successfully."
 msgstr ""
 
-#: sicop/budget/views/processes/arrange_the_budget.py:227
+#: sicop/budget/views/processes/arrange_the_budget.py:235
 msgid "Approval updated successfully"
 msgstr ""
 
-#: sicop/budget/views/processes/arrange_the_budget.py:232
+#: sicop/budget/views/processes/arrange_the_budget.py:240
 msgid "Approval not updated, please review the data"
 msgstr ""
 
@@ -1434,6 +1446,8 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/cap/list.html:80
 #: sicop/templates/sicop/frontend/budget/description/list.html:45
 #: sicop/templates/sicop/frontend/budget/description/list.html:77
+#: sicop/templates/sicop/frontend/budget/kardex/list.html:23
+#: sicop/templates/sicop/frontend/budget/kardex/list.html:47
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:33
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:65
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:45
@@ -1716,6 +1730,10 @@ msgstr ""
 msgid "Approval"
 msgstr ""
 
+#: sicop/templates/sicop/frontend/base/main_menu.html:148
+msgid "Transactions"
+msgstr ""
+
 #: sicop/templates/sicop/frontend/budget/budget/create.html:7
 msgid "Budget Create"
 msgstr ""
@@ -1826,6 +1844,34 @@ msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/description/update.html:50
 msgid "Budget description Info"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/kardex/list.html:7
+msgid "Budget apropiation transaction list"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/kardex/list.html:15
+msgid "Budget apropiation kardex"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/kardex/list.html:26
+#: sicop/templates/sicop/frontend/budget/kardex/list.html:50
+msgid "CAP"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/kardex/list.html:27
+#: sicop/templates/sicop/frontend/budget/kardex/list.html:51
+msgid "Old value"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/kardex/list.html:28
+#: sicop/templates/sicop/frontend/budget/kardex/list.html:52
+msgid "Requiered value"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/kardex/list.html:29
+#: sicop/templates/sicop/frontend/budget/kardex/list.html:53
+msgid "New value"
 msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:7
@@ -2018,10 +2064,6 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:49
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:95
 msgid "Finished?"
-msgstr ""
-
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1873
-msgid "This CAP has already been approved"
 msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1875

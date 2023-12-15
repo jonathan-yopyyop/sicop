@@ -122,6 +122,11 @@ class BudgetDecreaseTransaction(BaseModel):
         help_text=_("Old amount"),
         default=0,
     )
+    requiered_amount = models.FloatField(
+        _("Requiered amount"),
+        help_text=_("Requiered amount"),
+        default=0,
+    )
     new_amount = models.FloatField(
         _("New amount"),
         help_text=_("New amount"),
@@ -133,6 +138,15 @@ class BudgetDecreaseTransaction(BaseModel):
         help_text=_("Project"),
         related_name="project_transactions",
         on_delete=models.DO_NOTHING,
+    )
+    provision_cart = models.ForeignKey(
+        "budget.ProvisionCart",
+        verbose_name=_("Provision cart"),
+        help_text=_("Provision cart"),
+        related_name="provision_cart_transactions",
+        on_delete=models.DO_NOTHING,
+        blank=True,
+        null=True,
     )
 
     class Meta:

@@ -7,6 +7,7 @@ from sicop.budget.views import (
     BudgetCapListView,
     BudgetCapUpdateView,
     BudgetCreateView,
+    BudgetDecreaseTransactionListView,
     BudgetDescriptionCreateView,
     BudgetDescriptionDetailView,
     BudgetDescriptionListView,
@@ -165,5 +166,10 @@ urlpatterns = [
         "budget/provision/approval/update/<int:pk>/",
         ProvisionCartApprovalUpdateView.as_view(),
         name="provision_cart_approval_update",
+    ),
+    path(
+        "budget/decrease_transaction/list/",
+        BudgetDecreaseTransactionListView.as_view(),
+        name="budget_decrease_transaction_list",
     ),
 ]

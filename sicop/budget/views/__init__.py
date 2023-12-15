@@ -6,6 +6,7 @@ from sicop.budget.views.budget import (  # noqa
     GetBudgetDetailById,
     GetBudgetsByCostCenterAndProject,
 )
+from sicop.budget.views.budget_kardex import BudgetDecreaseTransactionListView  # noqa
 from sicop.budget.views.cap import (  # noqa
     BudgetCapCreateView,
     BudgetCapDetailView,

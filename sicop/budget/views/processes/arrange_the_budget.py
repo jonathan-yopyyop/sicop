@@ -90,8 +90,10 @@ class BudgetProvisionCreate(LoginRequiredMixin, TemplateView):
                     BudgetDecreaseTransaction.objects.create(
                         budget=budget,
                         old_amount=old_value,
+                        requiered_amount=old_value - new_value,
                         new_amount=new_value,
                         project=project,
+                        provision_cart=cart,
                     )
                     cart.approved = True
                     cart.save()
@@ -265,8 +267,10 @@ class ProvisionCartApprovalUpdateView(LoginRequiredMixin, UpdateView):
                 BudgetDecreaseTransaction.objects.create(
                     budget=budget,
                     old_amount=old_value,
+                    requiered_amount=old_value - new_value,
                     new_amount=new_value,
                     project=project,
+                    provision_cart=cart,
                 )
         else:
             request.POST["approved"] = False
