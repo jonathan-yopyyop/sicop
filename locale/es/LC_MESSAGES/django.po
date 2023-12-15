@@ -1904,11 +1904,11 @@ msgstr "Aprobar?"
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:63
 msgid "Approve"
-msgstr "Aprobar"
+msgstr "Aprobado"
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:64
 msgid "Reject"
-msgstr "Rechazar"
+msgstr "Rechazado"
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:7
 msgid "Budget provition Create"

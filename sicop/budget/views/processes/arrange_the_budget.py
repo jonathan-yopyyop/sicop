@@ -242,7 +242,8 @@ class ProvisionCartApprovalUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self) -> str:
         return reverse_lazy(
-            "provision_cart_approval_list",
+            "provision_certificate",
+            kwargs={"pk": self.object.provision_cart.id},
         )
 
     def post(self, request, *args: str, **kwargs):

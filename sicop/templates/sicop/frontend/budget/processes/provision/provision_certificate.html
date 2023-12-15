@@ -1920,6 +1920,40 @@
                   <a href="{% url 'budget_provision_list' %}" class="btn btn-info btn-block mb-1"><i class="feather icon-list mr-25 common-size"></i> {% trans "Go to list" %}</a>
                 </div>
             </div>
+            <!-- Approval card -->
+            
+            {% if provision_cart_approval is not None %}  
+            <div class="card">
+              <div class="card-body p-2">
+                <form action="{% url 'provision_cart_approval_update' provision_cart_approval.id %}" method="post">
+                  {% csrf_token %}
+                  <div class="row">
+                    <div class="col-12">
+                      <label for="projectinput3">{% trans 'Approve?' %}</label>
+                      <select class="select2 form-control" name="approved" {% if provision_cart_approval.approved %} disabled {% endif %}>
+                        <option value="True" {% if provision_cart_approval.approved %}selected{% endif %}>{% trans 'Approve' %}</option>
+                        <option value="False" {% if not provision_cart_approval.approved %}selected{% endif %}>{% trans 'Reject' %}</option>
+                      </select>
+                    </div>
+                    <div class="col-12">
+                      <label for="projectinput1">{% trans 'Observation' %}</label>
+                      <textarea class="form-control" name="observation" id="" cols="30" rows="6" {% if provision_cart_approval.approved %} disabled {% endif %}>{{provision_cart_approval.observation}}</textarea>
+                    </div>
+                    <div class="col-12">
+                      <hr>
+                    </div>
+                    {% if not provision_cart_approval.approved %}
+                    <div class="col-12">
+                      <button type="submit" class="btn btn-primary btn-block mb-1">
+                        <i class="feather icon-check mr-25 common-size"></i> {% trans "Approve" %}
+                      </button>
+                    </div>
+                    {% endif %}
+                  </div>
+                </form>
+              </div>
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>
