@@ -39,10 +39,10 @@
                   </div>
                 {% endfor %}
               {% endif %}
-              <table class="table table-striped table-bordered zero-configuration">
+              <table class="table table-striped table-bordered default-ordering" id="ordered_table">
                 <thead>
                   <tr>
-                    <th>{% trans "CAP ID" %}</th>
+                    <th>{% trans "CAP" %}</th>
                     <th>{% trans "Project" %}</th>
                     <th>{% trans "Budgets" %}</th>
                     <th>{% trans "Managed by" %}</th>
@@ -96,7 +96,7 @@
                 </tbody>
                 <tfoot>
                   <tr>
-                    <th>{% trans "CAP ID" %}</th>
+                    <th>{% trans "CAP" %}</th>
                     <th>{% trans "Project" %}</th>
                     <th>{% trans "Budgets" %}</th>
                     <th>{% trans "Managed by" %}</th>
@@ -112,4 +112,11 @@
       </div>
     </div>
   </section>
+  <script>
+    $(document).ready(function() {
+      $('#ordered_table').DataTable({
+        "order": [[ 0, "desc" ]]
+      });
+    });
+  </script>
 {% endblock content %}

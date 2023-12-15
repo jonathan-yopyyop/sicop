@@ -2059,12 +2059,12 @@ msgstr "Lista de apropiación de presupuesto"
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:47
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:93
 msgid "Managed by"
-msgstr "Administrador por"
+msgstr "Administrador"
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:49
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:95
 msgid "Finished?"
-msgstr "¿Terminado?"
+msgstr "Completo?"
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1875
 msgid "This CAP does not require approval"
