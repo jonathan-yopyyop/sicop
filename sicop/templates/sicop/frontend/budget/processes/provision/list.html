@@ -42,8 +42,9 @@
               <table class="table table-striped table-bordered zero-configuration">
                 <thead>
                   <tr>
-                    <th>{% trans "ID" %}</th>
+                    <th>{% trans "CAP ID" %}</th>
                     <th>{% trans "Project" %}</th>
+                    <th>{% trans "Budgets" %}</th>
                     <th>{% trans "Managed by" %}</th>
                     <th>{% trans "Provisionado" %}</th>
                     <th>{% trans "Finished?" %}</th>
@@ -55,6 +56,13 @@
                     <tr>
                       <td>{{ provision_cart.id }}</td>
                       <td>{{ provision_cart.project }}</td>
+                      <td>
+                        <ul>
+                          {% for budget in provision_cart.provision_cart_provision_budgets.all %}
+                            <li>{{ budget.budget.budget_description }}</li>
+                          {% endfor %}
+                        </ul>
+                      </td>
                       <td>{{ provision_cart.user.name }}</td>
                       <td>${{ provision_cart.total_provisioned_amount| intcomma }}</td>
                       <td>
@@ -88,8 +96,9 @@
                 </tbody>
                 <tfoot>
                   <tr>
-                    <th>{% trans "ID" %}</th>
+                    <th>{% trans "CAP ID" %}</th>
                     <th>{% trans "Project" %}</th>
+                    <th>{% trans "Budgets" %}</th>
                     <th>{% trans "Managed by" %}</th>
                     <th>{% trans "Provisionado" %}</th>
                     <th>{% trans "Finished?" %}</th>
