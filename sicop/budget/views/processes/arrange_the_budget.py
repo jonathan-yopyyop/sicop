@@ -157,9 +157,15 @@ class ProvisionCertificateView(TemplateView):
         user = cart.user
         area_member = AreaMember.objects.get(user=user)
         area_rol = area_member.role
+        if ProvisionCartApproval.objects.filter(provision_cart=cart).exists():
+            provision_cart_approval = ProvisionCartApproval.objects.get(provision_cart=cart)
+        else:
+            provision_cart_approval = None
+        context["provision_cart_approval"] = provision_cart_approval
         context["provision_cart"] = cart
         context["area_rol"] = area_rol
         context["project"] = cart.project
+        context["area_member"] = area_member
         return context
 
 

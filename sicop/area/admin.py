@@ -41,6 +41,7 @@ class AreaMembersAdmin(admin.ModelAdmin):
         "id",
         "user",
         "area",
+        "job_title",
         "created_at",
         "updated_at",
     )
@@ -51,6 +52,7 @@ class AreaMembersAdmin(admin.ModelAdmin):
     search_fields = (
         "user",
         "area",
+        "job_title",
     )
     ordering = (
         "user",

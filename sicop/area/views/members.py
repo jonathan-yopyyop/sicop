@@ -50,6 +50,7 @@ class AreaMemberUpdateView(PermissionRequiredMixin, LoginRequiredMixin, UpdateVi
         "area",
         "status",
         "role",
+        "job_title",
     ]
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
@@ -96,6 +97,7 @@ class AreaMemberCreateView(PermissionRequiredMixin, LoginRequiredMixin, CreateVi
         "user",
         "area",
         "role",
+        "job_title",
     ]
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:

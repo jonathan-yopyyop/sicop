@@ -87,6 +87,18 @@
                               </select>
                             </div>
                           </div>
+                          <div class="col-6">
+                            <div class="form-group">
+                              <label for="projectinput1">{% trans 'Job title' %}</label>
+                              <input type="text"
+                              disabled
+                                     id="job_title"
+                                     class="form-control"
+                                     placeholder="{% trans 'Job title' %}"
+                                     name="job_title"
+                                     value="{{member.job_title}}" />
+                            </div>
+                          </div>
                           <div class="col-md-6">
                             <div class="form-group">
                               <label for="projectinput3">{% trans 'Status' %}</label>

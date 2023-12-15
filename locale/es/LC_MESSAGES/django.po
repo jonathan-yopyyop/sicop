@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-13 21:47-0500\n"
+"POT-Creation-Date: 2023-12-15 11:08-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,7 +55,7 @@ msgstr "Inglés"
 #: sicop/area/apps.py:8 sicop/area/models.py:29 sicop/area/models.py:48
 #: sicop/area/models.py:49 sicop/project/models.py:130
 #: sicop/project/models.py:131
-#: sicop/templates/sicop/frontend/area/member/create.html:82
+#: sicop/templates/sicop/frontend/area/member/create.html:93
 #: sicop/templates/sicop/frontend/area/member/detail.html:66
 #: sicop/templates/sicop/frontend/area/member/list.html:48
 #: sicop/templates/sicop/frontend/area/member/list.html:84
@@ -91,19 +91,23 @@ msgstr "Usuario"
 msgid "Area Role"
 msgstr "Rol del área"
 
-#: sicop/area/models.py:68
+#: sicop/area/models.py:61 sicop/area/models.py:62 sicop/users/models.py:23
+msgid "Job Title"
+msgstr "Cargo"
+
+#: sicop/area/models.py:76
 msgid "Area Member"
 msgstr "Miembro del área"
 
-#: sicop/area/models.py:69
+#: sicop/area/models.py:77
 msgid "Area Members"
 msgstr "Miembros del área"
 
-#: sicop/area/models.py:80 sicop/area/models.py:81
+#: sicop/area/models.py:88 sicop/area/models.py:89
 msgid "Area Role code"
 msgstr "Código de rol del área"
 
-#: sicop/area/models.py:86 sicop/area/models.py:87
+#: sicop/area/models.py:94 sicop/area/models.py:95
 msgid "Area Role name"
 msgstr "Nombre del rol del área"
 
@@ -123,19 +127,19 @@ msgstr "Área creada con éxito"
 msgid "Area not created, please review the data"
 msgstr "Área no creada, por favor revise los datos"
 
-#: sicop/area/views/members.py:64
+#: sicop/area/views/members.py:65
 msgid "Area member updated successfully"
 msgstr "Miembro del área actualizado con éxito"
 
-#: sicop/area/views/members.py:69
+#: sicop/area/views/members.py:70
 msgid "Area member not updated, please review the data"
 msgstr "Miembro del área no actualizado, por favor revise los datos"
 
-#: sicop/area/views/members.py:112
+#: sicop/area/views/members.py:114
 msgid "Area member created successfully"
 msgstr "Miembro del área creado con éxito"
 
-#: sicop/area/views/members.py:117
+#: sicop/area/views/members.py:119
 msgid "Area member not created, please review the data"
 msgstr "Miembro del área no creado, por favor revise los datos"
 
@@ -1228,10 +1232,10 @@ msgstr "Información del área"
 #: sicop/templates/sicop/frontend/area/area/list.html:48
 #: sicop/templates/sicop/frontend/area/area/list.html:80
 #: sicop/templates/sicop/frontend/area/area/update.html:77
-#: sicop/templates/sicop/frontend/area/member/detail.html:92
+#: sicop/templates/sicop/frontend/area/member/detail.html:104
 #: sicop/templates/sicop/frontend/area/member/list.html:50
 #: sicop/templates/sicop/frontend/area/member/list.html:86
-#: sicop/templates/sicop/frontend/area/member/update.html:95
+#: sicop/templates/sicop/frontend/area/member/update.html:106
 #: sicop/templates/sicop/frontend/area/role/detail.html:77
 #: sicop/templates/sicop/frontend/area/role/list.html:48
 #: sicop/templates/sicop/frontend/area/role/list.html:80
@@ -1274,7 +1278,7 @@ msgstr "Información del área"
 #: sicop/templates/sicop/frontend/project/type/list.html:48
 #: sicop/templates/sicop/frontend/project/type/list.html:80
 #: sicop/templates/sicop/frontend/project/type/update.html:79
-#: sicop/users/models.py:22
+#: sicop/users/models.py:36
 msgid "Status"
 msgstr "Estado"
 
@@ -1282,9 +1286,9 @@ msgstr "Estado"
 #: sicop/templates/sicop/frontend/area/area/detail.html:79
 #: sicop/templates/sicop/frontend/area/area/list.html:60
 #: sicop/templates/sicop/frontend/area/area/update.html:79
-#: sicop/templates/sicop/frontend/area/member/detail.html:94
+#: sicop/templates/sicop/frontend/area/member/detail.html:106
 #: sicop/templates/sicop/frontend/area/member/list.html:64
-#: sicop/templates/sicop/frontend/area/member/update.html:97
+#: sicop/templates/sicop/frontend/area/member/update.html:108
 #: sicop/templates/sicop/frontend/area/role/detail.html:79
 #: sicop/templates/sicop/frontend/area/role/list.html:60
 #: sicop/templates/sicop/frontend/area/role/update.html:68
@@ -1326,9 +1330,9 @@ msgstr "Activo"
 #: sicop/templates/sicop/frontend/area/area/detail.html:80
 #: sicop/templates/sicop/frontend/area/area/list.html:62
 #: sicop/templates/sicop/frontend/area/area/update.html:80
-#: sicop/templates/sicop/frontend/area/member/detail.html:95
+#: sicop/templates/sicop/frontend/area/member/detail.html:107
 #: sicop/templates/sicop/frontend/area/member/list.html:66
-#: sicop/templates/sicop/frontend/area/member/update.html:98
+#: sicop/templates/sicop/frontend/area/member/update.html:109
 #: sicop/templates/sicop/frontend/area/role/detail.html:80
 #: sicop/templates/sicop/frontend/area/role/list.html:62
 #: sicop/templates/sicop/frontend/area/role/update.html:69
@@ -1367,7 +1371,7 @@ msgid "Inactive"
 msgstr "Inactivo"
 
 #: sicop/templates/sicop/frontend/area/area/create.html:88
-#: sicop/templates/sicop/frontend/area/member/create.html:98
+#: sicop/templates/sicop/frontend/area/member/create.html:109
 #: sicop/templates/sicop/frontend/area/role/create.html:69
 #: sicop/templates/sicop/frontend/budget/budget/create.html:129
 #: sicop/templates/sicop/frontend/budget/cap/create.html:89
@@ -1394,7 +1398,7 @@ msgid "Area detail"
 msgstr "Detalle del área"
 
 #: sicop/templates/sicop/frontend/area/area/detail.html:89
-#: sicop/templates/sicop/frontend/area/member/detail.html:104
+#: sicop/templates/sicop/frontend/area/member/detail.html:116
 #: sicop/templates/sicop/frontend/area/role/detail.html:89
 #: sicop/templates/sicop/frontend/budget/budget/detail.html:159
 #: sicop/templates/sicop/frontend/budget/cap/detail.html:103
@@ -1497,7 +1501,7 @@ msgid "Area Update"
 msgstr "Actualizar área"
 
 #: sicop/templates/sicop/frontend/area/area/update.html:88
-#: sicop/templates/sicop/frontend/area/member/update.html:106
+#: sicop/templates/sicop/frontend/area/member/update.html:117
 #: sicop/templates/sicop/frontend/area/role/update.html:77
 #: sicop/templates/sicop/frontend/budget/budget/update.html:137
 #: sicop/templates/sicop/frontend/budget/cap/update.html:101
@@ -1544,7 +1548,16 @@ msgstr "Seleccionar un usuario"
 msgid "Role"
 msgstr "Rol"
 
-#: sicop/templates/sicop/frontend/area/member/create.html:84
+#: sicop/templates/sicop/frontend/area/member/create.html:82
+#: sicop/templates/sicop/frontend/area/member/create.html:86
+#: sicop/templates/sicop/frontend/area/member/detail.html:92
+#: sicop/templates/sicop/frontend/area/member/detail.html:97
+#: sicop/templates/sicop/frontend/area/member/update.html:95
+#: sicop/templates/sicop/frontend/area/member/update.html:99
+msgid "Job title"
+msgstr "Cargo"
+
+#: sicop/templates/sicop/frontend/area/member/create.html:95
 #: sicop/templates/sicop/frontend/project/project/create.html:112
 msgid "Select an area"
 msgstr "Seleccionar un área"
@@ -2006,6 +2019,14 @@ msgstr "Administrador por"
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:95
 msgid "Finished?"
 msgstr "¿Terminado?"
+
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1873
+msgid "This CAP has already been approved"
+msgstr "este CAP ya ha sido aprobado"
+
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1875
+msgid "This CAP does not require approval"
+msgstr "Este CAP no requiere aprobación"
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1878
 msgid "This CAP has not yet been approved"
@@ -2569,11 +2590,11 @@ msgstr "Confirmar contraseña"
 msgid "Register"
 msgstr "Registrarse"
 
-#: sicop/users/models.py:17
+#: sicop/users/models.py:18
 msgid "Name of User"
 msgstr "Nombre de usuario"
 
-#: sicop/users/models.py:20
+#: sicop/users/models.py:31
 msgid "email address"
 msgstr "dirección de correo electrónico"
 

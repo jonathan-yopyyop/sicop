@@ -1792,7 +1792,7 @@
                             <td class="column1 style22 s style16" colspan="3">NOMBRE SOLICITANTE</td>
                             <td class="column4 style23 s style16" colspan="5">{{provision_cart.user.name}}</td>
                             <td class="column9 style5 s">CARGO</td>
-                            <td class="column10 style24 s style16" colspan="7">{{area_rol}}</td>
+                            <td class="column10 style24 s style16" colspan="7">{{area_member.job_title}}</td>
                             <td class="column17 style3 null"></td>
                         </tr>
                         <tr class="row7">
@@ -1870,9 +1870,9 @@
                           <td class="column2 style27 null style16" colspan="15">
                             {% if provision_cart.approved %}
                               {% if provision_cart.total_provisioned_amount >= project.project_type.cap %}
-                              This CAP has already been approved
+                              {{provision_cart_approval.must_be_approved_by.name}}
                               {% else %}
-                              This CAP does not require approval
+                              {% trans "This CAP does not require approval" %}
                               {% endif %}
                             {% else %}
                               {% trans "This CAP has not yet been approved" %}

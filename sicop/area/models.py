@@ -57,6 +57,14 @@ class AreaMember(BaseModel):
         null=True,
         blank=True,
     )
+    job_title = models.CharField(
+        _("Job Title"),
+        help_text=_("Job Title"),
+        max_length=150,
+        null=True,
+        blank=True,
+        default="",
+    )
 
     @property
     def user_full_name(self):
