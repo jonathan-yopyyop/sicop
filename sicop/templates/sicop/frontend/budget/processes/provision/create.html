@@ -300,6 +300,10 @@
       var budget_value_id = 'budget_value_id_' + id;
 
       var taked_value = parseFloat( $('#' + taked_id).val());
+      if (isNaN(taked_value)) {
+        taked_value = 0;
+        // $('#' + taked_id).val(taked_value);
+      }
       var budget_value = parseFloat( $('#' + budget_value_id).val());
       var available_budget = budget_value - taked_value;
       var formated_available_budget = new Intl.NumberFormat('en-US', {
@@ -399,12 +403,19 @@
         
 
       } else {
-        Swal.fire({
-          title: "{% trans 'Error' %}",
-          text: "{% trans 'The value to be used in the provision cannot be greater than the available value.' %}",
-          type: 'error',
-          confirmButtonText: "{% trans 'Ok' %}"
-        });
+        console.log(`${budget_value} >= ${taked_value}`)
+        // check if taked_value variables is nana
+        if (isNaN(taked_value)) {
+          taked_value = 0;
+        }else{
+          Swal.fire({
+            title: "{% trans 'Error' %}",
+            text: "{% trans 'The value to be used in the provision cannot be greater than the available value.' %}",
+            type: 'error',
+            confirmButtonText: "{% trans 'Ok' %}"
+          });
+        }
+        
       }
       //--
       

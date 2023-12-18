@@ -3,6 +3,7 @@
 {% load static %}
 {% load i18n %}
 {% load humanize %}
+{% load budget_tags %}
 {% block page_title %}
   {% trans 'Budget provision list' %}
 {% endblock page_title %}
@@ -1818,7 +1819,7 @@
                             <td class="column17 style3 null"></td>
                         </tr>
                         {% for provision_cart_budget in provision_cart.provision_cart_provision_budgets.all %}
-
+                        {% sum_2_values provision_cart_budget.provosioned_amount provision_cart_budget.budget.old_budget as value %}
                         <tr class="row10">
                             <td class="column0 style1 null"></td>
                             <td class="column1 style43 s">{{provision_cart_budget.budget.cost_centers.first.cost_center_id}} {{provision_cart_budget.budget.cost_centers.first.name}}</td>
@@ -1826,7 +1827,7 @@
                             <td class="column3 style44 s style45" colspan="2">{{provision_cart_budget.budget}}</td>
                             <td class="column5 style46 s style45" colspan="5">{{provision_cart_budget.budget.budget_description}}</td>
                             <td class="column10 style47 n style45" colspan="2">$ {{provision_cart_budget.provosioned_amount|intcomma}}</td>
-                            <td class="column12 style60 n style61" colspan="2">$ {{provision_cart_budget.budget.unit_value|intcomma}}</td>
+                            <td class="column12 style60 n style61" colspan="2">$ {{value|intcomma}}</td>
                             <td class="column14 style62 n">$ {{provision_cart_budget.budget.old_budget|intcomma}}</td>
                             <td class="column15 style60 f style61" colspan="2">$ {{provision_cart_budget.budget.current_budget|intcomma}}</td>
                             <td class="column17 style3 null"></td>
