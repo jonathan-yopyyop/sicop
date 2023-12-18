@@ -170,6 +170,6 @@ urlpatterns = [
     path(
         "budget/decrease_transaction/list/",
         BudgetDecreaseTransactionListView.as_view(),
-        name="budget_decrease_transaction_list",
+        name="budget_decrease_control_transaction_list",
     ),
 ]

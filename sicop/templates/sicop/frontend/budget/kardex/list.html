@@ -29,21 +29,21 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {% for budget_decrease_transaction in budget_decrease_transactions %}
+                  {% for budget_decrease_control_transaction in budget_decrease_control_transactions %}
                     <tr>
-                      <td>{{ budget_decrease_transaction.provision_cart.id }}</td>
-                      <td>{{ budget_decrease_transaction.project }}</td>
+                      <td>{{ budget_decrease_control_transaction.provision_cart.id }}</td>
+                      <td>{{ budget_decrease_control_transaction.project }}</td>
                       <td>
                         <ul>
-                          {% for budget in budget_decrease_transaction.provision_cart.provision_cart_provision_budgets.all %}
+                          {% for budget in budget_decrease_control_transaction.provision_cart.provision_cart_provision_budgets.all %}
                             <li>{{ budget.budget.budget_description }}</li>
                           {% endfor %}
                         </ul>
                       </td>
                       
-                      <td>${{ budget_decrease_transaction.old_amount| intcomma }}</td>
-                      <td>${{ budget_decrease_transaction.requiered_amount| intcomma }}</td>
-                      <td>${{ budget_decrease_transaction.new_amount| intcomma }}</td>
+                      <td>${{ budget_decrease_control_transaction.old_amount| intcomma }}</td>
+                      <td>${{ budget_decrease_control_transaction.requiered_amount| intcomma }}</td>
+                      <td>${{ budget_decrease_control_transaction.new_amount| intcomma }}</td>
                     </tr>
                   {% endfor %}
                 </tbody>

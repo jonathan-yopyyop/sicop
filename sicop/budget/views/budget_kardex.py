@@ -9,5 +9,5 @@ class BudgetDecreaseTransactionListView(PermissionRequiredMixin, LoginRequiredMi
 
     model = BudgetDecreaseTransaction
     template_name = "sicop/frontend/budget/kardex/list.html"
-    context_object_name = "budget_decrease_transactions"
+    context_object_name = "budget_decrease_control_transactions"
     permission_required = "budget.view_budget"

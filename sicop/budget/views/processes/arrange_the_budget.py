@@ -85,7 +85,7 @@ class BudgetProvisionCreate(LoginRequiredMixin, TemplateView):
                     old_value = budget.current_budget
                     new_value = old_value - provision_cart_budget.provosioned_amount
                     provosioned_amount = provision_cart_budget.provosioned_amount
-                    budget.budget_decrease = budget.budget_decrease + provosioned_amount
+                    budget.budget_decrease_control = budget.budget_decrease_control + provosioned_amount
                     budget.save()
                     BudgetDecreaseTransaction.objects.create(
                         budget=budget,
@@ -178,6 +178,7 @@ class GetBudgetIncart(LoginRequiredMixin, TemplateView):
             budget_id = kwargs["budget_id"]
             cart = ProvisionCart.objects.get(id=cart_id)
             budget = Budget.objects.get(id=budget_id)
+            current_budget = budget.current_budget - budget.budget_decrease_control
             provision_cart_budget = ProvisionCartBudget.objects.filter(
                 provision_cart_id=cart.id,
                 budget_id=budget_id,
@@ -190,7 +191,7 @@ class GetBudgetIncart(LoginRequiredMixin, TemplateView):
                     "provision_cart_budget_id": provision_cart_budget.id,
                     "provosioned_amount": provision_cart_budget.provosioned_amount,
                     "available_budget": provision_cart_budget.available_budget,
-                    "current_budget": budget.current_budget,
+                    "current_budget": current_budget,
                     "result": "ok",
                 }
             )
@@ -263,7 +264,7 @@ class ProvisionCartApprovalUpdateView(LoginRequiredMixin, UpdateView):
                 old_value = budget.current_budget
                 new_value = old_value - provision_cart_budget.provosioned_amount
                 provosioned_amount = provision_cart_budget.provosioned_amount
-                budget.budget_decrease = budget.budget_decrease + provosioned_amount
+                budget.budget_decrease_control = budget.budget_decrease_control + provosioned_amount
                 budget.save()
                 BudgetDecreaseTransaction.objects.create(
                     budget=budget,

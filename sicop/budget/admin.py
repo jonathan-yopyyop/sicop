@@ -48,13 +48,13 @@ class BudgetAdmin(admin.ModelAdmin):
     list_filter = (
         "project",
         "budget_description",
-        "budget_description",
         "status",
     )
     readonly_fields = (
         "initial_value",
         "budget_addition",
         "budget_decrease",
+        "budget_decrease_control",
         "created_at",
         "updated_at",
     )

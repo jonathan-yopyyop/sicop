@@ -83,14 +83,19 @@ class Budget(BaseModel):
         help_text=_("Budget decrease"),
         default=0,
     )
+    budget_decrease_control = models.FloatField(
+        _("Budget decrease control"),
+        help_text=_("Budget decrease control"),
+        default=0,
+    )
 
     @property
     def current_budget(self) -> float:
-        return self.initial_value + self.budget_addition - self.budget_decrease
+        return (self.initial_value * self.quantity) + self.budget_addition - self.budget_decrease
 
     @property
     def old_budget(self) -> float:
-        return self.initial_value - (self.initial_value + self.budget_addition - self.budget_decrease)
+        return self.initial_value - (self.initial_value + self.budget_addition - self.budget_decrease_control)
 
     class Meta:
         """Meta definition for Budget."""

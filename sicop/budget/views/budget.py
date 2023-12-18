@@ -131,7 +131,8 @@ class GetBudgetsByCostCenterAndProject(LoginRequiredMixin, TemplateView):
         items = []
 
         for budget in budgets:
-            amount = f"{float(budget.current_budget):0,.2f}"
+            budget_ready = budget.current_budget - budget.budget_decrease_control
+            amount = f"{float(budget_ready):0,.2f}"
             items.append(
                 [
                     budget.id,
