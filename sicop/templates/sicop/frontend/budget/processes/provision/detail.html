@@ -165,10 +165,10 @@
                               <div class="col-5">
                                 <div class="row">
                                   <div class="col-5">
-                                    <label class="col-md-12 label-control required" for="projectinput4">{% trans "Required" %}</label>
+                                    <label class="col-md-12 label-control required text-white" for="projectinput4">{% trans "Required" %}</label>
                                   </div>
                                   <div class="col-7">
-                                    <input type="text" id="project_total" class="form-control form-control-sm" value="${{provision_cart.total_required_amount}}" readonly/>
+                                    <input type="hidden" id="project_total" class="form-control form-control-sm" value="${{provision_cart.total_required_amount}}" readonly/>
                                     <input type="hidden" id="project_total_hidden" value="{{provision_cart.total_required_amount}}"/>
                                   </div>
                                 </div>
@@ -183,10 +183,10 @@
                                 </div>
                                 <div class="row pt-1">
                                   <div class="col-5">
-                                    <label class="col-md-12 label-control required" for="projectinput4">{% trans "Missing" %}</label>
+                                    <label class="col-md-12 label-control required text-white" for="projectinput4">{% trans "Missing" %}</label>
                                   </div>
                                   <div class="col-7">
-                                    <input type="text" id="project_missing" class="form-control form-control-sm" value="${{provision_cart.total_missing_amount}}" readonly/>
+                                    <input type="hidden" id="project_missing" class="form-control form-control-sm" value="${{provision_cart.total_missing_amount}}" readonly/>
                                     <input type="hidden" id="project_missing_hidden" value="{{provision_cart.total_missing_amount}}"/>
                                   </div>
                                 </div>
