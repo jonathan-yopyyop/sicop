@@ -141,14 +141,11 @@
                                           <input type="hidden" id="budget_value_id_{{provision_cart_budget.budget.id}}" value ="{{provision_cart_budget.budget.initial_value}}">
                                         </td>
                                         <td>
-                                          <input 
-                                            type="text" id="taked_{{provision_cart_budget.budget.id}}" 
-                                            class="form-control form-control-sm table_item_class" 
-                                            value ="{% if provision_cart_budget.provosioned_amount > 0 %} {{provision_cart_budget.provosioned_amount}}{% endif %}" 
-                                            disabled
-                                          />
+                                          ${{provision_cart_budget.provosioned_amount|intcomma}}
                                         </td>
-                                        
+                                        <td>
+                                          ${{provision_cart_budget.available_budget|intcomma}}
+                                        </td>
                                       </tr>  
                                     {% endfor %}
                                   </tbody>
