@@ -46,6 +46,7 @@
                     <th>{% trans "Project" %}</th>
                     <th>{% trans 'Budget description' %}</th>
                     <th>{% trans "Current budget" %}</th>
+                    <th>{% trans "Current budget" %}</th>
                     <th>{% trans "Status" %}</th>
                     <th>{% trans 'Detail' %}</th>
                   </tr>
@@ -56,6 +57,7 @@
                       <td>{{ budget.id }}</td>
                       <td>{{ budget.project }}</td>
                       <td>{{ budget.budget_description }}</td>
+                      <td>{{ budget.quantity }}</td>
                       <td>${{ budget.current_budget }}</td>
                       <td>
                         {% if budget.status %}
@@ -80,6 +82,7 @@
                     <th>{% trans "Project" %}</th>
                     <th>{% trans 'Budget description' %}</th>
                     <th>{% trans "Current budget" %}</th>
+                    <th>{% trans "Quantity" %}</th>
                     <th>{% trans "Status" %}</th>
                     <th>{% trans 'Detail' %}</th>
                   </tr>
