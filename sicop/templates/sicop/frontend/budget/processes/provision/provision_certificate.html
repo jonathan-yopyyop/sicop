@@ -1826,6 +1826,9 @@
                         
                         {% sum_2_values provision_cart_budget.provosioned_amount provision_cart_budget.available_budget as sum_value3 %}
                         {% rest_2_values provision_cart_budget.budget.current_budget sum_value3 as rest_value2 %}
+
+                        {% sum_2_values provision_cart_budget.provosioned_amount rest_value2 as sum_value4 %}
+                        {% rest_2_values provision_cart_budget.budget.current_budget sum_value4 as rest_value3 %}
                         
                         <tr class="row10">
                             <td class="column0 style1 null"></td>
@@ -1836,7 +1839,7 @@
                             <td class="column10 style47 n style45" colspan="2">$ {{provision_cart_budget.provosioned_amount|intcomma}}</td>
                             <td class="column12 style60 n style61" colspan="2">$ {{provision_cart_budget.budget.current_budget|intcomma}}</td>
                             <td class="column14 style62 n">$ {{rest_value2|intcomma}}</td>
-                            <td class="column15 style60 f style61" colspan="2">{{provision_cart_budget.budget.current_budget}} - ({{provision_cart_budget.provosioned_amount}} + {{rest_value2}}) = $ {{rest_value|intcomma}}</td>
+                            <td class="column15 style60 f style61" colspan="2">{{provision_cart_budget.budget.current_budget}} - ({{provision_cart_budget.provosioned_amount}} + {{rest_value2}}) = $ {{rest_value3|intcomma}}</td>
                             <td class="column17 style3 null"></td>
                         </tr>
                         {% endfor %}
