@@ -91,7 +91,7 @@ class Budget(BaseModel):
 
     @property
     def current_budget(self) -> float:
-        return (self.initial_value * self.quantity) + self.budget_addition - self.budget_decrease
+        return (self.initial_value) + self.budget_addition - self.budget_decrease
 
     @property
     def old_budget(self) -> float:
@@ -108,7 +108,7 @@ class Budget(BaseModel):
         return f"{self.project} ({self.budget_description})"
 
     def save(self, *args, **kwargs):
-        self.initial_value = float(self.unit_value) * float(self.quantity)
+        self.initial_value = float(self.unit_value)
         super().save(*args, **kwargs)
 
 
