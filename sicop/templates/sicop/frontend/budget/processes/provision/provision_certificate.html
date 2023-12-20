@@ -1822,7 +1822,7 @@
                         {% sum_2_values provision_cart_budget.provosioned_amount provision_cart_budget.budget.old_budget as sum_value %}
                         {% rest_2_values provision_cart_budget.budget.current_budget provision_cart_budget.budget.budget_decrease_control as rest_value %}
                         {% sum_2_values provision_cart_budget.budget.budget_decrease_control provision_cart_budget.provosioned_amount as sum_value1 %}
-                        {% rest_2_values provision_cart_budget.budget.budget_decrease_control provision_cart_budget.provosioned_amount as rest_value1 %}
+                        {% rest_2_values provision_cart_budget.provosioned_amount provision_cart_budget.budget.budget_decrease_control as rest_value1 %}
                         <tr class="row10">
                             <td class="column0 style1 null"></td>
                             <td class="column1 style43 s">{{provision_cart_budget.budget.cost_centers.first.cost_center_id}} {{provision_cart_budget.budget.cost_centers.first.name}}</td>
