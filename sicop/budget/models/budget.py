@@ -108,7 +108,7 @@ class Budget(BaseModel):
         return f"{self.project} ({self.budget_description})"
 
     def save(self, *args, **kwargs):
-        self.initial_value = float(self.unit_value)
+        self.initial_value = float(self.unit_value) * float(self.quantity)
         super().save(*args, **kwargs)
 
 
