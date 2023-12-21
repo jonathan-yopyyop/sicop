@@ -132,6 +132,8 @@ class GetBudgetsByCostCenterAndProject(LoginRequiredMixin, TemplateView):
 
         for budget in budgets:
             budget_ready = budget.current_budget - budget.budget_decrease_control
+            if budget_ready < 0:
+                budget_ready = 0
             amount = f"{float(budget_ready):0,.2f}"
             items.append(
                 [
