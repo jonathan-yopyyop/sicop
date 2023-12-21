@@ -192,7 +192,7 @@ class GetBudgetIncart(LoginRequiredMixin, TemplateView):
                     "budget_item": str(budget),
                     "provision_cart_budget_id": provision_cart_budget.id,
                     "provosioned_amount": provision_cart_budget.provosioned_amount,
-                    "available_budget": provision_cart_budget.available_budget,
+                    "available_budget": budget.available_budget,
                     "current_budget": current_budget,
                     "result": "ok",
                 }
