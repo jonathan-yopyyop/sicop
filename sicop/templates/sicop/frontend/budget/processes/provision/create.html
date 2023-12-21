@@ -530,6 +530,7 @@
       $("#add_button").click(function() {
         var item_id = $("#items").val();
         url = "{% url 'get_budget_detail_by_id' 0 %}".replace('0', item_id);
+        console.log(url)
         $.get(url, function(data) {})
           .done(function(data) {
             var budget = data.amount;
