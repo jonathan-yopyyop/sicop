@@ -179,6 +179,8 @@ class GetBudgetIncart(LoginRequiredMixin, TemplateView):
             cart = ProvisionCart.objects.get(id=cart_id)
             budget = Budget.objects.get(id=budget_id)
             current_budget = budget.current_budget - budget.budget_decrease_control
+            if current_budget < 0:
+                current_budget = 0
             provision_cart_budget = ProvisionCartBudget.objects.filter(
                 provision_cart_id=cart.id,
                 budget_id=budget_id,
