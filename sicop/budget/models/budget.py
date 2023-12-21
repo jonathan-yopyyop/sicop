@@ -97,6 +97,14 @@ class Budget(BaseModel):
     def old_budget(self) -> float:
         return self.initial_value - (self.initial_value + self.budget_addition - self.budget_decrease_control)
 
+    @property
+    def available_budget(self) -> float:
+        budget_provision_budgets = self.budget_provision_budgets.all()
+        provosioned_amount = 0
+        for budget_provision_budget in budget_provision_budgets:
+            provosioned_amount = provosioned_amount + budget_provision_budget.provosioned_amount
+        return self.current_budget - provosioned_amount
+
     class Meta:
         """Meta definition for Budget."""
 
