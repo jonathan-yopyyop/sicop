@@ -131,7 +131,7 @@ class GetBudgetsByCostCenterAndProject(LoginRequiredMixin, TemplateView):
         items = []
 
         for budget in budgets:
-            budget_ready = budget.current_budget - budget.budget_decrease_control
+            budget_ready = budget.available_budget
             if budget_ready < 0:
                 budget_ready = 0
             amount = f"{float(budget_ready):0,.2f}"
@@ -139,7 +139,7 @@ class GetBudgetsByCostCenterAndProject(LoginRequiredMixin, TemplateView):
                 [
                     budget.id,
                     f"{budget.budget_description} (${amount})",
-                    budget.current_budget,
+                    budget.available_budget,
                 ]
             )
         return JsonResponse(
