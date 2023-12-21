@@ -154,7 +154,7 @@ class GetBudgetDetailById(LoginRequiredMixin, TemplateView):
     def get(self, request, *args, **kwargs):
         budget_id = kwargs["pk"]
         budget = Budget.objects.get(id=budget_id)
-        amount = budget.current_budget
+        amount = budget.available_budget
 
         return JsonResponse(
             {
