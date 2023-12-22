@@ -94,9 +94,10 @@ class ProvisionCartAdmin(admin.ModelAdmin):
         "project",
         "user",
         "total_provisioned_amount",
+        "approved",
+        "status",
         "created_at",
         "updated_at",
-        "status",
     )
     search_fields = (
         "project__name",
