@@ -54,9 +54,9 @@
                       <td>${{ provision_cart.provision_cart.total_provisioned_amount| intcomma }}</td>
                       <td>
                         {% if provision_cart.approved %}
-                        <span class="badge rounded-pill text-bg-success">{% trans "Approved" %}</span>
+                          <span class="badge rounded-pill text-bg-success">{% trans "Approved" %}</span>
                         {% else %}
-                        <span class="badge rounded-pill text-bg-warning">{% trans "Pending" %}</span>
+                          <span class="badge rounded-pill text-bg-warning">{% trans "Pending" %}</span>
                         {% endif %}
                       </td>
                       <td>
