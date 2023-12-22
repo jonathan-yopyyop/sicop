@@ -35,9 +35,8 @@
                       <td>{{ budget_decrease_control_transaction.project }}</td>
                       <td>
                         <ul>
-                          {% for budget in budget_decrease_control_transaction.provision_cart.provision_cart_provision_budgets.all %}
-                            <li>{{ budget.budget.budget_description }}</li>
-                          {% endfor %}
+                          {{ budget_decrease_control_transaction.budget.budget_description }}</li>
+                          
                         </ul>
                       </td>
                       
