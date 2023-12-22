@@ -213,10 +213,10 @@ class ProvisionCartApprovalList(LoginRequiredMixin, ListView):
     context_object_name = "provision_carts"
 
     def get_queryset(self):
-        user = self.request.user
+        # user = self.request.user
         queryset = ProvisionCartApproval.objects.filter(
             approved=False,
-            must_be_approved_by=user,
+            # must_be_approved_by=user,
         )
         return queryset
 
