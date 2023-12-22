@@ -346,12 +346,10 @@
     function provisioningValues(id){
       var taked_id = 'taked_' + id;
       var budget_value_id = 'budget_value_id_' + id;
-      var budget_value_id = 'budget_value_id_' + id;
 
       var taked_value = parseFloat( $('#' + taked_id).val());
       if (isNaN(taked_value)) {
         taked_value = 0;
-        // $('#' + taked_id).val(taked_value);
       }
       var budget_value = parseFloat( $('#' + budget_value_id).val());
       var available_budget = budget_value - taked_value;
@@ -415,6 +413,8 @@
             type: 'error',
             confirmButtonText: "{% trans 'Ok' %}"
           });
+          $('#' + taked_id).val('0');
+          provisioningValues(id)
         }
         
       }
