@@ -48,6 +48,7 @@
                     <th>{% trans "Managed by" %}</th>
                     <th>{% trans "Provisionado" %}</th>
                     <th>{% trans "Finished?" %}</th>
+                    <th>{% trans "Finished?" %}</th>
                     <th>{% trans 'Detail' %}</th>
                   </tr>
                 </thead>
@@ -66,37 +67,42 @@
                       <td>{{ provision_cart.user.name }}</td>
                       <td>${{ provision_cart.total_provisioned_amount| intcomma }}</td>
                       <td>
+                        {% if provision_cart.finished %}
+                          <div class="badge badge-success">{% trans 'Yes' %}</div>
+                        {% else %}
+                          <div class="badge badge-warning">{% trans 'No' %}</div>
+                        {% endif %}
+                      </td>
+                      <td>
+                        {% if provision_cart.approved %}
+                          <div class="badge badge-success">{% trans 'Approved' %}</div>
+                        {% else %}
+                          <div class="badge badge-warning">{% trans 'Pending' %}</div>
+                        {% endif %}
+                      </td>
+                        
+                          </div>
+                          
+                        </div>
+
+                      </td>
+                      <td>
                         <div class="row">
-                          <div class="col-2">
-                            {% if provision_cart.finished %}
-                              <div class="badge badge-success">{% trans 'Yes' %}</div>
-                            {% else %}
-                              <div class="badge badge-warning">{% trans 'No' %}</div>
-                            {% endif %}
-                          </div>
-                          <div class="col-8">
-                            {% if provision_cart.approved %}
-                              <div class="badge badge-success">{% trans 'Approved' %}</div>
-                            {% else %}
-                              <div class="badge badge-warning">{% trans 'Pending' %}</div>
-                            {% endif %}
-                          </div>
-                          <div class="col-2">
+                          <div class="col-6">
                             <a href="{% url 'provision_certificate' provision_cart.id %}">
                               <button type="button" class="btn btn-sm btn-icon btn-primary mr-1 mb-1">
                                 <i class="fa fa-file-pdf-o"></i>
                               </button>
                             </a>
                           </div>
+                          <div class="col-6">
+                            <a href="{% url 'budget_provision_detail' provision_cart.id %}">
+                              <button type="button" class="btn btn-sm btn-icon btn-primary mr-1 mb-1">
+                                <i class="fa fa-eye"></i>
+                              </button>
+                            </a>
+                          </div>
                         </div>
-
-                      </td>
-                      <td>
-                        <a href="{% url 'budget_provision_detail' provision_cart.id %}">
-                          <button type="button" class="btn btn-sm btn-icon btn-primary mr-1 mb-1">
-                            <i class="fa fa-eye"></i>
-                          </button>
-                        </a>
                       </td>
                     </tr>
                   {% endfor %}
@@ -109,6 +115,7 @@
                     <th>{% trans "Managed by" %}</th>
                     <th>{% trans "Provisionado" %}</th>
                     <th>{% trans "Finished?" %}</th>
+                    <th>{% trans "Approved?" %}</th>
                     <th>{% trans 'Detail' %}</th>
                   </tr>
                 </tfoot>
