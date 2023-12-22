@@ -99,7 +99,7 @@ class Budget(BaseModel):
 
     @property
     def available_budget(self) -> float:
-        budget_provision_budgets = self.budget_provision_budgets.all()
+        budget_provision_budgets = self.budget_provision_budgets.filter(approved=True)
         provosioned_amount = 0
         for budget_provision_budget in budget_provision_budgets:
             provosioned_amount = provosioned_amount + budget_provision_budget.provosioned_amount
