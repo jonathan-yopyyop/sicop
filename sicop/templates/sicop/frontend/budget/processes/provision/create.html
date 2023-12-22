@@ -294,7 +294,7 @@
           console.log(`Error $("#project").change ${data}`);
         })
     }
-    function updateTotalsInCart(project_total_hidden, project_provision_hidden, project_missing_hidden, cart_id){
+    function updateTotalsInCart(project_total_hidden, project_missing_hidden, cart_id){
       var project_provision_hidden = parseFloat($('#project_provision_hidden').val());
         post_values={
           'total_required_amount': project_total_hidden,
@@ -397,40 +397,12 @@
         $("#project_missing_hidden").val(project_missing_hidden);
         
         cart_id = $('#cart_id').val();
-        var project_provision_hidden = parseFloat($('#project_provision_hidden').val());
+        
         // To update totals in cart
-        updateTotalsInCart(project_total_hidden, project_provision_hidden, project_missing_hidden, cart_id)
+        updateTotalsInCart(project_total_hidden, project_missing_hidden, cart_id)
         //To updata provision_amount_in_cart in budget
         updateProvisionAmountInCartAndBudget(cart_id, id, taked_value, available_budget);
-        // url_update_item_in_cart = "{% url 'edit_item_provision_amount_in_cart' 0 %}".replace('0', cart_id);
-        // post_values={
-        //   'provision_amount': taked_value,
-        //   'budget_id':id,
-        //   'available_budget':available_budget
-        // }
-        // post_object=$.extend({}, post_values);
-        // $.ajax({
-        //   url: url_update_item_in_cart,
-        //   method: 'POST',
-        //   type:"json",
-        //   beforeSend: function (xhr, settings) {
-        //     xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
-        //   },
-        //   data: post_values,
-        //   success: function (response) {
-            
-        //   },
-        //   error:function(data) {
-        //     console.log(`Error ${JSON.stringify(data)}`)
-        //   }
-        // });
-        // if (project_missing_hidden == 0) {
-        //   $('#create_budget').prop('disabled', false);
-        // } else {
-        //   $('#create_budget').prop('disabled', true);
-        // }
         
-
       } else {
         console.log(`${budget_value} >= ${taked_value}`)
         // check if taked_value variables is nana
