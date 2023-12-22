@@ -40,12 +40,12 @@
                 <tbody>
                   {% for provision_cart in provision_carts %}
                     <tr>
-                      <td>{{ provision_cart.id }}</td>
+                      <td>{{ provision_cart.provision_cart.id }}</td>
                       <td>{{ provision_cart.provision_cart.project }}</td>
                       <td>
                         {{provision_cart.provision_cart_provision_budgets.all}}
                         <ul>
-                          {% for budget in provision_cart.provision_cart_provision_budgets.all %}
+                          {% for budget in provision_cart.provision_cart.provision_cart_provision_budgets.all %}
                             <li>{{ budget.budget.budget_description }}</li>
                           {% endfor %}
                         </ul>
