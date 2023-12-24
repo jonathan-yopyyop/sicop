@@ -30,8 +30,8 @@ class ExpenseType(BaseModel):
     class Meta:
         """Meta definition for Expense Type."""
 
-        verbose_name = "Expense Type"
-        verbose_name_plural = "Expense Types"
+        verbose_name = _("Expense Type")
+        verbose_name_plural = _("Expense Types")
 
     def __str__(self):
         """Unicode representation of Expense Type."""

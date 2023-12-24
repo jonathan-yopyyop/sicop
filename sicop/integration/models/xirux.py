@@ -442,8 +442,8 @@ class Third(BaseModel):
     class Meta:
         """Meta definition for Third."""
 
-        verbose_name = "Third"
-        verbose_name_plural = "Thirds"
+        verbose_name = _("Third")
+        verbose_name_plural = _("Thirds")
 
     def __str__(self):
         """Unicode representation of Third."""
@@ -548,8 +548,8 @@ class CostCenter(BaseModel):
     class Meta:
         """Meta definition for Cost Center."""
 
-        verbose_name = "Cost Center"
-        verbose_name_plural = "Cost Centers"
+        verbose_name = _("Cost Center")
+        verbose_name_plural = _("Cost Centers")
 
     def __str__(self):
         """Unicode representation of Cost Center."""
@@ -605,8 +605,8 @@ class BusinessUnit(BaseModel):
     class Meta:
         """Meta definition for Business Unit."""
 
-        verbose_name = "Business Unit"
-        verbose_name_plural = "Business Units"
+        verbose_name = _("Business Unit")
+        verbose_name_plural = _("Business Units")
 
     def __str__(self):
         """Unicode representation of Business Unit."""
@@ -676,8 +676,8 @@ class ExpenseType(BaseModel):
     class Meta:
         """Meta definition for Expense Type."""
 
-        verbose_name = "Expense Type"
-        verbose_name_plural = "Expense Types"
+        verbose_name = _("Expense Type")
+        verbose_name_plural = _("Expense Types")
 
     def __str__(self):
         """Unicode representation of Expense Type."""
@@ -845,8 +845,8 @@ class ExpenseConcept(BaseModel):
     class Meta:
         """Meta definition for Expense Concept."""
 
-        verbose_name = "Expense Concept"
-        verbose_name_plural = "Expense Concepts"
+        verbose_name = _("Expense Concept")
+        verbose_name_plural = _("Expense Concepts")
 
     def __str__(self):
         """Unicode representation of Expense Concept."""

@@ -23,8 +23,8 @@ class ActiveIntegration(BaseModel):
     class Meta:
         """Meta definition for Active Integration."""
 
-        verbose_name = "Active Integration"
-        verbose_name_plural = "Active Integrations"
+        verbose_name = _("Active Integration")
+        verbose_name_plural = _("Active Integrations")
 
     def __str__(self):
         """Unicode representation of Active Integration."""

@@ -30,8 +30,8 @@ class BusinessUnit(BaseModel):
     class Meta:
         """Meta definition for Business Unit."""
 
-        verbose_name = "Business Unit"
-        verbose_name_plural = "Business Units"
+        verbose_name = _("Business Unit")
+        verbose_name_plural = _("Business Units")
 
     def __str__(self):
         """Unicode representation of Business Unit."""

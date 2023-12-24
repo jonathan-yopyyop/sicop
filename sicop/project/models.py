@@ -25,8 +25,8 @@ class ProjectStatus(BaseModel):
     class Meta:
         """Meta definition for Project Status."""
 
-        verbose_name = "Project Status"
-        verbose_name_plural = "Project Statuses"
+        verbose_name = _("Project Status")
+        verbose_name_plural = _("Project Statuses")
 
     def __str__(self):
         """Unicode representation of Project Status."""
@@ -57,8 +57,8 @@ class ProjectType(BaseModel):
     class Meta:
         """Meta definition for Project Type."""
 
-        verbose_name = "Project Type"
-        verbose_name_plural = "Project Types"
+        verbose_name = _("Project Type")
+        verbose_name_plural = _("Project Types")
 
     def __str__(self):
         """Unicode representation of Project Type."""
@@ -141,8 +141,8 @@ class Project(BaseModel):
     class Meta:
         """Meta definition for Project."""
 
-        verbose_name = "Project"
-        verbose_name_plural = "Projects"
+        verbose_name = _("Project")
+        verbose_name_plural = _("Projects")
 
     def __str__(self):
         """Unicode representation of Project."""
@@ -174,8 +174,8 @@ class ProjectStatusHistory(BaseModel):
     class Meta:
         """Meta definition for Project Status History."""
 
-        verbose_name = "Project Status History"
-        verbose_name_plural = "Project Status Histories"
+        verbose_name = _("Project Status History")
+        verbose_name_plural = _("Project Status Histories")
 
     def __str__(self):
         """Unicode representation of Project Status History."""

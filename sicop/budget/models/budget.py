@@ -196,8 +196,8 @@ class BudgetCap(BaseModel):
     class Meta:
         """Meta definition for Budget Cap."""
 
-        verbose_name = "Budget Cap"
-        verbose_name_plural = "Budget Caps"
+        verbose_name = _("Budget Cap")
+        verbose_name_plural = _("Budget Caps")
 
     def __str__(self):
         """Unicode representation of Budget Cap."""

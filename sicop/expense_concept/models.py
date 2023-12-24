@@ -23,8 +23,8 @@ class ExpenseConcept(BaseModel):
     class Meta:
         """Meta definition for Expense Concept."""
 
-        verbose_name = "Expense Concept"
-        verbose_name_plural = "Expense Concepts"
+        verbose_name = _("Expense Concept")
+        verbose_name_plural = _("Expense Concepts")
 
     def __str__(self):
         """Unicode representation of Expense Concept."""

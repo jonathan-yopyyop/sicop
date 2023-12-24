@@ -100,8 +100,8 @@ class AreaRole(BaseModel):
     class Meta:
         """Meta definition for Area Role."""
 
-        verbose_name = "Area Role"
-        verbose_name_plural = "Area Roles"
+        verbose_name = _("Area Role")
+        verbose_name_plural = _("Area Roles")
 
     def __str__(self):
         """Unicode representation of Area Role."""

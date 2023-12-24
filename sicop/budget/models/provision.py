@@ -110,8 +110,8 @@ class ProvisionCartBudget(BaseModel):
     class Meta:
         """Meta definition for Provision Budget."""
 
-        verbose_name = "Provision Budget"
-        verbose_name_plural = "Provision Budgets"
+        verbose_name = _("Provision Budget")
+        verbose_name_plural = _("Provision Budgets")
         unique_together = ("provision_cart", "budget")
 
     def __str__(self):
@@ -150,8 +150,8 @@ class ProvisionCartApproval(BaseModel):
     class Meta:
         """Meta definition for Provision Cart Approval."""
 
-        verbose_name = "Provision Cart Approval"
-        verbose_name_plural = "Provision Cart Approvals"
+        verbose_name = _("Provision Cart Approval")
+        verbose_name_plural = _("Provision Cart Approvals")
 
     def __str__(self):
         """Unicode representation of Provision Cart Approval."""
