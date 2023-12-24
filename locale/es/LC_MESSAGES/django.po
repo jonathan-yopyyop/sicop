@@ -1084,11 +1084,11 @@ msgstr ""
 
 #: sicop/integration/models/xirux.py:445
 msgid "Third"
-msgstr ""
+msgstr "Tercero"
 
 #: sicop/integration/models/xirux.py:446
 msgid "Thirds"
-msgstr ""
+msgstr "Terceros"
 
 #: sicop/integration/models/xirux.py:471 sicop/integration/models/xirux.py:474
 msgid "IdCenCos"
