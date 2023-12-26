@@ -1941,7 +1941,7 @@
             </div>
             <!-- Approval card -->
             
-            {% if provision_cart_approval is not None %}  
+            {% if not provision_cart.approved and not provision_cart.rejected %}  
             <div class="card">
               <div class="card-body p-2">
                 <form action="{% url 'provision_cart_approval_update' provision_cart_approval.id %}" method="post">
