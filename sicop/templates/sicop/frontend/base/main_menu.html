@@ -166,6 +166,9 @@
           <li {% if 'budget/decrease_transaction/list/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'budget_decrease_control_transaction_list' %}">{% trans 'Drecreases' %}</a>
           </li>
+          <li {% if 'budget/redistribution_transaction/list/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'budget_redistribution_transaction_list' %}">{% trans 'Redistributions' %}</a>
+          </li>
         </ul>
       </li>
     </ul>

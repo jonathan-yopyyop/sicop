@@ -20,6 +20,7 @@ from sicop.budget.views import (
     BudgetRedistributionCreate,
     BudgetRedistributionDetail,
     BudgetRedistributionListView,
+    BudgetRedistributionTransactionListView,
     BudgetUpdateView,
     CreateRedistributionItem,
     EditItemProvisionAmountInCart,
@@ -188,6 +189,11 @@ urlpatterns = [
         "budget/decrease_transaction/list/",
         BudgetDecreaseTransactionListView.as_view(),
         name="budget_decrease_control_transaction_list",
+    ),
+    path(
+        "budget/redistribution_transaction/list/",
+        BudgetRedistributionTransactionListView.as_view(),
+        name="budget_redistribution_transaction_list",
     ),
     path(
         "redistribution/list/",
