@@ -265,6 +265,8 @@ class ProvisionCartApprovalUpdateView(LoginRequiredMixin, TemplateView):
                 request.POST["approved"] = False
                 cart = provision_cart_approval.provision_cart
                 cart.rejected = True
+                cart.approved = False
+                cart.save()
                 provision_cart_approval.rejected = True
                 provision_cart_approval.approved = False
                 provision_cart_approval.save()
