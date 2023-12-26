@@ -263,15 +263,20 @@ class ProvisionCartApprovalUpdateView(LoginRequiredMixin, TemplateView):
                         provision_cart=cart,
                     )
             else:
+                cart = provision_cart_approval.provision_cart
                 request.POST["approved"] = False
                 provision_cart_approval.rejected = True
                 provision_cart_approval.approved = False
                 provision_cart_approval.save()
-            print(request.POST)
+            return JsonResponse(
+                {
+                    "cart.id": cart.id,
+                }
+            )
             return HttpResponseRedirect(
                 reverse(
                     "provision_certificate",
-                    kwargs={"pk": kwargs["pk"]},
+                    kwargs={"pk": cart.id},
                 )
             )
         except Exception as e:
