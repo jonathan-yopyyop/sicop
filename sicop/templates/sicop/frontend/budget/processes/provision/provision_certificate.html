@@ -1879,17 +1879,22 @@
                           <td class="column0 style1 null"></td>
                           <td class="column1 style5 s">NOMBRE</td>
                           <td class="column2 style27 null style16" colspan="15">
-                            {% if provision_cart.approved %}
-                              {% if provision_cart.total_provisioned_amount >= project.project_type.cap %}
-                                {% trans "Approved by" %}: {{provision_cart_approval.must_be_approved_by.name}}
-                              {% else %}
-                                {% trans "This CAP does not require approval" %}
-                              {% endif %}
+                            
+                            {% if provision_cart.rejected %}
+                              {% trans "This CAP was rejected" %}
                             {% else %}
-                              {% trans "This CAP has not yet been approved" %}
-                              {% if provision_cart_approval.observation != "" %}
-                                {% trans "Observation" %}: {{provision_cart_approval.observation}}
-                              {% endif %}
+                              {% if provision_cart.approved %}
+                                {% if provision_cart.total_provisioned_amount >= project.project_type.cap %}
+                                  {% trans "Approved by" %}: {{provision_cart_approval.must_be_approved_by.name}}
+                                {% else %}
+                                  {% trans "This CAP does not require approval" %}
+                                {% endif %}
+                              {% else %}
+                                {% trans "This CAP has not yet been approved" %}
+                                {% if provision_cart_approval.observation != "" %}
+                                  {% trans "Observation" %}: {{provision_cart_approval.observation}}
+                                {% endif %}
+                              {% endif %}  
                             {% endif %}
                           </td>
                           <td class="column17 style3 null"></td>
