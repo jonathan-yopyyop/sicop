@@ -221,7 +221,7 @@ class ProvisionCartApprovalList(LoginRequiredMixin, ListView):
             must_be_approved_by=user,
             provision_cart__approved=False,
             rejected=False,
-        )
+        ).distinct("provision_cart__id")
         return queryset
 
 
