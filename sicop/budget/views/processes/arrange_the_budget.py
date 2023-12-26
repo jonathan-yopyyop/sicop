@@ -254,10 +254,11 @@ class ProvisionCartApprovalUpdateView(LoginRequiredMixin, UpdateView):
 
     def post(self, request, *args: str, **kwargs):
         request.POST._mutable = True
+        provision_cart_approval: ProvisionCartApproval = ProvisionCartApproval.objects.get(id=kwargs["pk"])
         if request.POST.get("approved") == "True":
             request.POST["approved"] = True
             # Go to approve
-            provision_cart_approval: ProvisionCartApproval = ProvisionCartApproval.objects.get(id=kwargs["pk"])
+
             provision_cart = provision_cart_approval.provision_cart
             provision_cart_budgets = ProvisionCartBudget.objects.filter(provision_cart=provision_cart)
             cart = provision_cart_approval.provision_cart
