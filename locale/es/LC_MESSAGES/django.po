@@ -2472,7 +2472,7 @@ msgstr "Completo?"
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1884
 msgid "This CAP was rejected"
-msgstr "Éste ítem ya ha sido rechazado"
+msgstr "Éste documento ha sido rechazado"
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1888
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:483
