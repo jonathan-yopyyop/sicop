@@ -1,11 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect, JsonResponse
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse  # , reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import UpdateView
+
+# from django.views.generic.edit import UpdateView
 from django.views.generic.list import ListView
 
 from sicop.area.models import AreaMember
@@ -224,69 +225,59 @@ class ProvisionCartApprovalList(LoginRequiredMixin, ListView):
         return queryset
 
 
-class ProvisionCartApprovalUpdateView(LoginRequiredMixin, UpdateView):
+class ProvisionCartApprovalUpdateView(LoginRequiredMixin, TemplateView):
     """View for Area update."""
 
-    model = ProvisionCartApproval
     template_name = "sicop/frontend/budget/processes/provision/approval/update.html"
-    fields = [
-        "approved",
-        "observation",
-    ]
-    context_object_name = "provision_cart_approval"
-    # permission_required = "area.change_area"
-
-    def form_valid(self, form):
-        """If the form is valid, save the associated model."""
-        messages.success(self.request, _("Approval updated successfully"))
-        return super().form_valid(form)
-
-    def form_invalid(self, form):
-        """If the form is invalid, render the invalid form."""
-        messages.warning(self.request, _("Approval not updated, please review the data"))
-        return super().form_invalid(form)
-
-    def get_success_url(self) -> str:
-        return reverse_lazy(
-            "provision_certificate",
-            kwargs={"pk": self.object.provision_cart.id},
-        )
 
     def post(self, request, *args: str, **kwargs):
-        request.POST._mutable = True
-        provision_cart_approval: ProvisionCartApproval = ProvisionCartApproval.objects.get(id=kwargs["pk"])
-        if request.POST.get("approved") == "True":
-            request.POST["approved"] = True
-            # Go to approve
+        try:
+            request.POST._mutable = True
+            provision_cart_approval: ProvisionCartApproval = ProvisionCartApproval.objects.get(id=kwargs["pk"])
+            if request.POST.get("approved") == "True":
+                request.POST["approved"] = True
+                # Go to approve
 
-            provision_cart = provision_cart_approval.provision_cart
-            provision_cart_budgets = ProvisionCartBudget.objects.filter(provision_cart=provision_cart)
-            cart = provision_cart_approval.provision_cart
-            project = cart.project
-            cart.approved = True
-            cart.save()
-            provision_cart_approval.rejected = False
-            provision_cart_approval.approved = True
-            provision_cart_approval.save()
-            for provision_cart_budget in provision_cart_budgets:
-                budget = provision_cart_budget.budget
-                old_value = budget.current_budget
-                new_value = old_value - provision_cart_budget.provosioned_amount
-                provosioned_amount = provision_cart_budget.provosioned_amount
-                budget.budget_decrease_control = budget.budget_decrease_control + provosioned_amount
-                budget.save()
-                BudgetDecreaseTransaction.objects.create(
-                    budget=budget,
-                    old_amount=old_value,
-                    requiered_amount=old_value - new_value,
-                    new_amount=new_value,
-                    project=project,
-                    provision_cart=cart,
+                provision_cart = provision_cart_approval.provision_cart
+                provision_cart_budgets = ProvisionCartBudget.objects.filter(provision_cart=provision_cart)
+                cart = provision_cart_approval.provision_cart
+                project = cart.project
+                cart.approved = True
+                cart.save()
+                provision_cart_approval.rejected = False
+                provision_cart_approval.approved = True
+                provision_cart_approval.save()
+                for provision_cart_budget in provision_cart_budgets:
+                    budget = provision_cart_budget.budget
+                    old_value = budget.current_budget
+                    new_value = old_value - provision_cart_budget.provosioned_amount
+                    provosioned_amount = provision_cart_budget.provosioned_amount
+                    budget.budget_decrease_control = budget.budget_decrease_control + provosioned_amount
+                    budget.save()
+                    BudgetDecreaseTransaction.objects.create(
+                        budget=budget,
+                        old_amount=old_value,
+                        requiered_amount=old_value - new_value,
+                        new_amount=new_value,
+                        project=project,
+                        provision_cart=cart,
+                    )
+            else:
+                request.POST["approved"] = False
+                provision_cart_approval.rejected = True
+                provision_cart_approval.approved = False
+                provision_cart_approval.save()
+            print(request.POST)
+            return HttpResponseRedirect(
+                reverse(
+                    "provision_certificate",
+                    kwargs={"pk": kwargs["pk"]},
                 )
-        else:
-            request.POST["approved"] = False
-            provision_cart_approval.rejected = True
-            provision_cart_approval.approved = False
-            provision_cart_approval.save()
-        print(request.POST)
-        return super().post(request, *args, **kwargs)
+            )
+        except Exception as e:
+            print(e)
+            return JsonResponse(
+                {
+                    "result": f"error: {str(e)}",
+                }
+            )
