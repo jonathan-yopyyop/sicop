@@ -45,6 +45,7 @@
                     <th>{% trans "ID" %}</th>
                     <th>{% trans "Name" %}</th>
                     <th>{% trans "Cap" %}</th>
+                    <th>{% trans "Redistribution cap" %}</th>
                     <th>{% trans 'Status' %}</th>
                     <th>{% trans 'Detail' %}</th>
                   </tr>
@@ -55,6 +56,7 @@
                       <td>{{ type.id }}</td>
                       <td>{{ type.name }}</td>
                       <td>${{ type.cap|intcomma }}</td>
+                      <td>${{ type.redistribution_cap|intcomma }}</td>
                       <td>
                         {% if type.status %}
                           <div class="badge badge-success">{% trans 'Active' %}</div>
@@ -77,6 +79,7 @@
                     <th>{% trans "ID" %}</th>
                     <th>{% trans "Name" %}</th>
                     <th>{% trans "Cap" %}</th>
+                    <th>{% trans "Redistribution cap" %}</th>
                     <th>{% trans 'Status' %}</th>
                     <th>{% trans 'Detail' %}</th>
                   </tr>

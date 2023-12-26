@@ -131,18 +131,40 @@
       </li>
       <li class="nav-item-sicop">
         <a href="#">
-          <i class="feather icon-users"></i>
-          <span class="menu-title" data-i18n="Dashboard">{% trans 'Budget' %}</span>
+          <i class="feather icon-compass"></i>
+          <span class="menu-title" data-i18n="Dashboard">{% trans 'Apropiations' %}</span>
         </a>
         <ul class="menu-content">
           <li {% if '/budget/provision/' in request.path %}class="active"{% endif %}>
-            <a class="menu-item" href="{% url 'budget_provision_list' %}">{% trans 'Apropiation' %}</a>
+            <a class="menu-item" href="{% url 'budget_provision_list' %}">{% trans 'Apropiations' %}</a>
           </li>
           <li {% if 'budget/provision/approval/' in request.path %}class="active"{% endif %}>
-            <a class="menu-item" href="{% url 'provision_cart_approval_list' %}">{% trans 'Approval' %}</a>
+            <a class="menu-item" href="{% url 'provision_cart_approval_list' %}">{% trans 'Approvals' %}</a>
           </li>
+        </ul>
+      </li>
+      <li class="nav-item-sicop">
+        <a href="#">
+          <i class="feather icon-repeat"></i>
+          <span class="menu-title" data-i18n="Dashboard">{% trans 'Redistributions' %}</span>
+        </a>
+        <ul class="menu-content">
+          <li {% if '/budget/redistribution/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'budget_redistribution_list' %}">{% trans 'Redistributions' %}</a>
+          </li>
+          <li {% if '/budget/redistribution/approval/list/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'redistribution_budget_approval_list' %}">{% trans 'Approval' %}</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item-sicop">
+        <a href="#">
+          <i class="feather icon-zoom-in"></i>
+          <span class="menu-title" data-i18n="Dashboard">{% trans 'Logs' %}</span>
+        </a>
+        <ul class="menu-content">
           <li {% if 'budget/decrease_transaction/list/' in request.path %}class="active"{% endif %}>
-            <a class="menu-item" href="{% url 'budget_decrease_control_transaction_list' %}">{% trans 'Transactions' %}</a>
+            <a class="menu-item" href="{% url 'budget_decrease_control_transaction_list' %}">{% trans 'Drecreases' %}</a>
           </li>
         </ul>
       </li>

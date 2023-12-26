@@ -179,7 +179,7 @@
                                           </td>
                                           <td>
                                             ${{provision_cart_budget.budget.available_budget|intcomma}}
-                                            <input type="hidden" id="budget_value_id_{{provision_cart_budget.budget.id}}" value ="{{provision_cart_budget.budget.initial_value}}">
+                                            <input type="hidden" id="budget_value_id_{{provision_cart_budget.budget.id}}" value ="{{provision_cart_budget.budget.available_budget}}">
                                           </td>
                                           <td>
                                             <input 
@@ -259,7 +259,7 @@
                               <textarea class="form-control form-control-sm" name="observation" id="" cols="30" rows="10"></textarea>
                             </div>
                           </div>
-                          <div class="form-actions">
+                          <div class="form-actions text-right">
                             <input type="hidden" name="cart_id" id="cart_id" value="{{provision_cart.id}}">
                             <button type="submit" class="btn btn-primary" id="create_budget" >
                               <i class="fa fa-edit"></i> {% trans 'Create' %}

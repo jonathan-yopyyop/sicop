@@ -2,9 +2,11 @@ from django.contrib import admin
 
 from sicop.budget.models import (
     Budget,
-    BudgetCap,
     BudgetDecreaseTransaction,
     BudgetDescription,
+    BudgetRedistribution,
+    BudgetRedistributionItem,
+    BudgetRedistributionItemApproval,
     ProvisionCart,
     ProvisionCartApproval,
     ProvisionCartBudget,
@@ -29,6 +31,7 @@ class BudgetAdmin(admin.ModelAdmin):
     list_display = (
         "id",
         "budget_description",
+        "available_budget",
         "unit_value",
         "quantity",
         "initial_value",
@@ -51,37 +54,11 @@ class BudgetAdmin(admin.ModelAdmin):
         "status",
     )
     readonly_fields = (
+        "available_budget",
         "initial_value",
         "budget_addition",
         "budget_decrease",
         "budget_decrease_control",
-        "created_at",
-        "updated_at",
-    )
-
-
-@admin.register(BudgetCap)
-class BudgetCapAdmin(admin.ModelAdmin):
-    list_display = (
-        "id",
-        "business_unit",
-        "cap",
-        "description",
-        "status",
-        "created_at",
-        "updated_at",
-    )
-    search_fields = (
-        "business_unit__code",
-        "description",
-    )
-    list_filter = (
-        "business_unit",
-        "description",
-        "status",
-    )
-    readonly_fields = (
-        "id",
         "created_at",
         "updated_at",
     )
@@ -193,6 +170,68 @@ class ProvisionCartApprovalAdmin(admin.ModelAdmin):
         "id",
         "provision_cart",
         "must_be_approved_by",
+        "created_at",
+        "updated_at",
+    ]
+
+
+@admin.register(BudgetRedistribution)
+class BudgetRedistributionAdmin(admin.ModelAdmin):
+    list_display = [
+        "id",
+        "budget",
+        "original_amount",
+        "redistributed_amount",
+        "new_amount",
+        "requires_approval",
+        "approved",
+        "must_be_approved_by",
+        "created_at",
+        "updated_at",
+    ]
+    readonly_fields = [
+        "id",
+        "requires_approval",
+        "approved",
+        "must_be_approved_by",
+        "created_at",
+        "updated_at",
+    ]
+
+
+@admin.register(BudgetRedistributionItem)
+class BudgetRedistributionItemAdmin(admin.ModelAdmin):
+    list_display = [
+        "id",
+        "budget",
+        "original_amount",
+        "redistributed_amount",
+        "new_amount",
+        "created_at",
+        "updated_at",
+    ]
+    readonly_fields = [
+        "id",
+        "budget_redistribution",
+        "budget",
+        "original_amount",
+        "created_at",
+        "updated_at",
+    ]
+
+
+@admin.register(BudgetRedistributionItemApproval)
+class BudgetRedistributionItemApprovalAdmin(admin.ModelAdmin):
+    list_display = [
+        "id",
+        "budget_redistribution_item",
+        "approved",
+        "created_at",
+        "updated_at",
+    ]
+    readonly_fields = [
+        "id",
+        "budget_redistribution_item",
         "created_at",
         "updated_at",
     ]

@@ -53,6 +53,11 @@ class ProjectType(BaseModel):
         help_text=_("Cap"),
         default=0.0,
     )
+    redistribution_cap = models.FloatField(
+        _("Redistribution Cap"),
+        help_text=_("Redistribution Cap"),
+        default=0.0,
+    )
 
     class Meta:
         """Meta definition for Project Type."""

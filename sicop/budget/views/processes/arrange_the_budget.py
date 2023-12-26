@@ -11,6 +11,7 @@ from django.views.generic.list import ListView
 from sicop.area.models import AreaMember
 from sicop.budget.models import Budget, BudgetDecreaseTransaction
 from sicop.budget.models.provision import ProvisionCart, ProvisionCartApproval, ProvisionCartBudget
+from sicop.certificate.models import Certificate
 from sicop.project.models import Project
 
 
@@ -168,6 +169,7 @@ class ProvisionCertificateView(TemplateView):
         context["area_rol"] = area_rol
         context["project"] = cart.project
         context["area_member"] = area_member
+        context["certificate_version"] = Certificate.objects.filter(slug="cap").first()
         return context
 
 

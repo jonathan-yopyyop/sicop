@@ -2,10 +2,8 @@ from django.contrib import admin
 
 from sicop.project.models import Project, ProjectStatus, ProjectStatusHistory, ProjectType
 
-# Register your models here.
-admin.site.register(ProjectStatus)
 
-
+@admin.register(ProjectStatus)
 class ProjectStatusAdmin(admin.ModelAdmin):
     list_display = (
         "name",

@@ -1765,8 +1765,8 @@
                         <tr class="row2">
                             <td class="column0 style1 null"></td>
                             <td class="column1 style4 null"></td>
-                            <td class="column11 style37 s style38" colspan="2">Versión 1</td>
-                            <td class="column13 style37 s style38" colspan="4">Fecha versión: 2023/12/10</td>
+                            <td class="column11 style37 s style38" colspan="2">Versión {{certificate_version.version}}</td>
+                            <td class="column13 style37 s style38" colspan="4">Fecha versión: {{certificate_version.date|date:'Y/m/d'}}</td>
                             <td class="column17 style3 null"></td>
                         </tr>
                         <tr class="row3">
@@ -1881,17 +1881,15 @@
                           <td class="column2 style27 null style16" colspan="15">
                             {% if provision_cart.approved %}
                               {% if provision_cart.total_provisioned_amount >= project.project_type.cap %}
-                                {% trans "Aprroved by" %}: {{provision_cart_approval.must_be_approved_by.name}}
+                                {% trans "Approved by" %}: {{provision_cart_approval.must_be_approved_by.name}}
                               {% else %}
                                 {% trans "This CAP does not require approval" %}
                               {% endif %}
                             {% else %}
                               {% trans "This CAP has not yet been approved" %}
-                              
                               {% if provision_cart_approval.observation != "" %}
                                 {% trans "Observation" %}: {{provision_cart_approval.observation}}
                               {% endif %}
-                                
                             {% endif %}
                           </td>
                           <td class="column17 style3 null"></td>

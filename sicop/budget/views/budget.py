@@ -155,10 +155,41 @@ class GetBudgetDetailById(LoginRequiredMixin, TemplateView):
         budget_id = kwargs["pk"]
         budget = Budget.objects.get(id=budget_id)
         amount = budget.available_budget
-
+        cost_centers = budget.cost_centers.all()
+        cost_center_list = []
+        for cost_center in cost_centers:
+            cost_center_list.append(cost_center.name)
         return JsonResponse(
             {
                 "budget_id": budget_id,
                 "amount": amount,
+                "budget_description": budget.budget_description.description,
+                "unit_value": budget.unit_value,
+                "quantity": budget.quantity,
+                "initial_value": budget.initial_value,
+                "budget_addition": budget.budget_addition,
+                "budget_decrease": budget.budget_decrease,
+                "cost_centers": cost_center_list,
+            }
+        )
+
+
+class GetBudgetDetailExceptId(LoginRequiredMixin, TemplateView):
+    def get(self, request, *args, **kwargs):
+        budget_id = kwargs["pk"]
+        budget = Budget.objects.get(id=budget_id)
+        budgets_to_take = Budget.objects.exclude(id=budget.id)
+        items = []
+        for budget in budgets_to_take:
+            items.append(
+                [
+                    budget.id,
+                    f"{budget.budget_description.description} (${budget.available_budget})",
+                ]
+            )
+        return JsonResponse(
+            {
+                "budget_id": budget_id,
+                "items": items,
             }
         )

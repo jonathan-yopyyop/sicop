@@ -36,6 +36,7 @@ class ProjectTypeCreateView(PermissionRequiredMixin, LoginRequiredMixin, CreateV
     fields = [
         "name",
         "cap",
+        "redistribution_cap",
     ]
     permission_required = "project.add_projecttype"
 
@@ -62,6 +63,7 @@ class ProjectTypeUpdateView(PermissionRequiredMixin, LoginRequiredMixin, UpdateV
     fields = [
         "name",
         "cap",
+        "redistribution_cap",
         "status",
     ]
     context_object_name = "type"

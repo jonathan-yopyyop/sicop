@@ -74,6 +74,18 @@
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
+                              <label for="projectinput1">{% trans 'Redistribution cap' %}</label>
+                              <input type="text"
+                                     id="projectinput1"
+                                     class="form-control"
+                                     placeholder="{% trans 'Redistribution cap' %}"
+                                     disabled
+                                     name="redistribution_cap"
+                                     value="{{ type.redistribution_cap }}" />
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
                               <label for="projectinput3">{% trans 'Status' %}</label>
                               <select class="select2 form-control" disabled name="status">
                                 <option value="True" {% if type.status %}selected{% endif %}>{% trans 'Active' %}</option>
