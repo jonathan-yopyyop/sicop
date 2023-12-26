@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-26 15:06-0500\n"
+"POT-Creation-Date: 2023-12-26 15:35-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -265,7 +265,7 @@ msgstr "Descripciones de presupuesto"
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:76
 #: sicop/templates/sicop/frontend/budget/processes/provision/detail.html:66
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:46
-#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:107
+#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:111
 msgid "Project"
 msgstr "Proyecto"
 
@@ -355,7 +355,7 @@ msgstr "Campo de control de disminución"
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:35
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:76
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:47
-#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:108
+#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:112
 msgid "Budgets"
 msgstr "Presupuestos"
 
@@ -508,7 +508,7 @@ msgstr "Requiere aprobacaión"
 #: sicop/budget/models/redistribution.py:175
 #: sicop/budget/models/redistribution.py:176
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:57
-#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:78
+#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:81
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/approval/list.html:71
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/list.html:94
 msgid "Approved"
@@ -516,8 +516,7 @@ msgstr "Aprobado"
 
 #: sicop/budget/models/provision.py:71 sicop/budget/models/provision.py:72
 #: sicop/budget/models/provision.py:150 sicop/budget/models/provision.py:151
-#, fuzzy
-#| msgid "Reject"
+#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:78
 msgid "Rejected"
 msgstr "Rechazado"
 
@@ -553,7 +552,7 @@ msgstr "Debe ser aprobado por"
 
 #: sicop/budget/models/provision.py:145 sicop/budget/models/provision.py:146
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:51
-#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:112
+#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:116
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/list.html:58
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/list.html:128
 msgid "Approved?"
@@ -1773,7 +1772,7 @@ msgstr "ID"
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:38
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:79
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:52
-#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:113
+#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:117
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/approval/list.html:44
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/approval/list.html:92
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/list.html:59
@@ -2161,7 +2160,7 @@ msgstr "Kardex de apropiación de presupuesto"
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:33
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:74
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:45
-#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:106
+#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:110
 msgid "CAP"
 msgstr "CAP"
 
@@ -2243,7 +2242,7 @@ msgstr "Lista de aprobaciones de presupuesto"
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:36
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:77
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:49
-#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:110
+#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:114
 msgid "Provisionado"
 msgstr "Apropiado"
 
@@ -2257,7 +2256,7 @@ msgid "Approve"
 msgstr "Aprobado"
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:59
-#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:80
+#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:83
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/approval/list.html:73
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/list.html:96
 msgid "Pending"
@@ -2460,12 +2459,12 @@ msgid "Budget provision list"
 msgstr "Lista de apropiación de presupuesto"
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:48
-#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:109
+#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:113
 msgid "Managed by"
 msgstr "Administrador"
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:50
-#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:111
+#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:115
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/list.html:57
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/list.html:127
 msgid "Finished?"
