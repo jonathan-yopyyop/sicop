@@ -268,9 +268,14 @@ class ProvisionCartApprovalUpdateView(LoginRequiredMixin, TemplateView):
                 provision_cart_approval.rejected = True
                 provision_cart_approval.approved = False
                 provision_cart_approval.save()
+            url = reverse(
+                "provision_certificate",
+                kwargs={"pk": cart.id},
+            )
             return JsonResponse(
                 {
                     "cart.id": cart.id,
+                    "url": url,
                 }
             )
             return HttpResponseRedirect(
