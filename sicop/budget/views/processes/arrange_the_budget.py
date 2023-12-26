@@ -219,6 +219,7 @@ class ProvisionCartApprovalList(LoginRequiredMixin, ListView):
         queryset = ProvisionCartApproval.objects.filter(
             must_be_approved_by=user,
             provision_cart__approved=False,
+            rejected=False,
         )
         return queryset
 
@@ -256,13 +257,16 @@ class ProvisionCartApprovalUpdateView(LoginRequiredMixin, UpdateView):
         if request.POST.get("approved") == "True":
             request.POST["approved"] = True
             # Go to approve
-            provision_cart_approval = ProvisionCartApproval.objects.get(id=kwargs["pk"])
+            provision_cart_approval: ProvisionCartApproval = ProvisionCartApproval.objects.get(id=kwargs["pk"])
             provision_cart = provision_cart_approval.provision_cart
             provision_cart_budgets = ProvisionCartBudget.objects.filter(provision_cart=provision_cart)
             cart = provision_cart_approval.provision_cart
             project = cart.project
             cart.approved = True
             cart.save()
+            provision_cart_approval.rejected = False
+            provision_cart_approval.approved = True
+            provision_cart_approval.save()
             for provision_cart_budget in provision_cart_budgets:
                 budget = provision_cart_budget.budget
                 old_value = budget.current_budget
@@ -280,5 +284,8 @@ class ProvisionCartApprovalUpdateView(LoginRequiredMixin, UpdateView):
                 )
         else:
             request.POST["approved"] = False
+            provision_cart_approval.rejected = True
+            provision_cart_approval.approved = False
+            provision_cart_approval.save()
         print(request.POST)
         return super().post(request, *args, **kwargs)
