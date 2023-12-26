@@ -278,7 +278,7 @@ class ProvisionCartApprovalUpdateView(LoginRequiredMixin, TemplateView):
             #         "url": url,
             #     }
             # )
-            return HttpResponseRedirect(reverse(url))
+            return HttpResponseRedirect(url)
         except Exception as e:
             print(e)
             return JsonResponse(
