@@ -67,6 +67,11 @@ class ProvisionCart(BaseModel):
         help_text=_("Approved"),
         default=True,
     )
+    rejected = models.BooleanField(
+        _("Rejected"),
+        help_text=_("Rejected"),
+        default=False,
+    )
 
     class Meta:
         """Meta definition for Provision Cart."""
@@ -139,6 +144,11 @@ class ProvisionCartApproval(BaseModel):
     approved = models.BooleanField(
         _("Approved?"),
         help_text=_("Approved?"),
+        default=False,
+    )
+    rejected = models.BooleanField(
+        _("Rejected"),
+        help_text=_("Rejected"),
         default=False,
     )
     observation = models.TextField(
