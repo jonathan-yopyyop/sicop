@@ -272,18 +272,13 @@ class ProvisionCartApprovalUpdateView(LoginRequiredMixin, TemplateView):
                 "provision_certificate",
                 kwargs={"pk": cart.id},
             )
-            return JsonResponse(
-                {
-                    "cart.id": cart.id,
-                    "url": url,
-                }
-            )
-            return HttpResponseRedirect(
-                reverse(
-                    "provision_certificate",
-                    kwargs={"pk": cart.id},
-                )
-            )
+            # return JsonResponse(
+            #     {
+            #         "cart.id": cart.id,
+            #         "url": url,
+            #     }
+            # )
+            return HttpResponseRedirect(reverse(url))
         except Exception as e:
             print(e)
             return JsonResponse(
