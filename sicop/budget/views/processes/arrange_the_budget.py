@@ -237,7 +237,6 @@ class ProvisionCartApprovalUpdateView(LoginRequiredMixin, TemplateView):
             if request.POST.get("approved") == "True":
                 request.POST["approved"] = True
                 # Go to approve
-
                 provision_cart = provision_cart_approval.provision_cart
                 provision_cart_budgets = ProvisionCartBudget.objects.filter(provision_cart=provision_cart)
                 cart = provision_cart_approval.provision_cart
@@ -263,8 +262,9 @@ class ProvisionCartApprovalUpdateView(LoginRequiredMixin, TemplateView):
                         provision_cart=cart,
                     )
             else:
-                cart = provision_cart_approval.provision_cart
                 request.POST["approved"] = False
+                cart = provision_cart_approval.provision_cart
+                cart.rejected = True
                 provision_cart_approval.rejected = True
                 provision_cart_approval.approved = False
                 provision_cart_approval.save()
