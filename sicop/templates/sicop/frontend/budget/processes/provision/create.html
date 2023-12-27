@@ -295,6 +295,7 @@
         })
     }
     function updateTotalsInCart(project_total_hidden, project_missing_hidden, cart_id){
+      $('#create_budget').prop('disabled', true);
       var project_provision_hidden = parseFloat($('#project_provision_hidden').val());
         post_values={
           'total_required_amount': project_total_hidden,
@@ -312,7 +313,7 @@
           },
           data: post_values,
           success: function (response) {
-            
+            $('#create_budget').prop('disabled', false);
           },
           error:function(data) {
             console.log(`Error ${JSON.stringify(data)}`)
@@ -320,6 +321,7 @@
         });
     }
     function updateProvisionAmountInCartAndBudget(cart_id, id, taked_value, available_budget){
+      $('#create_budget').prop('disabled', true);
       url_update_item_in_cart = "{% url 'edit_item_provision_amount_in_cart' 0 %}".replace('0', cart_id);
         post_values={
           'provision_amount': taked_value,
@@ -336,7 +338,7 @@
           },
           data: post_values,
           success: function (response) {
-            
+            $('#create_budget').prop('disabled', false);
           },
           error:function(data) {
             console.log(`Error ${JSON.stringify(data)}`)
@@ -344,6 +346,8 @@
         });
     }
     function provisioningValues(id){
+      // disable the button whit ID create_budget
+      
       var taked_id = 'taked_' + id;
       var budget_value_id = 'budget_value_id_' + id;
 
