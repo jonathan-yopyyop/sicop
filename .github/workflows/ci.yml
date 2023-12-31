@@ -20,7 +20,7 @@ concurrency:
 
 jobs:
   linter:
-    runs-on: ubuntu-20.04
+    runs-on: [self-hosted, linux, x64, gpu]
     steps:
       - name: Checkout Code Repository
         uses: actions/checkout@v4
