@@ -193,3 +193,32 @@ class GetBudgetDetailExceptId(LoginRequiredMixin, TemplateView):
                 "items": items,
             }
         )
+
+
+class GetBudgetsByProject(LoginRequiredMixin, TemplateView):
+    def get(self, request, *args, **kwargs):
+        project_id = kwargs["project_id"]
+        project = Project.objects.get(id=project_id)
+        budgets = Budget.objects.filter(
+            project=project,
+            status=True,
+        )
+        items = []
+
+        for budget in budgets:
+            budget_ready = budget.available_budget
+            if budget_ready < 0:
+                budget_ready = 0
+            items.append(
+                [
+                    budget.id,
+                    f"{budget.budget_description}",
+                    budget.available_budget,
+                ]
+            )
+        return JsonResponse(
+            {
+                "project_id": project_id,
+                "items": items,
+            }
+        )

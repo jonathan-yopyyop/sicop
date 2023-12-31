@@ -28,6 +28,7 @@ from sicop.budget.views import (
     GetBudgetDetailExceptId,
     GetBudgetIncart,
     GetBudgetsByCostCenterAndProject,
+    GetBudgetsByProject,
     GetCostCentersByProject,
     ProvisionCartApprovalList,
     ProvisionCartApprovalUpdateView,
@@ -109,6 +110,11 @@ urlpatterns = [
         "budget/cost_center/<int:pk>/project/<int:project_id>/",
         GetBudgetsByCostCenterAndProject.as_view(),
         name="get_budgets_by_cost_center",
+    ),
+    path(
+        "budget/project/<int:project_id>/",
+        GetBudgetsByProject.as_view(),
+        name="get_budgets_by_project",
     ),
     path(
         "budget/provision/create/",

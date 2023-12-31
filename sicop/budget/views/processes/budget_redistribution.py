@@ -14,6 +14,7 @@ from sicop.budget.models.redistribution import (
     BudgetRedistributionItemApproval,
 )
 from sicop.certificate.models import Certificate
+from sicop.project.models import Project
 
 
 class BudgetRedistributionListView(LoginRequiredMixin, ListView):
@@ -44,6 +45,7 @@ class BudgetRedistributionCreate(LoginRequiredMixin, TemplateView):
             budgets_to_take = Budget.objects.exclude(id=budget_redistribution.budget.id)
 
         context["budget_redistribution"] = budget_redistribution
+        context["projects"] = Project.objects.all()
         context["budgets"] = Budget.objects.all()
         context["budgets_to_take"] = budgets_to_take
         return context

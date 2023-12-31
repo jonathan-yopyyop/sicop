@@ -66,7 +66,7 @@
                                         <select class="select2 form-control" name="project" id="project" required>
                                           <option value="">{% trans "Select a project" %}</option>
                                           {% for project in projects %}
-                                            <option value="{{ project.id }}" {% if budget.id == budget_redistribution.budget.id %} selected {% endif %}>{{ budget.budget_description }}</option>
+                                            <option value="{{ project.id }}">{{ project }}</option>
                                           {% endfor %}
                                         </select>
                                       </div>
@@ -417,6 +417,32 @@
 
     }
     $(document).ready(function() {
+      // change the budget list when the project is selected
+      $("#project").on("change", function(){
+        var project_id = $(this).val();
+        console.log(project_id);
+        if(project_id){
+          var url = "{% url 'get_budgets_by_project' 0 %}".replace('0', project_id);
+          $.ajax({
+            url:url,
+            type:"GET",
+            dataType:"json",
+            success: function(data){
+              var items = data.items;
+              $('#budget').empty();
+              // create a loop over budget to populate budget using the id and the description
+              $('#budget').append(`<option value="">Select a budget</option>`);
+              $.each(items, function(k, v){
+                $('#budget').append(`<option value="${v[0]}">${v[1]}</option>`);
+              });
+              // for (var i = 0; i < items.length; i++) {
+              //   console.log(items);
+              //   $('#budget').append('<option value="' + budget[i][0] + '">' + budget[i][1] + '</option>');
+              // }
+            }
+          })
+        }
+      });
       // Change the budget detail when the budget is selected
       $('#budget').on('change', function() {
         var budget_id = $(this).val();
