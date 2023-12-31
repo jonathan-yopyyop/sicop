@@ -279,5 +279,5 @@ sicop/media/
 .env
 .envs/*
 !.envs/.local/
- ### Runner ####
- actions-runner
+### Runner ####
+actions-runner/
