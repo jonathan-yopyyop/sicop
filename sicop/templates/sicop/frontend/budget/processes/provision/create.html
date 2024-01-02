@@ -52,7 +52,7 @@
                           </div>
                         {% endfor %}
                       {% endif %}
-                      
+
                         {% csrf_token %}
                         <div class="form-body">
                           <div class="row">
@@ -170,9 +170,9 @@
                                         </tr>
                                     </thead>
                                     <tbody id="items_table_body">
-                                      
+
                                       {% for provision_cart_budget in provision_cart.provision_cart_provision_budgets.all %}
-                                        
+
                                         <tr id="row_{{provision_cart_budget.budget.id}}">
                                           <td>
                                             {{provision_cart_budget.budget}}
@@ -182,29 +182,29 @@
                                             <input type="hidden" id="budget_value_id_{{provision_cart_budget.budget.id}}" value ="{{provision_cart_budget.budget.available_budget}}">
                                           </td>
                                           <td>
-                                            <input 
-                                              type="text" id="taked_{{provision_cart_budget.budget.id}}" 
-                                              class="form-control form-control-sm table_item_class" 
-                                              value ="{{provision_cart_budget.provosioned_amount}}" 
+                                            <input
+                                              type="text" id="taked_{{provision_cart_budget.budget.id}}"
+                                              class="form-control form-control-sm table_item_class"
+                                              value ="{{provision_cart_budget.provosioned_amount}}"
                                               onkeyup="provisioningValues('{{provision_cart_budget.budget.id}}')"/>
                                           </td>
                                           <td>
-                                            <input 
+                                            <input
                                               readonly
-                                              type="text" 
-                                              class="form-control form-control-sm table_item_class" 
-                                              id="budget_show_value_id_{{provision_cart_budget.budget.id}}" 
+                                              type="text"
+                                              class="form-control form-control-sm table_item_class"
+                                              id="budget_show_value_id_{{provision_cart_budget.budget.id}}"
                                               value="${{provision_cart_budget.available_budget|intcomma}}">
                                           </td>
                                           <td>
-                                            <button 
-                                              type="button" 
-                                              class="btn btn-danger btn-sm" 
+                                            <button
+                                              type="button"
+                                              class="btn btn-danger btn-sm"
                                               onclick="remove_item('{{provision_cart_budget.budget.id}}')">
                                               <i class="fa fa-trash"></i>
                                             </button>
                                           </td>
-                                        </tr>  
+                                        </tr>
                                       {% endfor %}
                                     </tbody>
                                   </table>
@@ -288,7 +288,7 @@
       $('#' + row_id).remove();
       $.get(url_update_item_incart, function(data) {})
         .done(function(data) {
-          
+
         })
         .fail(function(data) {
           console.log(`Error $("#project").change ${data}`);
@@ -347,7 +347,7 @@
     }
     function provisioningValues(id){
       // disable the button whit ID create_budget
-      
+
       var taked_id = 'taked_' + id;
       var budget_value_id = 'budget_value_id_' + id;
 
@@ -362,7 +362,7 @@
         currency: 'USD',
       }).format(available_budget);
       $('#budget_show_value_id_' + id).val(formated_available_budget);
-      
+
       budget_text_value = $('#' + budget_value_id).val() + "";
       budget_text_value = budget_text_value.replace(',', '.');
       var budget_value = parseFloat( budget_text_value);
@@ -385,7 +385,7 @@
           style: 'currency',
           currency: 'USD',
         }).format(total_taked);
-        
+
         $("#project_provision").val(formated_total_taked);
         $("#project_provision_hidden").val(total_taked);
 
@@ -397,14 +397,14 @@
         }).format(project_missing_hidden);
         $("#project_missing").val(formated_project_missing_hidden);
         $("#project_missing_hidden").val(project_missing_hidden);
-        
+
         cart_id = $('#cart_id').val();
-        
+
         // To update totals in cart
         updateTotalsInCart(project_total_hidden, project_missing_hidden, cart_id)
         //To updata provision_amount_in_cart in budget
         updateProvisionAmountInCartAndBudget(cart_id, id, taked_value, available_budget);
-        
+
       } else {
         console.log(`${budget_value} >= ${taked_value}`)
         // check if taked_value variables is nana
@@ -420,14 +420,14 @@
           $('#' + taked_id).val('0');
           provisioningValues(id)
         }
-        
+
       }
       //--
-      
+
 
     }
     $(document).ready(function() {
-      
+
       // Project selecion
       $("#project").change(function() {
         var project_id = $("#project").val()
@@ -442,62 +442,92 @@
             }).format(budget);
             //Setting the values
             var project_id = data.project_id;
-            $('#project_id').val(project_id);
-            $('#project_name').val(data.project_name);
-            $('#project_description').val(data.project_description);
-            $('#project_start_date').val(data.project_start_date);
-            $('#project_end_date').val(data.project_end_date);
-            $('#project_budget').val(budget);
-            $('#project_area').val(data.project_area);
-            $('#project_type').val(data.project_type);
-            $('#project_status').val(data.project_status);
-            $('#project_manager').val(data.project_manager);
-            $('#project_is_it_taxable').val(data.project_is_it_taxable);
+            var project_end_date = data.project_end_date;
+            // create a timestamp now with YYYY-mm-dd format
+            var now = new Date();
+            var dd = now.getDate();
+            var mm = now.getMonth() + 1; //January is 0!
+            var yyyy = now.getFullYear();
+            if (dd < 10) {
+              dd = '0' + dd
+            }
+            if (mm < 10) {
+              mm = '0' + mm
+            }
+            now = yyyy + '-' + mm + '-' + dd;
             
-            $('#items').prop('disabled', false);
-            // Totals
-            $('#project_total').val(budget);
-            $('#project_provision').val('$0');
-            $('#project_missing').val(budget);
-            $('#project_total_hidden').val(data.project_budget);
-            $('#project_provision_hidden').val('0');
-            $('#project_missing_hidden').val(data.project_budget);
-            cart_id = $('#cart_id').val();
-            url_update_project_incart = "{% url 'update_project_in_cart' 888888888888888 999999999999999 %}".replace('888888888888888', cart_id).replace('999999999999999', project_id);
-            $.get(url_update_project_incart, function(data) {})
-              .done(function(data) {
-                
-              })
-              .fail(function(data) {
-                console.log(`Error $("#project").change ${data}`);
-              })
-            //GEt cost centers from project
-            url = "{% url 'get_cost_centers_by_project' 0 %}".replace('0', project_id);
-            $.get(url, function(data) {})
-              .done(function(data) {
-                
-                let cost_centers = data.cost_centers;
-                try {
-                  $('#costcenter').empty();
-                  $('#costcenter')
-                    .append($("<option></option>")
-                      .attr("value", "")
-                      .text("..."));
-                  $.each(cost_centers, function(key, value) {
+            var date_project_end_date = new Date(project_end_date);
+            var date_now = new Date(now);
+
+            // check if project_end_date is less than now
+            if (date_project_end_date < date_now) {
+              console.log(`project_end_date: ${project_end_date} now: ${now}`)
+              // Disable the button with id create_budget
+              $('#create_budget').prop('disabled', true);
+              // Disabele the button with id add_button
+              $('#add_button').prop('disabled', true);
+              
+            }else{
+              // Enable the button with id create_budget
+              $('#create_budget').prop('disabled', false);
+              // Enable the button with id add_button
+              $('#add_button').prop('disabled', false);
+              $('#project_id').val(project_id);
+              $('#project_name').val(data.project_name);
+              $('#project_description').val(data.project_description);
+              $('#project_start_date').val(data.project_start_date);
+              $('#project_end_date').val(data.project_end_date);
+              $('#project_budget').val(budget);
+              $('#project_area').val(data.project_area);
+              $('#project_type').val(data.project_type);
+              $('#project_status').val(data.project_status);
+              $('#project_manager').val(data.project_manager);
+              $('#project_is_it_taxable').val(data.project_is_it_taxable);  
+              $('#items').prop('disabled', false);
+              // Totals
+              $('#project_total').val(budget);
+              $('#project_provision').val('$0');
+              $('#project_missing').val(budget);
+              $('#project_total_hidden').val(data.project_budget);
+              $('#project_provision_hidden').val('0');
+              $('#project_missing_hidden').val(data.project_budget);
+              cart_id = $('#cart_id').val();
+              url_update_project_incart = "{% url 'update_project_in_cart' 888888888888888 999999999999999 %}".replace('888888888888888', cart_id).replace('999999999999999', project_id);
+              $.get(url_update_project_incart, function(data) {})
+                .done(function(data) {
+
+                })
+                .fail(function(data) {
+                  console.log(`Error $("#project").change ${data}`);
+                })
+              //GEt cost centers from project
+              url = "{% url 'get_cost_centers_by_project' 0 %}".replace('0', project_id);
+              $.get(url, function(data) {})
+                .done(function(data) {
+
+                  let cost_centers = data.cost_centers;
+                  try {
+                    $('#costcenter').empty();
                     $('#costcenter')
                       .append($("<option></option>")
-                        .attr("value", value["id"])
-                        .text(value["name"]));
-                  });
-                // Enabling fields
-                $('#costcenter').prop('disabled', false);
-                } catch (e) {
-                  console.log(e);
-                }
-              })
-              .fail(function(data) {
-                console.log(`Error $("#area").change ${data}`);
-              })
+                        .attr("value", "")
+                        .text("..."));
+                    $.each(cost_centers, function(key, value) {
+                      $('#costcenter')
+                        .append($("<option></option>")
+                          .attr("value", value["id"])
+                          .text(value["name"]));
+                    });
+                  // Enabling fields
+                  $('#costcenter').prop('disabled', false);
+                  } catch (e) {
+                    console.log(e);
+                  }
+                })
+                .fail(function(data) {
+                  console.log(`Error $("#area").change ${data}`);
+                })
+              }
 
           })
           .fail(function(data) {
@@ -555,7 +585,7 @@
                 style: 'currency',
                 currency: 'USD',
               }).format(budget);
-              
+
               // Add new item to cart
               cart_id = $('#cart_id').val();
               url_update_item_incart = "{% url 'add_item_to_provision_in_cart' 888888888888888 999999999999999 %}".replace('888888888888888', cart_id).replace('999999999999999', data.budget_id);
@@ -572,12 +602,12 @@
                       var taked_value = data.taked_value;
                       var current_budget = data.current_budget;
                       var budget_item = data.budget_item;
-                      
+
                       var formated_available_budget = new Intl.NumberFormat('en-US', {
                         style: 'currency',
                         currency: 'USD',
                       }).format(available_budget);
-                      
+
                       var formated_taked_value = new Intl.NumberFormat('en-US', {
                         style: 'currency',
                         currency: 'USD',
@@ -597,15 +627,17 @@
                 .fail(function(data) {
                   console.log(`Error $("#project").change ${data}`);
                 })
-              
-              
+
+
             }
-            
+
           })
           .fail(function(data) {
             console.log(`Error $("#area").change ${data}`);
           })
       });
+
+
     });
   </script>
 {% endblock content %}

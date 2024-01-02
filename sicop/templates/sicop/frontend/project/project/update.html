@@ -76,10 +76,11 @@
                               <div class="form-group">
                                 <label for="projectinput1">{% trans 'Start at' %}</label>
                                 <input type="date"
-                                       id="projectinput1"
+                                       id="start_date"
                                        class="form-control"
                                        placeholder="{% trans 'Start at' %}"
                                        name="start_date"
+                                       onchange="updateMinDate();"
                                        value="{{ project.start_date|date:'Y-m-d' }}" />
                               </div>
                             </div>
@@ -87,7 +88,7 @@
                               <div class="form-group">
                                 <label for="projectinput1">{% trans 'End at' %}</label>
                                 <input type="date"
-                                       id="projectinput1"
+                                       id="end_date"
                                        class="form-control"
                                        placeholder="{% trans 'End at' %}"
                                        name="end_date"
@@ -193,4 +194,11 @@
       </div>
     </div>
   </section>
+  <script>
+    function updateMinDate() {
+      var start_date = $('#start_date').val();
+      console.log(start_date);
+      $('#end_date').attr('min', start_date);
+    }
+  </script>
 {% endblock content %}
