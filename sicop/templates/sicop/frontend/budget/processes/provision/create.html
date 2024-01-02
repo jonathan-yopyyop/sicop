@@ -426,6 +426,31 @@
 
 
     }
+    function disableButtonByProjectDate(){
+      var project_end_date = $('#project_end_date').val();
+      // create a timestamp now with YYYY-mm-dd format
+      var now = new Date();
+      var dd = now.getDate();
+      var mm = now.getMonth() + 1; //January is 0!
+      var yyyy = now.getFullYear();
+      if (dd < 10) {
+        dd = '0' + dd
+      }
+      if (mm < 10) {
+        mm = '0' + mm
+      }
+      now = yyyy + '-' + mm + '-' + dd;
+      var date_project_end_date = new Date(project_end_date);
+      var date_now = new Date(now);
+      // check if project_end_date is less than now
+      if (date_project_end_date < date_now) {
+        console.log(`project_end_date: ${project_end_date} now: ${now}`)
+        // Disable the button with id create_budget
+        $('#create_budget').prop('disabled', true);
+        // Disabele the button with id add_button
+        $('#add_button').prop('disabled', true);
+      }
+    }
     $(document).ready(function() {
 
       // Project selecion
