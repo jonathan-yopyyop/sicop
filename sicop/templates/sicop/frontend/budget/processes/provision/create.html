@@ -444,11 +444,11 @@
       var date_now = new Date(now);
       // check if project_end_date is less than now
       if (date_project_end_date < date_now) {
-        console.log(`project_end_date: ${project_end_date} now: ${now}`)
         // Disable the button with id create_budget
         $('#create_budget').prop('disabled', true);
         // Disabele the button with id add_button
         $('#add_button').prop('disabled', true);
+        console.log(`Disabling project_end_date: ${project_end_date} now: ${now}`)
       }
     }
     $(document).ready(function() {
