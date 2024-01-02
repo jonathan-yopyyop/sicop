@@ -466,6 +466,12 @@
               $('#create_budget').prop('disabled', true);
               // Disabele the button with id add_button
               $('#add_button').prop('disabled', true);
+              Swal.fire({
+                title: "{% trans 'Error' %}",
+                text: "{% trans 'The end date of the selected project is less than today.' %}",
+                type: 'error',
+                confirmButtonText: "{% trans 'Ok' %}"
+              });
               
             }else{
               // Enable the button with id create_budget
