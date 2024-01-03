@@ -21,7 +21,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">{% trans 'Budget redistribution data' %}</h4>
+            <h4 class="card-title">{% trans 'Redistribution Information' %}</h4>
             <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
             <div class="heading-elements">
               <ul class="list-inline mb-0">
@@ -59,18 +59,20 @@
                                 <div class="row">
                                   <div class="col-12">
                                     <h4 class="form-section">
-                                      {% trans "Budget information" %}
+                                      {% trans "Target Budget Information" %}
                                     </h4>
                                     <div class="row">
-                                      <div class="col-6">
-                                        <select class="select2 form-control" name="project" id="project" required>
+                                      <div class="col-5">
+                                        <label class="label-project" for="target_project">{% trans 'Target project' %}</label>
+                                        <select class="select2 form-control" name="target_project" id="target_project" required>
                                           <option value="">{% trans "Select a project" %}</option>
                                           {% for project in projects %}
                                             <option value="{{ project.id }}">{{ project }}</option>
                                           {% endfor %}
                                         </select>
                                       </div>
-                                      <div class="col-6">
+                                      <div class="col-7">
+                                        <label class="label-project" for="budget">{% trans 'Target items' %}</label>
                                         <select class="select2 form-control" name="budget" id="budget" required>
                                           <option value="">{% trans "Select a budget" %}</option>
                                           {% for budget in budgets %}
@@ -137,16 +139,22 @@
                               <div class="form-group row">
                                 <div class="col-12">
                                   <h4 class="form-section">
-                                    {% trans "Budgets for redistribution" %}
+                                    {% trans "Source Budget Information" %}
                                   </h4>
                                 </div>
-                                <div class="col-10 my-1">
-                                  <label for="projectinput3">{% trans 'Items' %}</label>
-                                  <select class="select2 form-control" name="items" required id="items" {% if budgets_to_take is None %} disabled {% endif %}>
-                                    <option value="">{% trans "Select an item" %}</option>
-                                    {% for budget_to_take in budgets_to_take %}
-                                      <option value="{{ budget_to_take.id }}">{{ budget_to_take.budget_description }} (${{budget_to_take.available_budget|intcomma}})</option>
+                                <div class="col-5 my-1">
+                                  <label for="projectinput3">{% trans 'Source project' %}</label>
+                                  <select class="select2 form-control" name="source_project" id="source_project" required>
+                                    <option value="">{% trans "Select a project" %}</option>
+                                    {% for project in projects %}
+                                      <option value="{{ project.id }}">{{ project }}</option>
                                     {% endfor %}
+                                  </select>
+                                </div>
+                                <div class="col-5 my-1">
+                                  <label for="projectinput3">{% trans 'Source items' %}</label>
+                                  <select class="select2 form-control" name="items" required id="items" {% if budgets_to_take is None %} disabled {% endif %}>
+                                    <option value="">{% trans "Select aproject at left" %}</option>
                                   </select>
                                 </div>
                                 <div class="col-md-2  my-1">
@@ -417,8 +425,30 @@
 
     }
     $(document).ready(function() {
-      // change the budget list when the project is selected
-      $("#project").on("change", function(){
+      // change the budget list when the target project is selected
+      $("#target_project").on("change", function(){
+        var project_id = $(this).val();
+        console.log(`project_id: ${project_id}`);
+        if(project_id){
+          var url = "{% url 'get_budgets_by_project' 0 %}".replace('0', project_id);
+          console.log(url);
+          $.ajax({
+            url:url,
+            type:"GET",
+            dataType:"json",
+            success: function(data){
+              var items = data.items;
+              $('#budget').empty();
+              $('#budget').append(`<option value="">Select a budget</option>`);
+              $.each(items, function(k, v){ 
+                $('#budget').append(`<option value="${v[0]}">${v[1]}</option>`);
+              });
+            }
+          })
+        }
+      });
+      // change the budget list when the source project is selected
+      $("#source_project").on("change", function(){
         var project_id = $(this).val();
         console.log(project_id);
         if(project_id){
@@ -429,16 +459,13 @@
             dataType:"json",
             success: function(data){
               var items = data.items;
-              $('#budget').empty();
-              // create a loop over budget to populate budget using the id and the description
-              $('#budget').append(`<option value="">Select a budget</option>`);
+              $('#items').empty();
+              $('#items').append(`<option value="">Select a budget</option>`);
               $.each(items, function(k, v){
-                $('#budget').append(`<option value="${v[0]}">${v[1]}</option>`);
+                console.log(v);
+                var amount = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(v[2]);
+                $('#items').append(`<option value="${v[0]}">${v[1]} (${amount})</option>`);
               });
-              // for (var i = 0; i < items.length; i++) {
-              //   console.log(items);
-              //   $('#budget').append('<option value="' + budget[i][0] + '">' + budget[i][1] + '</option>');
-              // }
             }
           })
         }
