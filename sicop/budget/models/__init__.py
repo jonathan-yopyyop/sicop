@@ -1,3 +1,4 @@
+from sicop.budget.models.addition import BudgetAddition, BudgetAdditionItem  # noqa
 from sicop.budget.models.budget import (  # noqa
     Budget,
     BudgetCap,
