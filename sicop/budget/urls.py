@@ -2,6 +2,8 @@ from django.urls import path
 
 from sicop.budget.views import (
     AddItemToProvisionInCart,
+    BudgetAdditionCreateView,
+    BudgetAdditionListView,
     BudgetCapCreateView,
     BudgetCapDetailView,
     BudgetCapListView,
@@ -22,6 +24,7 @@ from sicop.budget.views import (
     BudgetRedistributionListView,
     BudgetRedistributionTransactionListView,
     BudgetUpdateView,
+    CreateAdditionItem,
     CreateRedistributionItem,
     EditItemProvisionAmountInCart,
     GetBudgetDetailById,
@@ -36,8 +39,10 @@ from sicop.budget.views import (
     RedistributionBudgetApprovalList,
     RedistributionBudgetApprovalUpdate,
     RedistributionCertificateView,
+    RemoveAdditionItem,
     RemoveItemToProvisionInCart,
     RemoveRedistributionItem,
+    UpdateAdditionItem,
     UpdateBudgetForRedistribution,
     UpdateProjectInCart,
     UpdateRedistributionItem,
@@ -255,5 +260,30 @@ urlpatterns = [
         "redistribution/approval/update/<int:pk>/",
         RedistributionBudgetApprovalUpdate.as_view(),
         name="redistribution_budget_approval_update",
+    ),
+    path(
+        "addition/list/",
+        BudgetAdditionListView.as_view(),
+        name="budget_addition_list",
+    ),
+    path(
+        "addition/create/",
+        BudgetAdditionCreateView.as_view(),
+        name="budget_addition_create",
+    ),
+    path(
+        "addition/item/create/",
+        CreateAdditionItem.as_view(),
+        name="create_addition_item",
+    ),
+    path(
+        "addition/item/remove/",
+        RemoveAdditionItem.as_view(),
+        name="remove_addition_item",
+    ),
+    path(
+        "addition/item/update/",
+        UpdateAdditionItem.as_view(),
+        name="update_addition_item",
     ),
 ]

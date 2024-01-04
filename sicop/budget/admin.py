@@ -2,6 +2,8 @@ from django.contrib import admin
 
 from sicop.budget.models import (
     Budget,
+    BudgetAddition,
+    BudgetAdditionItem,
     BudgetDecreaseTransaction,
     BudgetDescription,
     BudgetRedistribution,
@@ -232,6 +234,44 @@ class BudgetRedistributionItemApprovalAdmin(admin.ModelAdmin):
     readonly_fields = [
         "id",
         "budget_redistribution_item",
+        "created_at",
+        "updated_at",
+    ]
+
+
+@admin.register(BudgetAddition)
+class BudgetAdditionAdmin(admin.ModelAdmin):
+    list_display = [
+        "id",
+        "requires_approval",
+        "approved",
+        "must_be_approved_by",
+        "created_at",
+        "updated_at",
+    ]
+    readonly_fields = [
+        "id",
+        "requires_approval",
+        "approved",
+        "must_be_approved_by",
+        "created_at",
+        "updated_at",
+    ]
+
+
+@admin.register(BudgetAdditionItem)
+class BudgetAdditionItemAdmin(admin.ModelAdmin):
+    list_display = [
+        "id",
+        "budget",
+        "original_amount",
+        "added_amount",
+        "new_amount",
+        "created_at",
+        "updated_at",
+    ]
+    readonly_fields = [
+        "id",
         "created_at",
         "updated_at",
     ]
