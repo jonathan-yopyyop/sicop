@@ -21,7 +21,7 @@ django-debug-toolbar
 
 
 # Theme
-django-admin-interface==0.26.1
+django-admin-interface==0.28.2
 django-colorfield==0.10.1
 
 #Others
