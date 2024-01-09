@@ -272,7 +272,7 @@
                         <table>
                           <tr>
                             <td class="row1-td-3-top">
-                              <h5 class="text-center certificate-title">{% trans "Code" %}: {{budget_redistribution.id}}</h5>
+                              <h5 class="text-center certificate-title">{% trans "Code" %}: {{certificate_version.code}}</h5>
                             </td>
                           </tr>
                           <tr>
@@ -305,7 +305,7 @@
                           </td>
                           <td class="row2-td-3">
                             <h5 class="item-description-text">
-                              {% trans "CODE" %}
+                              {% trans "NUMBER" %}
                             </h5>
                           </td>
                           <td class="row2-td-4">
@@ -504,32 +504,39 @@
                           </td>
                           <td class="row10-td-2">
                             <h5 class="item-value-text">
-                              {% if budget_redistribution.approved %}
-                                {% if budget_redistribution.requires_approval %}
-                                  {% trans "Approved by" %}: {{requires_approval.must_be_approved_by.name}}
+                              {% if budget_redistribution.requires_approval %}
+                                {% if budget_redistribution.approved %}
+                                  {% trans "Approved by" %}: {{budget_redistribution.must_be_approved_by.name}}.
+                                  {% if budget_redistribution.approval_observation != "" %}
+                                    {% trans "Observation" %}: {{budget_redistribution.approval_observation}}
+                                  {% endif %}
                                 {% else %}
-                                  {% trans "This CRP does not require approval" %}
+                                  {% if budget_redistribution.rejected %}
+                                    {% trans "This CRP has been rejected." %}
+                                    {% if budget_redistribution.approval_observation != "" %}
+                                      {% trans "Observation" %}: {{budget_redistribution.approval_observation}}
+                                    {% endif %}
+                                  {% else %}
+                                    {% trans "This CRP has not yet been approved" %}
+                                  {% endif %}
                                 {% endif %}
                               {% else %}
-                                {% trans "This CRP has not yet been approved" %}
-                                {% if requires_approval.observation != "" %}
-                                  {% trans "Observation" %}: {{requires_approval.observation}}
-                                {% endif %}
+                                {% trans "This CRP does not require approval" %}
                               {% endif %}
                             </h5>
                           </td>
                         </tr>
                       </table>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                       <table>
                         <tr>
                           <td class="row11-td-1 text-center">
-                            <h5 class="bottom-text">{% trans "Through this document, budget approval is confirmed according to the related information." %}</h5>
+                            <h5 class="bottom-text">"Through this document, budget approval is confirmed according to the related information."</h5>
                           </td>
                         </tr>
                       </table>
-                    </tr>
+                    </tr> -->
                   </table>
                 </div>
             </div>
@@ -556,8 +563,8 @@
               }
             </style>
             <div class="card">
+              {% if budget_redistribution.requires_approval and not budget_redistribution.rejected %}
               <div class="card-body p-2">
-
                 <form action="{% url 'redistribution_budget_approval_update' budget_redistribution.id %}" method="post">
                   {% csrf_token %}
                   <div class="row">
@@ -567,14 +574,18 @@
                         <div class="col">
                           {% for item in for_approval %}
                           <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="{{item.budget_redistribution_item.id}}" id="items" name="items[]">
-                            <label class="form-check-label redistribution_font_size" for="items" >
-                              {{item.budget_redistribution_item.budget.budget_description}}
-                            </label>
+                            <input class="form-check-input" type="checkbox" value="{{item.budget_redistribution_item.id}}" id="items" name="items[]" checked hidden>
                           </div>
                           {% endfor %}
                         </div>
                       </div>
+                    </div>
+                    <div class="col-12">
+                      <label for="projectinput3">{% trans 'Approve?' %}</label>
+                      <select class="select2 form-control" name="approved" {% if provision_cart_approval.approved %} disabled {% endif %}>
+                        <option value="True" {% if provision_cart_approval.approved %}selected{% endif %}>{% trans 'Approve' %}</option>
+                        <option value="False" {% if not provision_cart_approval.approved %}selected{% endif %}>{% trans 'Reject' %}</option>
+                      </select>
                     </div>
                     <div class="col-12">
                       <label for="projectinput1" style="font-size: 12px;">{% trans 'Observation' %}</label>
@@ -586,13 +597,14 @@
                     {% if not provision_cart_approval.approved %}
                     <div class="col-12">
                       <button type="submit" class="btn btn-primary btn-block mb-1" style="font-size: 12px;">
-                        <i class="feather icon-check mr-25 common-size"></i> {% trans "Confirm Approve" %}
+                        <i class="feather icon-check mr-25 common-size"></i> {% trans "Update" %}
                       </button>
                     </div>
                     {% endif %}
                   </div>
                 </form>
               </div>
+              {% endif %}  
             </div>
             {% endif %}
         </div>

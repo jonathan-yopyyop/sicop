@@ -26,6 +26,12 @@ class Certificate(BaseModel):
         _("Date"),
         help_text=_("Date"),
     )
+    code = models.CharField(
+        _("Code"),
+        help_text=_("Code"),
+        max_length=255,
+        default="",
+    )
 
     class Meta:
         """Meta definition for Certificate."""

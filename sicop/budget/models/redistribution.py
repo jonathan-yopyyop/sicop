@@ -56,6 +56,13 @@ class BudgetRedistribution(BaseModel):
         null=True,
         blank=True,
     )
+    approval_observation = models.TextField(
+        _("Approval observation"),
+        help_text=_("Approval observation"),
+        null=True,
+        blank=True,
+        default="",
+    )
     requires_approval = models.BooleanField(
         _("Requires approval"),
         help_text=_("Requires approval"),
@@ -64,6 +71,11 @@ class BudgetRedistribution(BaseModel):
     approved = models.BooleanField(
         _("Approved"),
         help_text=_("Approved"),
+        default=False,
+    )
+    rejected = models.BooleanField(
+        _("Rejected"),
+        help_text=_("Rejected"),
         default=False,
     )
     must_be_approved_by = models.ForeignKey(
@@ -170,6 +182,13 @@ class BudgetRedistributionItemApproval(BaseModel):
         help_text=_("Budget Redistribution Item"),
         related_name="budget_redistribution_item_budget_redistribution_item_approvals",
         on_delete=models.CASCADE,
+    )
+    observation = models.TextField(
+        _("Observation"),
+        help_text=_("Observation"),
+        null=True,
+        blank=True,
+        default="",
     )
     approved = models.BooleanField(
         _("Approved"),
