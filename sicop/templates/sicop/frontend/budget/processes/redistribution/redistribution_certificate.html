@@ -346,6 +346,32 @@
                         <tr>
                           <td class="row5-td-1">
                             <h5 class="item-description-text">
+                              {% trans "CURRENT VALUE" %}
+                            </h5>
+                          </td>
+                          <td class="row5-td-2">
+                            <h5 class="item-value-text">
+                              ${{budget_redistribution.original_amount|intcomma}}
+                            </h5>
+                          </td>
+                          <td class="row5-td-3">
+                            <h5 class="item-description-text">
+                              {% trans "NEW VALUE" %}
+                            </h5>
+                          </td>
+                          <td class="row5-td-4  ">
+                            <h5 class="item-value-text">
+                              ${{budget_redistribution.new_amount|intcomma}}
+                            </h5>
+                          </td>
+                        </tr>
+                      </table>
+                    </tr>
+                    <tr>
+                      <table>
+                        <tr>
+                          <td class="row5-td-1">
+                            <h5 class="item-description-text">
                               {% trans "APPLICANT NAME" %}
                             </h5>
                           </td>
@@ -550,15 +576,15 @@
                     </div>
                     <div class="col-12">
                       <label for="projectinput1" style="font-size: 12px;">{% trans 'Observation' %}</label>
-                      <textarea class="form-control" name="observation" id="" cols="30" rows="3" {% if provision_cart_approval.approved %} disabled {% endif %}>{{provision_cart_approval.observation}}</textarea>
+                      <textarea class="form-control" name="observation" id="" cols="30" rows="2" {% if provision_cart_approval.approved %} disabled {% endif %}>{{provision_cart_approval.observation}}</textarea>
                     </div>
                     <div class="col-12">
                       <hr>
                     </div>
                     {% if not provision_cart_approval.approved %}
                     <div class="col-12">
-                      <button type="submit" class="btn btn-primary btn-block mb-1">
-                        <i class="feather icon-check mr-25 common-size"></i> {% trans "Approve" %}
+                      <button type="submit" class="btn btn-primary btn-block mb-1" style="font-size: 12px;">
+                        <i class="feather icon-check mr-25 common-size"></i> {% trans "Confirm Approve" %}
                       </button>
                     </div>
                     {% endif %}
