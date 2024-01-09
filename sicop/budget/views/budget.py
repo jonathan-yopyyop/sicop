@@ -234,7 +234,6 @@ class GetBudgetsByProjectExcludingBudget(LoginRequiredMixin, TemplateView):
             status=True,
         )
         items = []
-
         for budget in budgets:
             budget_ready = budget.available_budget
             if budget_ready < 0:
