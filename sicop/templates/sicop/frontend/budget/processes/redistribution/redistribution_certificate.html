@@ -556,6 +556,7 @@
             </style>
             <div class="card">
               <div class="card-body p-2">
+
                 <form action="{% url 'redistribution_budget_approval_update' budget_redistribution.id %}" method="post">
                   {% csrf_token %}
                   <div class="row">
@@ -596,15 +597,4 @@
         </div>
     </div>
 </div>
-<script>
-    // Obtén el elemento del contenedor
-    var qrcodeContainer = document.getElementById('qrcode');
-
-    // Crea un nuevo objeto QRCode con la información que deseas codificar
-    var qrcode = new QRCode(qrcodeContainer, {
-      text: 'https://www.ejemplo.com', // Puedes cambiar esta URL por la que desees
-      width: 80,
-      height: 80,
-    });
-  </script>
 {% endblock content %}
