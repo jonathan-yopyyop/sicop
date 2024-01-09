@@ -52,7 +52,7 @@ class BudgetRedistributionCreate(LoginRequiredMixin, TemplateView):
 
     def post(self, request, *args, **kwargs):
         try:
-            # To process
+            # To process the budget redistribution
             budget_redistribution_id = request.POST["budget_redistribution_id"]
             budget_redistribution = BudgetRedistribution.objects.get(
                 id=budget_redistribution_id,

@@ -462,7 +462,9 @@
               var items = data.items;
               // enable the list with id items
               $('#items').prop('disabled', false);
+              //clean
               $('#items').empty();
+              // Add
               $('#items').append(`<option value="">Select a budget</option>`);
               $.each(items, function(k, v){
                 console.log(v);

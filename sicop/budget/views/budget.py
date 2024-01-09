@@ -227,7 +227,6 @@ class GetBudgetsByProject(LoginRequiredMixin, TemplateView):
 class GetBudgetsByProjectExcludingBudget(LoginRequiredMixin, TemplateView):
     def get(self, request, *args, **kwargs):
         project_id = kwargs["project_id"]
-        # budget_id = kwargs["budget_id"]
         project = Project.objects.get(id=project_id)
         budgets = Budget.objects.filter(
             project=project,
