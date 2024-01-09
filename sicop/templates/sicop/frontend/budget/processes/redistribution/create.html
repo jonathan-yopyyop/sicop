@@ -139,7 +139,7 @@
                               <div class="form-group row">
                                 <div class="col-12">
                                   <h4 class="form-section">
-                                    {% trans "Source Budget Information" %}
+                                    {% trans "Source Budgets Information" %}
                                   </h4>
                                 </div>
                                 <div class="col-5 my-1">
@@ -459,6 +459,8 @@
             dataType:"json",
             success: function(data){
               var items = data.items;
+              // enable the list with id items
+              $('#items').prop('disabled', false);
               $('#items').empty();
               $('#items').append(`<option value="">Select a budget</option>`);
               $.each(items, function(k, v){

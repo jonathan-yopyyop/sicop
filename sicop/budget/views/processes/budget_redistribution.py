@@ -58,12 +58,15 @@ class BudgetRedistributionCreate(LoginRequiredMixin, TemplateView):
             )
             budget_redistribution_items = budget_redistribution.budget_redistribution_budget_redistribution_items.all()
             budget_redistribution_requires_approval = False
+            total_redistributed_amount = 0
+            budget_for_redistribution = budget_redistribution.budget
             for budget_redistribution_item in budget_redistribution_items:
                 item: BudgetRedistributionItem = budget_redistribution_item
                 budget: Budget = item.budget
                 proyect = budget.project
                 proyect_type = proyect.project_type
                 redistribution_cap = proyect_type.redistribution_cap
+
                 if item.redistributed_amount > redistribution_cap:
                     budget_redistribution_requires_approval = True
                     item.requires_approval = True
@@ -76,6 +79,14 @@ class BudgetRedistributionCreate(LoginRequiredMixin, TemplateView):
                     item.must_be_approved_by = request.user
                     item.save()
                 else:
+                    # Process the values
+                    total_redistributed_amount = total_redistributed_amount + item.redistributed_amount
+                    new_budget_budget_decrease = budget.budget_decrease + item.redistributed_amount
+                    budget.budget_decrease = new_budget_budget_decrease
+                    budget.budget_decrease_control = budget.budget_decrease_control + item.redistributed_amount
+                    budget.save()
+
+                    # Update statuses
                     item.approved = True
                     item.requires_approval = False
                     item.must_be_approved_by = None
@@ -90,9 +101,12 @@ class BudgetRedistributionCreate(LoginRequiredMixin, TemplateView):
                         redistribution_item=item,
                     )
                     # Modify the budget increasing
-                    budget.budget_addition = budget.budget_addition + item.redistributed_amount
                     budget.save()
-
+            # Update the budget redistribution
+            budget_for_redistribution.budget_addition = (
+                budget_for_redistribution.budget_addition + total_redistributed_amount
+            )
+            budget_for_redistribution.save()
             budget_redistribution.requires_approval = budget_redistribution_requires_approval
             budget_redistribution.status = False
             budget_redistribution.finished = True
@@ -340,8 +354,10 @@ class RedistributionBudgetApprovalUpdate(LoginRequiredMixin, TemplateView):
         try:
             items = request.POST.getlist("items[]")
             budget_redistribution = None
+            total_approved = 0
             for item_id in items:
                 item: BudgetRedistributionItem = BudgetRedistributionItem.objects.get(id=item_id)
+                total_approved = total_approved + item.redistributed_amount
                 BudgetRedistributionItemApproval.objects.filter(
                     budget_redistribution_item=item,
                 ).update(
@@ -351,6 +367,12 @@ class RedistributionBudgetApprovalUpdate(LoginRequiredMixin, TemplateView):
                     budget_redistribution = item.budget_redistribution
                 if not item.processed:
                     budget = item.budget
+                    # Process the values
+                    new_budget_budget_decrease = budget.budget_decrease + item.redistributed_amount
+                    budget.budget_decrease = new_budget_budget_decrease
+                    budget.budget_decrease_control = budget.budget_decrease_control + item.redistributed_amount
+                    budget.save()
+                    # Update statuses
                     item.approved = True
                     item.processed = True
                     item.save()
@@ -363,7 +385,6 @@ class RedistributionBudgetApprovalUpdate(LoginRequiredMixin, TemplateView):
                         redistribution_item=item,
                     )
                     # Modify the budget increasing
-                    budget.budget_addition = budget.budget_addition + item.redistributed_amount
                     budget.save()
             # observation = request.POST["observation"]
             for_approval = BudgetRedistributionItemApproval.objects.filter(
@@ -379,18 +400,16 @@ class RedistributionBudgetApprovalUpdate(LoginRequiredMixin, TemplateView):
             if approved:
                 budget_redistribution.approved = True
                 budget_redistribution.save()
+            # Update the budget redistribution
+            budget_for_redistribution = budget_redistribution.budget
+            budget_for_redistribution.budget_addition = budget_for_redistribution.budget_addition + total_approved
+            budget_for_redistribution.save()
             messages.success(request, _("Budget redistribution updated successfully."))
             return HttpResponseRedirect(
                 reverse(
                     "redistribution_budget_approval_list",
                 )
             )
-            # return HttpResponseRedirect(
-            #     reverse(
-            #         "redistribution_budget_approval_list",
-            #         kwargs={"pk": budget_redistribution.id},
-            #     )
-            # )
         except Exception as e:
             messages.warning(request, _("Budget redistribution error" + str(e)))
             return HttpResponseRedirect(
