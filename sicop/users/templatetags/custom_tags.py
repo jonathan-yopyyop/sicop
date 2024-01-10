@@ -18,7 +18,7 @@ def get_large_app_name():
 
 @register.simple_tag
 def get_app_version():
-    return _("V1.9.0")
+    return _("V1.10.0")
 
 
 @register.simple_tag
