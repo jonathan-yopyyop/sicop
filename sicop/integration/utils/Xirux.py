@@ -62,6 +62,7 @@ class XiruxIntegration:
                     Operac=Operac,
                     FecMod=FecMod,
                 )
+                print(f"Business unit {IdTipCen} created")
 
             else:
                 BusinessUnit.objects.filter(IdTipCen=IdTipCen).update(
@@ -71,6 +72,7 @@ class XiruxIntegration:
                     Operac=Operac,
                     FecMod=FecMod,
                 )
+                print(f"Business unit {IdTipCen} updated")
 
             # Insert into Business unit app
             if SicopBusinessUnit.objects.filter(code=IdTipCen).count() == 0:
@@ -78,11 +80,13 @@ class XiruxIntegration:
                     code=IdTipCen,
                     name=Nombre,
                 )
+                print(f"Business unit {IdTipCen} created")
 
             else:
                 SicopBusinessUnit.objects.filter(code=IdTipCen).update(
                     name=Nombre,
                 )
+                print(f"Business unit {IdTipCen} updated")
 
     def cost_centers(self):
         query_xirux = "select * from ConCenCos"
@@ -118,6 +122,7 @@ class XiruxIntegration:
                     Operac=Operac,
                     FecMod=FecMod,
                 )
+                print(f"Cost center {IdCenCos} created")
 
             else:
                 CostCenter.objects.filter(IdCenCos=IdCenCos).update(
@@ -134,6 +139,7 @@ class XiruxIntegration:
                     Operac=Operac,
                     FecMod=FecMod,
                 )
+                print(f"Cost center {IdCenCos} updated")
 
             # Insert into Cost Center app
             if SicopCostCenter.objects.filter(cost_center_id=IdCenCos).count() == 0:
@@ -142,12 +148,14 @@ class XiruxIntegration:
                     name=Nombre,
                     description=Nombre,
                 )
+                print(f"Cost center {IdCenCos} created")
 
             else:
                 SicopCostCenter.objects.filter(cost_center_id=IdCenCos).update(
                     name=Nombre,
                     description=Nombre,
                 )
+                print(f"Cost center {IdCenCos} updated")
 
     def expense_types(self):
         query_xirux = "select * from ConTipGas"
@@ -173,6 +181,7 @@ class XiruxIntegration:
                     Operac=Operac,
                     FecMod=FecMod,
                 )
+                print(f"Expense type {IdTipGas} created")
 
             else:
                 ExpenseType.objects.filter(IdTipGas=IdTipGas).update(
@@ -184,6 +193,7 @@ class XiruxIntegration:
                     Operac=Operac,
                     FecMod=FecMod,
                 )
+                print(f"Expense type {IdTipGas} updated")
 
             # Insert into Expense Type app
             if SicopExpenseType.objects.filter(code=IdTipGas).count() == 0:
@@ -191,14 +201,31 @@ class XiruxIntegration:
                     code=IdTipGas,
                     name=Nombre,
                 )
+                print(f"Expense type {IdTipGas} created")
 
             else:
                 SicopExpenseType.objects.filter(code=IdTipGas).update(
                     name=Nombre,
                 )
+                print(f"Expense type {IdTipGas} updated")
 
     def thirds(self):
-        query_xirux = "select * from ConTercer"
+        # query_xirux = "select * from ConTercer"
+        query_xirux = """
+        WITH ResultadosNumerados AS (
+            SELECT
+                *,
+                ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS NumeroFila
+            FROM
+                ConTercer
+        )
+        SELECT
+            *
+        FROM
+            ResultadosNumerados
+        WHERE
+            NumeroFila > (SELECT COUNT(*) FROM ConTercer) - 100;
+        """
         results_xirux = self.get_results_xirux(query_xirux)
         for result in results_xirux:
             IdEmpres = [0]
@@ -327,6 +354,7 @@ class XiruxIntegration:
                     Operac=Operac,
                     FecMod=FecMod,
                 )
+                print(f"Third {IdTercer} created")
 
             else:
                 Third.objects.filter(IdTercer=IdTercer).update(
@@ -391,6 +419,7 @@ class XiruxIntegration:
                     Operac=Operac,
                     FecMod=FecMod,
                 )
+                print(f"Third {IdTercer} updated")
 
             # Insert into Third app
             if SicopContractor.objects.filter(dni=Nit).count() == 0:
@@ -401,6 +430,7 @@ class XiruxIntegration:
                     address=Direcc,
                     phone=Telefo,
                 )
+                print(f"Third {IdTercer} created")
 
             else:
                 SicopContractor.objects.filter(dni=Nit).update(
@@ -409,6 +439,7 @@ class XiruxIntegration:
                     address=Direcc,
                     phone=Telefo,
                 )
+                print(f"Third {IdTercer} updated")
 
     def expense_concepts(self):
         query_xirux = "select * from ConConGas"
@@ -462,6 +493,7 @@ class XiruxIntegration:
                     Operac=Operac,
                     FecMod=FecMod,
                 )
+                print(f"Expense concept {IdConGas} created")
 
             else:
                 ExpenseConcept.objects.filter(IdConGas=IdConGas).update(
@@ -487,6 +519,7 @@ class XiruxIntegration:
                     Operac=Operac,
                     FecMod=FecMod,
                 )
+                print(f"Expense concept {IdConGas} updated")
 
             # Insert into Expense Concept app
             if SicopExpenseConcept.objects.filter(code=IdConGas).count() == 0:
@@ -494,11 +527,13 @@ class XiruxIntegration:
                     code=IdConGas,
                     name=Nombre,
                 )
+                print(f"Expense concept {IdConGas} created")
 
             else:
                 SicopExpenseConcept.objects.filter(code=IdConGas).update(
                     name=Nombre,
                 )
+                print(f"Expense concept {IdConGas} updated")
 
     def check_ping(self):
         hostname = f"{self.xirux_host}"
