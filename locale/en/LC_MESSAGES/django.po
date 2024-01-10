@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-09 17:48-0500\n"
+"POT-Creation-Date: 2024-01-10 09:19-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -166,10 +166,11 @@ msgstr ""
 msgid "AreaRole not updated, please review the data"
 msgstr ""
 
-#: sicop/budget/apps.py:8 sicop/budget/models/addition.py:76
-#: sicop/budget/models/addition.py:77 sicop/budget/models/budget.py:111
+#: sicop/budget/apps.py:8 sicop/budget/models/addition.py:84
+#: sicop/budget/models/addition.py:85 sicop/budget/models/budget.py:111
 #: sicop/budget/models/budget.py:128 sicop/budget/models/budget.py:129
 #: sicop/budget/models/budget.py:181 sicop/budget/models/budget.py:182
+#: sicop/budget/models/budget.py:226 sicop/budget/models/budget.py:227
 #: sicop/budget/models/provision.py:99 sicop/budget/models/provision.py:100
 #: sicop/budget/models/redistribution.py:25
 #: sicop/budget/models/redistribution.py:26
@@ -205,7 +206,10 @@ msgstr ""
 #: sicop/budget/models/redistribution.py:55
 #: sicop/budget/models/redistribution.py:187
 #: sicop/budget/models/redistribution.py:188
-#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:148
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:469
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:476
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:538
+#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:147
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:55
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:258
 #: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1895
@@ -218,8 +222,12 @@ msgstr ""
 msgid "Observation"
 msgstr ""
 
-#: sicop/budget/models/addition.py:30 sicop/budget/models/addition.py:31
-#: sicop/budget/models/addition.py:102 sicop/budget/models/addition.py:103
+#: sicop/budget/models/addition.py:31 sicop/budget/models/addition.py:32
+msgid "Approval Observation"
+msgstr ""
+
+#: sicop/budget/models/addition.py:38 sicop/budget/models/addition.py:39
+#: sicop/budget/models/addition.py:110 sicop/budget/models/addition.py:111
 #: sicop/budget/models/provision.py:61 sicop/budget/models/provision.py:62
 #: sicop/budget/models/redistribution.py:67
 #: sicop/budget/models/redistribution.py:68
@@ -228,8 +236,8 @@ msgstr ""
 msgid "Requires approval"
 msgstr ""
 
-#: sicop/budget/models/addition.py:35 sicop/budget/models/addition.py:36
-#: sicop/budget/models/addition.py:107 sicop/budget/models/addition.py:108
+#: sicop/budget/models/addition.py:43 sicop/budget/models/addition.py:44
+#: sicop/budget/models/addition.py:115 sicop/budget/models/addition.py:116
 #: sicop/budget/models/provision.py:66 sicop/budget/models/provision.py:67
 #: sicop/budget/models/redistribution.py:72
 #: sicop/budget/models/redistribution.py:73
@@ -245,8 +253,9 @@ msgstr ""
 msgid "Approved"
 msgstr ""
 
-#: sicop/budget/models/addition.py:40 sicop/budget/models/addition.py:41
-#: sicop/budget/models/addition.py:112 sicop/budget/models/addition.py:113
+#: sicop/budget/models/addition.py:48 sicop/budget/models/addition.py:49
+#: sicop/budget/models/addition.py:120 sicop/budget/models/addition.py:121
+#: sicop/budget/models/addition.py:173 sicop/budget/models/addition.py:174
 #: sicop/budget/models/provision.py:71 sicop/budget/models/provision.py:72
 #: sicop/budget/models/provision.py:150 sicop/budget/models/provision.py:151
 #: sicop/budget/models/redistribution.py:77
@@ -257,8 +266,8 @@ msgstr ""
 msgid "Rejected"
 msgstr ""
 
-#: sicop/budget/models/addition.py:46 sicop/budget/models/addition.py:47
-#: sicop/budget/models/addition.py:118 sicop/budget/models/addition.py:119
+#: sicop/budget/models/addition.py:54 sicop/budget/models/addition.py:55
+#: sicop/budget/models/addition.py:126 sicop/budget/models/addition.py:127
 #: sicop/budget/models/redistribution.py:83
 #: sicop/budget/models/redistribution.py:84
 #: sicop/budget/models/redistribution.py:152
@@ -266,20 +275,22 @@ msgstr ""
 msgid "Must be approved by"
 msgstr ""
 
-#: sicop/budget/models/addition.py:57
+#: sicop/budget/models/addition.py:65 sicop/budget/models/addition.py:155
+#: sicop/budget/models/addition.py:156
 msgid "Budget Addition"
 msgstr ""
 
-#: sicop/budget/models/addition.py:58
+#: sicop/budget/models/addition.py:66
 msgid "Budget Additions"
 msgstr ""
 
-#: sicop/budget/models/addition.py:70 sicop/budget/models/addition.py:71
+#: sicop/budget/models/addition.py:78 sicop/budget/models/addition.py:79
 msgid "Budget addition item"
 msgstr ""
 
-#: sicop/budget/models/addition.py:81 sicop/budget/models/addition.py:82
+#: sicop/budget/models/addition.py:89 sicop/budget/models/addition.py:90
 #: sicop/budget/models/budget.py:187 sicop/budget/models/budget.py:188
+#: sicop/budget/models/budget.py:232 sicop/budget/models/budget.py:233
 #: sicop/budget/models/redistribution.py:33
 #: sicop/budget/models/redistribution.py:34
 #: sicop/budget/models/redistribution.py:120
@@ -289,37 +300,62 @@ msgstr ""
 msgid "Original amount"
 msgstr ""
 
-#: sicop/budget/models/addition.py:88 sicop/budget/models/addition.py:89
+#: sicop/budget/models/addition.py:96 sicop/budget/models/addition.py:97
+#: sicop/budget/models/budget.py:237 sicop/budget/models/budget.py:238
 #: sicop/templates/sicop/frontend/budget/processes/addition/list.html:70
 msgid "Added amount"
 msgstr ""
 
-#: sicop/budget/models/addition.py:95 sicop/budget/models/addition.py:96
+#: sicop/budget/models/addition.py:103 sicop/budget/models/addition.py:104
 #: sicop/budget/models/budget.py:144 sicop/budget/models/budget.py:145
 #: sicop/budget/models/budget.py:197 sicop/budget/models/budget.py:198
+#: sicop/budget/models/budget.py:242 sicop/budget/models/budget.py:243
 #: sicop/budget/models/redistribution.py:47
 #: sicop/budget/models/redistribution.py:48
 #: sicop/budget/models/redistribution.py:134
 #: sicop/budget/models/redistribution.py:135
-#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:93
 #: sicop/templates/sicop/frontend/budget/processes/addition/list.html:71
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/list.html:56
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/list.html:130
 msgid "New amount"
 msgstr ""
 
-#: sicop/budget/models/addition.py:126 sicop/budget/models/addition.py:127
+#: sicop/budget/models/addition.py:134 sicop/budget/models/addition.py:135
 #: sicop/budget/models/redistribution.py:160
 #: sicop/budget/models/redistribution.py:161
 msgid "Processed"
 msgstr ""
 
-#: sicop/budget/models/addition.py:134
+#: sicop/budget/models/addition.py:142
 msgid "Budget Addition Item"
 msgstr ""
 
-#: sicop/budget/models/addition.py:135
+#: sicop/budget/models/addition.py:143
 msgid "Budget Addition Items"
+msgstr ""
+
+#: sicop/budget/models/addition.py:162 sicop/budget/models/addition.py:163
+#: sicop/budget/models/provision.py:139 sicop/budget/models/provision.py:140
+msgid "Must be approbed by"
+msgstr ""
+
+#: sicop/budget/models/addition.py:168 sicop/budget/models/addition.py:169
+#: sicop/budget/models/provision.py:145 sicop/budget/models/provision.py:146
+#: sicop/templates/sicop/frontend/budget/processes/addition/list.html:56
+#: sicop/templates/sicop/frontend/budget/processes/addition/list.html:124
+#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:51
+#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:116
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/list.html:58
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/list.html:132
+msgid "Approved?"
+msgstr ""
+
+#: sicop/budget/models/addition.py:181 sicop/budget/models/provision.py:163
+msgid "Provision Cart Approval"
+msgstr ""
+
+#: sicop/budget/models/addition.py:182 sicop/budget/models/provision.py:164
+msgid "Provision Cart Approvals"
 msgstr ""
 
 #: sicop/budget/models/budget.py:16 sicop/budget/models/budget.py:17
@@ -330,7 +366,7 @@ msgid "Expense concept"
 msgstr ""
 
 #: sicop/budget/models/budget.py:22 sicop/budget/models/budget.py:23
-#: sicop/budget/models/budget.py:236 sicop/budget/models/budget.py:237
+#: sicop/budget/models/budget.py:284 sicop/budget/models/budget.py:285
 #: sicop/project/models.py:89 sicop/project/models.py:90
 #: sicop/templates/sicop/frontend/area/area/create.html:66
 #: sicop/templates/sicop/frontend/area/area/create.html:70
@@ -393,7 +429,7 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/budget/update.html:57
 #: sicop/templates/sicop/frontend/budget/kardex/decrease/list.html:24
 #: sicop/templates/sicop/frontend/budget/kardex/decrease/list.html:52
-#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:66
+#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:65
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:34
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:75
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:76
@@ -533,7 +569,19 @@ msgstr ""
 msgid "Budget Redistribution Transactions"
 msgstr ""
 
-#: sicop/budget/models/budget.py:225 sicop/budget/models/budget.py:226
+#: sicop/budget/models/budget.py:248 sicop/budget/models/budget.py:249
+msgid "addition item"
+msgstr ""
+
+#: sicop/budget/models/budget.py:257
+msgid "Budget Addition Transaction"
+msgstr ""
+
+#: sicop/budget/models/budget.py:258
+msgid "Budget Addition Transactions"
+msgstr ""
+
+#: sicop/budget/models/budget.py:273 sicop/budget/models/budget.py:274
 #: sicop/templates/sicop/frontend/base/main_menu.html:38
 #: sicop/templates/sicop/frontend/budget/cap/create.html:55
 #: sicop/templates/sicop/frontend/budget/cap/detail.html:54
@@ -543,7 +591,7 @@ msgstr ""
 msgid "Business unit"
 msgstr ""
 
-#: sicop/budget/models/budget.py:231 sicop/budget/models/budget.py:232
+#: sicop/budget/models/budget.py:279 sicop/budget/models/budget.py:280
 #: sicop/project/models.py:52 sicop/project/models.py:53
 #: sicop/templates/sicop/frontend/budget/cap/create.html:65
 #: sicop/templates/sicop/frontend/budget/cap/create.html:69
@@ -564,11 +612,11 @@ msgstr ""
 msgid "Cap"
 msgstr ""
 
-#: sicop/budget/models/budget.py:243
+#: sicop/budget/models/budget.py:291
 msgid "Budget Cap"
 msgstr ""
 
-#: sicop/budget/models/budget.py:244
+#: sicop/budget/models/budget.py:292
 msgid "Budget Caps"
 msgstr ""
 
@@ -608,28 +656,6 @@ msgstr ""
 
 #: sicop/budget/models/provision.py:119
 msgid "Provision Budgets"
-msgstr ""
-
-#: sicop/budget/models/provision.py:139 sicop/budget/models/provision.py:140
-msgid "Must be approbed by"
-msgstr ""
-
-#: sicop/budget/models/provision.py:145 sicop/budget/models/provision.py:146
-#: sicop/templates/sicop/frontend/budget/processes/addition/list.html:56
-#: sicop/templates/sicop/frontend/budget/processes/addition/list.html:131
-#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:51
-#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:116
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/list.html:58
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/list.html:132
-msgid "Approved?"
-msgstr ""
-
-#: sicop/budget/models/provision.py:163
-msgid "Provision Cart Approval"
-msgstr ""
-
-#: sicop/budget/models/provision.py:164
-msgid "Provision Cart Approvals"
 msgstr ""
 
 #: sicop/budget/models/redistribution.py:60
@@ -705,27 +731,36 @@ msgstr ""
 msgid "Budget description not updated"
 msgstr ""
 
-#: sicop/budget/views/processes/budget_addition.py:66
+#: sicop/budget/views/processes/budget_addition.py:76
+#: sicop/budget/views/processes/budget_redistribution.py:122
+msgid "Budget redistribution created successfully."
+msgstr ""
+
+#: sicop/budget/views/processes/budget_addition.py:109
 #: sicop/budget/views/processes/budget_redistribution.py:201
 msgid "Item created"
 msgstr ""
 
-#: sicop/budget/views/processes/budget_addition.py:97
+#: sicop/budget/views/processes/budget_addition.py:140
 #: sicop/budget/views/processes/budget_redistribution.py:232
 msgid "Item deleted"
 msgstr ""
 
-#: sicop/budget/views/processes/budget_addition.py:128
+#: sicop/budget/views/processes/budget_addition.py:171
 #: sicop/budget/views/processes/budget_redistribution.py:263
 msgid "Item updated"
 msgstr ""
 
-#: sicop/budget/views/processes/budget_arrange.py:111
-msgid "Budget provision created successfully."
+#: sicop/budget/views/processes/budget_addition.py:238
+msgid "Budget addition approved successfully."
 msgstr ""
 
-#: sicop/budget/views/processes/budget_redistribution.py:122
-msgid "Budget redistribution created successfully."
+#: sicop/budget/views/processes/budget_addition.py:249
+msgid "Budget addition rejected."
+msgstr ""
+
+#: sicop/budget/views/processes/budget_arrange.py:111
+msgid "Budget provision created successfully."
 msgstr ""
 
 #: sicop/budget/views/processes/budget_redistribution.py:172
@@ -736,15 +771,15 @@ msgstr ""
 msgid "Totals updated"
 msgstr ""
 
-#: sicop/budget/views/processes/budget_redistribution.py:426
+#: sicop/budget/views/processes/budget_redistribution.py:423
 msgid "Budget redistribution approved successfully."
 msgstr ""
 
-#: sicop/budget/views/processes/budget_redistribution.py:428
+#: sicop/budget/views/processes/budget_redistribution.py:425
 msgid "Budget redistribution rejected."
 msgstr ""
 
-#: sicop/budget/views/processes/budget_redistribution.py:440
+#: sicop/budget/views/processes/budget_redistribution.py:437
 msgid "Budget redistribution error"
 msgstr ""
 
@@ -763,6 +798,7 @@ msgstr ""
 #: sicop/templates/sicop/frontend/area/role/detail.html:65
 #: sicop/templates/sicop/frontend/area/role/list.html:47
 #: sicop/templates/sicop/frontend/area/role/list.html:79
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:275
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:275
 msgid "Code"
 msgstr ""
@@ -906,6 +942,7 @@ msgid "Slug"
 msgstr ""
 
 #: sicop/certificate/models.py:21 sicop/certificate/models.py:22
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:282
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:282
 msgid "Version"
 msgstr ""
@@ -1742,7 +1779,7 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/budget/create.html:129
 #: sicop/templates/sicop/frontend/budget/cap/create.html:89
 #: sicop/templates/sicop/frontend/budget/description/create.html:79
-#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:155
+#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:154
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:265
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:267
 #: sicop/templates/sicop/frontend/business_unit/create.html:84
@@ -1801,7 +1838,7 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/description/list.html:45
 #: sicop/templates/sicop/frontend/budget/description/list.html:77
 #: sicop/templates/sicop/frontend/budget/processes/addition/list.html:52
-#: sicop/templates/sicop/frontend/budget/processes/addition/list.html:127
+#: sicop/templates/sicop/frontend/budget/processes/addition/list.html:120
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/approval/list.html:40
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/approval/list.html:88
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/list.html:52
@@ -1840,7 +1877,7 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/description/list.html:49
 #: sicop/templates/sicop/frontend/budget/description/list.html:81
 #: sicop/templates/sicop/frontend/budget/processes/addition/list.html:57
-#: sicop/templates/sicop/frontend/budget/processes/addition/list.html:132
+#: sicop/templates/sicop/frontend/budget/processes/addition/list.html:125
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:38
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:79
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:52
@@ -1880,6 +1917,7 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/budget/update.html:137
 #: sicop/templates/sicop/frontend/budget/cap/update.html:101
 #: sicop/templates/sicop/frontend/budget/description/update.html:93
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:547
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:72
 #: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1967
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:600
@@ -2301,6 +2339,139 @@ msgstr ""
 msgid "Redistributed"
 msgstr ""
 
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:8
+msgid "Budget addition certificate"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:269
+msgid "BUDGET ADDITION CERTIFICATE"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:285
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:285
+msgid "Version date"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:298
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:298
+msgid "APPLICATION DATE"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:308
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:308
+msgid "NUMBER"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:323
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:323
+msgid "GENERAL INFORMATION"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:333
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:375
+msgid "APPLICANT NAME"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:343
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:385
+msgid "POSITION"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:365
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:407
+msgid "APPLICATION DATA"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:375
+msgid "ITEM"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:380
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:422
+msgid "ORIGINAL AMOUNT"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:385
+msgid "BUDGET TO ADD"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:390
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:432
+msgid "NEW AMOUNT"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:426
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:468
+msgid "OBSERVATIONS"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:450
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:492
+msgid "APPROVAL"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:460
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:502
+msgid "NAME"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:467
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1888
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:509
+msgid "Approved by"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:473
+msgid "This CADP has been rejected."
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:474
+msgid "Rejected by"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:479
+msgid "This CADP has not yet been approved"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:483
+msgid "This CADP does not require approval"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:508
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1937
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:549
+msgid "Print"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:510
+msgid "Go to CADP list"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:531
+#: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:61
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1951
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:584
+msgid "Approve?"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:533
+#: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:37
+#: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:78
+#: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:63
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1953
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/approval/list.html:43
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/approval/list.html:91
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:586
+msgid "Approve"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:534
+#: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:64
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1954
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:587
+msgid "Reject"
+msgstr ""
+
 #: sicop/templates/sicop/frontend/budget/processes/addition/create.html:7
 msgid "Budget addition create"
 msgstr ""
@@ -2313,24 +2484,24 @@ msgstr ""
 msgid "Information on items for addition"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:68
+#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:67
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:69
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:68
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:148
 msgid "Select a project"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:75
+#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:74
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:149
 msgid "Items"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:77
+#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:76
 msgid "Select a project at left"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:81
-#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:83
+#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:80
+#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:82
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:156
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:158
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:161
@@ -2338,7 +2509,7 @@ msgstr ""
 msgid "Add"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:90
+#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:89
 #: sicop/templates/sicop/frontend/budget/processes/addition/list.html:68
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:165
 #: sicop/templates/sicop/frontend/budget/processes/provision/detail.html:126
@@ -2349,7 +2520,7 @@ msgstr ""
 msgid "Item"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:91
+#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:90
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:166
 #: sicop/templates/sicop/frontend/budget/processes/provision/detail.html:127
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:171
@@ -2357,55 +2528,80 @@ msgstr ""
 msgid "Available"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:92
+#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:91
 msgid "Added"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:94
+#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:92
+msgid "New budget"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:93
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:169
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:174
 msgid "Remove"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:237
-#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:447
+#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:238
+#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:347
+#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:471
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:416
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:496
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:609
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:350
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:567
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:459
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:521
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:644
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/detail.html:282
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/detail.html:447
 msgid "Error"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:238
+#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:239
 msgid ""
 "The value to be used in the addition cannot be greater than the available "
 "value."
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:240
-#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:450
+#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:241
+#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:350
+#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:474
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:419
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:499
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:612
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:353
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:570
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:462
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:524
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:647
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/detail.html:285
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/detail.html:450
 msgid "Ok"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:415
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:535
+#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:344
+#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:363
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:77
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:456
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:518
+msgid "Select a budget"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:348
+#: sicop/templates/sicop/frontend/budget/processes/provision/create.html:497
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:460
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:522
+msgid "The end date of the selected project is less than today."
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:439
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:612
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/detail.html:415
 msgid "Select an item"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:448
+#: sicop/templates/sicop/frontend/budget/processes/addition/create.html:472
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:610
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:568
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:645
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/detail.html:448
 msgid "This item has already selected"
 msgstr ""
@@ -2416,19 +2612,19 @@ msgid "Budget addition list"
 msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/processes/addition/list.html:53
-#: sicop/templates/sicop/frontend/budget/processes/addition/list.html:128
+#: sicop/templates/sicop/frontend/budget/processes/addition/list.html:121
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:48
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:113
 msgid "Managed by"
 msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/processes/addition/list.html:54
-#: sicop/templates/sicop/frontend/budget/processes/addition/list.html:129
+#: sicop/templates/sicop/frontend/budget/processes/addition/list.html:122
 msgid "Request"
 msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/processes/addition/list.html:55
-#: sicop/templates/sicop/frontend/budget/processes/addition/list.html:130
+#: sicop/templates/sicop/frontend/budget/processes/addition/list.html:123
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:50
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:115
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/list.html:57
@@ -2480,16 +2676,6 @@ msgstr ""
 msgid "Provisionado"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:37
-#: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:78
-#: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:63
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1953
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/approval/list.html:43
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/approval/list.html:91
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:586
-msgid "Approve"
-msgstr ""
-
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:7
 msgid "Budget provision approval update"
 msgstr ""
@@ -2500,18 +2686,6 @@ msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:50
 msgid "Budget provision approval Information"
-msgstr ""
-
-#: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:61
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1951
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:584
-msgid "Approve?"
-msgstr ""
-
-#: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:64
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1954
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:587
-msgid "Reject"
 msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:7
@@ -2598,28 +2772,21 @@ msgid ""
 "value."
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/provision/create.html:497
-msgid "The end date of the selected project is less than today."
-msgstr ""
-
 #: sicop/templates/sicop/frontend/budget/processes/provision/detail.html:7
 msgid "Budget provition detail"
 msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:7
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:15
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:8
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:8
 msgid "Budget provision list"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:8
+msgid "Budget provision certificate"
 msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1884
 msgid "This CAP was rejected"
-msgstr ""
-
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1888
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:509
-msgid "Approved by"
 msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1890
@@ -2628,11 +2795,6 @@ msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1893
 msgid "This CAP has not yet been approved"
-msgstr ""
-
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1937
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:549
-msgid "Print"
 msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1939
@@ -2662,10 +2824,6 @@ msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:75
 msgid "Target items"
-msgstr ""
-
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:77
-msgid "Select a budget"
 msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:92
@@ -2745,24 +2903,12 @@ msgstr ""
 msgid "Budget redistribution list"
 msgstr ""
 
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:8
+msgid "Budget redistribution certificate"
+msgstr ""
+
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:269
 msgid "BUDGET REDISTRIBUTION CERTIFICATE"
-msgstr ""
-
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:285
-msgid "Version date"
-msgstr ""
-
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:298
-msgid "APPLICATION DATE"
-msgstr ""
-
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:308
-msgid "NUMBER"
-msgstr ""
-
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:323
-msgid "GENERAL INFORMATION"
 msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:333
@@ -2777,44 +2923,12 @@ msgstr ""
 msgid "NEW VALUE"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:375
-msgid "APPLICANT NAME"
-msgstr ""
-
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:385
-msgid "POSITION"
-msgstr ""
-
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:407
-msgid "APPLICATION DATA"
-msgstr ""
-
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:417
 msgid "ORIGIN ITEM"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:422
-msgid "ORIGINAL AMOUNT"
-msgstr ""
-
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:427
 msgid "REDISTRIBUTED AMOUNT"
-msgstr ""
-
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:432
-msgid "NEW AMOUNT"
-msgstr ""
-
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:468
-msgid "OBSERVATIONS"
-msgstr ""
-
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:492
-msgid "APPROVAL"
-msgstr ""
-
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:502
-msgid "NAME"
 msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:515
@@ -3395,7 +3509,7 @@ msgid "SICOP"
 msgstr ""
 
 #: sicop/users/templatetags/custom_tags.py:21
-msgid "V1.9.0"
+msgid "V1.10.0"
 msgstr ""
 
 #: sicop/users/views/groups.py:55

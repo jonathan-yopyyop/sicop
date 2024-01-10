@@ -25,6 +25,9 @@ from sicop.budget.views.description import (  # noqa
     BudgetDescriptionUpdateView,
 )
 from sicop.budget.views.processes.budget_addition import (  # noqa
+    AdditionApprovalUpdateView,
+    AdditionBudgetApprovalList,
+    AdditionCertificateView,
     BudgetAdditionCreateView,
     BudgetAdditionListView,
     CreateAdditionItem,

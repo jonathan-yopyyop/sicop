@@ -2,6 +2,9 @@ from django.urls import path
 
 from sicop.budget.views import (
     AddItemToProvisionInCart,
+    AdditionApprovalUpdateView,
+    AdditionBudgetApprovalList,
+    AdditionCertificateView,
     BudgetAdditionCreateView,
     BudgetAdditionListView,
     BudgetCapCreateView,
@@ -285,5 +288,20 @@ urlpatterns = [
         "addition/item/update/",
         UpdateAdditionItem.as_view(),
         name="update_addition_item",
+    ),
+    path(
+        "addition/certificate/<int:pk>/",
+        AdditionCertificateView.as_view(),
+        name="addition_certificate",
+    ),
+    path(
+        "addition/approval/update/<int:pk>/",
+        AdditionApprovalUpdateView.as_view(),
+        name="addition_approval_update",
+    ),
+    path(
+        "addition/approval/list/",
+        AdditionBudgetApprovalList.as_view(),
+        name="addition_budget_approval_list",
     ),
 ]
