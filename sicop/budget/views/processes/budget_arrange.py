@@ -159,8 +159,12 @@ class ProvisionCertificateView(TemplateView):
         pk = self.kwargs.get("pk")
         cart = ProvisionCart.objects.get(id=pk)
         user = cart.user
-        area_member = AreaMember.objects.get(user=user)
-        area_rol = area_member.role
+        if AreaMember.objects.filter(user=user).exists():
+            area_member = AreaMember.objects.filter(user=user).last()
+            area_rol = area_member.role
+        else:
+            area_member = None
+            area_rol = None
         if ProvisionCartApproval.objects.filter(provision_cart=cart).exists():
             provision_cart_approval = ProvisionCartApproval.objects.filter(provision_cart=cart).last()
         else:
