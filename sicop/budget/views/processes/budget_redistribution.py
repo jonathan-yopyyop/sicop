@@ -336,8 +336,12 @@ class RedistributionCertificateView(TemplateView):
         pk = self.kwargs.get("pk")
         budget_redistribution = BudgetRedistribution.objects.get(id=pk)
         user = budget_redistribution.user
-        area_member = AreaMember.objects.get(user=user)
-        area_rol = area_member.role
+        if AreaMember.objects.filter(user=user).exists():
+            area_member = AreaMember.objects.get(user=user)
+            area_rol = area_member.role
+        else:
+            area_member = None
+            area_rol = None
         for_approval = BudgetRedistributionItemApproval.objects.filter(
             budget_redistribution_item__budget_redistribution=budget_redistribution,
             approved=False,
