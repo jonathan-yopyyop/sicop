@@ -59,12 +59,11 @@
                                 <div class="col-12">
                                   <h4 class="form-section">
                                     {% trans "Information on items for addition" %}
-                                  </h4>     
-                                  <input type="hidden" name="addition_id" id="addition_id" value="{{ budget_addition.id }}">
+                                  </h4>
                                 </div>
                                 <div class="col-5 my-1">
                                   <label for="projectinput3">{% trans 'Project' %}</label>
-                                  <select class="select2 form-control" name="source_project" id="source_project" required>
+                                  <select class="select2 form-control" name="project" id="project" required>
                                     <option value="">{% trans "Select a project" %}</option>
                                     {% for project in projects %}
                                       <option value="{{ project.id }}">{{ project }}</option>
@@ -90,7 +89,7 @@
                                             <th>{% trans 'Item' %}</th>
                                             <th>{% trans 'Available' %}</th>
                                             <th>{% trans 'Added' %}</th>
-                                            <th>{% trans 'New amount' %}</th>
+                                            <th>{% trans 'New budget' %}</th>
                                             <th>{% trans 'Remove' %}</th>
                                         </tr>
                                     </thead>
@@ -106,7 +105,7 @@
                                             ${{budget_addition_item.original_amount|intcomma}}
                                             <input 
                                               type="hidden" id="budget_value_id_{{budget_addition_item.id}}" 
-                                              value ="{{budget_redistribution_item.original_amount}}">
+                                              value ="{{budget_addition_item.original_amount}}">
                                           </td>
                                           <td>
                                             <input 
@@ -150,7 +149,7 @@
                             </div>
                           </div>
                           <div class="form-actions text-right">
-                            <input type="hidden" name="budget_redistribution_id" id="budget_redistribution_id" value="{{budget_redistribution.id}}">
+                            <input type="hidden" name="addition_id" id="addition_id" value="{{ budget_addition.id }}">
                             <button type="submit" class="btn btn-primary">
                               <i class="fa fa-edit"></i> {% trans 'Create' %}
                             </button>
@@ -204,8 +203,9 @@
     function addingValues(id){
       var added_id = 'added_' + id;
       var budget_value_id = 'budget_value_id_' + id;
-
       var added_value = parseFloat( $('#' + added_id).val());
+      console.log(added_value);
+      console.log()
       if (isNaN(added_value)) {
         added_value = 0;
       }
@@ -215,6 +215,7 @@
         style: 'currency',
         currency: 'USD',
       }).format(available_budget);
+      console.log(formated_available_budget);
       $('#budget_show_value_id_' + id).val(formated_available_budget);
       budget_text_value = $('#' + budget_value_id).val() + "";
       budget_text_value = budget_text_value.replace(',', '.');
@@ -311,49 +312,72 @@
     }
     $(document).ready(function() {
       // change the budget list when the target project is selected
-      $("#target_project").on("change", function(){
-        var project_id = $(this).val();
-        console.log(`project_id: ${project_id}`);
-        if(project_id){
-          var url = "{% url 'get_budgets_by_project' 0 %}".replace('0', project_id);
-          console.log(url);
-          $.ajax({
-            url:url,
-            type:"GET",
-            dataType:"json",
-            success: function(data){
-              var items = data.items;
-              $('#budget').empty();
-              $('#budget').append(`<option value="">Select a budget</option>`);
-              $.each(items, function(k, v){ 
-                $('#budget').append(`<option value="${v[0]}">${v[1]}</option>`);
-              });
-            }
-          })
-        }
-      });
-      // change the budget list when the source project is selected
-      $("#source_project").on("change", function(){
+      $("#project").on("change", function(){
         var project_id = $(this).val();
         console.log(project_id);
-        if(project_id){
-          var url = "{% url 'get_budgets_by_project' 0 %}".replace('0', project_id);
-          $.ajax({
-            url:url,
-            type:"GET",
-            dataType:"json",
-            success: function(data){
-              var items = data.items;
-              $('#items').empty();
-              $('#items').append(`<option value="">Select a budget</option>`);
-              $.each(items, function(k, v){
-                console.log(v);
-                var amount = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(v[2]);
-                $('#items').append(`<option value="${v[0]}">${v[1]} (${amount})</option>`);
+        // ---
+        url = "{% url 'get_project_by_id' 0 %}".replace('0', project_id);
+        $.get(url, function(data) {})
+          .done(function(data) {
+            var project_end_date = data.project_end_date;
+            // create a timestamp now with YYYY-mm-dd format
+            var now = new Date();
+            var dd = now.getDate();
+            var mm = now.getMonth() + 1; //January is 0!
+            var yyyy = now.getFullYear();
+            if (dd < 10) {
+              dd = '0' + dd
+            }
+            if (mm < 10) {
+              mm = '0' + mm
+            }
+            now = yyyy + '-' + mm + '-' + dd;
+            
+            var date_project_end_date = new Date(project_end_date);
+            var date_now = new Date(now);
+            console.log(`project_end_date: ${date_project_end_date} now: ${date_now}`)
+            // check if project_end_date is less than now
+            if (date_project_end_date < date_now) {
+              console.log(`project_end_date: ${project_end_date} now: ${now}`)
+              // clear the budget list with id budget
+              $('#budget').empty();
+              var option_text = "{% trans 'Select a budget' %}";
+              $('#budget').append(`<option value="">${option_text}</option>`);
+              Swal.fire({
+                title: "{% trans 'Error' %}",
+                text: "{% trans 'The end date of the selected project is less than today.' %}",
+                type: 'error',
+                confirmButtonText: "{% trans 'Ok' %}"
               });
+            }else{
+              console.log(`project_id: ${project_id}`);
+              if(project_id){
+                if(project_id){
+                  var url = "{% url 'get_budgets_by_project' 0 %}".replace('0', project_id);
+                  $.ajax({
+                    url:url,
+                    type:"GET",
+                    dataType:"json",
+                    success: function(data){
+                      var items = data.items;
+                      var option_text = "{% trans 'Select a budget' %}"
+                      $('#items').empty();
+
+                      $('#items').append(`<option value="">${option_text}</option>`);
+                      $.each(items, function(k, v){
+                        console.log(v);
+                        var amount = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(v[2]);
+                        $('#items').append(`<option value="${v[0]}">${v[1]} (${amount})</option>`);
+                      });
+                    }
+                  })
+                }
+              }
             }
           })
-        }
+          .fail(function(data) {
+            console.log(`Error $("#area").change ${data}`);
+          });
       });
       // Change the budget detail when the budget is selected
       $('#budget').on('change', function() {
@@ -467,7 +491,8 @@
             success: function(data) {
               if (data.status == "ok") {
                 //Add item to the table
-                var addition_item =  data.item.addition_item;
+                console.log(data.item)
+                var addition_item =  data.item.addition_id;
                 var budget_description = data.item.budget_description;
                 var original_amount = data.item.original_amount;
                 var original_amount_formated = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(original_amount);

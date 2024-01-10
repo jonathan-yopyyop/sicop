@@ -25,11 +25,19 @@ class BudgetAddition(BaseModel):
         help_text=_("Observation"),
         null=True,
         blank=True,
+        default="",
+    )
+    approval_observation = models.TextField(
+        _("Approval Observation"),
+        help_text=_("Approval Observation"),
+        null=True,
+        blank=True,
+        default="",
     )
     requires_approval = models.BooleanField(
         _("Requires approval"),
         help_text=_("Requires approval"),
-        default=False,
+        default=True,
     )
     approved = models.BooleanField(
         _("Approved"),
@@ -101,7 +109,7 @@ class BudgetAdditionItem(BaseModel):
     requires_approval = models.BooleanField(
         _("Requires approval"),
         help_text=_("Requires approval"),
-        default=False,
+        default=True,
     )
     approved = models.BooleanField(
         _("Approved"),
@@ -137,3 +145,42 @@ class BudgetAdditionItem(BaseModel):
     def __str__(self):
         """Unicode representation of Budget Addition Item."""
         return str(self.id)
+
+
+class BudgetAdditionApproval(BaseModel):
+    """Model definition for Provision Cart Approval."""
+
+    budget_addition = models.ForeignKey(
+        BudgetAddition,
+        verbose_name=_("Budget Addition"),
+        help_text=_("Budget Addition"),
+        related_name="budget_addition_approval",
+        on_delete=models.CASCADE,
+    )
+    must_be_approved_by = models.ForeignKey(
+        "users.User",
+        verbose_name=_("Must be approbed by"),
+        help_text=_("Must be approbed by"),
+        related_name="budget_addition_must_be_approved_by_fk",
+        on_delete=models.CASCADE,
+    )
+    approved = models.BooleanField(
+        _("Approved?"),
+        help_text=_("Approved?"),
+        default=False,
+    )
+    rejected = models.BooleanField(
+        _("Rejected"),
+        help_text=_("Rejected"),
+        default=False,
+    )
+
+    class Meta:
+        """Meta definition for Provision Cart Approval."""
+
+        verbose_name = _("Provision Cart Approval")
+        verbose_name_plural = _("Provision Cart Approvals")
+
+    def __str__(self):
+        """Unicode representation of Provision Cart Approval."""
+        return f" {self.provision_cart.id} {self.provision_cart.project}"

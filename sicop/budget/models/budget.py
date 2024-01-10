@@ -217,6 +217,54 @@ class BudgetRedistributionTransaction(BaseModel):
         return str(self.id)
 
 
+# ------------
+class BudgetAddtionTransaction(BaseModel):
+    """Model definition for Budget Addition Transaction."""
+
+    budget = models.ForeignKey(
+        Budget,
+        verbose_name=_("Budget"),
+        help_text=_("Budget"),
+        related_name="+",
+        on_delete=models.DO_NOTHING,
+    )
+    original_amount = models.FloatField(
+        _("Original amount"),
+        help_text=_("Original amount"),
+        default=0,
+    )
+    added_amount = models.FloatField(
+        _("Added amount"),
+        help_text=_("Added amount"),
+        default=0,
+    )
+    new_amount = models.FloatField(
+        _("New amount"),
+        help_text=_("New amount"),
+        default=0,
+    )
+    addition_item = models.ForeignKey(
+        "budget.BudgetAdditionItem",
+        verbose_name=_("addition item"),
+        help_text=_("addition item"),
+        related_name="addition_item_budget_addition_transactions",
+        on_delete=models.DO_NOTHING,
+    )
+
+    class Meta:
+        """Meta definition for Budget Addition Transaction."""
+
+        verbose_name = _("Budget Addition Transaction")
+        verbose_name_plural = _("Budget Addition Transactions")
+
+    def __str__(self):
+        """Unicode representation of Budget Addition Transaction."""
+        return str(self.id)
+
+
+# ------------
+
+
 class BudgetCap(BaseModel):
     """Model definition for Budget Cap."""
 

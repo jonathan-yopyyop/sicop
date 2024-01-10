@@ -338,10 +338,6 @@ class RedistributionCertificateView(TemplateView):
         user = budget_redistribution.user
         area_member = AreaMember.objects.get(user=user)
         area_rol = area_member.role
-        # if ProvisionCartApproval.objects.filter(provision_cart=cart).exists():
-        #     provision_cart_approval = ProvisionCartApproval.objects.filter(provision_cart=cart).last()
-        # else:
-        #     provision_cart_approval = None
         for_approval = BudgetRedistributionItemApproval.objects.filter(
             budget_redistribution_item__budget_redistribution=budget_redistribution,
             approved=False,

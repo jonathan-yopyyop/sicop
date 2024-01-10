@@ -5,7 +5,7 @@
 {% load humanize %}
 {% load budget_tags %}
 {% block page_title %}
-  {% trans 'Budget redistribution certificate' %}
+  {% trans 'Budget addition certificate' %}
 {% endblock page_title %}
 {% block content %}
 <style>
@@ -266,7 +266,7 @@
                         <img src="{% static 'stack/app-assets/images/logo/Logo-Maloka.png' %}" alt="logo" width="50px">
                       </td>
                       <td class="row1-td-2">
-                        <h5 class="text-center certificate-title">{% trans "BUDGET REDISTRIBUTION CERTIFICATE" %}</h5>
+                        <h5 class="text-center certificate-title">{% trans "BUDGET ADDITION CERTIFICATE" %}</h5>
                       </td>
                       <td class="row1-td-3">
                         <table>
@@ -300,7 +300,7 @@
                           </td>
                           <td class="row2-td-2">
                             <h5 class="item-value-text">
-                              {{budget_redistribution.updated_at|date:"Y/m/d"}}
+                              {{budget_addition.updated_at|date:"Y/m/d"}}
                             </h5>
                           </td>
                           <td class="row2-td-3">
@@ -310,7 +310,7 @@
                           </td>
                           <td class="row2-td-4">
                             <h5 class="item-value-text">
-                              {{budget_redistribution.id}}
+                              {{budget_addition.id}}
                             </h5>
                           </td>
                         </tr>
@@ -328,48 +328,6 @@
                     <tr>
                       <table>
                         <tr>
-                          <td class="row4-td-1">
-                            <h5 class="item-description-text">
-                              {% trans "DESTINATION ITEM" %}
-                            </h5>
-                          </td>
-                          <td class="row4-td-2">
-                            <h5 class="item-value-text">
-                              {{budget_redistribution.budget.budget_description}}
-                            </h5>
-                          </td>
-                        </tr>
-                      </table>
-                    </tr>
-                    <tr>
-                      <table>
-                        <tr>
-                          <td class="row5-td-1">
-                            <h5 class="item-description-text">
-                              {% trans "CURRENT VALUE" %}
-                            </h5>
-                          </td>
-                          <td class="row5-td-2">
-                            <h5 class="item-value-text">
-                              ${{budget_redistribution.original_amount|intcomma}}
-                            </h5>
-                          </td>
-                          <td class="row5-td-3">
-                            <h5 class="item-description-text">
-                              {% trans "NEW VALUE" %}
-                            </h5>
-                          </td>
-                          <td class="row5-td-4  ">
-                            <h5 class="item-value-text">
-                              ${{budget_redistribution.new_amount|intcomma}}
-                            </h5>
-                          </td>
-                        </tr>
-                      </table>
-                    </tr>
-                    <tr>
-                      <table>
-                        <tr>
                           <td class="row5-td-1">
                             <h5 class="item-description-text">
                               {% trans "APPLICANT NAME" %}
@@ -377,7 +335,7 @@
                           </td>
                           <td class="row5-td-2">
                             <h5 class="item-value-text">
-                              {{budget_redistribution.user.name}}
+                              {{budget_addition.user.name}}
                             </h5>
                           </td>
                           <td class="row5-td-3">
@@ -414,7 +372,7 @@
                         <tr>
                           <td class="row7-td-1 text-center  ">
                             <h5 class="item-description-text">
-                              {% trans "ORIGIN ITEM" %}
+                              {% trans "ITEM" %}
                             </h5>
                           </td>
                           <td class="row7-td-2 text-center  ">
@@ -424,7 +382,7 @@
                           </td>
                           <td class="row7-td-2 text-center  ">
                             <h5 class="item-description-text">
-                              {% trans "REDISTRIBUTED AMOUNT" %}
+                              {% trans "BUDGET TO ADD" %}
                             </h5>
                           </td>
                           <td class="row7-td-2 text-center  ">
@@ -433,7 +391,7 @@
                             </h5>
                           </td>
                         </tr>
-                        {% for item in budget_redistribution.budget_redistribution_budget_redistribution_items.all %}
+                        {% for item in budget_addition.budgetadditionitem_set.all %}
                         <tr>
                           <td class="row8-td-1 text-center  ">
                             <h5 class="item-description-text">
@@ -447,7 +405,7 @@
                           </td>
                           <td class="row8-td-2 text-center  ">
                             <h5 class="item-description-text">
-                              ${{item.redistributed_amount|intcomma}}
+                              ${{item.added_amount|intcomma}}
                             </h5>
                           </td>
                           <td class="row8-td-2 text-center  ">
@@ -470,8 +428,8 @@
                           </td>
                           <td class="row9-td-2">
                             <h5 class="item-value-text">
-                              {% if budget_redistribution.observation is not None %}
-                                {{budget_redistribution.observation}}  
+                              {% if budget_addition.observation is not None %}
+                                {{budget_addition.observation}}  
                               {% endif %}
                             </h5>
                           </td>
@@ -504,24 +462,25 @@
                           </td>
                           <td class="row10-td-2">
                             <h5 class="item-value-text">
-                              {% if budget_redistribution.requires_approval %}
-                                {% if budget_redistribution.approved %}
-                                  {% trans "Approved by" %}: {{budget_redistribution.must_be_approved_by.name}}.
-                                  {% if budget_redistribution.approval_observation != "" %}
-                                    {% trans "Observation" %}: {{budget_redistribution.approval_observation}}
+                              {% if budget_addition.requires_approval %}
+                                {% if budget_addition.approved %}
+                                  {% trans "Approved by" %}: {{budget_addition.must_be_approved_by.name}}.
+                                  {% if budget_addition.approval_observation != "" %}
+                                    {% trans "Observation" %}: {{budget_addition.approval_observation}}
                                   {% endif %}
                                 {% else %}
-                                  {% if budget_redistribution.rejected %}
-                                    {% trans "This CRP has been rejected." %}
-                                    {% if budget_redistribution.approval_observation != "" %}
-                                      {% trans "Observation" %}: {{budget_redistribution.approval_observation}}
+                                  {% if budget_addition.rejected %}
+                                    {% trans "This CADP has been rejected." %}
+                                    {% trans "Rejected by" %}: {{budget_addition.must_be_approved_by.name}}.
+                                    {% if budget_addition.approval_observation != "" %}
+                                      {% trans "Observation" %}: {{budget_addition.approval_observation}}
                                     {% endif %}
                                   {% else %}
-                                    {% trans "This CRP has not yet been approved" %}
+                                    {% trans "This CADP has not yet been approved" %}
                                   {% endif %}
                                 {% endif %}
                               {% else %}
-                                {% trans "This CRP does not require approval" %}
+                                {% trans "This CADP does not require approval" %}
                               {% endif %}
                             </h5>
                           </td>
@@ -545,14 +504,14 @@
         <div class="col-xl-3 col-md-4 col-12 action-btns">
             <div class="card">
                 <div class="card-body p-2">
-                  {% if budget_redistribution.approved %}
+                  {% if budget_addition.approved %}
                   <a href="#" class="btn btn-primary btn-block mb-1 print-invoice"> <i class="feather icon-printer mr-25 common-size"></i> {% trans "Print" %}</a>  
                   {% endif %}
-                  <a href="{% url 'budget_redistribution_list' %}" class="btn btn-info btn-block mb-1"><i class="feather icon-list mr-25 common-size"></i> {% trans "Go to CRP list" %}</a>
+                  <a href="{% url 'budget_addition_list' %}" class="btn btn-info btn-block mb-1"><i class="feather icon-list mr-25 common-size"></i> {% trans "Go to CADP list" %}</a>
                 </div>
             </div>
             <!-- Approval card -->
-            {% if budget_redistribution.approved is False %}  
+            {% if budget_addition.approved is False %}  
             <style>
               /* style */
               .redistribution_font_size{
@@ -563,23 +522,11 @@
               }
             </style>
             <div class="card">
-              {% if budget_redistribution.requires_approval and not budget_redistribution.rejected %}
+              {% if budget_addition.requires_approval and not budget_addition.rejected %}
               <div class="card-body p-2">
-                <form action="{% url 'redistribution_budget_approval_update' budget_redistribution.id %}" method="post">
+                <form action="{% url 'addition_approval_update' budget_addition.id %}" method="post">
                   {% csrf_token %}
                   <div class="row">
-                    <div class="col-12">
-                      <label for="projectinput3"  style="font-size: 12px;">{% trans 'Items for approval' %}</label>
-                      <div class="row">
-                        <div class="col">
-                          {% for item in for_approval %}
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="{{item.budget_redistribution_item.id}}" id="items" name="items[]" checked hidden>
-                          </div>
-                          {% endfor %}
-                        </div>
-                      </div>
-                    </div>
                     <div class="col-12">
                       <label for="projectinput3">{% trans 'Approve?' %}</label>
                       <select class="select2 form-control" name="approved" {% if provision_cart_approval.approved %} disabled {% endif %}>
