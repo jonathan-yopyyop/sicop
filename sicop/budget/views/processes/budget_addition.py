@@ -190,8 +190,12 @@ class AdditionCertificateView(LoginRequiredMixin, TemplateView):
         pk = self.kwargs.get("pk")
         budget_addition = BudgetAddition.objects.get(id=pk)
         user = budget_addition.user
-        area_member = AreaMember.objects.get(user=user)
-        area_rol = area_member.role
+        if AreaMember.objects.filter(user=user).exists():
+            area_member = AreaMember.objects.get(user=user)
+            area_rol = area_member.role
+        else:
+            area_member = None
+            area_rol = None
         context["budget_addition"] = budget_addition
         context["area_rol"] = area_rol
         context["area_member"] = area_member
