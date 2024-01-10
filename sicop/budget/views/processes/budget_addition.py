@@ -191,7 +191,7 @@ class AdditionCertificateView(LoginRequiredMixin, TemplateView):
         budget_addition = BudgetAddition.objects.get(id=pk)
         user = budget_addition.user
         if AreaMember.objects.filter(user=user).exists():
-            area_member = AreaMember.objects.get(user=user)
+            area_member = AreaMember.objects.filter(user=user).last()
             area_rol = area_member.role
         else:
             area_member = None
