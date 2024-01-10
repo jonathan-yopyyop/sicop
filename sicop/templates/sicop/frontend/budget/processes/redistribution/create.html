@@ -428,52 +428,129 @@
       // change the budget list when the target project is selected
       $("#target_project").on("change", function(){
         var project_id = $(this).val();
-        console.log(`project_id: ${project_id}`);
-        if(project_id){
-          var url = "{% url 'get_budgets_by_project' 0 %}".replace('0', project_id);
-          console.log(url);
-          $.ajax({
-            url:url,
-            type:"GET",
-            dataType:"json",
-            success: function(data){
-              var items = data.items;
+        url = "{% url 'get_project_by_id' 0 %}".replace('0', project_id);
+        $.get(url, function(data) {})
+          .done(function(data) {
+            var project_end_date = data.project_end_date;
+            // create a timestamp now with YYYY-mm-dd format
+            var now = new Date();
+            var dd = now.getDate();
+            var mm = now.getMonth() + 1; //January is 0!
+            var yyyy = now.getFullYear();
+            if (dd < 10) {
+              dd = '0' + dd
+            }
+            if (mm < 10) {
+              mm = '0' + mm
+            }
+            now = yyyy + '-' + mm + '-' + dd;
+            
+            var date_project_end_date = new Date(project_end_date);
+            var date_now = new Date(now);
+            console.log(`project_end_date: ${date_project_end_date} now: ${date_now}`)
+            // check if project_end_date is less than now
+            if (date_project_end_date < date_now) {
+              console.log(`project_end_date: ${project_end_date} now: ${now}`)
+              // clear the budget list with id budget
               $('#budget').empty();
-              $('#budget').append(`<option value="">Select a budget</option>`);
-              $.each(items, function(k, v){ 
-                $('#budget').append(`<option value="${v[0]}">${v[1]}</option>`);
+              var option_text = "{% trans 'Select a budget' %}";
+              $('#budget').append(`<option value="">${option_text}</option>`);
+              Swal.fire({
+                title: "{% trans 'Error' %}",
+                text: "{% trans 'The end date of the selected project is less than today.' %}",
+                type: 'error',
+                confirmButtonText: "{% trans 'Ok' %}"
               });
+            }else{
+              console.log(`project_id: ${project_id}`);
+              if(project_id){
+                var url = "{% url 'get_budgets_by_project' 0 %}".replace('0', project_id);
+                console.log(url);
+                $.ajax({
+                  url:url,
+                  type:"GET",
+                  dataType:"json",
+                  success: function(data){
+                    var items = data.items;
+                    $('#budget').empty();
+                    $('#budget').append(`<option value="">Select a budget</option>`);
+                    $.each(items, function(k, v){ 
+                      $('#budget').append(`<option value="${v[0]}">${v[1]}</option>`);
+                    });
+                  }
+                })
+              }
             }
           })
-        }
+          .fail(function(data) {
+            console.log(`Error $("#area").change ${data}`);
+          });
       });
       // change the budget list when the source project is selected
       $("#source_project").on("change", function(){
         // To update source
         var project_id = $(this).val();
-        console.log(project_id);
-        if(project_id){
-          var url = "{% url 'get_budgets_by_project' 0 %}".replace('0', project_id);
-          $.ajax({
-            url:url,
-            type:"GET",
-            dataType:"json",
-            success: function(data){
-              var items = data.items;
-              // enable the list with id items
-              $('#items').prop('disabled', false);
-              //clean
+        url = "{% url 'get_project_by_id' 0 %}".replace('0', project_id);
+        $.get(url, function(data) {})
+          .done(function(data) {
+            var project_end_date = data.project_end_date;
+            // create a timestamp now with YYYY-mm-dd format
+            var now = new Date();
+            var dd = now.getDate();
+            var mm = now.getMonth() + 1; //January is 0!
+            var yyyy = now.getFullYear();
+            if (dd < 10) {
+              dd = '0' + dd
+            }
+            if (mm < 10) {
+              mm = '0' + mm
+            }
+            now = yyyy + '-' + mm + '-' + dd;
+            
+            var date_project_end_date = new Date(project_end_date);
+            var date_now = new Date(now);
+            console.log(`project_end_date: ${date_project_end_date} now: ${date_now}`)
+            // check if project_end_date is less than now
+            if (date_project_end_date < date_now) {
+              console.log(`project_end_date: ${project_end_date} now: ${now}`)
+              // clear the budget list with id items
               $('#items').empty();
-              // Add
-              $('#items').append(`<option value="">Select a budget</option>`);
-              $.each(items, function(k, v){
-                console.log(v);
-                var amount = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(v[2]);
-                $('#items').append(`<option value="${v[0]}">${v[1]} (${amount})</option>`);
+              var option_text = "{% trans 'Select a budget' %}";
+              $('#items').append(`<option value="">${option_text}</option>`);
+              Swal.fire({
+                title: "{% trans 'Error' %}",
+                text: "{% trans 'The end date of the selected project is less than today.' %}",
+                type: 'error',
+                confirmButtonText: "{% trans 'Ok' %}"
               });
+            }else{
+              if(project_id){
+                var url = "{% url 'get_budgets_by_project' 0 %}".replace('0', project_id);
+                $.ajax({
+                  url:url,
+                  type:"GET",
+                  dataType:"json",
+                  success: function(data){
+                    var items = data.items;
+                    // enable the list with id items
+                    $('#items').prop('disabled', false);
+                    //clean
+                    $('#items').empty();
+                    // Add
+                    $('#items').append(`<option value="">Select a budget</option>`);
+                    $.each(items, function(k, v){
+                      console.log(v);
+                      var amount = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(v[2]);
+                      $('#items').append(`<option value="${v[0]}">${v[1]} (${amount})</option>`);
+                    });
+                  }
+                })
+              }
             }
           })
-        }
+          .fail(function(data) {
+            console.log(`Error $("#area").change ${data}`);
+          });
       });
       // Change the budget detail when the budget is selected
       $('#budget').on('change', function() {
