@@ -110,6 +110,7 @@ LOCAL_APPS = [
     "sicop.expense_concept",
     "sicop.expense_type",
     "sicop.certificate",
+    "sicop.contract",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

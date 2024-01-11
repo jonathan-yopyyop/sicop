@@ -851,3 +851,184 @@ class ExpenseConcept(BaseModel):
     def __str__(self):
         """Unicode representation of Expense Concept."""
         return self.Nombre
+
+
+class Contract(BaseModel):
+    """Model definition for Contract."""
+
+    IdEmpres = models.CharField(
+        _("IdEmpres"),
+        help_text=_("IdEmpres"),
+        max_length=250,
+        blank=True,
+        null=True,
+    )
+    IdSucurs = models.CharField(
+        _("IdSucurs"),
+        help_text=_("IdSucurs"),
+        max_length=250,
+        blank=True,
+        null=True,
+    )
+    IdContrato = models.CharField(
+        _("IdContrato"),
+        help_text=_("IdContrato"),
+        max_length=250,
+        blank=True,
+        null=True,
+    )
+    TipContrato = models.CharField(
+        _("TipContrato"),
+        help_text=_("TipContrato"),
+        max_length=250,
+        blank=True,
+        null=True,
+    )
+    Cumplido = models.CharField(
+        _("Cumplido"),
+        help_text=_("Cumplido"),
+        max_length=250,
+        blank=True,
+        null=True,
+    )
+    Estado = models.CharField(
+        _("Estado"),
+        help_text=_("Estado"),
+        max_length=250,
+        blank=True,
+        null=True,
+    )
+    IdTercer = models.CharField(
+        _("IdTercer"),
+        help_text=_("IdTercer"),
+        max_length=250,
+        blank=True,
+        null=True,
+    )
+    IdCenCos = models.CharField(
+        _("IdCenCos"),
+        help_text=_("IdCenCos"),
+        max_length=250,
+        blank=True,
+        null=True,
+    )
+    IdTercer1 = models.CharField(
+        _("IdTercer1"),
+        help_text=_("IdTercer1"),
+        max_length=250,
+        blank=True,
+        null=True,
+    )
+    MostrarAutori = models.CharField(
+        _("MostrarAutori"),
+        help_text=_("MostrarAutori"),
+        max_length=250,
+        blank=True,
+        null=True,
+    )
+    FechaCon = models.CharField(
+        _("FechaCon"),
+        help_text=_("FechaCon"),
+        max_length=250,
+        blank=True,
+        null=True,
+    )
+    FechaIni = models.CharField(
+        _("FechaIni"),
+        help_text=_("FechaIni"),
+        max_length=250,
+        blank=True,
+        null=True,
+    )
+    FechaFin = models.CharField(
+        _("FechaFin"),
+        help_text=_("FechaFin"),
+        max_length=250,
+        blank=True,
+        null=True,
+    )
+    Objeto = models.TextField(
+        _("Objeto"),
+        help_text=_("Objeto"),
+        blank=True,
+        null=True,
+    )
+    ValSinIVA = models.CharField(
+        _("ValSinIVA"),
+        help_text=_("ValSinIVA"),
+        max_length=250,
+        blank=True,
+        null=True,
+    )
+    ValIVA = models.CharField(
+        _("ValIVA"),
+        help_text=_("ValIVA"),
+        max_length=250,
+        blank=True,
+        null=True,
+    )
+    ValTot = models.CharField(
+        _("ValTot"),
+        help_text=_("ValTot"),
+        max_length=250,
+        blank=True,
+        null=True,
+    )
+    Observ = models.TextField(
+        _("Observ"),
+        help_text=_("Observ"),
+        blank=True,
+        null=True,
+    )
+    IdCompro = models.CharField(
+        _("IdCompro"),
+        help_text=_("IdCompro"),
+        max_length=250,
+        blank=True,
+        null=True,
+    )
+    NumCompro = models.CharField(
+        _("NumCompro"),
+        help_text=_("NumCompro"),
+        max_length=250,
+        blank=True,
+        null=True,
+    )
+    IdConGas = models.CharField(
+        _("IdConGas"),
+        help_text=_("IdConGas"),
+        max_length=250,
+        blank=True,
+        null=True,
+    )
+    IdUsuari = models.CharField(
+        _("IdUsuari"),
+        help_text=_("IdUsuari"),
+        max_length=250,
+        blank=True,
+        null=True,
+    )
+    Operac = models.CharField(
+        _("Operac"),
+        help_text=_("Operac"),
+        max_length=250,
+        blank=True,
+        null=True,
+    )
+    FecMod = models.CharField(
+        _("FecMod"),
+        help_text=_("FecMod"),
+        max_length=250,
+        blank=True,
+        null=True,
+    )
+
+    class Meta:
+        """Meta definition for Contract."""
+
+        verbose_name = _("Contract")
+        verbose_name_plural = _("Contracts")
+
+    def __str__(self):
+        """Unicode representation of Contract."""
+        return str(self.id)

@@ -7,20 +7,28 @@ from datetime import datetime
 import pyodbc
 
 from sicop.business_unit.models import BusinessUnit as SicopBusinessUnit
+from sicop.contract.models import Contract as SicopContract
 from sicop.contractor.models import Contractor as SicopContractor
 from sicop.cost_center.models import CostCenter as SicopCostCenter
 from sicop.expense_concept.models import ExpenseConcept as SicopExpenseConcept
 from sicop.expense_type.models import ExpenseType as SicopExpenseType
-from sicop.integration.models import BusinessUnit, CostCenter, ExpenseConcept, ExpenseType, Third
+from sicop.integration.models import BusinessUnit, Contract, CostCenter, ExpenseConcept, ExpenseType, Third
 
 
 class XiruxIntegration:
-    def __init__(self):
-        self.xirux_user = os.getenv("MSSQL_XIRUX_USER")
-        self.xirux_password = os.getenv("MSSQL_XIRUX_PASSWORD")
-        self.xirux_host = os.getenv("MSSQL_XIRUX_HOST")
-        self.xirux_port = os.getenv("MSSQL_XIRUX_PORT")
-        self.xirux_db = os.getenv("MSSQL_XIRUX_DB")
+    def __init__(self, develop=False):
+        if develop:
+            self.xirux_user = "sicop"
+            self.xirux_password = "S1c0p2024+"
+            self.xirux_host = "10.0.1.156"
+            self.xirux_port = "5432"
+            self.xirux_db = "xirux12"
+        else:
+            self.xirux_user = os.getenv("MSSQL_XIRUX_USER")
+            self.xirux_password = os.getenv("MSSQL_XIRUX_PASSWORD")
+            self.xirux_host = os.getenv("MSSQL_XIRUX_HOST")
+            self.xirux_port = os.getenv("MSSQL_XIRUX_PORT")
+            self.xirux_db = os.getenv("MSSQL_XIRUX_DB")
 
     def set_mssql_connection(self):
         self.conn = pyodbc.connect(
@@ -210,22 +218,23 @@ class XiruxIntegration:
                 # print(f"Expense type {IdTipGas} updated")
 
     def thirds(self):
-        # query_xirux = "select * from ConTercer"
-        query_xirux = """
-        WITH ResultadosNumerados AS (
-            SELECT
-                *,
-                ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS NumeroFila
-            FROM
-                ConTercer
-        )
-        SELECT
-            *
-        FROM
-            ResultadosNumerados
-        WHERE
-            NumeroFila > (SELECT COUNT(*) FROM ConTercer) - 100;
-        """
+        query_xirux = "select * from ConTercer"
+        # query_xirux = "select * from ConTercer where IdTercer = '830062000-7'"
+        # query_xirux = """
+        # WITH ResultadosNumerados AS (
+        #     SELECT
+        #         *,
+        #         ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS NumeroFila
+        #     FROM
+        #         ConTercer
+        # )
+        # SELECT
+        #     *
+        # FROM
+        #     ResultadosNumerados
+        # WHERE
+        #     NumeroFila > (SELECT COUNT(*) FROM ConTercer) - 100;
+        # """
         results_xirux = self.get_results_xirux(query_xirux)
         for result in results_xirux:
             IdEmpres = [0]
@@ -535,6 +544,177 @@ class XiruxIntegration:
                 )
                 # print(f"Expense concept {IdConGas} updated")
 
+    def contracts(self):
+        query_xirux = "select * from concontra"
+        results_xirux = self.get_results_xirux(query_xirux)
+        for result in results_xirux:
+            IdEmpres = result[0]
+            IdSucurs = result[1]
+            IdContrato = result[2]
+            TipContrato = result[3]
+            Cumplido = result[4]
+            Estado = result[5]
+            IdTercer = result[6]
+            IdCenCos = result[7]
+            IdTercer1 = result[8]
+            MostrarAutori = result[9]
+            FechaCon = result[10]
+            FechaIni = result[11]
+            FechaFin = result[12]
+            Objeto = result[13]
+            ValSinIVA = result[14]
+            ValIVA = result[15]
+            ValTot = result[16]
+            Observ = result[17]
+            IdCompro = result[18]
+            NumCompro = result[19]
+            IdConGas = result[20]
+            IdUsuari = result[21]
+            Operac = result[22]
+            FecMod = result[23]
+            # Insert into integration app
+            if Contract.objects.filter(IdContrato=IdContrato).count() == 0:
+                Contract.objects.create(
+                    IdEmpres=IdEmpres,
+                    IdSucurs=IdSucurs,
+                    IdContrato=IdContrato,
+                    TipContrato=TipContrato,
+                    Cumplido=Cumplido,
+                    Estado=Estado,
+                    IdTercer=IdTercer,
+                    IdCenCos=IdCenCos,
+                    IdTercer1=IdTercer1,
+                    MostrarAutori=MostrarAutori,
+                    FechaCon=FechaCon,
+                    FechaIni=FechaIni,
+                    FechaFin=FechaFin,
+                    Objeto=Objeto,
+                    ValSinIVA=ValSinIVA,
+                    ValIVA=ValIVA,
+                    ValTot=ValTot,
+                    Observ=Observ,
+                    IdCompro=IdCompro,
+                    NumCompro=NumCompro,
+                    IdConGas=IdConGas,
+                    IdUsuari=IdUsuari,
+                    Operac=Operac,
+                    FecMod=FecMod,
+                )
+                # print(f"Contract {IdContrato} created")
+            else:
+                Contract.objects.filter(IdContrato=IdContrato).update(
+                    IdEmpres=IdEmpres,
+                    IdSucurs=IdSucurs,
+                    TipContrato=TipContrato,
+                    Cumplido=Cumplido,
+                    Estado=Estado,
+                    IdTercer=IdTercer,
+                    IdCenCos=IdCenCos,
+                    IdTercer1=IdTercer1,
+                    MostrarAutori=MostrarAutori,
+                    FechaCon=FechaCon,
+                    FechaIni=FechaIni,
+                    FechaFin=FechaFin,
+                    Objeto=Objeto,
+                    ValSinIVA=ValSinIVA,
+                    ValIVA=ValIVA,
+                    ValTot=ValTot,
+                    Observ=Observ,
+                    IdCompro=IdCompro,
+                    NumCompro=NumCompro,
+                    IdConGas=IdConGas,
+                    IdUsuari=IdUsuari,
+                    Operac=Operac,
+                    FecMod=FecMod,
+                )
+                # print(f"Contract {IdContrato} updated")
+
+        contracts = Contract.objects.all()
+        for contract in contracts:
+            IdContrato = contract.IdContrato
+            TipContrato = contract.TipContrato
+            Cumplido = contract.Cumplido
+            Estado = contract.Estado
+            IdTercer = contract.IdTercer
+            IdCenCos = contract.IdCenCos
+
+            FechaConString = contract.FechaCon
+            fecha_objeto = datetime.strptime(FechaConString, "%Y-%m-%d %H:%M:%S")
+            FechaCon = fecha_objeto.date()
+
+            FechaIniString = contract.FechaIni
+            fecha_objeto = datetime.strptime(FechaIniString, "%Y-%m-%d %H:%M:%S")
+            FechaIni = fecha_objeto.date()
+
+            FechaFinString = contract.FechaFin
+            fecha_objeto = datetime.strptime(FechaFinString, "%Y-%m-%d %H:%M:%S")
+            FechaFin = fecha_objeto.date()
+
+            Objeto = contract.Objeto
+
+            if contract.ValSinIVA is None:
+                ValSinIVA = 0
+            else:
+                ValSinIVA = float(contract.ValSinIVA)
+
+            if contract.ValIVA is None:
+                ValIVA = 0
+            else:
+                ValIVA = float(contract.ValIVA)
+
+            if contract.ValTot is None:
+                ValTot = 0
+            else:
+                ValTot = float(contract.ValTot)
+
+            NumCompro = contract.NumCompro
+            Operac = contract.Operac
+
+            FecModString = contract.FecMod
+            FecModStringSplit = FecModString.split(".")
+            fecha_objeto = datetime.strptime(FecModStringSplit[0], "%Y-%m-%d %H:%M:%S")
+            FecMod = fecha_objeto.date()
+
+            if SicopContract.objects.filter(IdContrato=IdContrato).count() == 0:
+                SicopContract.objects.create(
+                    IdContrato=IdContrato,
+                    TipContrato=TipContrato,
+                    Cumplido=Cumplido,
+                    Estado=Estado,
+                    IdTercer=IdTercer,
+                    IdCenCos=IdCenCos,
+                    FechaCon=FechaCon,
+                    FechaIni=FechaIni,
+                    FechaFin=FechaFin,
+                    Objeto=Objeto,
+                    ValSinIVA=ValSinIVA,
+                    ValIVA=ValIVA,
+                    ValTot=ValTot,
+                    NumCompro=NumCompro,
+                    Operac=Operac,
+                    FecMod=FecMod,
+                )
+                # print(f"Contract {IdContrato} created")
+            else:
+                SicopContract.objects.filter(IdContrato=IdContrato).update(
+                    TipContrato=TipContrato,
+                    Cumplido=Cumplido,
+                    Estado=Estado,
+                    IdTercer=IdTercer,
+                    IdCenCos=IdCenCos,
+                    FechaCon=FechaCon,
+                    FechaIni=FechaIni,
+                    FechaFin=FechaFin,
+                    Objeto=Objeto,
+                    ValSinIVA=ValSinIVA,
+                    ValIVA=ValIVA,
+                    ValTot=ValTot,
+                    NumCompro=NumCompro,
+                    Operac=Operac,
+                    FecMod=FecMod,
+                )
+                # print(f"Contract {IdContrato} updated")
+
     def check_ping(self):
         hostname = f"{self.xirux_host}"
         response = os.system("ping -c 1 " + hostname)
@@ -611,33 +791,35 @@ class XiruxIntegration:
 
         if ping_status:
             self.set_mssql_connection()
-            print("============== Xirux integration start ==============")
-            print("=====================================")
-            print(f"== Business units starts at {datetime.now()} ==")
+            start_at = datetime.now()
+            print("============== Xirux integration start ==============", "\n")
+            print("============== Business units starts ================", "\n")
             self.business_units()
-            print(f"== Business units ends at {datetime.now()} ==")
-            print("=====================================")
-            print(f"== Cost centers starts at {datetime.now()} ==")
+            print("============== Business units ends =================", "\n")
+            print("============== Cost centers starts =================", "\n")
             self.cost_centers()
-            print(f"== Cost centers ends at {datetime.now()} ==")
-            print("=====================================")
-            print(f"== Expense types starts at {datetime.now()} ==")
+            print("============== Cost centers ends ===================", "\n")
+            print("============== Expense types starts at =============", "\n")
             self.expense_types()
-            print(f"== Expense types ends at {datetime.now()} ==")
-            print("=====================================")
-            print(f"== Thirds starts at {datetime.now()} ==")
+            print("============== Expense types ends ==================", "\n")
+            print("============== Thirds starts =======================", "\n")
             self.thirds()
-            print(f"== Thirds ends at {datetime.now()} ==")
-            print("=====================================")
-            print(f"== Expense concepts starts at {datetime.now()} ==")
+            print("============== Thirds ends =========================", "\n")
+            print("============== Expense concepts starts =============", "\n")
             self.expense_concepts()
-            print(f"== Expense concepts ends at {datetime.now()} ==")
-            print("============== Xirux integration ends ==============")
-
-            print("============== Xirux relation start ==============")
+            print("============== Expense concepts ends ===============", "\n")
+            print("============== contracts starts ====================", "\n")
+            self.contracts()
+            print("============== contracts ends ======================", "\n")
+            print("=============== Xirux integration ends ==============", "\n")
+            print("=============== Xirux relation start ================", "\n")
             self.relation_cost_center_and_bussiness_unit()
             self.relation_expense_concept_and_expense_type()
-            print("============== Xirux relation ends ==============")
+            print("=============== Xirux relation ends =================", "\n")
+            end_at = datetime.now()
+            print(f"Start at {start_at}")
+            print(f"End at {end_at}")
+            print(f"Total time: {end_at - start_at}")
         else:
             print("VPN is down, activating the vpn")
             cmd = "sudo openfortivpn -c /etc/openfortivpn/config > /var/log/openfortivpn/openfortivpn.log 2>&1 &"

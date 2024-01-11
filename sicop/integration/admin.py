@@ -2,7 +2,15 @@ from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
-from sicop.integration.models import ActiveIntegration, BusinessUnit, CostCenter, ExpenseConcept, ExpenseType, Third
+from sicop.integration.models import (
+    ActiveIntegration,
+    BusinessUnit,
+    Contract,
+    CostCenter,
+    ExpenseConcept,
+    ExpenseType,
+    Third,
+)
 
 
 class ThirdResource(resources.ModelResource):
@@ -16,6 +24,7 @@ class ThirdAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = (
         "id",
         "Nombre",
+        "IdTercer",
         "status",
         "created_at",
         "updated_at",
@@ -30,6 +39,7 @@ class ThirdAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     search_fields = (
         "id",
         "Nombre",
+        "IdTercer",
     )
     ordering = (
         "id",
@@ -223,6 +233,23 @@ class ExpenseConceptAdmin(admin.ModelAdmin):
         "updated_at",
     )
     readonly_fields = (
+        "created_at",
+        "updated_at",
+    )
+
+
+class ContractResource(resources.ModelResource):
+    class Meta:
+        model = Contract
+
+
+@admin.register(Contract)
+class ContractAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [ContractResource]
+    list_display = (
+        "id",
+        "IdContrato",
+        "status",
         "created_at",
         "updated_at",
     )
