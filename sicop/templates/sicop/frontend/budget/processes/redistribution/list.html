@@ -90,14 +90,18 @@
                         {% endif %}
                       </td>
                       <td>
-                        {% if budget_redistribution.rejected %}
-                        <div class="badge badge-secondary">{% trans 'Rejected' %}</div>
-                        {% else %}
-                          {% if budget_redistribution.approved %}
-                            <div class="badge badge-success">{% trans 'Approved' %}</div>
+                        {% if budget_redistribution.requires_approval %}
+                          {% if budget_redistribution.rejected %}
+                          <div class="badge badge-secondary">{% trans 'Rejected' %}</div>
                           {% else %}
-                            <div class="badge badge-warning">{% trans 'Pending' %}</div>
-                          {% endif %}
+                            {% if budget_redistribution.approved %}
+                              <div class="badge badge-success">{% trans 'Approved' %}</div>
+                            {% else %}
+                              <div class="badge badge-warning">{% trans 'Pending' %}</div>
+                            {% endif %}
+                          {% endif %}  
+                        {% else %}
+                        <div class="badge badge-success">{% trans 'Approved' %}</div>
                         {% endif %}
                       </td>
                       <td>
