@@ -9,6 +9,7 @@ from sicop.integration.models import (
     CostCenter,
     ExpenseConcept,
     ExpenseType,
+    PurchaseOrder,
     Third,
 )
 
@@ -250,6 +251,30 @@ class ContractAdmin(ImportExportModelAdmin, admin.ModelAdmin):
         "id",
         "IdContrato",
         "status",
+        "created_at",
+        "updated_at",
+    )
+
+
+@admin.register(PurchaseOrder)
+class PurchaseOrderAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "Numero",
+        "status",
+        "created_at",
+        "updated_at",
+    )
+    list_filter = (
+        "status",
+        "created_at",
+        "updated_at",
+    )
+    search_fields = (
+        "id",
+        "Numero",
+    )
+    readonly_fields = (
         "created_at",
         "updated_at",
     )

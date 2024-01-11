@@ -2,7 +2,7 @@ import os
 import platform
 import subprocess
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import pyodbc
 
@@ -12,7 +12,16 @@ from sicop.contractor.models import Contractor as SicopContractor
 from sicop.cost_center.models import CostCenter as SicopCostCenter
 from sicop.expense_concept.models import ExpenseConcept as SicopExpenseConcept
 from sicop.expense_type.models import ExpenseType as SicopExpenseType
-from sicop.integration.models import BusinessUnit, Contract, CostCenter, ExpenseConcept, ExpenseType, Third
+from sicop.integration.models import (
+    BusinessUnit,
+    Contract,
+    CostCenter,
+    ExpenseConcept,
+    ExpenseType,
+    PurchaseOrder,
+    Third,
+)
+from sicop.purchase_order.models import PurchaseOrder as SicopPurchaseOrder
 
 
 class XiruxIntegration:
@@ -218,23 +227,14 @@ class XiruxIntegration:
                 # print(f"Expense type {IdTipGas} updated")
 
     def thirds(self):
-        query_xirux = "select * from ConTercer"
-        # query_xirux = "select * from ConTercer where IdTercer = '830062000-7'"
-        # query_xirux = """
-        # WITH ResultadosNumerados AS (
-        #     SELECT
-        #         *,
-        #         ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS NumeroFila
-        #     FROM
-        #         ConTercer
-        # )
-        # SELECT
-        #     *
-        # FROM
-        #     ResultadosNumerados
-        # WHERE
-        #     NumeroFila > (SELECT COUNT(*) FROM ConTercer) - 100;
-        # """
+        if Third.objects.all().count() == 0:
+            query_xirux = "select * from ConTercer"
+        else:
+            fecha_actual = datetime.now()
+            fecha_hace_seis_meses = fecha_actual - timedelta(days=6 * 30)
+            fecha_formateada = fecha_hace_seis_meses.strftime("%Y-%m-%d")
+            query_xirux = f"select * from ConTercer where FecMod > '{fecha_formateada}'"
+
         results_xirux = self.get_results_xirux(query_xirux)
         for result in results_xirux:
             IdEmpres = [0]
@@ -715,6 +715,239 @@ class XiruxIntegration:
                 )
                 # print(f"Contract {IdContrato} updated")
 
+    def purchase_orders(self):
+        if PurchaseOrder.objects.all().count() == 0:
+            query_xirux = """
+            select IdCompro, IdOperac, Numero, Fecha, FecContab, FecVen, IdTercer, IdActICA,
+            IdRetFte, VlrRetFte, FechaCruce, FactProvee, FecEntrega, CostoTtal, VrBruto, VrDesc,
+            VrIva,VrReteIva,VrReteIca, VrNeto, VrBaseImp, Direccion, FecMod
+            from ConDocume cd
+            where IdCompro ='0031' or IdCompro ='0039' or IdCompro ='0065'
+            order by FecMod desc
+            """
+        else:
+            fecha_actual = datetime.now()
+            fecha_hace_seis_meses = fecha_actual - timedelta(days=30)
+            fecha_formateada = fecha_hace_seis_meses.strftime("%Y-%m-%d")
+            query_xirux = f"""
+            select IdCompro, IdOperac, Numero, Fecha, FecContab, FecVen, IdTercer, IdActICA,
+            IdRetFte, VlrRetFte, FechaCruce, FactProvee, FecEntrega, CostoTtal, VrBruto, VrDesc,
+            VrIva,VrReteIva,VrReteIca, VrNeto, VrBaseImp, Direccion, FecMod
+            from ConDocume cd
+            where IdCompro ='0031' or IdCompro ='0039' or IdCompro ='0065' and FecMod > '{fecha_formateada}'
+            order by FecMod desc
+            """
+        print(query_xirux)
+        results_xirux = self.get_results_xirux(query_xirux)
+        for result in results_xirux:
+            IdOperac = result[1]
+            Numero = result[2]
+            Fecha = result[3]
+            FecContab = result[4]
+            FecVen = result[5]
+            IdTercer = result[6]
+            IdActICA = result[7]
+            IdRetFte = result[8]
+            VlrRetFte = result[9]
+            FechaCruce = result[10]
+            FactProvee = result[11]
+            FecEntrega = result[12]
+            CostoTtal = result[13]
+            VrBruto = result[14]
+            VrDesc = result[15]
+            VrIva = result[16]
+            VrReteIva = result[17]
+            VrReteIca = result[18]
+            VrNeto = result[19]
+            VrBaseImp = result[20]
+            Direccion = result[21]
+            FecMod = result[22]
+            # Insert into integration app
+            if PurchaseOrder.objects.filter(Numero=Numero).count() == 0:
+                purchase = PurchaseOrder.objects.create(
+                    IdOperac=IdOperac,
+                    Numero=Numero,
+                    Fecha=Fecha,
+                    FecContab=FecContab,
+                    FecVen=FecVen,
+                    IdTercer=IdTercer,
+                    IdActICA=IdActICA,
+                    IdRetFte=IdRetFte,
+                    VlrRetFte=VlrRetFte,
+                    FechaCruce=FechaCruce,
+                    FactProvee=FactProvee,
+                    FecEntrega=FecEntrega,
+                    CostoTtal=CostoTtal,
+                    VrBruto=VrBruto,
+                    VrDesc=VrDesc,
+                    VrIva=VrIva,
+                    VrReteIva=VrReteIva,
+                    VrReteIca=VrReteIca,
+                    VrNeto=VrNeto,
+                    VrBaseImp=VrBaseImp,
+                    Direccion=Direccion,
+                    FecMod=FecMod,
+                )
+                # print(f"Purchase order {Numero} created")
+            else:
+                purchase = PurchaseOrder.objects.filter(Numero=Numero).update(
+                    IdOperac=IdOperac,
+                    Fecha=Fecha,
+                    FecContab=FecContab,
+                    FecVen=FecVen,
+                    IdTercer=IdTercer,
+                    IdActICA=IdActICA,
+                    IdRetFte=IdRetFte,
+                    VlrRetFte=VlrRetFte,
+                    FechaCruce=FechaCruce,
+                    FactProvee=FactProvee,
+                    FecEntrega=FecEntrega,
+                    CostoTtal=CostoTtal,
+                    VrBruto=VrBruto,
+                    VrDesc=VrDesc,
+                    VrIva=VrIva,
+                    VrReteIva=VrReteIva,
+                    VrReteIca=VrReteIca,
+                    VrNeto=VrNeto,
+                    VrBaseImp=VrBaseImp,
+                    Direccion=Direccion,
+                    FecMod=FecMod,
+                )
+                # print(f"Purchase order {Numero} updated")
+            purchase = PurchaseOrder.objects.filter(Numero=Numero).first()
+            IdOperac = purchase.IdOperac
+            Numero = purchase.Numero
+
+            Fecha = purchase.Fecha
+            # fecha_objeto = datetime.strptime(FechaString, "%Y-%m-%d %H:%M:%S")
+            # Fecha = fecha_objeto.date()
+
+            FecContab = purchase.FecContab
+            # fecha_objeto = datetime.strptime(FecContabString, "%Y-%m-%d %H:%M:%S")
+            # FecContab = fecha_objeto.date()
+
+            FecVen = purchase.FecVen
+            # fecha_objeto = datetime.strptime(FecVenString, "%Y-%m-%d %H:%M:%S")
+            # FecVen = fecha_objeto.date()
+
+            IdTercer = purchase.IdTercer
+            IdActICA = purchase.IdActICA
+            IdRetFte = purchase.IdRetFte
+
+            if purchase.VlrRetFte is None:
+                VlrRetFte = 0
+            else:
+                VlrRetFte = float(purchase.VlrRetFte)
+
+            FechaCruce = purchase.FechaCruce
+            # fecha_objeto = datetime.strptime(FechaCruceString, "%Y-%m-%d %H:%M:%S")
+            # FechaCruce = fecha_objeto.date()
+
+            FactProvee = purchase.FactProvee
+
+            FecEntrega = purchase.FecEntrega
+            # fecha_objeto = datetime.strptime(FecEntregaString, "%Y-%m-%d %H:%M:%S")
+            # FecEntrega = fecha_objeto.date()
+
+            if purchase.CostoTtal is None:
+                CostoTtal = 0
+            else:
+                CostoTtal = float(purchase.CostoTtal)
+
+            if purchase.VrBruto is None:
+                VrBruto = 0
+            else:
+                VrBruto = float(purchase.VrBruto)
+
+            if purchase.VrDesc is None:
+                VrDesc = 0
+            else:
+                VrDesc = float(purchase.VrDesc)
+
+            if purchase.VrIva is None:
+                VrIva = 0
+            else:
+                VrIva = float(purchase.VrIva)
+
+            if purchase.VrReteIva is None:
+                VrReteIva
+            else:
+                VrReteIva = float(purchase.VrReteIva)
+
+            if purchase.VrReteIca is None:
+                VrReteIca = 0
+            else:
+                VrReteIca = float(purchase.VrReteIca)
+
+            if purchase.VrNeto is None:
+                VrNeto = 0
+            else:
+                VrNeto = float(purchase.VrNeto)
+
+            if purchase.VrBaseImp is None:
+                VrBaseImp = 0
+            else:
+                VrBaseImp = float(purchase.VrBaseImp)
+
+            Direccion = purchase.Direccion
+
+            FecMod = purchase.FecMod
+            # FecModStringSplit = FecModString.split(".")
+            # fecha_objeto = datetime.strptime(FecModStringSplit[0], "%Y-%m-%d %H:%M:%S")
+            # FecMod = fecha_objeto.date()
+
+            if SicopPurchaseOrder.objects.filter(Numero=Numero).count() == 0:
+                SicopPurchaseOrder.objects.create(
+                    IdOperac=IdOperac,
+                    Numero=Numero,
+                    Fecha=Fecha,
+                    FecContab=FecContab,
+                    FecVen=FecVen,
+                    IdTercer=IdTercer,
+                    IdActICA=IdActICA,
+                    IdRetFte=IdRetFte,
+                    VlrRetFte=VlrRetFte,
+                    FechaCruce=FechaCruce,
+                    FactProvee=FactProvee,
+                    FecEntrega=FecEntrega,
+                    CostoTtal=CostoTtal,
+                    VrBruto=VrBruto,
+                    VrDesc=VrDesc,
+                    VrIva=VrIva,
+                    VrReteIva=VrReteIva,
+                    VrReteIca=VrReteIca,
+                    VrNeto=VrNeto,
+                    VrBaseImp=VrBaseImp,
+                    Direccion=Direccion,
+                    FecMod=FecMod,
+                )
+                # print(f"Purchase order {Numero} created")
+            else:
+                SicopPurchaseOrder.objects.filter(Numero=Numero).update(
+                    IdOperac=IdOperac,
+                    # Fecha=Fecha,
+                    FecContab=FecContab,
+                    FecVen=FecVen,
+                    IdTercer=IdTercer,
+                    IdActICA=IdActICA,
+                    IdRetFte=IdRetFte,
+                    VlrRetFte=VlrRetFte,
+                    FechaCruce=FechaCruce,
+                    FactProvee=FactProvee,
+                    FecEntrega=FecEntrega,
+                    CostoTtal=CostoTtal,
+                    VrBruto=VrBruto,
+                    VrDesc=VrDesc,
+                    VrIva=VrIva,
+                    VrReteIva=VrReteIva,
+                    VrReteIca=VrReteIca,
+                    VrNeto=VrNeto,
+                    VrBaseImp=VrBaseImp,
+                    Direccion=Direccion,
+                    FecMod=FecMod,
+                )
+                # print(f"Purchase order {Numero} updated")
+
     def check_ping(self):
         hostname = f"{self.xirux_host}"
         response = os.system("ping -c 1 " + hostname)
@@ -805,6 +1038,9 @@ class XiruxIntegration:
             print("============== Thirds starts =======================", "\n")
             self.thirds()
             print("============== Thirds ends =========================", "\n")
+            print("============== Purchase orders starts =======================", "\n")
+            self.purchase_orders()
+            print("============== Purchase orders ends =========================", "\n")
             print("============== Expense concepts starts =============", "\n")
             self.expense_concepts()
             print("============== Expense concepts ends ===============", "\n")

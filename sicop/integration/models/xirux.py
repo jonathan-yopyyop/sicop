@@ -1032,3 +1032,172 @@ class Contract(BaseModel):
     def __str__(self):
         """Unicode representation of Contract."""
         return str(self.id)
+
+
+class PurchaseOrder(BaseModel):
+    """Model definition for Purchase Order."""
+
+    IdOperac = models.CharField(
+        _("IdOperac"),
+        help_text=_("IdOperac"),
+        null=True,
+        blank=True,
+        max_length=255,
+    )
+    Numero = models.CharField(
+        _("Numero"),
+        help_text=_("Numero"),
+        null=True,
+        blank=True,
+        max_length=255,
+    )
+    Fecha = models.CharField(
+        _("Fecha"),
+        help_text=_("Fecha"),
+        null=True,
+        blank=True,
+        max_length=255,
+    )
+    FecContab = models.CharField(
+        _("FecContab"),
+        help_text=_("FecContab"),
+        null=True,
+        blank=True,
+        max_length=255,
+    )
+    FecVen = models.CharField(
+        _("FecVen"),
+        help_text=_("FecVen"),
+        null=True,
+        blank=True,
+        max_length=255,
+    )
+    IdTercer = models.CharField(
+        _("IdTercer"),
+        help_text=_("IdTercer"),
+        null=True,
+        blank=True,
+        max_length=255,
+    )
+    IdActICA = models.CharField(
+        _("IdActICA"),
+        help_text=_("IdActICA"),
+        null=True,
+        blank=True,
+        max_length=255,
+    )
+    IdRetFte = models.CharField(
+        _("IdRetFte"),
+        help_text=_("IdRetFte"),
+        null=True,
+        blank=True,
+        max_length=255,
+    )
+    VlrRetFte = models.FloatField(
+        _("VlrRetFte"),
+        help_text=_("VlrRetFte"),
+        null=True,
+        blank=True,
+        default=0,
+    )
+    FechaCruce = models.CharField(
+        _("FechaCruce"),
+        help_text=_("FechaCruce"),
+        null=True,
+        blank=True,
+        max_length=255,
+    )
+    FactProvee = models.CharField(
+        _("FactProvee"),
+        help_text=_("FactProvee"),
+        null=True,
+        blank=True,
+        max_length=255,
+    )
+    FecEntrega = models.CharField(
+        _("FecEntrega"),
+        help_text=_("FecEntrega"),
+        null=True,
+        blank=True,
+        max_length=255,
+    )
+    CostoTtal = models.FloatField(
+        _("CostoTtal"),
+        help_text=_("CostoTtal"),
+        null=True,
+        blank=True,
+        default=0,
+    )
+    VrBruto = models.FloatField(
+        _("VrBruto"),
+        help_text=_("VrBruto"),
+        null=True,
+        blank=True,
+        default=0,
+    )
+    VrDesc = models.FloatField(
+        _("VrDesc"),
+        help_text=_("VrDesc"),
+        null=True,
+        blank=True,
+        default=0,
+    )
+    VrIva = models.FloatField(
+        _("VrIva"),
+        help_text=_("VrIva"),
+        null=True,
+        blank=True,
+        default=0,
+    )
+    VrReteIva = models.FloatField(
+        _("VrReteIva"),
+        help_text=_("VrReteIva"),
+        null=True,
+        blank=True,
+        default=0,
+    )
+    VrReteIca = models.FloatField(
+        _("VrReteIca"),
+        help_text=_("VrReteIca"),
+        null=True,
+        blank=True,
+        default=0,
+    )
+    VrNeto = models.FloatField(
+        _("VrNeto"),
+        help_text=_("VrNeto"),
+        null=True,
+        blank=True,
+        default=0,
+    )
+    VrBaseImp = models.FloatField(
+        _("VrBaseImp"),
+        help_text=_("VrBaseImp"),
+        null=True,
+        blank=True,
+        default=0,
+    )
+    Direccion = models.CharField(
+        _("Direccion"),
+        help_text=_("Direccion"),
+        null=True,
+        blank=True,
+        max_length=255,
+    )
+    FecMod = models.CharField(
+        _("FecMod"),
+        help_text=_("FecMod"),
+        null=True,
+        blank=True,
+        max_length=255,
+    )
+
+    class Meta:
+        """Meta definition for Purchase Order."""
+
+        verbose_name = _("Purchase Order")
+        verbose_name_plural = _("Purchase Orders")
+
+    def __str__(self):
+        """Unicode representation of Purchase Order."""
+        return str(self.id)

@@ -5,5 +5,6 @@ from sicop.integration.models.xirux import (  # noqa
     CostCenter,
     ExpenseConcept,
     ExpenseType,
+    PurchaseOrder,
     Third,
 )
