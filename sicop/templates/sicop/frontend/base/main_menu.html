@@ -173,6 +173,17 @@
       </li>
       <li class="nav-item-sicop">
         <a href="#">
+          <i class="feather icon-sliders"></i>
+          <span class="menu-title" data-i18n="Dashboard">{% trans 'Commitments' %}</span>
+        </a>
+        <ul class="menu-content">
+          <li {% if '/budget/commitment/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'commitment_list' %}">{% trans 'Commitments' %}</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item-sicop">
+        <a href="#">
           <i class="feather icon-zoom-in"></i>
           <span class="menu-title" data-i18n="Dashboard">{% trans 'Logs' %}</span>
         </a>

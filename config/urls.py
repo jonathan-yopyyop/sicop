@@ -54,6 +54,18 @@ urlpatterns = i18n_patterns(
         "project/",
         include("sicop.project.urls"),
     ),
+    path(
+        "contract/",
+        include("sicop.contract.urls"),
+    ),
+    path(
+        "purchase_order/",
+        include("sicop.purchase_order.urls"),
+    ),
+    path(
+        "integration/",
+        include("sicop.integration.urls"),
+    ),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

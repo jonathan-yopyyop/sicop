@@ -7,6 +7,13 @@ from sicop.budget.models.budget import (  # noqa
     BudgetDescription,
     BudgetRedistributionTransaction,
 )
+from sicop.budget.models.commitment import (  # noqa
+    Commitment,
+    CommitmentContract,
+    CommitmentPO,
+    CommitmentRealeaseItems,
+    CommitmentRelease,
+)
 from sicop.budget.models.provision import ProvisionCart, ProvisionCartApproval, ProvisionCartBudget  # noqa
 from sicop.budget.models.redistribution import (  # noqa
     BudgetRedistribution,

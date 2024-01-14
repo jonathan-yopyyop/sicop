@@ -27,6 +27,9 @@ from sicop.budget.views import (
     BudgetRedistributionListView,
     BudgetRedistributionTransactionListView,
     BudgetUpdateView,
+    CommitmentCreateView,
+    CommitmentListView,
+    CommitmentReleaseUpdateView,
     CreateAdditionItem,
     CreateRedistributionItem,
     EditItemProvisionAmountInCart,
@@ -36,6 +39,7 @@ from sicop.budget.views import (
     GetBudgetsByCostCenterAndProject,
     GetBudgetsByProject,
     GetCostCentersByProject,
+    GetProvisionCartsByCriteria,
     ProvisionCartApprovalList,
     ProvisionCartApprovalUpdateView,
     ProvisionCertificateView,
@@ -47,9 +51,13 @@ from sicop.budget.views import (
     RemoveRedistributionItem,
     UpdateAdditionItem,
     UpdateBudgetForRedistribution,
+    UpdateCommitmentCap,
+    UpdateContractOrPoCap,
+    UpdateContractOrPoCapEntity,
     UpdateProjectInCart,
     UpdateRedistributionItem,
     UpdateRedistributionTotals,
+    UpdateThirdOrPoCap,
     UpdateTotalsInCart,
 )
 
@@ -133,6 +141,11 @@ urlpatterns = [
         "budget/<int:pk>/detail/",
         GetBudgetDetailById.as_view(),
         name="get_budget_detail_by_id",
+    ),
+    path(
+        "budget/provision/criteria/search/",
+        GetProvisionCartsByCriteria.as_view(),
+        name="get_provision_carts_by_criteria",
     ),
     path(
         "budget/<int:pk>/detail-except/",
@@ -303,5 +316,40 @@ urlpatterns = [
         "addition/approval/list/",
         AdditionBudgetApprovalList.as_view(),
         name="addition_budget_approval_list",
+    ),
+    path(
+        "commitment/list/",
+        CommitmentListView.as_view(),
+        name="commitment_list",
+    ),
+    path(
+        "commitment/create/",
+        CommitmentCreateView.as_view(),
+        name="commitment_create",
+    ),
+    path(
+        "commitment/cap/update/",
+        UpdateCommitmentCap.as_view(),
+        name="update_commitment_cap",
+    ),
+    path(
+        "commitment/contract-or-po/update/",
+        UpdateContractOrPoCap.as_view(),
+        name="update_contract_or_po_cap",
+    ),
+    path(
+        "commitment/third-or-po/update/",
+        UpdateThirdOrPoCap.as_view(),
+        name="update_third_cap",
+    ),
+    path(
+        "commitment/contract-or-po/update-entity/",
+        UpdateContractOrPoCapEntity.as_view(),
+        name="update_contract_or_po_cap_entity",
+    ),
+    path(
+        "commitment/release/update/",
+        CommitmentReleaseUpdateView.as_view(),
+        name="commitment_release_update",
     ),
 ]

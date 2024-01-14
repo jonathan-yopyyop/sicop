@@ -11,6 +11,11 @@ from sicop.budget.models import (
     BudgetRedistribution,
     BudgetRedistributionItem,
     BudgetRedistributionItemApproval,
+    Commitment,
+    CommitmentContract,
+    CommitmentPO,
+    CommitmentRealeaseItems,
+    CommitmentRelease,
     ProvisionCart,
     ProvisionCartApproval,
     ProvisionCartBudget,
@@ -311,6 +316,115 @@ class BudgetAddtionTransactionAdmin(admin.ModelAdmin):
     readonly_fields = [
         "id",
         "budget",
+        "created_at",
+        "updated_at",
+    ]
+
+
+@admin.register(Commitment)
+class CommitmentAdmin(admin.ModelAdmin):
+    list_display = [
+        "id",
+        "provision_cart",
+        "contract_or_po",
+        "third",
+        "has_tax",
+        "provision_budget_amount",
+        "required_amount",
+        "diference_between_required_and_provisioned",
+        "finished",
+        "created_at",
+        "updated_at",
+    ]
+    readonly_fields = [
+        "id",
+        "user",
+        "observation",
+        "approval_observation",
+        "provision_cart",
+        "contract_or_po",
+        "third",
+        "has_tax",
+        "provision_budget_amount",
+        "required_amount",
+        "diference_between_required_and_provisioned",
+        "finished",
+        "created_at",
+        "updated_at",
+    ]
+
+
+@admin.register(CommitmentPO)
+class CommitmentPOAdmin(admin.ModelAdmin):
+    list_display = [
+        "id",
+        "commitment",
+        "po",
+        "created_at",
+        "updated_at",
+    ]
+    readonly_fields = [
+        "id",
+        "commitment",
+        "po",
+        "created_at",
+        "updated_at",
+    ]
+
+
+@admin.register(CommitmentContract)
+class CommitmentContractAdmin(admin.ModelAdmin):
+    list_display = [
+        "id",
+        "commitment",
+        "contract",
+        "created_at",
+        "updated_at",
+    ]
+    readonly_fields = [
+        "id",
+        "commitment",
+        "contract",
+        "created_at",
+        "updated_at",
+    ]
+
+
+@admin.register(CommitmentRelease)
+class CommitmentReleaseAdmin(admin.ModelAdmin):
+    list_display = [
+        "id",
+        "commitment",
+        "total_to_release",
+        "total_released",
+        "created_at",
+        "updated_at",
+    ]
+    readonly_fields = [
+        "id",
+        "commitment",
+        "total_to_release",
+        "total_released",
+        "created_at",
+        "updated_at",
+    ]
+
+
+@admin.register(CommitmentRealeaseItems)
+class CommitmentRealeaseItemsAdmin(admin.ModelAdmin):
+    list_display = [
+        "id",
+        "commitment_release",
+        "budget",
+        "total_to_release",
+        "created_at",
+        "updated_at",
+    ]
+    readonly_fields = [
+        "id",
+        "commitment_release",
+        "budget",
+        "total_to_release",
         "created_at",
         "updated_at",
     ]
