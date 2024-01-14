@@ -1,12 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect, JsonResponse
-from django.urls import reverse  # , reverse_lazy
+from django.urls import reverse
+from django.utils.decorators import method_decorator
 from django.utils.translation import gettext_lazy as _
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
-
-# from django.views.generic.edit import UpdateView
 from django.views.generic.list import ListView
 
 from sicop.area.models import AreaMember
@@ -286,3 +286,24 @@ class ProvisionCartApprovalUpdateView(LoginRequiredMixin, TemplateView):
                     "result": f"error: {str(e)}",
                 }
             )
+
+
+@method_decorator(csrf_exempt, name="dispatch")
+class GetProvisionCartsByCriteria(TemplateView):
+    def get(self, request, *args, **kwargs):
+        query = request.GET.get("q", "")
+        results = ProvisionCart.objects.filter(
+            id__icontains=query,
+        )
+        result_list = []
+        for result in results:
+            result_list.append(
+                {
+                    "id": result.id,
+                    "text": str(result),
+                }
+            )
+        return JsonResponse(
+            result_list,
+            safe=False,
+        )

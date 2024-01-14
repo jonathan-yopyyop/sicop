@@ -447,7 +447,7 @@ class Third(BaseModel):
 
     def __str__(self):
         """Unicode representation of Third."""
-        return f"{self.Nombre}"
+        return f"{self.Nombre} ({self.IdTercer})"
 
 
 class CostCenter(BaseModel):

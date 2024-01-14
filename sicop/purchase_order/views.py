@@ -4,24 +4,24 @@ from django.utils.translation import gettext_lazy as _
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import TemplateView
 
-from sicop.integration.models import Third
+from sicop.purchase_order.models import PurchaseOrder
 
 
 @method_decorator(csrf_exempt, name="dispatch")
-class GetThirdByCriteria(TemplateView):
+class GetPosByCriteria(TemplateView):
     def get(self, request, *args, **kwargs):
         query = request.GET.get("q", "")
-        results = Third.objects.filter(
-            IdTercer__icontains=query,
+        results = PurchaseOrder.objects.filter(
+            Numero__icontains=query,
         )
         result_list = []
-        dni = _("DNI")
-        name = _("Third")
+        po = _("PO")
+        third = _("Third")
         for result in results:
             result_list.append(
                 {
-                    "id": result.IdTercer,
-                    "text": f"{dni} {result.IdTercer} {name} {result.Nombre}",
+                    "id": result.Numero,
+                    "text": f"{po} {result.Numero} {third} {result.IdTercer}",
                 }
             )
         return JsonResponse(
