@@ -48,6 +48,7 @@ from sicop.budget.views.processes.budget_commitment import (  # noqa
     CommitmentCreateView,
     CommitmentListView,
     CommitmentReleaseUpdateView,
+    CommitmentTaxUpdateView,
     UpdateCommitmentCap,
     UpdateContractOrPoCap,
     UpdateContractOrPoCapEntity,

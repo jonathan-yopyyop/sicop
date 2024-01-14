@@ -1,6 +1,49 @@
 # SICOP
 
-SICOP
+Es un software de gestión presupuestal, desde él se configuran los datos maestros necesarios y los procesos que permiten distribuir el presupuesto de manera eficiente.
+
+
+## Features
+
+1. Configuración
+    - Área
+        - Áreas
+        - Miembros del área
+        - Roles del área
+    - Unidad de negocio
+        - Unidades de negocio
+    - Centro de costo
+        - Centros de costo
+    - Gasto
+        - Conceptos
+        - Tipos
+    - Proyecto
+        - Tipos
+        - Estados
+        - Proyectos
+    - Presupuesto
+        - Descripciones
+        - Presupuesto
+    - Autorización
+        - Grupos
+        - Usuarios
+2. Procesos
+    - Apropiaciones
+        - Apropiaciones
+        - Aprobaciones
+    - Redistributiones
+        - Redistributiones
+        - Apropiaciones
+    - Adiciones
+        - Adiciones
+        - Apropiaciones
+    - Compromisos
+        - Compromisos
+        - Aprobaciones
+    - Logs
+        - Disminuciones
+        - Redistributiones
+
 
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
 [![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
@@ -77,3 +120,7 @@ The following details how to deploy this application.
 ### Docker
 
 See detailed [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).
+
+## Authors
+
+- [@jonathanurzolamaldonado](https://github.com/jonathan-yopyyop)
