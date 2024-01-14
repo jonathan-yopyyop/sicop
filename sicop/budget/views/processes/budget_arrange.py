@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.utils.decorators import method_decorator
@@ -16,25 +16,26 @@ from sicop.certificate.models import Certificate
 from sicop.project.models import Project
 
 
-class BudgetProvisionList(LoginRequiredMixin, ListView):
+class BudgetProvisionList(PermissionRequiredMixin, LoginRequiredMixin, ListView):
     template_name = "sicop/frontend/budget/processes/provision/list.html"
     model = ProvisionCart
     context_object_name = "provision_carts"
+    permission_required = "budget.view_provisioncart"
 
     def get_queryset(self):
         return ProvisionCart.objects.filter()
-        # user = self.request.user
-        # return ProvisionCart.objects.filter(user=user, status=True)
 
 
-class BudgetProvisionDetail(LoginRequiredMixin, DetailView):
+class BudgetProvisionDetail(PermissionRequiredMixin, LoginRequiredMixin, DetailView):
     model = ProvisionCart
     template_name = "sicop/frontend/budget/processes/provision/detail.html"
     context_object_name = "provision_cart"
+    permission_required = "budget.view_provisioncart"
 
 
-class BudgetProvisionCreate(LoginRequiredMixin, TemplateView):
+class BudgetProvisionCreate(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = "sicop/frontend/budget/processes/provision/create.html"
+    permission_required = "budget.add_provisioncart"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -151,8 +152,9 @@ class UpdateProjectInCart(LoginRequiredMixin, TemplateView):
             )
 
 
-class ProvisionCertificateView(TemplateView):
+class ProvisionCertificateView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = "sicop/frontend/budget/processes/provision/provision_certificate.html"
+    permission_required = "budget.view_provisioncart"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -214,10 +216,11 @@ class GetBudgetIncart(LoginRequiredMixin, TemplateView):
             )
 
 
-class ProvisionCartApprovalList(LoginRequiredMixin, ListView):
+class ProvisionCartApprovalList(PermissionRequiredMixin, LoginRequiredMixin, ListView):
     template_name = "sicop/frontend/budget/processes/provision/approval/list.html"
     model = ProvisionCartApproval
     context_object_name = "provision_carts"
+    permission_required = "budget.view_provisioncartapproval"
 
     def get_queryset(self):
         user = self.request.user
@@ -229,10 +232,11 @@ class ProvisionCartApprovalList(LoginRequiredMixin, ListView):
         return queryset
 
 
-class ProvisionCartApprovalUpdateView(LoginRequiredMixin, TemplateView):
+class ProvisionCartApprovalUpdateView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
     """View for Area update."""
 
     template_name = "sicop/frontend/budget/processes/provision/approval/update.html"
+    permission_required = "budget.change_provisioncartapproval"
 
     def post(self, request, *args: str, **kwargs):
         try:

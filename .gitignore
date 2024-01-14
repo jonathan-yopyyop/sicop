@@ -281,3 +281,13 @@ sicop/media/
 !.envs/.local/
 ### Runner ####
 actions-runner/
+
+### Files ###
+*.csv
+*.xlsx
+*.xls
+*.docx
+*.doc
+*.pdf
+*.pptx
+*.ppt

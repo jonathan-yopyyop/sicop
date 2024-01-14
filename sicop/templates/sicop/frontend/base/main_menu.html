@@ -14,24 +14,32 @@
            data-original-title="{% trans 'Configuration' %}">
         </i>
       </li>
+      {% if 'area.view_area' in perms or 'area.view_areamember' in perms or 'area.view_arearole' in perms %}
       <li class="nav-item-sicop">
         <a href="#">
           <i class="feather icon-users"></i>
           <span class="menu-title" data-i18n="Dashboard">{% trans 'Area' %}</span>
         </a>
         <ul class="menu-content">
+          {% if 'area.view_area' in perms %}
           <li {% if '/area/areas/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'area_area_list' %}">{% trans 'Areas' %}</a>
-          </li>
+          </li>  
+          {% endif %}
+          {% if 'area.view_areamember' in perms %}
           <li {% if '/area/member/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'area_member_list' %}">{% trans 'Area members' %}</a>
           </li>
+          {% endif %}
+          {% if 'area.view_arearole' in perms %}
           <li {% if '/area/roles/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'area_role_list' %}">{% trans 'Area roles' %}</a>
           </li>
-          
+          {% endif %}
         </ul>
       </li>
+      {% endif %}
+      {% if 'business_unit.add_businessunit' in perms %}
       <li class="nav-item-sicop">
         <a href="#">
           <i class="feather icon-briefcase"></i>
@@ -43,6 +51,8 @@
           </li>
         </ul>
       </li>
+      {% endif %}
+      {% if 'cost_center.view_costcenter' in perms %}
       <li class="nav-item-sicop">
         <a href="#">
           <i class="feather icon-target"></i>
@@ -54,69 +64,96 @@
           </li>
         </ul>
       </li>
+      {% endif %}
+      {% if 'expense_type.view_expensetype' in perms or 'expense_concept.view_expenseconcept' in perms %}
       <li class="nav-item-sicop">
         <a href="#">
           <i class="feather icon-percent"></i>
           <span class="menu-title" data-i18n="Dashboard">{% trans 'Expense' %}</span>
         </a>
+        {% if 'expense_concept.view_expenseconcept' in perms %}
         <ul class="menu-content">
           <li {% if '/expense/concept/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'expense_concept_list' %}">{% trans 'Concepts' %}</a>
           </li>
         </ul>
+        {% endif %}
+        {% if 'expense_type.view_expensetype' in perms %}
         <ul class="menu-content">
           <li {% if '/expense/type/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'expense_type_list' %}">{% trans 'Types' %}</a>
           </li>
         </ul>
+        {% endif %}
       </li>
+      {% endif %}
+      {% if 'project.view_project' in perms or 'project.view_projectstatus' in perms or 'project.view_projecttype' in perms %}
       <li class="nav-item-sicop">
         <a href="#">
           <i class="feather icon-bar-chart-2"></i>
           <span class="menu-title" data-i18n="Dashboard">{% trans 'Project' %}</span>
         </a>
         <ul class="menu-content">
+          {% if 'project.view_projecttype' in perms %}
           <li {% if '/project/type/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'project_type_list' %}">{% trans 'Types' %}</a>
           </li>
+          {% endif %}
+          {% if 'project.view_projectstatus' in perms %}
           <li {% if '/project/status/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'project_status_list' %}">{% trans 'Statuses' %}</a>
           </li>
+          {% endif %}
+          {% if 'project.view_project' in perms %}
           <li {% if '/project/project/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'project_list' %}">{% trans 'Projects' %}</a>
           </li>
+          {% endif %}
         </ul>
       </li>
+      {% endif %}
+      {% if 'budget.view_budget' in perms or 'budget.view_budgetdescription' in perms %}
       <li class="nav-item-sicop">
         <a href="#">
           <i class="feather icon-pie-chart"></i>
           <span class="menu-title" data-i18n="Dashboard">{% trans 'Budget' %}</span>
         </a>
         <ul class="menu-content">
+          {% if 'budget.view_budgetdescription' in perms %}
           <li {% if '/budget/description/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'budget_description_list' %}">{% trans 'Descriptions' %}</a>
           </li>
+          {% endif %}
+          {% if 'budget.view_budget' in perms %}
           <li {% if '/budget/budget/' in request.path and '/provision/' not in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'budget_list' %}">{% trans 'Budget' %}</a>
           </li>
+          {% endif %}
         </ul>
       </li>
+      {% endif %}
+      {% if 'users.view_user' in perms or 'auth.view_group' in perms %}
       <li class="nav-item-sicop">
         <a href="#">
           <i class="feather icon-unlock"></i>
           <span class="menu-title" data-i18n="Dashboard">{% trans 'Authorization' %}</span>
         </a>
         <ul class="menu-content">
+          {% if 'auth.view_group' in perms %}
           <li {% if 'user/group/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'user_group_list' %}">{% trans 'Groups' %}</a>
           </li>
+          {% endif %}
         </ul>
         <ul class="menu-content">
+          {% if 'users.view_user' in perms %}
           <li {% if 'user/user/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'user_list' %}">{% trans 'Users' %}</a>
           </li>
+          {% endif %}
         </ul>
       </li>
+      {% endif %}
     </ul>
     <ul class="navigation navigation-main navigation-sicop"
         id="main-menu-navigation"
@@ -129,73 +166,101 @@
            data-original-title="{% trans 'Configuration' %}">
         </i>
       </li>
+      {% if 'budget.view_provisioncart' in perms or 'budget.view_provisioncartapproval' in perms %}
       <li class="nav-item-sicop">
         <a href="#">
           <i class="feather icon-compass"></i>
           <span class="menu-title" data-i18n="Dashboard">{% trans 'Apropiations' %}</span>
         </a>
         <ul class="menu-content">
+          {% if 'budget.view_provisioncart' in perms %}
           <li {% if '/budget/provision/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'budget_provision_list' %}">{% trans 'Apropiations' %}</a>
           </li>
+          {% endif %}
+          {% if 'budget.view_provisioncartapproval' in perms %}
           <li {% if 'budget/provision/approval/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'provision_cart_approval_list' %}">{% trans 'Approvals' %}</a>
           </li>
+          {% endif %}
         </ul>
       </li>
+      {% endif %}
+      {% if 'budget.view_budgetredistribution' in perms or 'budget.view_budgetredistributionitemapproval' in perms %}
       <li class="nav-item-sicop">
         <a href="#">
           <i class="feather icon-repeat"></i>
           <span class="menu-title" data-i18n="Dashboard">{% trans 'Redistributions' %}</span>
         </a>
         <ul class="menu-content">
+          {% if 'budget.view_budgetredistribution' in perms %}
           <li {% if '/budget/redistribution/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'budget_redistribution_list' %}">{% trans 'Redistributions' %}</a>
           </li>
+          {% endif %}
+          {% if 'budget.view_budgetredistributionitemapproval' in perms %}
           <li {% if '/budget/redistribution/approval/list/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'redistribution_budget_approval_list' %}">{% trans 'Approvals' %}</a>
           </li>
+          {% endif %}
         </ul>
       </li>
+      {% endif %}
+      {% if 'budget.view_budgetaddition' in perms or 'budget.view_budgetadditionapproval' in perms %}
       <li class="nav-item-sicop">
         <a href="#">
           <i class="feather icon-plus-circle"></i>
           <span class="menu-title" data-i18n="Dashboard">{% trans 'Additions' %}</span>
         </a>
         <ul class="menu-content">
+          {% if 'budget.view_budgetaddition' in perms %}
           <li {% if '/budget/addition/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'budget_addition_list' %}">{% trans 'Additions' %}</a>
           </li>
+          {% endif %}
+          {% if 'budget.view_budgetadditionapproval' in perms %}
           <li {% if '/budget/addition/approval/list/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'addition_budget_approval_list' %}">{% trans 'Approvals' %}</a>
           </li>
+          {% endif %}
         </ul>
       </li>
+      {% endif %}
+      {% if 'budget.view_commitment' in perms %}
       <li class="nav-item-sicop">
         <a href="#">
           <i class="feather icon-sliders"></i>
           <span class="menu-title" data-i18n="Dashboard">{% trans 'Commitments' %}</span>
         </a>
         <ul class="menu-content">
+          {% if 'budget.view_commitment' in perms %}
           <li {% if '/budget/commitment/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'commitment_list' %}">{% trans 'Commitments' %}</a>
           </li>
+          {% endif %}
         </ul>
       </li>
+      {% endif %}
+      {% if 'budget.view_budgetdecreasetransaction' in perms or 'budget.view_budgetredistributiontransaction' in perms %}
       <li class="nav-item-sicop">
         <a href="#">
           <i class="feather icon-zoom-in"></i>
           <span class="menu-title" data-i18n="Dashboard">{% trans 'Logs' %}</span>
         </a>
         <ul class="menu-content">
+          {% if 'budget.view_budgetdecreasetransaction' in perms %}
           <li {% if 'budget/decrease_transaction/list/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'budget_decrease_control_transaction_list' %}">{% trans 'Drecreases' %}</a>
           </li>
+          {% endif %}
+          {% if 'budget.view_budgetredistributiontransaction' in perms %}
           <li {% if 'budget/redistribution_transaction/list/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'budget_redistribution_transaction_list' %}">{% trans 'Redistributions' %}</a>
           </li>
+          {% endif %}
         </ul>
       </li>
+      {% endif %}
     </ul>
   </div>
 </div>

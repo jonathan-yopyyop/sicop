@@ -6,6 +6,16 @@ from django.urls import include, path
 from django.views import defaults as default_views
 
 from config.views import HomeView
+from sicop.sicop_error_handler.views import (
+    custom_400,
+    custom_401,
+    custom_403,
+    custom_404,
+    custom_500,
+    custom_501,
+    custom_502,
+    custom_503,
+)
 
 urlpatterns = i18n_patterns(
     path(
@@ -68,6 +78,15 @@ urlpatterns = i18n_patterns(
     ),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+# Error handler
+handler400 = custom_400
+handler401 = custom_401
+handler403 = custom_403
+handler404 = custom_404
+handler500 = custom_500
+handler501 = custom_501
+handler502 = custom_502
+handler503 = custom_503
 
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit

@@ -19,7 +19,7 @@ class ExpenseConceptListView(PermissionRequiredMixin, LoginRequiredMixin, ListVi
     permission_required = "expense_concept.view_expenseconcept"
 
 
-class ExpenseConceptDetailView(LoginRequiredMixin, DetailView):
+class ExpenseConceptDetailView(PermissionRequiredMixin, LoginRequiredMixin, DetailView):
     """View for Expense Concept detail."""
 
     model = ExpenseConcept
@@ -28,7 +28,7 @@ class ExpenseConceptDetailView(LoginRequiredMixin, DetailView):
     permission_required = "expense_concept.view_expenseconcept"
 
 
-class ExpenseConceptUpdateView(LoginRequiredMixin, UpdateView):
+class ExpenseConceptUpdateView(PermissionRequiredMixin, LoginRequiredMixin, UpdateView):
     """View for Expense Concept update."""
 
     model = ExpenseConcept
@@ -67,7 +67,7 @@ class ExpenseConceptUpdateView(LoginRequiredMixin, UpdateView):
         return super().post(request, *args, **kwargs)
 
 
-class ExpenseConceptCreateView(LoginRequiredMixin, CreateView):
+class ExpenseConceptCreateView(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
     """View for Expense Concept create."""
 
     model = ExpenseConcept

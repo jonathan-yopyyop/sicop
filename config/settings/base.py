@@ -78,10 +78,8 @@ DJANGO_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
-    # "django.contrib.sites",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # "django.contrib.humanize", # Handy template tags
     "admin_interface",
     "colorfield",
     "django.contrib.admin",
@@ -93,7 +91,6 @@ THIRD_PARTY_APPS = [
     "crispy_bootstrap5",
     "allauth",
     "allauth.account",
-    # "allauth.socialaccount",
     "django_celery_beat",
     "import_export",
 ]
@@ -112,6 +109,7 @@ LOCAL_APPS = [
     "sicop.certificate",
     "sicop.contract",
     "sicop.purchase_order",
+    "sicop.sicop_error_handler",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -17,12 +17,13 @@ from sicop.certificate.models import Certificate
 from sicop.project.models import Project
 
 
-class BudgetRedistributionListView(LoginRequiredMixin, ListView):
+class BudgetRedistributionListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
     """View for BudgetRedistribution list."""
 
     model = BudgetRedistribution
     template_name = "sicop/frontend/budget/processes/redistribution/list.html"
     context_object_name = "budget_redistributions"
+    permission_required = "budget.view_budgetredistribution"
 
     def get_context_data(self, **kwargs):
         """Add extra context."""
@@ -30,8 +31,9 @@ class BudgetRedistributionListView(LoginRequiredMixin, ListView):
         return context
 
 
-class BudgetRedistributionCreate(LoginRequiredMixin, TemplateView):
+class BudgetRedistributionCreate(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = "sicop/frontend/budget/processes/redistribution/create.html"
+    permission_required = "budget.add_budgetredistribution"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -136,8 +138,9 @@ class BudgetRedistributionCreate(LoginRequiredMixin, TemplateView):
             )
 
 
-class BudgetRedistributionDetail(LoginRequiredMixin, TemplateView):
+class BudgetRedistributionDetail(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = "sicop/frontend/budget/processes/redistribution/detail.html"
+    permission_required = "budget.view_budgetredistribution"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -312,10 +315,11 @@ class UpdateRedistributionTotals(LoginRequiredMixin, TemplateView):
             )
 
 
-class RedistributionBudgetApprovalList(LoginRequiredMixin, TemplateView):
+class RedistributionBudgetApprovalList(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
     """View for RedistributionBudgetApproval list."""
 
     template_name = "sicop/frontend/budget/processes/redistribution/approval/list.html"
+    permission_required = "budget.view_budgetredistribution"
 
     def get_context_data(self, **kwargs):
         """Add extra context."""
@@ -328,8 +332,9 @@ class RedistributionBudgetApprovalList(LoginRequiredMixin, TemplateView):
         return context
 
 
-class RedistributionCertificateView(TemplateView):
+class RedistributionCertificateView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = "sicop/frontend/budget/processes/redistribution/redistribution_certificate.html"
+    permission_required = "budget.view_budgetredistribution"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -354,10 +359,11 @@ class RedistributionCertificateView(TemplateView):
         return context
 
 
-class RedistributionBudgetApprovalUpdate(LoginRequiredMixin, TemplateView):
+class RedistributionBudgetApprovalUpdate(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
     """View for RedistributionBudgetApproval update."""
 
     template_name = "sicop/frontend/budget/processes/redistribution/redistribution_certificate.html"
+    permission_required = "budget.view_budgetredistributionitemapproval"
 
     def post(self, request, *args, **kwargs):
         try:

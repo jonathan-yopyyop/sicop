@@ -19,7 +19,7 @@ class AreaListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
     permission_required = "area.view_area"
 
 
-class AreaDetailView(LoginRequiredMixin, DetailView):
+class AreaDetailView(PermissionRequiredMixin, LoginRequiredMixin, DetailView):
     """View for Area detail."""
 
     model = Area
@@ -28,7 +28,7 @@ class AreaDetailView(LoginRequiredMixin, DetailView):
     permission_required = "area.view_area"
 
 
-class AreaUpdateView(LoginRequiredMixin, UpdateView):
+class AreaUpdateView(PermissionRequiredMixin, LoginRequiredMixin, UpdateView):
     """View for Area update."""
 
     model = Area
@@ -68,7 +68,7 @@ class AreaUpdateView(LoginRequiredMixin, UpdateView):
         return super().post(request, *args, **kwargs)
 
 
-class AreaCreateView(LoginRequiredMixin, CreateView):
+class AreaCreateView(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
     """View for Area create."""
 
     model = Area

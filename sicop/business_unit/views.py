@@ -49,7 +49,7 @@ class BusinessUnitUpdateView(PermissionRequiredMixin, LoginRequiredMixin, Update
         "cost_centers",
     ]
     context_object_name = "businessunit"
-    permission_required = "business_unit.change_businessunit"
+    permission_required = "integration.change_businessunit"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

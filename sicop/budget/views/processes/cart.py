@@ -56,7 +56,6 @@ class UpdateTotalsInCart(LoginRequiredMixin, TemplateView):
                 }
             )
         except Exception as e:
-            print(f"An error: ===============> {str(e)}")
             return JsonResponse(
                 {
                     "cart_id": cart_id,
@@ -86,7 +85,6 @@ class AddItemToProvisionInCart(LoginRequiredMixin, TemplateView):
                 }
             )
         except Exception as e:
-            print(e)
             return JsonResponse(
                 {
                     "cart_id": cart_id,

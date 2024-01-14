@@ -1,6 +1,6 @@
 from typing import Any
 
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.http import JsonResponse
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
@@ -19,14 +19,16 @@ from sicop.integration.models import Third
 from sicop.purchase_order.models import PurchaseOrder
 
 
-class CommitmentListView(LoginRequiredMixin, ListView):
+class CommitmentListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
     template_name = "sicop/frontend/budget/processes/commitment/list.html"
     model = Commitment
     context_object_name = "commitments"
+    permission_required = "budget.view_commitment"
 
 
-class CommitmentCreateView(LoginRequiredMixin, TemplateView):
+class CommitmentCreateView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = "sicop/frontend/budget/processes/commitment/create.html"
+    permission_required = "budget.add_commitment"
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)

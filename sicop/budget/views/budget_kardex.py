@@ -10,7 +10,7 @@ class BudgetDecreaseTransactionListView(PermissionRequiredMixin, LoginRequiredMi
     model = BudgetDecreaseTransaction
     template_name = "sicop/frontend/budget/kardex/decrease/list.html"
     context_object_name = "budget_decrease_control_transactions"
-    permission_required = "budget.view_budget"
+    permission_required = "budget.view_budgetdecreasetransaction"
 
 
 class BudgetRedistributionTransactionListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
@@ -19,4 +19,4 @@ class BudgetRedistributionTransactionListView(PermissionRequiredMixin, LoginRequ
     model = BudgetRedistributionTransaction
     template_name = "sicop/frontend/budget/kardex/redistribution/list.html"
     context_object_name = "budget_redistribution_transactions"
-    permission_required = "budget.view_budget"
+    permission_required = "budget.view_budgetredistributiontransaction"

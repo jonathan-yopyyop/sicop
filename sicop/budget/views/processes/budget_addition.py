@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -13,12 +13,13 @@ from sicop.certificate.models import Certificate
 from sicop.project.models import Project
 
 
-class BudgetAdditionListView(LoginRequiredMixin, ListView):
+class BudgetAdditionListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
     """View for Budget addition list."""
 
     model = BudgetAddition
     template_name = "sicop/frontend/budget/processes/addition/list.html"
     context_object_name = "budget_additions"
+    permission_required = "budget.view_budgetaddition"
 
     def get_context_data(self, **kwargs):
         """Add extra context."""
@@ -26,8 +27,9 @@ class BudgetAdditionListView(LoginRequiredMixin, ListView):
         return context
 
 
-class BudgetAdditionCreateView(LoginRequiredMixin, TemplateView):
+class BudgetAdditionCreateView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = "sicop/frontend/budget/processes/addition/create.html"
+    permission_required = "budget.add_budgetaddition"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -89,7 +91,7 @@ class BudgetAdditionCreateView(LoginRequiredMixin, TemplateView):
             )
 
 
-class CreateAdditionItem(LoginRequiredMixin, TemplateView):
+class CreateAdditionItem(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
     def post(self, request, *args, **kwargs):
         try:
             budget_id = request.POST["budget_id"]
@@ -126,7 +128,7 @@ class CreateAdditionItem(LoginRequiredMixin, TemplateView):
             )
 
 
-class RemoveAdditionItem(LoginRequiredMixin, TemplateView):
+class RemoveAdditionItem(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
     def post(self, request, *args, **kwargs):
         try:
             row_id = request.POST["row_id"]
@@ -149,7 +151,7 @@ class RemoveAdditionItem(LoginRequiredMixin, TemplateView):
             )
 
 
-class UpdateAdditionItem(LoginRequiredMixin, TemplateView):
+class UpdateAdditionItem(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
     def post(self, request, *args, **kwargs):
         try:
             row_id = request.POST["row_id"]
@@ -184,6 +186,7 @@ class UpdateAdditionItem(LoginRequiredMixin, TemplateView):
 
 class AdditionCertificateView(LoginRequiredMixin, TemplateView):
     template_name = "sicop/frontend/budget/processes/addition/addition_certificate.html"
+    permission_required = "budget.view_budgetaddition"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -205,6 +208,8 @@ class AdditionCertificateView(LoginRequiredMixin, TemplateView):
 
 
 class AdditionApprovalUpdateView(LoginRequiredMixin, TemplateView):
+    permission_required = "budget.change_budgetaddition"
+
     def post(self, request, *args, **kwargs):
         try:
             addition_id = kwargs["pk"]
@@ -276,6 +281,7 @@ class AdditionBudgetApprovalList(LoginRequiredMixin, TemplateView):
     """View for AdditiontionBudgetApproval list."""
 
     template_name = "sicop/frontend/budget/processes/addition/approval/list.html"
+    permission_required = "budget.view_budgetadditionapproval"
 
     def get_context_data(self, **kwargs):
         """Add extra context."""
