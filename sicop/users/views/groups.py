@@ -53,9 +53,21 @@ class GroupUpdateView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView)
             group.permissions.set(permissions)
             group.save()
             messages.success(request, _("Group updated successfully"))
+            # return JsonResponse(
+            #     {
+            #         "status": "success",
+            #         "permissions": permissions,
+            #         "post": request.POST,
+            #     }
+            # )
         except Exception as e:
             print(e)
             messages.warning(request, _("Group not updated"))
+            # return JsonResponse(
+            #     {
+            #         "status": "error",
+            #     }
+            # )
         return HttpResponseRedirect(
             reverse(
                 "user_group_update",

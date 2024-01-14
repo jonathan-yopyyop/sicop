@@ -68,8 +68,8 @@
                                   <select multiple="multiple"
                                           size="10"
                                           class="duallistbox"
-                                          name="expense_concepts[]"
-                                          id="expense_concepts">
+                                          name="permissions[]"
+                                          id="permissions">
                                     {% for premission in permissions %}
                                       <option value="{{ premission.id }}"
                                               {% if premission.id in group_permissions %}selected{% endif %}>
