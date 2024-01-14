@@ -338,6 +338,11 @@ class CommitmentAdmin(admin.ModelAdmin):
     ]
     readonly_fields = [
         "id",
+        "status",
+        "tax_amount",
+        "requires_approval",
+        "approved",
+        "rejected",
         "user",
         "observation",
         "approval_observation",
@@ -348,7 +353,6 @@ class CommitmentAdmin(admin.ModelAdmin):
         "provision_budget_amount",
         "required_amount",
         "diference_between_required_and_provisioned",
-        "finished",
         "created_at",
         "updated_at",
     ]

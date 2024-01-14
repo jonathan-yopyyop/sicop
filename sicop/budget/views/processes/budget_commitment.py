@@ -85,6 +85,9 @@ class UpdateCommitmentCap(LoginRequiredMixin, TemplateView):
             commitment.provision_budget_amount = provision_cart.total_provisioned_amount
             commitment.has_tax = has_tax
             commitment.save()
+            if not commitment.has_tax:
+                commitment.tax_amount = 0
+                commitment.save()
             commitment.diference_between_required_and_provisioned = (
                 commitment.provision_budget_amount - commitment.required_amount
             )
@@ -320,6 +323,33 @@ class CommitmentReleaseUpdateView(LoginRequiredMixin, TemplateView):
                     "total_to_release": commitment_release.total_to_release,
                     "total_released": commitment_release.total_released,
                     "total_pending": commitment_release.total_pending,
+                },
+                safe=False,
+            )
+        except Exception as e:
+            return JsonResponse(
+                {
+                    "status": "error",
+                    "message": str(e),
+                },
+                safe=False,
+            )
+
+
+class CommitmentTaxUpdateView(LoginRequiredMixin, TemplateView):
+    def post(self, request, *args, **kwargs):
+        try:
+            commitment_id = request.POST.get("commitment_id")
+            tax_amount = request.POST.get("tax_amount")
+            commitment = Commitment.objects.get(id=commitment_id)
+            commitment.tax_amount = tax_amount
+            commitment.save()
+
+            return JsonResponse(
+                {
+                    "status": "ok",
+                    "commitment": commitment.id,
+                    "tax_amount": commitment.tax_amount,
                 },
                 safe=False,
             )

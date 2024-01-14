@@ -30,6 +30,7 @@ from sicop.budget.views import (
     CommitmentCreateView,
     CommitmentListView,
     CommitmentReleaseUpdateView,
+    CommitmentTaxUpdateView,
     CreateAdditionItem,
     CreateRedistributionItem,
     EditItemProvisionAmountInCart,
@@ -351,5 +352,10 @@ urlpatterns = [
         "commitment/release/update/",
         CommitmentReleaseUpdateView.as_view(),
         name="commitment_release_update",
+    ),
+    path(
+        "commitment/tax/update/",
+        CommitmentTaxUpdateView.as_view(),
+        name="commitment_tax_update",
     ),
 ]

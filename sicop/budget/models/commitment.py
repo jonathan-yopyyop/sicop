@@ -58,6 +58,13 @@ class Commitment(BaseModel):
         help_text=_("Has tax"),
         default=False,
     )
+    tax_amount = models.FloatField(
+        _("Tax amount"),
+        help_text=_("Tax amount"),
+        default=0,
+        null=True,
+        blank=True,
+    )
     provision_budget_amount = models.FloatField(
         _("Provision budget amount"),
         help_text=_("Provision budget amount"),
