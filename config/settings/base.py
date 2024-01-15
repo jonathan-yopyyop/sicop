@@ -6,8 +6,6 @@ from pathlib import Path
 import environ
 from django.utils.translation import gettext_lazy as _
 
-from config.settings.sicop_database_parameters import DATABASES
-
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 # sicop/
 APPS_DIR = BASE_DIR / "sicop"
@@ -50,8 +48,8 @@ LOCALE_PATHS = [str(BASE_DIR / "locale")]
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
-DATABASES = DATABASES
-# DATABASES["default"]["ATOMIC_REQUESTS"] = True
+DATABASES = {"default": env.db("DATABASE_URL")}
+DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
 # DATABASES = {
 #     "default": {
