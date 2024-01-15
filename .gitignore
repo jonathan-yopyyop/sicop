@@ -291,3 +291,6 @@ actions-runner/
 *.pdf
 *.pptx
 *.ppt
+
+#Sicop database configuration
+config/settings/sicop_database_parameters.py
