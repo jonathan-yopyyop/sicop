@@ -41,7 +41,7 @@ RUN pip install pyodbc
 
 # Instalación de dependencias y herramientas necesarias
 RUN apt-get update && \
-  apt-get install -y curl gnupg2 software-properties-common apt-transport-https -2 && \
+  apt-get install -y curl gnupg2 software-properties-common apt-transport-https && \
   apt-get install -y apt-utils lsb-release
 
 # Verificar la versión de Ubuntu y ejecutar los comandos si es compatible
