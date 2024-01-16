@@ -61,8 +61,6 @@ RUN if ! [[ "18.04 20.04 22.04 23.04" == *$(lsb_release -rs)* ]]; then \
   fi
 
 
-# Modificar el parámetro CipherString en openssl.cnf
-RUN sed -i 's/CipherString = DEFAULT:@SECLEVEL=2/CipherString = DEFAULT:@SECLEVEL=0/' /tmp/openssl.cnf
 
 # Mover el archivo modificado a la ubicación original
 RUN mv /tmp/openssl.cnf /etc/ssl/openssl.cnf
