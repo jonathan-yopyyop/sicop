@@ -39,12 +39,12 @@ RUN ACCEPT_EULA=Y apt-get install -y --allow-unauthenticated msodbcsql18
 ADD main.py .
 # Copy openssl.cnf file to the image
 COPY openssl.cnf /tmp/openssl.cnf
-
+# Move the file to the original location
+RUN mv /tmp/openssl.cnf /etc/ssl/openssl.cnf
 # Modify the paremeter CipherString in openssl.cnf
 RUN sed -i 's/CipherString = DEFAULT:@SECLEVEL=2/CipherString = DEFAULT:@SECLEVEL=0/' /tmp/openssl.cnf
 
-# Move the file to the original location
-RUN mv /tmp/openssl.cnf /etc/ssl/openssl.cnf
+
 
 RUN pip install --upgrade pip
 RUN pip install pyodbc
