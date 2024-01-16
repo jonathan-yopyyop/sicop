@@ -6,7 +6,7 @@ environ.Env.read_env()
 DATABASES = {"default": env.db("DATABASE_URL")}
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
-# for local
+# for local development
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "django.db.backends.postgresql",
