@@ -45,13 +45,17 @@ from sicop.budget.views.processes.budget_arrange import (  # noqa
     ProvisionCertificateView,
 )
 from sicop.budget.views.processes.budget_commitment import (  # noqa
+    CommitmentCertificateView,
     CommitmentCreateView,
     CommitmentListView,
     CommitmentReleaseUpdateView,
     CommitmentTaxUpdateView,
+    CreateOrdestroyReleaseTable,
+    UpdateCommitmentAmount,
     UpdateCommitmentCap,
+    UpdateCommitmentEntity,
     UpdateContractOrPoCap,
-    UpdateContractOrPoCapEntity,
+    UpdateIdentifier,
     UpdateThirdOrPoCap,
 )
 from sicop.budget.views.processes.budget_redistribution import (  # noqa

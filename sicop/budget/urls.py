@@ -27,11 +27,13 @@ from sicop.budget.views import (
     BudgetRedistributionListView,
     BudgetRedistributionTransactionListView,
     BudgetUpdateView,
+    CommitmentCertificateView,
     CommitmentCreateView,
     CommitmentListView,
     CommitmentReleaseUpdateView,
     CommitmentTaxUpdateView,
     CreateAdditionItem,
+    CreateOrdestroyReleaseTable,
     CreateRedistributionItem,
     EditItemProvisionAmountInCart,
     GetBudgetDetailById,
@@ -52,9 +54,11 @@ from sicop.budget.views import (
     RemoveRedistributionItem,
     UpdateAdditionItem,
     UpdateBudgetForRedistribution,
+    UpdateCommitmentAmount,
     UpdateCommitmentCap,
+    UpdateCommitmentEntity,
     UpdateContractOrPoCap,
-    UpdateContractOrPoCapEntity,
+    UpdateIdentifier,
     UpdateProjectInCart,
     UpdateRedistributionItem,
     UpdateRedistributionTotals,
@@ -336,7 +340,7 @@ urlpatterns = [
     path(
         "commitment/contract-or-po/update/",
         UpdateContractOrPoCap.as_view(),
-        name="update_contract_or_po_cap",
+        name="update_commitment_type",
     ),
     path(
         "commitment/third-or-po/update/",
@@ -345,8 +349,8 @@ urlpatterns = [
     ),
     path(
         "commitment/contract-or-po/update-entity/",
-        UpdateContractOrPoCapEntity.as_view(),
-        name="update_contract_or_po_cap_entity",
+        UpdateCommitmentEntity.as_view(),
+        name="update_cap_entity",
     ),
     path(
         "commitment/release/update/",
@@ -357,5 +361,25 @@ urlpatterns = [
         "commitment/tax/update/",
         CommitmentTaxUpdateView.as_view(),
         name="commitment_tax_update",
+    ),
+    path(
+        "commitment/identifier/update/",
+        UpdateIdentifier.as_view(),
+        name="commitment_identifier_update",
+    ),
+    path(
+        "commitment/amount/update/",
+        UpdateCommitmentAmount.as_view(),
+        name="commitment_amount_update",
+    ),
+    path(
+        "commitment/release/table/create-or-destroy/",
+        CreateOrdestroyReleaseTable.as_view(),
+        name="create_or_destroy_release_table",
+    ),
+    path(
+        "commitment/<int:pk>/certificate/",
+        CommitmentCertificateView.as_view(),
+        name="commitment_certificate",
     ),
 ]

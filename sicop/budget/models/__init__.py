@@ -10,6 +10,7 @@ from sicop.budget.models.budget import (  # noqa
 from sicop.budget.models.commitment import (  # noqa
     Commitment,
     CommitmentContract,
+    CommitmentNotRelated,
     CommitmentPO,
     CommitmentRealeaseItems,
     CommitmentRelease,

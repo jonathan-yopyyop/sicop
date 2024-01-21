@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-13 19:06-0500\n"
+"POT-Creation-Date: 2024-01-20 17:45-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,13 +60,61 @@ msgstr ""
 #: sicop/templates/sicop/frontend/area/member/list.html:48
 #: sicop/templates/sicop/frontend/area/member/list.html:84
 #: sicop/templates/sicop/frontend/area/member/update.html:69
-#: sicop/templates/sicop/frontend/base/main_menu.html:20
+#: sicop/templates/sicop/frontend/base/main_menu.html:66
 #: sicop/templates/sicop/frontend/project/project/create.html:111
 #: sicop/templates/sicop/frontend/project/project/detail.html:114
 #: sicop/templates/sicop/frontend/project/project/list.html:50
 #: sicop/templates/sicop/frontend/project/project/list.html:86
 #: sicop/templates/sicop/frontend/project/project/update.html:111
 msgid "Area"
+msgstr ""
+
+#: sicop/area/management/commands/create_roles.py:12
+msgid "director"
+msgstr ""
+
+#: sicop/area/management/commands/create_roles.py:12
+msgid "Director"
+msgstr ""
+
+#: sicop/area/management/commands/create_roles.py:13
+msgid "chief"
+msgstr ""
+
+#: sicop/area/management/commands/create_roles.py:13
+msgid "Jefe"
+msgstr ""
+
+#: sicop/area/management/commands/create_roles.py:14
+msgid "executor"
+msgstr ""
+
+#: sicop/area/management/commands/create_roles.py:14
+msgid "Ejecutor"
+msgstr ""
+
+#: sicop/area/management/commands/create_roles.py:15
+msgid "administrator"
+msgstr ""
+
+#: sicop/area/management/commands/create_roles.py:15
+msgid "Administrador"
+msgstr ""
+
+#: sicop/area/management/commands/create_roles.py:16
+msgid "president"
+msgstr ""
+
+#: sicop/area/management/commands/create_roles.py:16
+msgid "Presidente"
+msgstr ""
+
+#: sicop/area/management/commands/create_roles.py:17
+msgid "administrative_director"
+msgstr ""
+
+#: sicop/area/management/commands/create_roles.py:17
+msgid "Director administrativo"
 msgstr ""
 
 #: sicop/area/models.py:14 sicop/area/models.py:15
@@ -78,13 +126,13 @@ msgid "Area description"
 msgstr ""
 
 #: sicop/area/models.py:30
-#: sicop/templates/sicop/frontend/base/main_menu.html:24
+#: sicop/templates/sicop/frontend/base/main_menu.html:71
 msgid "Areas"
 msgstr ""
 
 #: sicop/area/models.py:42 sicop/area/models.py:43
 #: sicop/budget/models/addition.py:13 sicop/budget/models/addition.py:14
-#: sicop/budget/models/commitment.py:25 sicop/budget/models/commitment.py:26
+#: sicop/budget/models/commitment.py:27 sicop/budget/models/commitment.py:28
 #: sicop/budget/models/provision.py:23 sicop/budget/models/provision.py:24
 #: sicop/budget/models/redistribution.py:13
 #: sicop/budget/models/redistribution.py:14
@@ -172,15 +220,15 @@ msgstr ""
 #: sicop/budget/models/budget.py:128 sicop/budget/models/budget.py:129
 #: sicop/budget/models/budget.py:181 sicop/budget/models/budget.py:182
 #: sicop/budget/models/budget.py:226 sicop/budget/models/budget.py:227
-#: sicop/budget/models/commitment.py:236 sicop/budget/models/commitment.py:237
+#: sicop/budget/models/commitment.py:255 sicop/budget/models/commitment.py:256
 #: sicop/budget/models/provision.py:99 sicop/budget/models/provision.py:100
 #: sicop/budget/models/redistribution.py:25
 #: sicop/budget/models/redistribution.py:26
 #: sicop/budget/models/redistribution.py:114
 #: sicop/budget/models/redistribution.py:115 sicop/project/models.py:110
 #: sicop/project/models.py:111
-#: sicop/templates/sicop/frontend/base/main_menu.html:93
-#: sicop/templates/sicop/frontend/base/main_menu.html:100
+#: sicop/templates/sicop/frontend/base/main_menu.html:175
+#: sicop/templates/sicop/frontend/base/main_menu.html:185
 #: sicop/templates/sicop/frontend/budget/kardex/decrease/list.html:25
 #: sicop/templates/sicop/frontend/budget/kardex/decrease/list.html:53
 #: sicop/templates/sicop/frontend/project/project/create.html:100
@@ -195,7 +243,7 @@ msgid "Budget"
 msgstr ""
 
 #: sicop/budget/models/addition.py:19 sicop/budget/models/addition.py:20
-#: sicop/budget/models/commitment.py:83 sicop/budget/models/commitment.py:84
+#: sicop/budget/models/commitment.py:92 sicop/budget/models/commitment.py:93
 #: sicop/budget/models/provision.py:50 sicop/budget/models/provision.py:51
 #: sicop/budget/models/redistribution.py:19
 #: sicop/budget/models/redistribution.py:20
@@ -203,7 +251,6 @@ msgid "Finished"
 msgstr ""
 
 #: sicop/budget/models/addition.py:24 sicop/budget/models/addition.py:25
-#: sicop/budget/models/commitment.py:88 sicop/budget/models/commitment.py:89
 #: sicop/budget/models/provision.py:55 sicop/budget/models/provision.py:56
 #: sicop/budget/models/provision.py:155 sicop/budget/models/provision.py:156
 #: sicop/budget/models/redistribution.py:54
@@ -214,7 +261,6 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:476
 #: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:538
 #: sicop/templates/sicop/frontend/budget/processes/addition/create.html:147
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:228
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:55
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:258
 #: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1895
@@ -228,13 +274,11 @@ msgid "Observation"
 msgstr ""
 
 #: sicop/budget/models/addition.py:31 sicop/budget/models/addition.py:32
-#: sicop/budget/models/commitment.py:94 sicop/budget/models/commitment.py:95
 msgid "Approval Observation"
 msgstr ""
 
 #: sicop/budget/models/addition.py:38 sicop/budget/models/addition.py:39
 #: sicop/budget/models/addition.py:110 sicop/budget/models/addition.py:111
-#: sicop/budget/models/commitment.py:100 sicop/budget/models/commitment.py:101
 #: sicop/budget/models/provision.py:61 sicop/budget/models/provision.py:62
 #: sicop/budget/models/redistribution.py:67
 #: sicop/budget/models/redistribution.py:68
@@ -245,7 +289,6 @@ msgstr ""
 
 #: sicop/budget/models/addition.py:43 sicop/budget/models/addition.py:44
 #: sicop/budget/models/addition.py:115 sicop/budget/models/addition.py:116
-#: sicop/budget/models/commitment.py:105 sicop/budget/models/commitment.py:106
 #: sicop/budget/models/provision.py:66 sicop/budget/models/provision.py:67
 #: sicop/budget/models/redistribution.py:72
 #: sicop/budget/models/redistribution.py:73
@@ -268,7 +311,6 @@ msgstr ""
 #: sicop/budget/models/addition.py:48 sicop/budget/models/addition.py:49
 #: sicop/budget/models/addition.py:120 sicop/budget/models/addition.py:121
 #: sicop/budget/models/addition.py:173 sicop/budget/models/addition.py:174
-#: sicop/budget/models/commitment.py:110 sicop/budget/models/commitment.py:111
 #: sicop/budget/models/provision.py:71 sicop/budget/models/provision.py:72
 #: sicop/budget/models/provision.py:150 sicop/budget/models/provision.py:151
 #: sicop/budget/models/redistribution.py:77
@@ -439,7 +481,7 @@ msgstr ""
 #: sicop/budget/models/provision.py:14 sicop/budget/models/provision.py:15
 #: sicop/project/apps.py:8 sicop/project/models.py:149
 #: sicop/project/models.py:162 sicop/project/models.py:163
-#: sicop/templates/sicop/frontend/base/main_menu.html:76
+#: sicop/templates/sicop/frontend/base/main_menu.html:150
 #: sicop/templates/sicop/frontend/budget/budget/create.html:66
 #: sicop/templates/sicop/frontend/budget/budget/detail.html:55
 #: sicop/templates/sicop/frontend/budget/budget/list.html:46
@@ -459,7 +501,7 @@ msgstr ""
 
 #: sicop/budget/models/budget.py:49 sicop/budget/models/budget.py:50
 #: sicop/business_unit/models.py:20 sicop/business_unit/models.py:21
-#: sicop/templates/sicop/frontend/base/main_menu.html:53
+#: sicop/templates/sicop/frontend/base/main_menu.html:108
 #: sicop/templates/sicop/frontend/budget/budget/detail.html:143
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:139
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:122
@@ -540,6 +582,7 @@ msgid "Budget decrease control"
 msgstr ""
 
 #: sicop/budget/models/budget.py:112
+#: sicop/templates/sicop/frontend/base/main_menu.html:140
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:35
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:76
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:47
@@ -600,7 +643,7 @@ msgid "Budget Addition Transactions"
 msgstr ""
 
 #: sicop/budget/models/budget.py:273 sicop/budget/models/budget.py:274
-#: sicop/templates/sicop/frontend/base/main_menu.html:38
+#: sicop/templates/sicop/frontend/base/main_menu.html:91
 #: sicop/templates/sicop/frontend/budget/cap/create.html:55
 #: sicop/templates/sicop/frontend/budget/cap/detail.html:54
 #: sicop/templates/sicop/frontend/budget/cap/list.html:47
@@ -638,11 +681,11 @@ msgstr ""
 msgid "Budget Caps"
 msgstr ""
 
-#: sicop/budget/models/commitment.py:11 sicop/budget/models/commitment.py:167
-#: sicop/budget/models/commitment.py:168 sicop/contract/apps.py:8
-#: sicop/contract/models.py:139 sicop/contract/views.py:18
+#: sicop/budget/models/commitment.py:11 sicop/budget/models/commitment.py:149
+#: sicop/budget/models/commitment.py:150 sicop/contract/apps.py:8
+#: sicop/contract/models.py:139 sicop/contract/views.py:19
 #: sicop/integration/models/xirux.py:1029
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:102
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:104
 msgid "Contract"
 msgstr ""
 
@@ -650,103 +693,135 @@ msgstr ""
 msgid "Purchase order"
 msgstr ""
 
-#: sicop/budget/models/commitment.py:32 sicop/budget/models/commitment.py:33
+#: sicop/budget/models/commitment.py:13
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:125
+msgid "Consumption"
+msgstr ""
+
+#: sicop/budget/models/commitment.py:14
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:125
+msgid "Legalization"
+msgstr ""
+
+#: sicop/budget/models/commitment.py:34 sicop/budget/models/commitment.py:35
 #: sicop/budget/models/provision.py:79 sicop/budget/models/provision.py:92
 #: sicop/budget/models/provision.py:93 sicop/budget/models/provision.py:132
 #: sicop/budget/models/provision.py:133
 msgid "Provision Cart"
 msgstr ""
 
-#: sicop/budget/models/commitment.py:40 sicop/budget/models/commitment.py:41
+#: sicop/budget/models/commitment.py:42 sicop/budget/models/commitment.py:43
 msgid "Contract or PO"
 msgstr ""
 
-#: sicop/budget/models/commitment.py:49 sicop/budget/models/commitment.py:50
+#: sicop/budget/models/commitment.py:51 sicop/budget/models/commitment.py:52
 #: sicop/contract/models.py:49 sicop/contract/models.py:50
-#: sicop/contract/views.py:17 sicop/integration/models/xirux.py:445
-#: sicop/integration/views.py:18 sicop/purchase_order/views.py:18
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:102
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:113
+#: sicop/contract/views.py:18 sicop/integration/models/xirux.py:445
+#: sicop/integration/views.py:19 sicop/purchase_order/views.py:19
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:104
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:116
 #: sicop/templates/sicop/frontend/budget/processes/commitment/list.html:55
 #: sicop/templates/sicop/frontend/budget/processes/commitment/list.html:117
 msgid "Third"
 msgstr ""
 
-#: sicop/budget/models/commitment.py:57 sicop/budget/models/commitment.py:58
+#: sicop/budget/models/commitment.py:59 sicop/budget/models/commitment.py:60
 msgid "Has tax"
 msgstr ""
 
-#: sicop/budget/models/commitment.py:62 sicop/budget/models/commitment.py:63
+#: sicop/budget/models/commitment.py:64 sicop/budget/models/commitment.py:65
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:138
+msgid "Tax amount"
+msgstr ""
+
+#: sicop/budget/models/commitment.py:71 sicop/budget/models/commitment.py:72
 msgid "Provision budget amount"
 msgstr ""
 
-#: sicop/budget/models/commitment.py:69 sicop/budget/models/commitment.py:70
+#: sicop/budget/models/commitment.py:78 sicop/budget/models/commitment.py:79
 msgid "Required amount"
 msgstr ""
 
-#: sicop/budget/models/commitment.py:76 sicop/budget/models/commitment.py:77
+#: sicop/budget/models/commitment.py:85 sicop/budget/models/commitment.py:86
 msgid "Difference between required and provisioned"
 msgstr ""
 
-#: sicop/budget/models/commitment.py:118 sicop/budget/models/commitment.py:131
-#: sicop/budget/models/commitment.py:132 sicop/budget/models/commitment.py:160
-#: sicop/budget/models/commitment.py:161 sicop/budget/models/commitment.py:189
-#: sicop/budget/models/commitment.py:190
+#: sicop/budget/models/commitment.py:100 sicop/budget/models/commitment.py:113
+#: sicop/budget/models/commitment.py:114 sicop/budget/models/commitment.py:142
+#: sicop/budget/models/commitment.py:143 sicop/budget/models/commitment.py:171
+#: sicop/budget/models/commitment.py:172 sicop/budget/models/commitment.py:208
+#: sicop/budget/models/commitment.py:209
 msgid "Commitment"
 msgstr ""
 
-#: sicop/budget/models/commitment.py:119
-#: sicop/templates/sicop/frontend/base/main_menu.html:177
-#: sicop/templates/sicop/frontend/base/main_menu.html:181
+#: sicop/budget/models/commitment.py:101
+#: sicop/templates/sicop/frontend/base/main_menu.html:268
+#: sicop/templates/sicop/frontend/base/main_menu.html:273
 msgid "Commitments"
 msgstr ""
 
-#: sicop/budget/models/commitment.py:138 sicop/budget/models/commitment.py:139
+#: sicop/budget/models/commitment.py:120 sicop/budget/models/commitment.py:121
 #: sicop/integration/models/xirux.py:1198 sicop/purchase_order/apps.py:8
 #: sicop/purchase_order/models.py:162
 msgid "Purchase Order"
 msgstr ""
 
-#: sicop/budget/models/commitment.py:147
+#: sicop/budget/models/commitment.py:129
 msgid "Commitment PO"
 msgstr ""
 
-#: sicop/budget/models/commitment.py:148
+#: sicop/budget/models/commitment.py:130
 msgid "Commitment POs"
 msgstr ""
 
-#: sicop/budget/models/commitment.py:176
+#: sicop/budget/models/commitment.py:158
 msgid "Commitment Contract"
 msgstr ""
 
-#: sicop/budget/models/commitment.py:177
+#: sicop/budget/models/commitment.py:159
 msgid "Commitment Contracts"
 msgstr ""
 
-#: sicop/budget/models/commitment.py:195 sicop/budget/models/commitment.py:196
-#: sicop/budget/models/commitment.py:242 sicop/budget/models/commitment.py:243
+#: sicop/budget/models/commitment.py:177 sicop/budget/models/commitment.py:178
+msgid "Type"
+msgstr ""
+
+#: sicop/budget/models/commitment.py:185 sicop/budget/models/commitment.py:186
+msgid "Key"
+msgstr ""
+
+#: sicop/budget/models/commitment.py:195
+msgid "Commitment No related"
+msgstr ""
+
+#: sicop/budget/models/commitment.py:196
+msgid "Commitment Not related"
+msgstr ""
+
+#: sicop/budget/models/commitment.py:214 sicop/budget/models/commitment.py:215
+#: sicop/budget/models/commitment.py:261 sicop/budget/models/commitment.py:262
 msgid "Total to release"
 msgstr ""
 
-#: sicop/budget/models/commitment.py:202 sicop/budget/models/commitment.py:203
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:181
+#: sicop/budget/models/commitment.py:221 sicop/budget/models/commitment.py:222
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:215
 msgid "Total released"
 msgstr ""
 
-#: sicop/budget/models/commitment.py:216 sicop/budget/models/commitment.py:229
-#: sicop/budget/models/commitment.py:230
+#: sicop/budget/models/commitment.py:235 sicop/budget/models/commitment.py:248
+#: sicop/budget/models/commitment.py:249
 msgid "Commitment Release"
 msgstr ""
 
-#: sicop/budget/models/commitment.py:217
+#: sicop/budget/models/commitment.py:236
 msgid "Commitment Releases"
 msgstr ""
 
-#: sicop/budget/models/commitment.py:252
+#: sicop/budget/models/commitment.py:271
 msgid "Commitment Realease Item"
 msgstr ""
 
-#: sicop/budget/models/commitment.py:253
+#: sicop/budget/models/commitment.py:272
 msgid "Commitment Realease Items"
 msgstr ""
 
@@ -855,55 +930,55 @@ msgstr ""
 msgid "Budget description not updated"
 msgstr ""
 
-#: sicop/budget/views/processes/budget_addition.py:76
-#: sicop/budget/views/processes/budget_redistribution.py:122
+#: sicop/budget/views/processes/budget_addition.py:78
+#: sicop/budget/views/processes/budget_redistribution.py:124
 msgid "Budget redistribution created successfully."
 msgstr ""
 
-#: sicop/budget/views/processes/budget_addition.py:109
-#: sicop/budget/views/processes/budget_redistribution.py:201
+#: sicop/budget/views/processes/budget_addition.py:111
+#: sicop/budget/views/processes/budget_redistribution.py:204
 msgid "Item created"
 msgstr ""
 
-#: sicop/budget/views/processes/budget_addition.py:140
-#: sicop/budget/views/processes/budget_redistribution.py:232
+#: sicop/budget/views/processes/budget_addition.py:142
+#: sicop/budget/views/processes/budget_redistribution.py:235
 msgid "Item deleted"
 msgstr ""
 
-#: sicop/budget/views/processes/budget_addition.py:171
-#: sicop/budget/views/processes/budget_redistribution.py:263
+#: sicop/budget/views/processes/budget_addition.py:173
+#: sicop/budget/views/processes/budget_redistribution.py:266
 msgid "Item updated"
 msgstr ""
 
-#: sicop/budget/views/processes/budget_addition.py:242
+#: sicop/budget/views/processes/budget_addition.py:247
 msgid "Budget addition approved successfully."
 msgstr ""
 
-#: sicop/budget/views/processes/budget_addition.py:253
+#: sicop/budget/views/processes/budget_addition.py:258
 msgid "Budget addition rejected."
 msgstr ""
 
-#: sicop/budget/views/processes/budget_arrange.py:110
+#: sicop/budget/views/processes/budget_arrange.py:112
 msgid "Budget provision created successfully."
 msgstr ""
 
-#: sicop/budget/views/processes/budget_redistribution.py:172
+#: sicop/budget/views/processes/budget_redistribution.py:175
 msgid "Budget updated"
 msgstr ""
 
-#: sicop/budget/views/processes/budget_redistribution.py:299
+#: sicop/budget/views/processes/budget_redistribution.py:302
 msgid "Totals updated"
 msgstr ""
 
-#: sicop/budget/views/processes/budget_redistribution.py:427
+#: sicop/budget/views/processes/budget_redistribution.py:433
 msgid "Budget redistribution approved successfully."
 msgstr ""
 
-#: sicop/budget/views/processes/budget_redistribution.py:429
+#: sicop/budget/views/processes/budget_redistribution.py:435
 msgid "Budget redistribution rejected."
 msgstr ""
 
-#: sicop/budget/views/processes/budget_redistribution.py:441
+#: sicop/budget/views/processes/budget_redistribution.py:447
 msgid "Budget redistribution error"
 msgstr ""
 
@@ -1165,6 +1240,7 @@ msgid "FecMod"
 msgstr ""
 
 #: sicop/contract/models.py:140 sicop/integration/models/xirux.py:1030
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:99
 msgid "Contracts"
 msgstr ""
 
@@ -1187,7 +1263,7 @@ msgid "Address"
 msgstr ""
 
 #: sicop/contractor/models.py:35 sicop/contractor/models.py:36
-#: sicop/integration/views.py:17
+#: sicop/integration/views.py:18
 msgid "DNI"
 msgstr ""
 
@@ -1572,7 +1648,7 @@ msgid "Operac"
 msgstr ""
 
 #: sicop/integration/models/xirux.py:446
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:123
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:144
 msgid "Thirds"
 msgstr ""
 
@@ -1907,7 +1983,7 @@ msgid "Project manager"
 msgstr ""
 
 #: sicop/project/models.py:150
-#: sicop/templates/sicop/frontend/base/main_menu.html:86
+#: sicop/templates/sicop/frontend/base/main_menu.html:165
 msgid "Projects"
 msgstr ""
 
@@ -2047,9 +2123,13 @@ msgstr ""
 msgid "Modification date"
 msgstr ""
 
-#: sicop/purchase_order/views.py:17
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:113
+#: sicop/purchase_order/views.py:18
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:116
 msgid "PO"
+msgstr ""
+
+#: sicop/sicop_error_handler/apps.py:8
+msgid "Sicop Error Handler"
 msgstr ""
 
 #: sicop/templates/admin/base_site.html:31
@@ -2229,7 +2309,7 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/cap/create.html:89
 #: sicop/templates/sicop/frontend/budget/description/create.html:79
 #: sicop/templates/sicop/frontend/budget/processes/addition/create.html:154
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:235
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:274
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:265
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:267
 #: sicop/templates/sicop/frontend/business_unit/create.html:84
@@ -2510,95 +2590,98 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/base/main_menu.html:10
-#: sicop/templates/sicop/frontend/base/main_menu.html:14
-#: sicop/templates/sicop/frontend/base/main_menu.html:129
+#: sicop/templates/sicop/frontend/base/main_menu.html:55
+#: sicop/templates/sicop/frontend/base/main_menu.html:59
+#: sicop/templates/sicop/frontend/base/main_menu.html:144
+#: sicop/templates/sicop/frontend/base/main_menu.html:201
 msgid "Configuration"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/base/main_menu.html:27
+#: sicop/templates/sicop/frontend/base/main_menu.html:76
 msgid "Area members"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/base/main_menu.html:30
+#: sicop/templates/sicop/frontend/base/main_menu.html:81
 msgid "Area roles"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/base/main_menu.html:42
+#: sicop/templates/sicop/frontend/base/main_menu.html:95
 msgid "Business units"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/base/main_menu.html:49
+#: sicop/templates/sicop/frontend/base/main_menu.html:104
 msgid "Cost center"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/base/main_menu.html:60
+#: sicop/templates/sicop/frontend/base/main_menu.html:117
 msgid "Expense"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/base/main_menu.html:64
+#: sicop/templates/sicop/frontend/base/main_menu.html:122
 msgid "Concepts"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/base/main_menu.html:69
-#: sicop/templates/sicop/frontend/base/main_menu.html:80
+#: sicop/templates/sicop/frontend/base/main_menu.html:129
+#: sicop/templates/sicop/frontend/base/main_menu.html:155
 msgid "Types"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/base/main_menu.html:83
+#: sicop/templates/sicop/frontend/base/main_menu.html:160
 #: sicop/templates/sicop/frontend/business_unit/update.html:66
 #: sicop/templates/sicop/frontend/expense/type/update.html:66
 msgid "Statuses"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/base/main_menu.html:97
+#: sicop/templates/sicop/frontend/base/main_menu.html:180
 msgid "Descriptions"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/base/main_menu.html:107
-msgid "Authorization"
-msgstr ""
-
-#: sicop/templates/sicop/frontend/base/main_menu.html:111
-msgid "Groups"
-msgstr ""
-
-#: sicop/templates/sicop/frontend/base/main_menu.html:116 sicop/users/apps.py:7
-msgid "Users"
-msgstr ""
-
-#: sicop/templates/sicop/frontend/base/main_menu.html:125
+#: sicop/templates/sicop/frontend/base/main_menu.html:197
 msgid "Processess"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/base/main_menu.html:135
-#: sicop/templates/sicop/frontend/base/main_menu.html:139
+#: sicop/templates/sicop/frontend/base/main_menu.html:208
+#: sicop/templates/sicop/frontend/base/main_menu.html:213
 msgid "Apropiations"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/base/main_menu.html:142
-#: sicop/templates/sicop/frontend/base/main_menu.html:156
-#: sicop/templates/sicop/frontend/base/main_menu.html:170
+#: sicop/templates/sicop/frontend/base/main_menu.html:218
+#: sicop/templates/sicop/frontend/base/main_menu.html:238
+#: sicop/templates/sicop/frontend/base/main_menu.html:258
 msgid "Approvals"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/base/main_menu.html:149
-#: sicop/templates/sicop/frontend/base/main_menu.html:153
-#: sicop/templates/sicop/frontend/base/main_menu.html:195
+#: sicop/templates/sicop/frontend/base/main_menu.html:228
+#: sicop/templates/sicop/frontend/base/main_menu.html:233
+#: sicop/templates/sicop/frontend/base/main_menu.html:293
 msgid "Redistributions"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/base/main_menu.html:163
-#: sicop/templates/sicop/frontend/base/main_menu.html:167
+#: sicop/templates/sicop/frontend/base/main_menu.html:248
+#: sicop/templates/sicop/frontend/base/main_menu.html:253
 msgid "Additions"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/base/main_menu.html:188
+#: sicop/templates/sicop/frontend/base/main_menu.html:283
 msgid "Logs"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/base/main_menu.html:192
+#: sicop/templates/sicop/frontend/base/main_menu.html:288
 msgid "Drecreases"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/base/main_menu.html:304
+#: sicop/templates/sicop/frontend/base/main_menu.html:308
+#: sicop/templates/sicop/frontend/base/main_menu.html:315
+msgid "Authorization"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/base/main_menu.html:320
+msgid "Groups"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/base/main_menu.html:327 sicop/users/apps.py:7
+msgid "Users"
 msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/budget/create.html:7
@@ -2947,7 +3030,7 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/processes/addition/approval/list.html:53
 #: sicop/templates/sicop/frontend/budget/processes/addition/create.html:89
 #: sicop/templates/sicop/frontend/budget/processes/addition/list.html:68
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:192
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:227
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:165
 #: sicop/templates/sicop/frontend/budget/processes/provision/detail.html:126
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/approval/list.html:55
@@ -3034,7 +3117,7 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/processes/addition/create.html:238
 #: sicop/templates/sicop/frontend/budget/processes/addition/create.html:347
 #: sicop/templates/sicop/frontend/budget/processes/addition/create.html:471
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:321
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:429
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:416
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:496
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:609
@@ -3056,8 +3139,9 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/processes/addition/create.html:241
 #: sicop/templates/sicop/frontend/budget/processes/addition/create.html:350
 #: sicop/templates/sicop/frontend/budget/processes/addition/create.html:474
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:316
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:324
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:331
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:424
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:432
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:419
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:499
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:612
@@ -3128,7 +3212,7 @@ msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/processes/addition/list.html:88
 #: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:79
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:447
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:698
 #: sicop/templates/sicop/frontend/budget/processes/commitment/list.html:71
 #: sicop/templates/sicop/frontend/budget/processes/commitment/list.html:78
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:120
@@ -3142,7 +3226,7 @@ msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/processes/addition/list.html:90
 #: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:80
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:448
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:699
 #: sicop/templates/sicop/frontend/budget/processes/commitment/list.html:73
 #: sicop/templates/sicop/frontend/budget/processes/commitment/list.html:80
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:122
@@ -3178,75 +3262,120 @@ msgstr ""
 msgid "Has tax?"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:84
-msgid "Contracts or PO"
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:87
+msgid "Commitment type"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:88
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:89
 msgid "Select a type"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:100
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:102
 msgid "Search and select a contract"
 msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:111
+msgid "POs"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:114
 msgid "Search and select a PO"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:126
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:125
+msgid "Identifier of"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:129
+msgid "Commitment value"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:147
 msgid "Search and select a third"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:141
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:162
 msgid "Commitment verification"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:145
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:166
 msgid "CAP budget"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:150
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:171
 msgid "Contract budget"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:152
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:173
 msgid "PO budget"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:158
-msgid "Difference between CAP and Contract budget"
-msgstr ""
-
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:160
-msgid "Difference between CAP and PO budget"
-msgstr ""
-
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:173
-msgid "Release resources"
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:175
+msgid "Consumption budget"
 msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:177
-msgid "Total for release"
+msgid "Legalization budget"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:179
+msgid "Commitment budget"
 msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:185
-msgid "Pending for release"
+msgid "Difference between CAP and Contract budget"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:187
+msgid "Difference between CAP and PO budget"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:189
+msgid "Difference between CAP and Consumption budget"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:191
+msgid "Difference between CAP and Legalization budget"
 msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:193
+msgid "Difference between CAP and Commitment budget"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:206
+msgid "Release resources"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:210
+msgid "Total for release"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:219
+msgid "Pending for release"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:228
+msgid "Item budget"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:229
 msgid "Amount to release"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:313
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:328
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:421
 msgid "Alert"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:314
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:329
+msgid "There are differences between the values ​​to be released, please review."
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:422
 msgid "The value of the CAP is higher, a budget release is required."
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:322
+#: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:430
 msgid "The value of the project or PO is greater than the CAP, please verify"
 msgstr ""
 
@@ -3844,6 +3973,70 @@ msgstr ""
 msgid "Project type Update"
 msgstr ""
 
+#: sicop/templates/sicop/frontend/sicop_error_handler/400.html:14
+msgid "400"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/sicop_error_handler/400.html:15
+msgid "Bad request"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/sicop_error_handler/401.html:14
+msgid "401"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/sicop_error_handler/401.html:15
+msgid "Unauthorized"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/sicop_error_handler/403.html:14
+msgid "403"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/sicop_error_handler/403.html:15
+msgid "Access Denied/Forbidden"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/sicop_error_handler/404.html:14
+msgid "404"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/sicop_error_handler/404.html:15
+msgid "Not found"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/sicop_error_handler/500.html:14
+msgid "500"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/sicop_error_handler/500.html:15
+msgid "Internal Server Error"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/sicop_error_handler/501.html:14
+msgid "501"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/sicop_error_handler/501.html:15
+msgid "Not Implemented"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/sicop_error_handler/502.html:14
+msgid "502"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/sicop_error_handler/502.html:15
+msgid "Bad Gateway"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/sicop_error_handler/503.html:14
+msgid "503"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/sicop_error_handler/503.html:15
+msgid "Service Unavailable"
+msgstr ""
+
 #: sicop/templates/sicop/frontend/user/group/create.html:7
 #: sicop/templates/sicop/frontend/user/group/create.html:15
 msgid "Group create"
@@ -4110,22 +4303,22 @@ msgid "SICOP"
 msgstr ""
 
 #: sicop/users/templatetags/custom_tags.py:21
-msgid "V1.11.0"
+msgid "V1.12.1"
 msgstr ""
 
 #: sicop/users/views/groups.py:55
 msgid "Group updated successfully"
 msgstr ""
 
-#: sicop/users/views/groups.py:58
+#: sicop/users/views/groups.py:65
 msgid "Group not updated"
 msgstr ""
 
-#: sicop/users/views/groups.py:90
+#: sicop/users/views/groups.py:102
 msgid "Group created successfully"
 msgstr ""
 
-#: sicop/users/views/groups.py:95
+#: sicop/users/views/groups.py:107
 msgid "Group not created"
 msgstr ""
 

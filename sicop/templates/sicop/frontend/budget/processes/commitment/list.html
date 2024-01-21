@@ -55,7 +55,6 @@
                     <th>{% trans "Third" %}</th>
                     <th>{% trans "Hax tax?" %}</th>
                     <th>{% trans "Finished?" %}</th>
-                    <th>{% trans "Approved?" %}</th>
                     <th>{% trans 'Detail' %}</th>
                   </tr>
                 </thead>
@@ -81,24 +80,9 @@
                         {% endif %}
                       </td>
                       <td>
-                        {% if commitment.requires_approval %}
-                          {% if commitment.rejected %}
-                          <div class="badge badge-secondary">{% trans 'Rejected' %}</div>
-                          {% else %}
-                            {% if commitment.approved %}
-                              <div class="badge badge-success">{% trans 'Approved' %}</div>
-                            {% else %}
-                              <div class="badge badge-warning">{% trans 'Pending' %}</div>
-                            {% endif %}
-                          {% endif %}  
-                        {% else %}
-                        <div class="badge badge-success">{% trans 'Approved' %}</div>
-                        {% endif %}
-                      </td>
-                      <td>
                         <div class="row">
                           <div class="col-12">
-                            <a href="{% url 'redistribution_certificate' commitment.id %}">
+                            <a href="{% url 'commitment_certificate' commitment.id %}">
                               <button type="button" class="btn btn-sm btn-icon btn-secondary mr-1 mb-1">
                                 <i class="fa fa-file-pdf-o"></i>
                               </button>
@@ -117,7 +101,6 @@
                     <th>{% trans "Third" %}</th>
                     <th>{% trans "Hax tax?" %}</th>
                     <th>{% trans "Finished?" %}</th>
-                    <th>{% trans "Approved?" %}</th>
                     <th>{% trans 'Detail' %}</th>
                   </tr>
                 </tfoot>

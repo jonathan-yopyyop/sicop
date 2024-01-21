@@ -13,6 +13,7 @@ from sicop.budget.models import (
     BudgetRedistributionItemApproval,
     Commitment,
     CommitmentContract,
+    CommitmentNotRelated,
     CommitmentPO,
     CommitmentRealeaseItems,
     CommitmentRelease,
@@ -340,12 +341,7 @@ class CommitmentAdmin(admin.ModelAdmin):
         "id",
         "status",
         "tax_amount",
-        "requires_approval",
-        "approved",
-        "rejected",
         "user",
-        "observation",
-        "approval_observation",
         "provision_cart",
         "contract_or_po",
         "third",
@@ -429,6 +425,26 @@ class CommitmentRealeaseItemsAdmin(admin.ModelAdmin):
         "commitment_release",
         "budget",
         "total_to_release",
+        "created_at",
+        "updated_at",
+    ]
+
+
+@admin.register(CommitmentNotRelated)
+class CommitmentNotRelatedAdmin(admin.ModelAdmin):
+    list_display = [
+        "id",
+        "commitment",
+        "type",
+        "key",
+        "created_at",
+        "updated_at",
+    ]
+    readonly_fields = [
+        "id",
+        "commitment",
+        "type",
+        "key",
         "created_at",
         "updated_at",
     ]

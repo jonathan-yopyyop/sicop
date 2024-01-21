@@ -7,14 +7,16 @@ from sicop.contract.models import Contract
 from sicop.integration.models import Third
 from sicop.purchase_order.models import PurchaseOrder
 
-CONTRACT_OR_PO = (
+COMMITMENT_TYPE = (
     ("CT", _("Contract")),
     ("PO", _("Purchase order")),
+    ("CO", _("Consumption")),
+    ("LG", _("Legalization")),
 )
 
 
 def get_commitment_types():
-    return CONTRACT_OR_PO
+    return COMMITMENT_TYPE
 
 
 class Commitment(BaseModel):
@@ -40,7 +42,7 @@ class Commitment(BaseModel):
         _("Contract or PO"),
         help_text=_("Contract or PO"),
         max_length=2,
-        choices=CONTRACT_OR_PO,
+        choices=COMMITMENT_TYPE,
         blank=True,
         null=True,
     )
@@ -89,33 +91,6 @@ class Commitment(BaseModel):
     finished = models.BooleanField(
         _("Finished"),
         help_text=_("Finished"),
-        default=False,
-    )
-    observation = models.TextField(
-        _("Observation"),
-        help_text=_("Observation"),
-        null=True,
-        blank=True,
-    )
-    approval_observation = models.TextField(
-        _("Approval Observation"),
-        help_text=_("Approval Observation"),
-        null=True,
-        blank=True,
-    )
-    requires_approval = models.BooleanField(
-        _("Requires approval"),
-        help_text=_("Requires approval"),
-        default=False,
-    )
-    approved = models.BooleanField(
-        _("Approved"),
-        help_text=_("Approved"),
-        default=True,
-    )
-    rejected = models.BooleanField(
-        _("Rejected"),
-        help_text=_("Rejected"),
         default=False,
     )
 
@@ -185,6 +160,43 @@ class CommitmentContract(BaseModel):
 
     def __str__(self):
         """Unicode representation of Commitment contract."""
+        return str(self.id)
+
+
+class CommitmentNotRelated(BaseModel):
+    """Model definition for Commitment Not Related."""
+
+    commitment = models.ForeignKey(
+        Commitment,
+        verbose_name=_("Commitment"),
+        help_text=_("Commitment"),
+        related_name="commitment_not_related",
+        on_delete=models.CASCADE,
+    )
+    type = models.CharField(
+        _("Type"),
+        help_text=_("Type"),
+        max_length=2,
+        choices=COMMITMENT_TYPE,
+        blank=True,
+        null=True,
+    )
+    key = models.CharField(
+        _("Key"),
+        help_text=_("Key"),
+        max_length=100,
+        blank=True,
+        null=True,
+    )
+
+    class Meta:
+        """Meta definition for Commitment Not Related."""
+
+        verbose_name = _("Commitment No related")
+        verbose_name_plural = _("Commitment Not related")
+
+    def __str__(self):
+        """Unicode representation of Commitment Not Related."""
         return str(self.id)
 
 

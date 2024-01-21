@@ -1,0 +1,515 @@
+{% extends 'sicop/frontend/base/base.html' %}
+{% load arimetic_tags %}
+{% load static %}
+{% load i18n %}
+{% load humanize %}
+{% load budget_tags %}
+{% block page_title %}
+  {% trans 'Budget commitment certificate' %}
+{% endblock page_title %}
+{% block content %}
+<style>
+  table {
+    width: 100%;
+    padding: -1px;
+    margin: -1px;
+    border: 0px solid black;
+  }
+  td{
+    height: 30px;
+  }
+  .certificate-title {
+    font-size: 10px;
+    font-weight: bold;
+    color: black;
+  }
+  .row1-td-1{
+    width: 10%;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    text-align: center;
+    background-color: white;
+  }
+  .row1-td-2{
+    width: 50%;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    text-align: center;
+    background-color: white;
+  }
+  .row1-td-3{
+    width: 40%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    text-align: center;
+    background-color: white;
+  }
+  .row1-td-3-top{
+    width: 100%;
+    padding: -1px;
+    margin: -1px;
+    text-align: center;
+    background-color: white;
+  }
+  .row1-td-3-bottom-col1{
+    width: 30%;
+    border-top: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    text-align: center;
+    background-color: white;
+  }
+  .item-description-text{
+    font-size: 10px;
+    font-weight: bold;
+    color: black;
+  }
+  .item-value-text{
+    font-size: 10px;
+    font-weight: bold;
+    color: #642D90;
+  }
+  .item-value-text-white{
+    font-size: 10px;
+    font-weight: bold;
+    color: white;
+  }
+  .row1-td-3-bottom-col2{
+    width: 70%;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+  }
+  .row2-td-1{
+    width: 20%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: #CC99FF;
+  }
+  .row2-td-2{
+    width: 40%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: white;
+  }
+  .row2-td-3{
+    width: 15%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: #CC99FF;
+  }
+  .row2-td-4{
+    width: 25%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: white;
+  }
+  .row3-td-1{
+    width: 100%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: #642D90;
+  }
+  .row4-td-1{
+    width: 20%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: #CC99FF;
+  }
+  .row4-td-2{
+    width: 80%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: white;
+  }
+  .row5-td-1{
+    width: 20%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: #CC99FF;
+  }
+  .row5-td-2{
+    width: 30%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: white;
+  }
+  .row5-td-3{
+    width: 10%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: #CC99FF;
+  }
+  .row5-td-4{
+    width: 40%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: white;
+  }
+  .row6-td-1{
+    width: 100%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: white;
+    height: 5px;
+  }
+  .row7-td-1{
+    width: 28%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: #CC99FF;
+  }
+  .row7-td-2{
+    width: 24%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: #CC99FF;
+  }
+  .row8-td-1{
+    width: 28%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: white;
+    color: #642D90;
+  }
+  .row8-td-2{
+    width: 24%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: white;
+    color: #642D90;
+  }
+  .row9-td-1{
+    width: 28%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: #CC99FF;
+    color: black;
+    height: 50px;
+  }
+  .row9-td-2{
+    width: 72%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: white;
+    color: black;
+    height: 60px;
+  }
+  .row10-td-1{
+    width: 28%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: #CC99FF;
+    color: black;
+    height: 40px;
+  }
+  .row10-td-2{
+    width: 72%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: white;
+    color: black;
+    height: 40px;
+  }
+  .row11-td-1{
+    width: 100%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: white;
+    height: 30px;
+  }
+  .bottom-text{
+    font-size: 10px;
+    font-weight: bold;
+    color: black;
+  }
+  
+</style>
+  <section class="app-invoice-wrapper">
+    <div class="row">
+        <div class="col-xl-9 col-md-8 col-12 printable-content">
+            <!-- using a bootstrap card -->
+            <div class="card">
+                <!-- card body -->
+                <div class="card-body p-2">
+                  <table>
+                    <tr>
+                      <td class="row1-td-1">
+                        <img src="{% static 'stack/app-assets/images/logo/Logo-Maloka.png' %}" alt="logo" width="50px">
+                      </td>
+                      <td class="row1-td-2">
+                        <h5 class="text-center certificate-title">{% trans "BUDGET COMMITMENT CERTIFICATE" %}</h5>
+                      </td>
+                      <td class="row1-td-3">
+                        <table>
+                          <tr>
+                            <td class="row1-td-3-top">
+                              <h5 class="text-center certificate-title">{% trans "Code" %}: {{certificate_version.code}}</h5>
+                            </td>
+                          </tr>
+                          <tr>
+                            <table>
+                              <tr>
+                                <td class="row1-td-3-bottom-col1">
+                                  <h5 class="text-center certificate-title">{% trans "Version" %}: {{certificate_version.version}}</h5>
+                                </td>
+                                <td class="row1-td-3-bottom-col2">
+                                  <h5 class="text-center certificate-title">{% trans "Version date" %}: {{certificate_version.date|date:"Y/m/d"}}</h5>
+                                </td>
+                              </tr>
+                            </table>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <table>
+                        <tr>
+                          <td class="row2-td-1">
+                            <h5 class="item-description-text">
+                              {% trans "APPLICATION DATE" %}
+                            </h5>
+                          </td>
+                          <td class="row2-td-2">
+                            <h5 class="item-value-text">
+                              {{commitment.updated_at|date:"Y/m/d"}}
+                            </h5>
+                          </td>
+                          <td class="row2-td-3">
+                            <h5 class="item-description-text">
+                              {% trans "NUMBER" %}
+                            </h5>
+                          </td>
+                          <td class="row2-td-4">
+                            <h5 class="item-value-text">
+                              {{commitment.id}}
+                            </h5>
+                          </td>
+                        </tr>
+                      </table>
+                    </tr>
+                    <tr>
+                      <table>
+                        <td class="row3-td-1">
+                          <h5 class="item-value-text-white">
+                            {% trans "GENERAL INFORMATION" %}
+                          </h5>
+                        </td>
+                      </table>
+                    </tr>
+                    <tr>
+                      <table>
+                        <tr>
+                          <td class="row5-td-1">
+                            <h5 class="item-description-text">
+                              {% trans "APPLICANT NAME" %}
+                            </h5>
+                          </td>
+                          <td class="row5-td-2">
+                            <h5 class="item-value-text">
+                              {{commitment.user.name}}
+                            </h5>
+                          </td>
+                          <td class="row5-td-3">
+                            <h5 class="item-description-text">
+                              {% trans "POSITION" %}
+                            </h5>
+                          </td>
+                          <td class="row5-td-4  ">
+                            <h5 class="item-value-text">
+                              {{area_member.job_title}}
+                            </h5>
+                          </td>
+                        </tr>
+                      </table>
+                    </tr>
+                    <tr>
+                      <table>
+                        <tr>
+                          <td class="row6-td-1"></td>
+                        </tr>
+                      </table>
+                    </tr>
+                    <tr>
+                      <table>
+                        <td class="row3-td-1">
+                          <h5 class="item-value-text-white">
+                            {% trans "APPLICATION DATA" %}
+                          </h5>
+                        </td>
+                      </table>
+                    </tr>
+                    <tr>
+                      <table>
+                        <tr>
+                          <td class="row5-td-1">
+                            <h5 class="item-description-text">
+                              {% trans "CAP" %}
+                            </h5>
+                          </td>
+                          <td class="row5-td-2">
+                            <h5 class="item-value-text">
+                              {{commitment.provision_cart}}
+                            </h5>
+                          </td>
+                          <td class="row5-td-3">
+                            <h5 class="item-description-text">
+                              {% trans "COMMITMENT TYPE" %}
+                            </h5>
+                          </td>
+                          <td class="row5-td-4  ">
+                            <h5 class="item-value-text">
+                              {{commitment.get_contract_or_po_display}}
+                            </h5>
+                          </td>
+                        </tr>
+                      </table>
+                    </tr>
+                    <tr>
+                      <table>
+                        <tr>
+                          <td class="row7-td-1 text-center  ">
+                            <h5 class="item-description-text">
+                              {% trans "ITEM" %}
+                            </h5>
+                          </td>
+                          <td class="row7-td-2 text-center  ">
+                            <h5 class="item-description-text">
+                              {% trans "ORIGINAL AMOUNT" %}
+                            </h5>
+                          </td>
+                          <td class="row7-td-2 text-center  ">
+                            <h5 class="item-description-text">
+                              {% trans "BUDGET TO ADD" %}
+                            </h5>
+                          </td>
+                          <td class="row7-td-2 text-center  ">
+                            <h5 class="item-description-text">
+                              {% trans "NEW AMOUNT" %}
+                            </h5>
+                          </td>
+                        </tr>
+                        {% for item in budget_addition.budgetadditionitem_set.all %}
+                        <tr>
+                          <td class="row8-td-1 text-center  ">
+                            <h5 class="item-description-text">
+                              {{item.budget.budget_description}}
+                            </h5>
+                          </td>
+                          <td class="row8-td-2 text-center  ">
+                            <h5 class="item-description-text">
+                              ${{item.original_amount|intcomma}}
+                            </h5>
+                          </td>
+                          <td class="row8-td-2 text-center  ">
+                            <h5 class="item-description-text">
+                              ${{item.added_amount|intcomma}}
+                            </h5>
+                          </td>
+                          <td class="row8-td-2 text-center  ">
+                            <h5 class="item-description-text">
+                              ${{item.new_amount|intcomma}}
+                            </h5>
+                          </td>
+                        </tr>  
+                        {% endfor %}
+                          
+                      </table>
+                    </tr>
+                    <tr>
+                      <table>
+                        <tr>
+                          <td class="row6-td-1"></td>
+                        </tr>
+                      </table>
+                    </tr>
+                  </table>
+                </div>
+            </div>
+        </div>
+        <!-- buttons section -->
+        <div class="col-xl-3 col-md-4 col-12 action-btns">
+            <div class="card">
+                <div class="card-body p-2">
+                  {% if budget_addition.approved %}
+                  <a href="#" class="btn btn-primary btn-block mb-1 print-invoice"> <i class="feather icon-printer mr-25 common-size"></i> {% trans "Print" %}</a>  
+                  {% endif %}
+                  <a href="{% url 'commitment_list' %}" class="btn btn-info btn-block mb-1"><i class="feather icon-list mr-25 common-size"></i> {% trans "Go to CCP list" %}</a>
+                </div>
+            </div>
+            <!-- Approval card -->
+            {% if budget_addition.approved is False %}  
+            <style>
+              /* style */
+              .redistribution_font_size{
+                font-size: 10px;
+              }
+              .common-size{
+                font-size: 10px;
+              }
+            </style>
+            <div class="card">
+              {% if budget_addition.requires_approval and not budget_addition.rejected %}
+              <div class="card-body p-2">
+                <form action="{% url 'addition_approval_update' budget_addition.id %}" method="post">
+                  {% csrf_token %}
+                  <div class="row">
+                    <div class="col-12">
+                      <label for="projectinput3">{% trans 'Approve?' %}</label>
+                      <select class="select2 form-control" name="approved" {% if provision_cart_approval.approved %} disabled {% endif %}>
+                        <option value="True" {% if provision_cart_approval.approved %}selected{% endif %}>{% trans 'Approve' %}</option>
+                        <option value="False" {% if not provision_cart_approval.approved %}selected{% endif %}>{% trans 'Reject' %}</option>
+                      </select>
+                    </div>
+                    <div class="col-12">
+                      <label for="projectinput1" style="font-size: 12px;">{% trans 'Observation' %}</label>
+                      <textarea class="form-control" name="observation" id="" cols="30" rows="2" {% if provision_cart_approval.approved %} disabled {% endif %}>{{provision_cart_approval.observation}}</textarea>
+                    </div>
+                    <div class="col-12">
+                      <hr>
+                    </div>
+                    {% if not provision_cart_approval.approved %}
+                    <div class="col-12">
+                      <button type="submit" class="btn btn-primary btn-block mb-1" style="font-size: 12px;">
+                        <i class="feather icon-check mr-25 common-size"></i> {% trans "Update" %}
+                      </button>
+                    </div>
+                    {% endif %}
+                  </div>
+                </form>
+              </div>
+              {% endif %}  
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
