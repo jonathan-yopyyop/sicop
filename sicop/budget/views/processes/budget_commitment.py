@@ -134,6 +134,7 @@ class UpdateCommitmentCap(LoginRequiredMixin, TemplateView):
                     commitment_release_item = CommitmentRealeaseItems.objects.create(
                         commitment_release=commitment_release,
                         budget=budget.budget,
+                        budget_amount=budget.available_budget,
                     )
                     release_items.append(
                         {
@@ -380,6 +381,7 @@ class UpdateCommitmentEntity(LoginRequiredMixin, TemplateView):
                     commitment_release_item = CommitmentRealeaseItems.objects.create(
                         commitment_release=commitment_release,
                         budget=budget.budget,
+                        budget_amount=budget.available_budget,
                     )
                     release_items.append(
                         {
@@ -568,6 +570,7 @@ class CreateOrdestroyReleaseTable(LoginRequiredMixin, TemplateView):
                     commitment_release_item = CommitmentRealeaseItems.objects.create(
                         commitment_release=commitment_release,
                         budget=budget.budget,
+                        budget_amount=budget.available_budget,
                     )
                     release_items.append(
                         {
@@ -631,17 +634,26 @@ class CommitmentCertificateView(LoginRequiredMixin, TemplateView):
         context["area_rol"] = area_rol
         context["area_member"] = area_member
         context["certificate_version"] = Certificate.objects.filter(slug="commitment").first()
-        context["commitment_contract"] = CommitmentContract.objects.filter(
-            commitment=commitment,
-        ).last()
-        context["commitment_po"] = CommitmentPO.objects.filter(
-            commitment=commitment,
-        ).last()
-        context["commitment_not_related"] = CommitmentNotRelated.objects.filter(
-            commitment=commitment,
-        ).last()
         context["commitment_release"] = CommitmentRelease.objects.filter(
             commitment=commitment,
         ).last()
+
+        commitment_contract = CommitmentContract.objects.filter(
+            commitment=commitment,
+        ).last()
+        commitment_po = CommitmentPO.objects.filter(
+            commitment=commitment,
+        ).last()
+        commitment_not_related = CommitmentNotRelated.objects.filter(
+            commitment=commitment,
+        ).last()
+        if commitment_contract is not None:
+            key = commitment_contract.contract.IdContrato
+        elif commitment_po is not None:
+            key = commitment_po.po.Numero
+        elif commitment_not_related is not None:
+            key = commitment_not_related.key
+
+        context["key"] = key
 
         return context

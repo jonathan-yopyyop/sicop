@@ -69,16 +69,19 @@
     font-size: 10px;
     font-weight: bold;
     color: black;
+    margin-left: 5px;
   }
   .item-value-text{
     font-size: 10px;
     font-weight: bold;
     color: #642D90;
+    margin-left: 5px;
   }
   .item-value-text-white{
     font-size: 10px;
     font-weight: bold;
     color: white;
+    margin-left: 5px;
   }
   .row1-td-3-bottom-col2{
     width: 70%;
@@ -145,6 +148,13 @@
   }
   .row5-td-2{
     width: 30%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: white;
+  }
+  .row5-td-2-9{
+    width: 80%;
     border: 1px solid black;
     padding: -1px;
     margin: -1px;
@@ -380,17 +390,116 @@
                               {{commitment.provision_cart}}
                             </h5>
                           </td>
-                          <td class="row5-td-3">
+                          <td class="row5-td-1">
+                            <h5 class="item-description-text">
+                              {% trans "HAS TAX?" %}
+                            </h5>
+                          </td>
+                          <td class="row5-td-2">
+                            <h5 class="item-value-text">
+                              {% if commitment.has_tax %}
+                                {% trans "Yes" %}
+                              {% else %}
+                                {% trans "No" %}
+                              {% endif %}
+                            </h5>
+                          </td>
+                        </tr>
+                      </table>
+                    </tr>
+                    <tr>
+                      <table>
+                        <tr>
+                          <td class="row5-td-1">
                             <h5 class="item-description-text">
                               {% trans "COMMITMENT TYPE" %}
                             </h5>
                           </td>
-                          <td class="row5-td-4  ">
+                          <td class="row5-td-2">
                             <h5 class="item-value-text">
                               {{commitment.get_contract_or_po_display}}
                             </h5>
                           </td>
+                          <td class="row5-td-1">
+                            <h5 class="item-description-text">
+                              {% trans "COMMITMENT ID" %}
+                            </h5>
+                          </td>
+                          <td class="row5-td-2">
+                            <h5 class="item-value-text">
+                              {{key}}
+                            </h5>
+                          </td>
                         </tr>
+                      </table>
+                    </tr>
+                    <tr>
+                      <table>
+                        <tr>
+                          <td class="row5-td-1">
+                            <h5 class="item-description-text">
+                              {% trans "THIRD" %}
+                            </h5>
+                          </td>
+                          <td class="row5-td-2">
+                            <h5 class="item-value-text">
+                              {{commitment.third}}
+                            </h5>
+                          </td>
+                          <td class="row5-td-1">
+                            <h5 class="item-description-text">
+                              {% trans "TAX AMOUNT" %}
+                            </h5>
+                          </td>
+                          <td class="row5-td-2">
+                            <h5 class="item-value-text">
+                              ${{commitment.tax_amount|intcomma}}
+                            </h5>
+                          </td>
+                        </tr>
+                      </table>
+                    </tr>
+                    <tr>
+                      <table>
+                        <tr>
+                          <td class="row5-td-1">
+                            <h5 class="item-description-text">
+                              {% trans "CAP BUDGET" %}
+                            </h5>
+                          </td>
+                          <td class="row5-td-2">
+                            <h5 class="item-value-text">
+                              ${{commitment.provision_budget_amount|intcomma}}
+                            </h5>
+                          </td>
+                          <td class="row5-td-1">
+                            <h5 class="item-description-text">
+                              {% trans "COMMITMENT BUDGET" %}
+                            </h5>
+                          </td>
+                          <td class="row5-td-2">
+                            <h5 class="item-value-text">
+                              ${{commitment.required_amount|intcomma}}
+                            </h5>
+                          </td>
+                        </tr>
+                      </table>
+                    </tr>
+                    <tr>
+                      <table>
+                        <tr>
+                          <td class="row6-td-1"></td>
+                        </tr>
+                      </table>
+                    </tr>
+                    {% if commitment_release is not None %}
+                    <tr>
+                      <table>
+                        <td class="row3-td-1">
+                          <h5 class="item-value-text-white">
+                            {% trans "RELEASE INFORMATION" %}
+                          </h5>
+                        </td>
                       </table>
                     </tr>
                     <tr>
@@ -417,7 +526,7 @@
                             </h5>
                           </td>
                         </tr>
-                        {% for item in budget_addition.budgetadditionitem_set.all %}
+                        {% for item in commitment_release.commitment_release_items.all %}
                         <tr>
                           <td class="row8-td-1 text-center  ">
                             <h5 class="item-description-text">
@@ -426,17 +535,17 @@
                           </td>
                           <td class="row8-td-2 text-center  ">
                             <h5 class="item-description-text">
-                              ${{item.original_amount|intcomma}}
+                              ${{item.budget_amount|intcomma}}
                             </h5>
                           </td>
                           <td class="row8-td-2 text-center  ">
                             <h5 class="item-description-text">
-                              ${{item.added_amount|intcomma}}
+                              ${{item.total_to_release|intcomma}}
                             </h5>
                           </td>
                           <td class="row8-td-2 text-center  ">
                             <h5 class="item-description-text">
-                              ${{item.new_amount|intcomma}}
+                              ${{item.budget.available_budget|intcomma}}
                             </h5>
                           </td>
                         </tr>  
@@ -451,64 +560,21 @@
                         </tr>
                       </table>
                     </tr>
+                    {% endif %}
                   </table>
                 </div>
             </div>
         </div>
         <!-- buttons section -->
         <div class="col-xl-3 col-md-4 col-12 action-btns">
-            <div class="card">
-                <div class="card-body p-2">
-                  {% if budget_addition.approved %}
-                  <a href="#" class="btn btn-primary btn-block mb-1 print-invoice"> <i class="feather icon-printer mr-25 common-size"></i> {% trans "Print" %}</a>  
-                  {% endif %}
-                  <a href="{% url 'commitment_list' %}" class="btn btn-info btn-block mb-1"><i class="feather icon-list mr-25 common-size"></i> {% trans "Go to CCP list" %}</a>
-                </div>
+          <div class="card">
+            <div class="card-body p-2">
+              {% if commitment.finished %}
+              <a href="#" class="btn btn-primary btn-block mb-1 print-invoice"> <i class="feather icon-printer mr-25 common-size"></i> {% trans "Print" %}</a>  
+              {% endif %}
+              <a href="{% url 'commitment_list' %}" class="btn btn-info btn-block mb-1"><i class="feather icon-list mr-25 common-size"></i> {% trans "Go to CCP list" %}</a>
             </div>
-            <!-- Approval card -->
-            {% if budget_addition.approved is False %}  
-            <style>
-              /* style */
-              .redistribution_font_size{
-                font-size: 10px;
-              }
-              .common-size{
-                font-size: 10px;
-              }
-            </style>
-            <div class="card">
-              {% if budget_addition.requires_approval and not budget_addition.rejected %}
-              <div class="card-body p-2">
-                <form action="{% url 'addition_approval_update' budget_addition.id %}" method="post">
-                  {% csrf_token %}
-                  <div class="row">
-                    <div class="col-12">
-                      <label for="projectinput3">{% trans 'Approve?' %}</label>
-                      <select class="select2 form-control" name="approved" {% if provision_cart_approval.approved %} disabled {% endif %}>
-                        <option value="True" {% if provision_cart_approval.approved %}selected{% endif %}>{% trans 'Approve' %}</option>
-                        <option value="False" {% if not provision_cart_approval.approved %}selected{% endif %}>{% trans 'Reject' %}</option>
-                      </select>
-                    </div>
-                    <div class="col-12">
-                      <label for="projectinput1" style="font-size: 12px;">{% trans 'Observation' %}</label>
-                      <textarea class="form-control" name="observation" id="" cols="30" rows="2" {% if provision_cart_approval.approved %} disabled {% endif %}>{{provision_cart_approval.observation}}</textarea>
-                    </div>
-                    <div class="col-12">
-                      <hr>
-                    </div>
-                    {% if not provision_cart_approval.approved %}
-                    <div class="col-12">
-                      <button type="submit" class="btn btn-primary btn-block mb-1" style="font-size: 12px;">
-                        <i class="feather icon-check mr-25 common-size"></i> {% trans "Update" %}
-                      </button>
-                    </div>
-                    {% endif %}
-                  </div>
-                </form>
-              </div>
-              {% endif %}  
-            </div>
-            {% endif %}
+          </div>
         </div>
     </div>
 </div>

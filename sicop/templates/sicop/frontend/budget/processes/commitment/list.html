@@ -80,6 +80,7 @@
                         {% endif %}
                       </td>
                       <td>
+                        {% if commitment.finished %}
                         <div class="row">
                           <div class="col-12">
                             <a href="{% url 'commitment_certificate' commitment.id %}">
@@ -89,6 +90,7 @@
                             </a>
                           </div>
                         </div>
+                        {% endif %}
                       </td>
                     </tr>
                   {% endfor %}

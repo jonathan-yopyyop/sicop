@@ -257,6 +257,13 @@ class CommitmentRealeaseItems(BaseModel):
         related_name="budget_commitment_release_items",
         on_delete=models.CASCADE,
     )
+    budget_amount = models.FloatField(
+        _("Budget amount"),
+        help_text=_("Budget amount"),
+        default=0,
+        null=True,
+        blank=True,
+    )
     total_to_release = models.FloatField(
         _("Total to release"),
         help_text=_("Total to release"),
