@@ -47,8 +47,8 @@ class AreaMemberResource(resources.ModelResource):
         model = AreaMember
 
 
-@admin.register(ImportExportModelAdmin, AreaMember)
-class AreaMembersAdmin(admin.ModelAdmin):
+@admin.register(AreaMember)
+class AreaMembersAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     resource_classes = [AreaMemberResource]
     list_display = (
         "user_full_name",
@@ -86,8 +86,8 @@ class AreaRoleResource(resources.ModelResource):
         model = AreaRole
 
 
-@admin.register(ImportExportModelAdmin, AreaRole)
-class AreaRoleAdmin(admin.ModelAdmin):
+@admin.register(AreaRole)
+class AreaRoleAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     resource_classes = [AreaRoleResource]
     list_display = (
         "name",
