@@ -1,10 +1,18 @@
 from django.contrib import admin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 
 from sicop.expense_concept.models import ExpenseConcept
 
 
+class ExpenseConceptResource(resources.ModelResource):
+    class Meta:
+        model = ExpenseConcept
+
+
 @admin.register(ExpenseConcept)
-class ExpenseConceptAdmin(admin.ModelAdmin):
+class ExpenseConceptAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [ExpenseConceptResource]
     list_display = (
         "name",
         "id",

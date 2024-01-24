@@ -1,10 +1,18 @@
 from django.contrib import admin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 
 from sicop.cost_center.models import CostCenter
 
 
+class CostCenterResource(resources.ModelResource):
+    class Meta:
+        model = CostCenter
+
+
 @admin.register(CostCenter)
-class CostCenterAdmin(admin.ModelAdmin):
+class CostCenterAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [CostCenterResource]
     list_display = (
         "name",
         "id",

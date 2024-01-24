@@ -1,10 +1,18 @@
 from django.contrib import admin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 
 from sicop.area.models import Area, AreaMember, AreaRole
 
 
+class AreaResource(resources.ModelResource):
+    class Meta:
+        model = Area
+
+
 @admin.register(Area)
-class AreaAdmin(admin.ModelAdmin):
+class AreaAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [AreaResource]
     list_display = (
         "name",
         "id",
@@ -34,8 +42,14 @@ class AreaAdmin(admin.ModelAdmin):
     )
 
 
-@admin.register(AreaMember)
+class AreaMemberResource(resources.ModelResource):
+    class Meta:
+        model = AreaMember
+
+
+@admin.register(ImportExportModelAdmin, AreaMember)
 class AreaMembersAdmin(admin.ModelAdmin):
+    resource_classes = [AreaMemberResource]
     list_display = (
         "user_full_name",
         "id",
@@ -67,8 +81,14 @@ class AreaMembersAdmin(admin.ModelAdmin):
     )
 
 
-@admin.register(AreaRole)
+class AreaRoleResource(resources.ModelResource):
+    class Meta:
+        model = AreaRole
+
+
+@admin.register(ImportExportModelAdmin, AreaRole)
 class AreaRoleAdmin(admin.ModelAdmin):
+    resource_classes = [AreaRoleResource]
     list_display = (
         "name",
         "id",

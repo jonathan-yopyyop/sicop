@@ -1,4 +1,6 @@
 from django.contrib import admin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 
 from sicop.budget.models import (
     Budget,
@@ -23,8 +25,14 @@ from sicop.budget.models import (
 )
 
 
+class BudgetDescriptionResource(resources.ModelResource):
+    class Meta:
+        model = BudgetDescription
+
+
 @admin.register(BudgetDescription)
-class BudgetDescriptionAdmin(admin.ModelAdmin):
+class BudgetDescriptionAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [BudgetDescriptionResource]
     list_display = (
         "id",
         "expense_concept",
@@ -36,8 +44,14 @@ class BudgetDescriptionAdmin(admin.ModelAdmin):
     )
 
 
+class BudgetResource(resources.ModelResource):
+    class Meta:
+        model = Budget
+
+
 @admin.register(Budget)
-class BudgetAdmin(admin.ModelAdmin):
+class BudgetAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [BudgetResource]
     list_display = (
         "id",
         "budget_description",
@@ -74,8 +88,14 @@ class BudgetAdmin(admin.ModelAdmin):
     )
 
 
+class ProvisionCartResource(resources.ModelResource):
+    class Meta:
+        model = ProvisionCart
+
+
 @admin.register(ProvisionCart)
-class ProvisionCartAdmin(admin.ModelAdmin):
+class ProvisionCartAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [ProvisionCartResource]
     list_display = (
         "id",
         "project",
@@ -102,8 +122,14 @@ class ProvisionCartAdmin(admin.ModelAdmin):
     )
 
 
+class ProvisionCartBudgetResource(resources.ModelResource):
+    class Meta:
+        model = ProvisionCartBudget
+
+
 @admin.register(ProvisionCartBudget)
-class ProvisionCartBudgetAdmin(admin.ModelAdmin):
+class ProvisionCartBudgetAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [ProvisionCartBudgetResource]
     list_display = (
         "id",
         "provision_cart",
@@ -128,8 +154,14 @@ class ProvisionCartBudgetAdmin(admin.ModelAdmin):
     )
 
 
+class BudgetDecreaseTransactionResource(resources.ModelResource):
+    class Meta:
+        model = BudgetDecreaseTransaction
+
+
 @admin.register(BudgetDecreaseTransaction)
-class BudgetDecreaseTransactionAdmin(admin.ModelAdmin):
+class BudgetDecreaseTransactionAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [BudgetDecreaseTransactionResource]
     list_display = (
         "id",
         "budget",
@@ -168,8 +200,14 @@ class BudgetDecreaseTransactionAdmin(admin.ModelAdmin):
     #     return False
 
 
+class ProvisionCartApprovalResource(resources.ModelResource):
+    class Meta:
+        model = ProvisionCartApproval
+
+
 @admin.register(ProvisionCartApproval)
-class ProvisionCartApprovalAdmin(admin.ModelAdmin):
+class ProvisionCartApprovalAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [ProvisionCartApprovalResource]
     list_display = [
         "provision_cart",
         "id",
@@ -185,8 +223,14 @@ class ProvisionCartApprovalAdmin(admin.ModelAdmin):
     ]
 
 
+class BudgetRedistributionResource(resources.ModelResource):
+    class Meta:
+        model = BudgetRedistribution
+
+
 @admin.register(BudgetRedistribution)
-class BudgetRedistributionAdmin(admin.ModelAdmin):
+class BudgetRedistributionAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [BudgetRedistributionResource]
     list_display = [
         "id",
         "budget",
@@ -209,8 +253,14 @@ class BudgetRedistributionAdmin(admin.ModelAdmin):
     ]
 
 
+class BudgetRedistributionItemResource(resources.ModelResource):
+    class Meta:
+        model = BudgetRedistributionItem
+
+
 @admin.register(BudgetRedistributionItem)
-class BudgetRedistributionItemAdmin(admin.ModelAdmin):
+class BudgetRedistributionItemAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [BudgetRedistributionItemResource]
     list_display = [
         "id",
         "budget",
@@ -230,8 +280,14 @@ class BudgetRedistributionItemAdmin(admin.ModelAdmin):
     ]
 
 
+class BudgetRedistributionItemApprovalResource(resources.ModelResource):
+    class Meta:
+        model = BudgetRedistributionItemApproval
+
+
 @admin.register(BudgetRedistributionItemApproval)
-class BudgetRedistributionItemApprovalAdmin(admin.ModelAdmin):
+class BudgetRedistributionItemApprovalAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [BudgetRedistributionItemApprovalResource]
     list_display = [
         "id",
         "budget_redistribution_item",
@@ -247,8 +303,14 @@ class BudgetRedistributionItemApprovalAdmin(admin.ModelAdmin):
     ]
 
 
+class BudgetAdditionResource(resources.ModelResource):
+    class Meta:
+        model = BudgetAddition
+
+
 @admin.register(BudgetAddition)
-class BudgetAdditionAdmin(admin.ModelAdmin):
+class BudgetAdditionAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [BudgetAdditionResource]
     list_display = [
         "id",
         "requires_approval",
@@ -266,8 +328,14 @@ class BudgetAdditionAdmin(admin.ModelAdmin):
     ]
 
 
+class BudgetAdditionItemResource(resources.ModelResource):
+    class Meta:
+        model = BudgetAdditionItem
+
+
 @admin.register(BudgetAdditionItem)
-class BudgetAdditionItemAdmin(admin.ModelAdmin):
+class BudgetAdditionItemAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [BudgetAdditionItemResource]
     list_display = [
         "id",
         "budget",
@@ -284,8 +352,14 @@ class BudgetAdditionItemAdmin(admin.ModelAdmin):
     ]
 
 
+class BudgetAdditionApprovalResource(resources.ModelResource):
+    class Meta:
+        model = BudgetAdditionApproval
+
+
 @admin.register(BudgetAdditionApproval)
-class BudgetAdditionApprovalAdmin(admin.ModelAdmin):
+class BudgetAdditionApprovalAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [BudgetAdditionApprovalResource]
     list_display = [
         "id",
         "budget_addition",
@@ -303,8 +377,14 @@ class BudgetAdditionApprovalAdmin(admin.ModelAdmin):
     ]
 
 
+class BudgetAddtionTransactionResource(resources.ModelResource):
+    class Meta:
+        model = BudgetAddtionTransaction
+
+
 @admin.register(BudgetAddtionTransaction)
-class BudgetAddtionTransactionAdmin(admin.ModelAdmin):
+class BudgetAddtionTransactionAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [BudgetAddtionTransactionResource]
     list_display = [
         "id",
         "budget",
@@ -322,8 +402,14 @@ class BudgetAddtionTransactionAdmin(admin.ModelAdmin):
     ]
 
 
+class CommitmentResource(resources.ModelResource):
+    class Meta:
+        model = Commitment
+
+
 @admin.register(Commitment)
-class CommitmentAdmin(admin.ModelAdmin):
+class CommitmentAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [CommitmentResource]
     list_display = [
         "id",
         "provision_cart",
@@ -354,8 +440,14 @@ class CommitmentAdmin(admin.ModelAdmin):
     ]
 
 
+class CommitmentPOResource(resources.ModelResource):
+    class Meta:
+        model = CommitmentPO
+
+
 @admin.register(CommitmentPO)
-class CommitmentPOAdmin(admin.ModelAdmin):
+class CommitmentPOAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [CommitmentPOResource]
     list_display = [
         "id",
         "commitment",
@@ -370,10 +462,16 @@ class CommitmentPOAdmin(admin.ModelAdmin):
         "created_at",
         "updated_at",
     ]
+
+
+class CommitmentContractResource(resources.ModelResource):
+    class Meta:
+        model = CommitmentContract
 
 
 @admin.register(CommitmentContract)
-class CommitmentContractAdmin(admin.ModelAdmin):
+class CommitmentContractAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [CommitmentContractResource]
     list_display = [
         "id",
         "commitment",
@@ -388,10 +486,16 @@ class CommitmentContractAdmin(admin.ModelAdmin):
         "created_at",
         "updated_at",
     ]
+
+
+class CommitmentReleaseResource(resources.ModelResource):
+    class Meta:
+        model = CommitmentRelease
 
 
 @admin.register(CommitmentRelease)
-class CommitmentReleaseAdmin(admin.ModelAdmin):
+class CommitmentReleaseAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [CommitmentReleaseResource]
     list_display = [
         "id",
         "commitment",
@@ -408,10 +512,16 @@ class CommitmentReleaseAdmin(admin.ModelAdmin):
         "created_at",
         "updated_at",
     ]
+
+
+class CommitmentRealeaseItemsResource(resources.ModelResource):
+    class Meta:
+        model = CommitmentRealeaseItems
 
 
 @admin.register(CommitmentRealeaseItems)
-class CommitmentRealeaseItemsAdmin(admin.ModelAdmin):
+class CommitmentRealeaseItemsAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [CommitmentRealeaseItemsResource]
     list_display = [
         "id",
         "commitment_release",
@@ -430,8 +540,14 @@ class CommitmentRealeaseItemsAdmin(admin.ModelAdmin):
     ]
 
 
+class CommitmentNotRelatedResource(resources.ModelResource):
+    class Meta:
+        model = CommitmentNotRelated
+
+
 @admin.register(CommitmentNotRelated)
-class CommitmentNotRelatedAdmin(admin.ModelAdmin):
+class CommitmentNotRelatedAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [CommitmentNotRelatedResource]
     list_display = [
         "id",
         "commitment",

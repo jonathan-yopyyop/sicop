@@ -1,10 +1,18 @@
 from django.contrib import admin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 
 from sicop.contract.models import Contract
 
 
+class ContractResource(resources.ModelResource):
+    class Meta:
+        model = Contract
+
+
 @admin.register(Contract)
-class ContractAdmin(admin.ModelAdmin):
+class ContractAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [ContractResource]
     list_display = (
         "IdContrato",
         "TipContrato",

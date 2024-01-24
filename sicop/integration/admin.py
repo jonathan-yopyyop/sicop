@@ -204,8 +204,14 @@ class ActiveIntegrationAdmin(admin.ModelAdmin):
     )
 
 
+class ExpenseConceptResource(resources.ModelResource):
+    class Meta:
+        model = ExpenseConcept
+
+
 @admin.register(ExpenseConcept)
-class ExpenseConceptAdmin(admin.ModelAdmin):
+class ExpenseConceptAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [ExpenseConceptResource]
     list_display = (
         "id",
         "Nombre",
@@ -256,8 +262,14 @@ class ContractAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     )
 
 
+class PurchaseOrderResource(resources.ModelResource):
+    class Meta:
+        model = PurchaseOrder
+
+
 @admin.register(PurchaseOrder)
-class PurchaseOrderAdmin(admin.ModelAdmin):
+class PurchaseOrderAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [PurchaseOrderResource]
     list_display = (
         "id",
         "Numero",

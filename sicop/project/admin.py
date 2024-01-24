@@ -1,10 +1,18 @@
 from django.contrib import admin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 
 from sicop.project.models import Project, ProjectStatus, ProjectStatusHistory, ProjectType
 
 
+class ProjectResource(resources.ModelResource):
+    class Meta:
+        model = Project
+
+
 @admin.register(ProjectStatus)
-class ProjectStatusAdmin(admin.ModelAdmin):
+class ProjectStatusAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [ProjectResource]
     list_display = (
         "name",
         "id",
@@ -34,10 +42,16 @@ class ProjectStatusAdmin(admin.ModelAdmin):
         "id",
         "code",
     )
+
+
+class ProjectTypeResource(resources.ModelResource):
+    class Meta:
+        model = ProjectType
 
 
 @admin.register(ProjectType)
-class ProjectTypeAdmin(admin.ModelAdmin):
+class ProjectTypeAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [ProjectTypeResource]
     list_display = (
         "name",
         "id",
@@ -68,10 +82,16 @@ class ProjectTypeAdmin(admin.ModelAdmin):
         "id",
         "code",
     )
+
+
+class ProjectResource(resources.ModelResource):
+    class Meta:
+        model = Project
 
 
 @admin.register(Project)
-class ProjectAdmin(admin.ModelAdmin):
+class ProjectAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [ProjectResource]
     list_display = (
         "name",
         "id",
@@ -105,8 +125,14 @@ class ProjectAdmin(admin.ModelAdmin):
     )
 
 
+class ProjectStatusHistoryResource(resources.ModelResource):
+    class Meta:
+        model = ProjectStatusHistory
+
+
 @admin.register(ProjectStatusHistory)
-class ProjectStatusHistoryAdmin(admin.ModelAdmin):
+class ProjectStatusHistoryAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [ProjectStatusHistoryResource]
     list_display = (
         "project",
         "id",

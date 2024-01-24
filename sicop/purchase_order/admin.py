@@ -1,10 +1,18 @@
 from django.contrib import admin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 
 from sicop.purchase_order.models import PurchaseOrder
 
 
+class PurchaseOrderResource(resources.ModelResource):
+    class Meta:
+        model = PurchaseOrder
+
+
 @admin.register(PurchaseOrder)
-class PurchaseOrderAdmin(admin.ModelAdmin):
+class PurchaseOrderAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_classes = [PurchaseOrderResource]
     list_display = (
         "id",
         "Numero",

@@ -1,10 +1,17 @@
 from django.contrib import admin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 
 from sicop.business_unit.models import BusinessUnit
 
 
+class BusinessUnitResource(resources.ModelResource):
+    class Meta:
+        model = BusinessUnit
+
+
 @admin.register(BusinessUnit)
-class BusinessUnitAdmin(admin.ModelAdmin):
+class BusinessUnitAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = (
         "id",
         "name",
