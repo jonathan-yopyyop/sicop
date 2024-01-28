@@ -116,3 +116,6 @@ class AreaRoleAdmin(ImportExportModelAdmin, admin.ModelAdmin):
         "updated_at",
         "id",
     )
+
+
+# create a base class on python

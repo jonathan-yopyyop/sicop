@@ -272,6 +272,9 @@
           <li {% if '/budget/commitment/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'commitment_list' %}">{% trans 'Commitments' %}</a>
           </li>
+          <li {% if 'commitment/release/search/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'commitment_release_search' %}">{% trans 'Relsease' %}</a>
+          </li>
           {% endif %}
         </ul>
       </li>

@@ -71,6 +71,15 @@ from sicop.budget.views.processes.budget_redistribution import (  # noqa
     UpdateRedistributionItem,
     UpdateRedistributionTotals,
 )
+from sicop.budget.views.processes.budget_release import (  # noqa
+    BudgerReleaseSearchByCommitment,
+    BudgerReleaseSearchByConsumption,
+    BudgerReleaseSearchByContract,
+    BudgerReleaseSearchByLegalization,
+    BudgerReleaseSearchByPO,
+    BudgetRelease,
+    BudgetReleaseSearch,
+)
 from sicop.budget.views.processes.cart import (  # noqa
     AddItemToProvisionInCart,
     EditItemProvisionAmountInCart,
