@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Permission
 from django.db.models import BooleanField, CharField, EmailField
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -50,3 +50,25 @@ class User(AbstractUser):
 
         """
         return reverse("users:detail", kwargs={"pk": self.id})
+
+
+def permission_string_method(self):
+    names = self.name.split()
+    operation_translated = " ".join(
+        [
+            _(w)
+            .replace("Can", str(_("Can")))
+            .replace("add", str(_("add")))
+            .replace("change", str(_("change")))
+            .replace("delete", str(_("delete")))
+            .replace("view", str(_("view")))
+            .replace("log", "")
+            .replace("content", "")
+            .strip()
+            for w in names[:-1]  # Exclude the last word (model name)
+        ]
+    )
+    return f"{operation_translated} | {self.content_type.name}"
+
+
+Permission.__str__ = permission_string_method
