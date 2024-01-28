@@ -11,7 +11,7 @@ entryPoints:
     address: ":443"
 
   flower:
-    address: ":5555"
+    address: ":5556"
 
 certificatesResolvers:
   letsencrypt:
@@ -77,7 +77,7 @@ http:
     # flower:
     #   loadBalancer:
     #     servers:
-    #       - url: http://flower:5555
+    #       - url: http://flower:5556
 
 providers:
   # https://docs.traefik.io/master/providers/file/
