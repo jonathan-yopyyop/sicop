@@ -89,5 +89,5 @@ services:
     image: sicop_local_flower
     container_name: sicop_local_flower
     ports:
-      - "5556:5556"
+      - "5558:5558"
     command: /start-flower
