@@ -893,6 +893,7 @@
         } else if (contract_or_po == 'PO') {
           entity_id = $("#po").val();
         }
+        console.log(`entity_id: ${entity_id} contract_or_po: ${contract_or_po}`)
         var url = "{% url 'update_cap_entity' %}";
         var post_values = {
           'commitment_id': commitment_id,

@@ -259,7 +259,7 @@ class UpdateThirdOrPoCap(LoginRequiredMixin, TemplateView):
             commitment_id = request.POST.get("commitment_id")
             third_id = request.POST.get("third_id")
             commitment = Commitment.objects.get(id=commitment_id)
-            third = Third.objects.filter(IdTercer=third_id).last()
+            third = Third.objects.filter(IdTercer__icontains=third_id).last()
             commitment.third = third
             commitment.save()
             return JsonResponse(
@@ -292,7 +292,7 @@ class UpdateCommitmentEntity(LoginRequiredMixin, TemplateView):
             if contract_or_po == "CT":
                 contract = Contract.objects.get(IdContrato=entity_id)
                 third_id = contract.IdTercer
-                third = Third.objects.filter(IdTercer=third_id).last()
+                third = Third.objects.filter(IdTercer__icontains=third_id).last()
                 commitment.third = third
                 commitment.save()
                 if CommitmentContract.objects.filter(
@@ -326,7 +326,7 @@ class UpdateCommitmentEntity(LoginRequiredMixin, TemplateView):
             elif contract_or_po == "PO":
                 po = PurchaseOrder.objects.get(Numero=entity_id)
                 third_id = po.IdTercer
-                third = Third.objects.filter(IdTercer=third_id).last()
+                third = Third.objects.filter(IdTercer__icontains=third_id).last()
                 commitment.third = third
                 commitment.save()
                 if CommitmentPO.objects.filter(
