@@ -252,9 +252,17 @@
                           </div>
                           <div class="form-actions text-right">
                             <input type="hidden" name="commitment_object_id" id="commitment_object_id" value="{{commitment.id}}">
-                            <button type="submit" class="btn btn-primary" id="create_button" {% if commitment.diference_between_required_and_provisioned < 0 or commitment_release.total_pending != 0 %} disabled{% endif %}>
+                            {% if commitment_release.total_pending is None %}
+                            <button type="submit" class="btn btn-primary" id="create_button" {% if commitment.diference_between_required_and_provisioned < 0 %} disabled{% endif %}>
                               <i class="fa fa-edit"></i> {% trans 'Create' %}
                             </button>
+                            {% else %}
+                            <button type="submit" class="btn btn-primary" id="create_button" {% if commitment.diference_between_required_and_provisioned < 0 or commitment_release.total_pending != 0 %} disabled{% endif %}>
+                              <i class="fa fa-edit"></i> {% trans 'Create' %}
+                            </button>  
+                            {% endif %}
+                              
+                            
                           </div>
                         </div>
                       </form>
