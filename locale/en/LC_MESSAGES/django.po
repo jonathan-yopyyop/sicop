@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-27 20:00-0500\n"
+"POT-Creation-Date: 2024-01-30 01:32-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -143,7 +143,7 @@ msgstr ""
 msgid "Area Role"
 msgstr ""
 
-#: sicop/area/models.py:61 sicop/area/models.py:62 sicop/users/models.py:24
+#: sicop/area/models.py:61 sicop/area/models.py:62 sicop/users/models.py:23
 msgid "Job Title"
 msgstr ""
 
@@ -988,27 +988,27 @@ msgstr ""
 msgid "Budget redistribution error"
 msgstr ""
 
-#: sicop/budget/views/processes/budget_release.py:80
+#: sicop/budget/views/processes/budget_release.py:67
 #, python-brace-format
 msgid "Error on search, the commitment with id {pk} does not exist."
 msgstr ""
 
-#: sicop/budget/views/processes/budget_release.py:104
+#: sicop/budget/views/processes/budget_release.py:92
 #, python-brace-format
 msgid "Error on search, the contract with id {pk} does not exist."
 msgstr ""
 
-#: sicop/budget/views/processes/budget_release.py:128
+#: sicop/budget/views/processes/budget_release.py:117
 #, python-brace-format
 msgid "Error on search, the PO with id {pk} does not exist."
 msgstr ""
 
-#: sicop/budget/views/processes/budget_release.py:152
+#: sicop/budget/views/processes/budget_release.py:142
 #, python-brace-format
 msgid "Error on search, the legalization with id {pk} does not exist."
 msgstr ""
 
-#: sicop/budget/views/processes/budget_release.py:176
+#: sicop/budget/views/processes/budget_release.py:167
 #, python-brace-format
 msgid "Error on search, the consumption with id {pk} does not exist."
 msgstr ""
@@ -2246,7 +2246,7 @@ msgstr ""
 #: sicop/templates/sicop/frontend/project/type/list.html:49
 #: sicop/templates/sicop/frontend/project/type/list.html:83
 #: sicop/templates/sicop/frontend/project/type/update.html:91
-#: sicop/users/models.py:37
+#: sicop/users/models.py:36
 msgid "Status"
 msgstr ""
 
@@ -4500,31 +4500,31 @@ msgstr ""
 msgid "Register"
 msgstr ""
 
-#: sicop/users/models.py:19
+#: sicop/users/models.py:18
 msgid "Name of User"
 msgstr ""
 
-#: sicop/users/models.py:32
+#: sicop/users/models.py:31
 msgid "email address"
 msgstr ""
 
-#: sicop/users/models.py:61
+#: sicop/users/models.py:60
 msgid "Can"
 msgstr ""
 
-#: sicop/users/models.py:62
+#: sicop/users/models.py:61
 msgid "add"
 msgstr ""
 
-#: sicop/users/models.py:63
+#: sicop/users/models.py:62
 msgid "change"
 msgstr ""
 
-#: sicop/users/models.py:64
+#: sicop/users/models.py:63
 msgid "delete"
 msgstr ""
 
-#: sicop/users/models.py:65
+#: sicop/users/models.py:64
 msgid "view"
 msgstr ""
 
@@ -4534,7 +4534,7 @@ msgid "SICOP"
 msgstr ""
 
 #: sicop/users/templatetags/custom_tags.py:21
-msgid "V1.12.1"
+msgid "V1.13.0"
 msgstr ""
 
 #: sicop/users/views/groups.py:55
