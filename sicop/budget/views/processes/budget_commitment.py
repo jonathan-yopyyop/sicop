@@ -79,11 +79,12 @@ class CommitmentCreateView(PermissionRequiredMixin, LoginRequiredMixin, Template
         commitment_release = CommitmentRelease.objects.filter(
             commitment=commitment,
         ).last()
-        commitment_release_items = commitment_release.commitment_release_items.all()
-        for item in commitment_release_items:
-            budget: Budget = item.budget
-            budget.initial_value = budget.initial_value + item.total_to_release
-            budget.save()
+        if commitment_release is not None:
+            commitment_release_items = commitment_release.commitment_release_items.all()
+            for item in commitment_release_items:
+                budget: Budget = item.budget
+                budget.initial_value = budget.initial_value + item.total_to_release
+                budget.save()
 
         return HttpResponseRedirect(
             reverse(

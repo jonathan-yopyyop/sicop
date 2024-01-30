@@ -283,54 +283,69 @@
     // Validate fields
     function validateFields(){
       var is_complete = true;
+      console.log("Validating fields"+ is_complete);
       var selected_cap = $("#caps").val();
       var messages = [];
       if (selected_cap === "") {
+      console.log("CAP is not selected");
         is_complete = false;
         messages.push("{% trans 'CAP is not selected' %}");
       }
       var selected_type = $("#type").val();
       if (selected_type === "") {
+        console.log("Type is not selected");
         is_complete = false;
         messages.push("{% trans 'Type is not selected' %}");
       }
       if (selected_type == "CT") {
         var selected_contract = $("#contract").val();
         if (selected_contract === "") {
+          console.log("Contract is not selected");
           is_complete = false;
           messages.push("{% trans 'Contract is not selected' %}");
         }
       } else if (selected_type == "PO") {
         var selected_po = $("#po").val();
         if (selected_po === "") {
+          console.log("Purchase order is not selected");
           is_complete = false;
           messages.push("{% trans 'Purchase order is not selected' %}");
         }
       } else {
         var selected_identifier = $("#not_related_identifier").val();
         if (selected_identifier === "") {
+          console.log("Identifier is not selected");
           is_complete = false;
           messages.push("{% trans 'You have not placed an identifier' %}");
         }
         var selected_amount = $("#not_related_required_amount").val();
         if (selected_amount === "") {
+          console.log("Amount is not selected");
           is_complete = false;
           messages.push("{% trans 'The value of the commitment has not been established' %}");
         }  
       }
       var tax_amount = $("#tax_amount").val();
       if (tax_amount === "") {
+        console.log("Tax amount is not selected");
         is_complete = false;
         messages.push("{% trans 'The value of the tax has not been established' %}");
       }
       var selected_third = $("#thirds").val();
       if (selected_third === "") {
+        console.log("Third is not selected");
         is_complete = false;
         messages.push("{% trans 'Third is not selected' %}");
       }
       var total_pending_amount = parseFloat($("#total_pending_amount").val());
       console.log(`total_pending_amount: ${total_pending_amount}`);
+      // verify if total_pending_amount is NaN
+      if(isNaN(total_pending_amount)){
+        total_pending_amount = 0;
+      }
+
       if (total_pending_amount != 0) {
+        console.log("The value of the difference between the CAP and the commitment must be verified.");
         is_complete = false;
         messages.push("{% trans 'The value of the difference between the CAP and the commitment must be verified.' %}");
       }
@@ -340,7 +355,6 @@
       };
     }
     document.getElementById("commitment_form").addEventListener('submit', function(event){
-      
       var validate_fields = validateFields();
       console.log(validate_fields);
       if (validate_fields.is_complete===false) {
