@@ -57,7 +57,7 @@
                       <td>{{ budget.id }}</td>
                       <td>{{ budget.project }}</td>
                       <td>{{ budget.budget_description }}</td>
-                      <td>{{ budget.current_budget|parse_to_cop }}</td>
+                      <td>{{ budget.current_budget|format_to_cop }}</td>
                       <td>{{ budget.quantity }}</td>
                       <td>
                         {% if budget.status %}
