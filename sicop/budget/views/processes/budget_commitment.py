@@ -83,9 +83,8 @@ class CommitmentCreateView(PermissionRequiredMixin, LoginRequiredMixin, Template
             commitment_release_items = commitment_release.commitment_release_items.all()
             for item in commitment_release_items:
                 budget: Budget = item.budget
-                budget.initial_value = budget.initial_value + item.total_to_release
+                budget.released_amount = budget.released_amount + item.total_to_release
                 budget.save()
-
         return HttpResponseRedirect(
             reverse(
                 "commitment_certificate",
@@ -131,12 +130,19 @@ class UpdateCommitmentCap(LoginRequiredMixin, TemplateView):
                 provision_cart = commitment.provision_cart
                 budgets = provision_cart.provision_cart_provision_budgets.all()
                 release_items = []
+                budgets_count = provision_cart.provision_cart_provision_budgets.count()
                 for budget in budgets:
                     commitment_release_item = CommitmentRealeaseItems.objects.create(
                         commitment_release=commitment_release,
                         budget=budget.budget,
                         budget_amount=budget.available_budget,
                     )
+                    if budgets_count == 1:
+                        commitment_release_item.total_to_release = commitment_release.total_to_release
+                        commitment_release_item.save()
+                        commitment_release.total_released = commitment_release.total_to_release
+                        commitment_release.save()
+
                     release_items.append(
                         {
                             "id": commitment_release_item.id,
@@ -377,6 +383,7 @@ class UpdateCommitmentEntity(LoginRequiredMixin, TemplateView):
                 )
                 provision_cart = commitment.provision_cart
                 budgets = provision_cart.provision_cart_provision_budgets.all()
+                budgets_count = provision_cart.provision_cart_provision_budgets.count()
                 release_items = []
                 for budget in budgets:
                     commitment_release_item = CommitmentRealeaseItems.objects.create(
@@ -384,12 +391,18 @@ class UpdateCommitmentEntity(LoginRequiredMixin, TemplateView):
                         budget=budget.budget,
                         budget_amount=budget.available_budget,
                     )
+                    if budgets_count == 1:
+                        commitment_release_item.total_to_release = commitment_release.total_to_release
+                        commitment_release_item.save()
+                        commitment_release.total_released = commitment_release.total_to_release
+                        commitment_release.save()
                     release_items.append(
                         {
                             "id": commitment_release_item.id,
                             "budget_description": budget.budget.budget_description.description,
                             "current_budget": budget.budget.current_budget,
                             "total_to_release": commitment_release_item.total_to_release,
+                            "budgets_count": budgets_count,
                         }
                     )
 
@@ -433,8 +446,14 @@ class CommitmentReleaseUpdateView(LoginRequiredMixin, TemplateView):
             commiment_release_item.save()
             commitment_release = commiment_release_item.commitment_release
             total_released = 0
+            count = commitment_release.commitment_release_items.count()
             for item in commitment_release.commitment_release_items.all():
                 total_released = total_released + item.total_to_release
+                if count == 1:
+                    item.total_to_release = commitment_release.total_to_release
+                    item.save()
+                    commitment_release.total_released = commitment_release.total_to_release
+                    commitment_release.save()
 
             commitment_release.total_released = total_released
             commitment_release.save()
@@ -566,6 +585,7 @@ class CreateOrdestroyReleaseTable(LoginRequiredMixin, TemplateView):
                 )
                 provision_cart = commitment.provision_cart
                 budgets = provision_cart.provision_cart_provision_budgets.all()
+                budgets_count = provision_cart.provision_cart_provision_budgets.count()
                 release_items = []
                 for budget in budgets:
                     commitment_release_item = CommitmentRealeaseItems.objects.create(
@@ -573,6 +593,11 @@ class CreateOrdestroyReleaseTable(LoginRequiredMixin, TemplateView):
                         budget=budget.budget,
                         budget_amount=budget.available_budget,
                     )
+                    if budgets_count == 1:
+                        commitment_release.total_to_release = commitment_release.total_to_release
+                        commitment_release.save()
+                        commitment_release.total_released = commitment_release.total_to_release
+                        commitment_release.save()
                     release_items.append(
                         {
                             "id": commitment_release_item.id,

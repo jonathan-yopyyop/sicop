@@ -272,6 +272,10 @@ class CommitmentRealeaseItems(BaseModel):
         blank=True,
     )
 
+    @property
+    def new_budget_amount(self):
+        return self.budget_amount + self.total_to_release
+
     class Meta:
         """Meta definition for Commitment Realease Items."""
 

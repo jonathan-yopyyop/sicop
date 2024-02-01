@@ -88,6 +88,11 @@ class Budget(BaseModel):
         help_text=_("Budget decrease control"),
         default=0,
     )
+    released_amount = models.FloatField(
+        _("Released amount"),
+        help_text=_("Released amount"),
+        default=0,
+    )
 
     @property
     def current_budget(self) -> float:
@@ -103,7 +108,15 @@ class Budget(BaseModel):
         provosioned_amount = 0
         for budget_provision_budget in budget_provision_budgets:
             provosioned_amount = provosioned_amount + budget_provision_budget.provosioned_amount
-        return self.current_budget - provosioned_amount
+        return self.current_budget - provosioned_amount + self.released_amount
+
+    @property
+    def available_budget_whit_decrease_control(self) -> float:
+        budget_provision_budgets = self.budget_provision_budgets.filter(provision_cart__approved=True)
+        provosioned_amount = 0
+        for budget_provision_budget in budget_provision_budgets:
+            provosioned_amount = provosioned_amount + budget_provision_budget.provosioned_amount
+        return self.current_budget - provosioned_amount - self.budget_decrease_control + self.released_amount
 
     class Meta:
         """Meta definition for Budget."""

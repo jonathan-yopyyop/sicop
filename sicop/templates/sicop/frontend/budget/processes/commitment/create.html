@@ -16,9 +16,29 @@
       font-size: 10px;
       color: white;
     }
+    #divCarga {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.7); /* Fondo semitransparente blanco */
+        justify-content: center;
+        align-items: center;
+        z-index: 9999; /* Asegura que esté encima de otros elementos */
+    }
+
+    #divCarga img {
+        width: 250px; /* Ajusta el tamaño de la imagen de carga */
+    }
   </style>
+  <div id="divCarga">
+    <img src="{% static 'images/loading.gif' %}" alt="Cargando...">
+  </div>
   <section id="configuration">
     <div class="row">
+      <button onclick="mostrarCarga()">Mostrar Carga</button>
       <div class="col-12">
         <div class="card">
           <div class="card-header">
@@ -221,7 +241,7 @@
                                                 {{commitment_release_item.budget.budget_description}}
                                               </td>
                                               <td>
-                                                {{commitment_release_item.budget.current_budget|format_to_cop}}
+                                                {{commitment_release_item.budget.available_budget|format_to_cop}}
                                                 <input type="hidden" id="control_value_{{commitment_release_item.id}}" value="{{commitment_release_item.budget.current_budget}}">
                                               </td>
                                               <td>
@@ -262,8 +282,6 @@
                               <i class="fa fa-edit"></i> {% trans 'Create' %}
                             </button>  
                             {% endif %}
-                              
-                            
                           </div>
                         </div>
                       </form>
@@ -505,6 +523,7 @@
 
         // set the timer to 5 seconds
         timeoutId = setTimeout(function() {
+          document.getElementById('divCarga').style.display = 'flex';
           //----------------------------------------------
           var amount = $("#not_related_required_amount").val();
           var url = "{% url 'commitment_amount_update' %}";
@@ -886,13 +905,16 @@
       });
       //Update contract or po entity on commitment
       $('.entity_id').on("change", function(){
+        
         var commitment_id = $('#commitment_id').val();
         var entity_id = $(this).val();
         var contract_or_po = $('#type').val();
         if (contract_or_po == 'CT') {
           entity_id = $("#contract").val();
+          document.getElementById('divCarga').style.display = 'flex';
         } else if (contract_or_po == 'PO') {
           entity_id = $("#po").val();
+          document.getElementById('divCarga').style.display = 'flex';
         }
         console.log(`entity_id: ${entity_id} contract_or_po: ${contract_or_po}`)
         var url = "{% url 'update_cap_entity' %}";
@@ -929,7 +951,7 @@
               var diference_between_required_and_provisioned = data.diference_between_required_and_provisioned;
               updateResumeValues(total_provisioned_amount, required_amount, diference_between_required_and_provisioned);
               // wait 3 second and reload
-              setTimeout(function(){ location.reload(); }, 5000);
+              setTimeout(function(){ location.reload(); }, 3000);
               
             } else {
               console.log(data);
