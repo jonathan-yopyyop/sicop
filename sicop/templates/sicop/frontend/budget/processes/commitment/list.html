@@ -65,7 +65,7 @@
                       <td>{{ commitment.id }}</td>
                       <td>{{ commitment.provision_cart }}</td>
                       <td>{{ commitment.get_contract_or_po_display }}</td>
-                      <td>{{ commitment.third.Razonmultiline_text:20|safe }}</td>
+                      <td>{{ commitment.third.Razon|multiline_text:20|safe }}</td>
                       <td>
                         {% if commitment.has_tax %}
                           <div class="badge badge-success">{% trans 'Yes' %}</div>
