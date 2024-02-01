@@ -70,7 +70,7 @@
                                           class="duallistbox"
                                           name="permissions[]"
                                           id="permissions">
-                                    {% for premission in permissions %}<option value="{{ premission.id }}">{{ premission.name }}</option>{% endfor %}
+                                    {% for premission in permissions %}<option value="{{ premission.id }}">{% trans premission.name %}</option>{% endfor %}
                                   </select>
                                 </div>
                               </div>

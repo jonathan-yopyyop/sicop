@@ -70,7 +70,7 @@
                                 {% for permission in permissions %}
                                   <option value="{{ permission.id }}"
                                           {% if permission in group.permissions.all %}selected{% endif %}>
-                                    {{ permission.name }}
+                                    {% trans permission.name %}
                                   </option>
                                 {% endfor %}
                               </select>

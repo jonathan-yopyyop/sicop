@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.contrib.auth.models import Group, Permission
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.utils.translation import activate
 from django.utils.translation import gettext_lazy as _
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView
@@ -23,6 +24,7 @@ class GroupDetailView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView)
     context_object_name = "group"
 
     def get_context_data(self, **kwargs):
+        activate("es")
         context = super().get_context_data(**kwargs)
         group = Group.objects.get(pk=self.kwargs["pk"])
         context["group"] = group
