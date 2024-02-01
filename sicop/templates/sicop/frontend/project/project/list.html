@@ -58,7 +58,7 @@
                     <tr>
                       <td>{{ project.id }}</td>
                       <td>{{ project.name }}</td>
-                      <td>{{ project.description|multiline_text|safe }}</td>
+                      <td>{{ project.description|multiline_text:30|safe }}</td>
                       <td>{{ project.budget|format_to_cop }}</td>
                       <td>{{ project.area }}</td>
                       <td>
