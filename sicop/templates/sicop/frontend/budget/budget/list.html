@@ -56,7 +56,7 @@
                     <tr>
                       <td>{{ budget.id }}</td>
                       <td>{{ budget.project.name|multiline_text:20|safe }}</td>
-                      <td>{{ budget.budget_description|multiline_text:20|safe }}</td>
+                      <td>{{ budget.budget_description.description|multiline_text:20|safe }}</td>
                       <td>{{ budget.current_budget|format_to_cop }}</td>
                       <td>{{ budget.quantity }}</td>
                       <td>
