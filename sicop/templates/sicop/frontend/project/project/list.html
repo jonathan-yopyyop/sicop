@@ -57,10 +57,10 @@
                   {% for project in projects %}
                     <tr>
                       <td>{{ project.id }}</td>
-                      <td>{{ project.name|multiline_text:20 }}</td>
+                      <td>{{ project.name|multiline_text:20|safe }}</td>
                       <td>{{ project.description|multiline_text:30|safe }}</td>
                       <td>{{ project.budget|format_to_cop }}</td>
-                      <td>{{ project.area.name|multiline_text:20 }}</td>
+                      <td>{{ project.area.name|multiline_text:20|safe }}</td>
                       <td>
                         {% if project.status %}
                           <div class="badge badge-success">{% trans 'Active' %}</div>
