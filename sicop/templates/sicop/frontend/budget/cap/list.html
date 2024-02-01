@@ -56,7 +56,7 @@
                     <tr>
                       <td>{{ budget_cap.id }}</td>
                       <td>{{ budget_cap.business_unit }}</td>
-                      <td>${{ budget_cap.cap|floatformat:2|intcomma }}</td>
+                      <td>{{ budget_cap.cap|format_to_cop }}</td>
                       <td>{{ budget_cap.description }}</td>
                       <td>
                         {% if budget_cap.status %}

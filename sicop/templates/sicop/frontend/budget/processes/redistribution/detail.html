@@ -3,6 +3,7 @@
 {% load static %}
 {% load i18n %}
 {% load humanize %}
+{% load sicop_filters %}
 {% block page_title %}
   {% trans 'Budget redistribution detail' %}
 {% endblock page_title %}
@@ -72,11 +73,11 @@
                                           </div>
                                           <div class="col-3">
                                             <label class="label-project" for="amount">{% trans 'Current amount' %}</label>
-                                            <input type="text" id="amount" class="form-control form-control-sm" placeholder="{% trans 'Current amount' %}" value="${{budget_redistribution.budget.available_budget|intcomma}}" readonly/>
+                                            <input type="text" id="amount" class="form-control form-control-sm" placeholder="{% trans 'Current amount' %}" value="{{budget_redistribution.budget.available_budget|format_to_cop}}" readonly/>
                                           </div>
                                           <div class="col-3">
                                             <label class="label-project" for="unit_value">{% trans 'Unit value' %}</label>
-                                            <input type="text" id="unit_value" class="form-control form-control-sm" placeholder="{% trans 'Unit value' %}" value="${{budget_redistribution.budget.unit_value|intcomma}}" readonly/>
+                                            <input type="text" id="unit_value" class="form-control form-control-sm" placeholder="{% trans 'Unit value' %}" value="{{budget_redistribution.budget.unit_value|format_to_cop}}" readonly/>
                                           </div>
                                         </div>  
                                         <div class="row">
@@ -86,15 +87,15 @@
                                           </div>
                                           <div class="col-3">
                                             <label class="label-project" for="initial_value">{% trans 'Initial value' %}</label>
-                                            <input type="text" id="initial_value" class="form-control form-control-sm" placeholder="{% trans 'Initial value' %}" value="${{budget_redistribution.budget.initial_value|intcomma}}" readonly/>
+                                            <input type="text" id="initial_value" class="form-control form-control-sm" placeholder="{% trans 'Initial value' %}" value="{{budget_redistribution.budget.initial_value|format_to_cop}}" readonly/>
                                           </div>
                                           <div class="col-3">
                                             <label class="label-project" for="budget_addition">{% trans 'budget adition' %}</label>
-                                            <input type="text" id="budget_addition" class="form-control form-control-sm" placeholder="{% trans 'budget adition' %}" value="${{budget_redistribution.budget.budget_addition|intcomma}}" readonly/>
+                                            <input type="text" id="budget_addition" class="form-control form-control-sm" placeholder="{% trans 'budget adition' %}" value="{{budget_redistribution.budget.budget_addition|format_to_cop}}" readonly/>
                                           </div>
                                           <div class="col-3">
                                             <label class="label-project" for="budget_decrease">{% trans 'Budget Decrease' %}</label>
-                                            <input type="text" id="budget_decrease" class="form-control form-control-sm" placeholder="{% trans 'Budget Decrease' %}" value="${{budget_redistribution.budget.budget_decrease|intcomma}}" readonly/>
+                                            <input type="text" id="budget_decrease" class="form-control form-control-sm" placeholder="{% trans 'Budget Decrease' %}" value="{{budget_redistribution.budget.budget_decrease|format_to_cop}}" readonly/>
                                           </div>
                                         </div>
                                       </div>
@@ -141,14 +142,14 @@
                                             {{budget_redistribution_item.budget.budget_description}}
                                           </td>
                                           <td>
-                                            ${{budget_redistribution_item.original_amount|intcomma}}
+                                            {{budget_redistribution_item.original_amount|format_to_cop}}
                                             <input type="hidden" id="budget_value_id_{{budget_redistribution_item.id}}" value ="{{budget_redistribution_item.original_amount}}">
                                           </td>
                                           <td>
-                                            ${{budget_redistribution_item.redistributed_amount|intcomma}}
+                                            {{budget_redistribution_item.redistributed_amount|format_to_cop}}
                                           </td>
                                           <td>
-                                            ${{budget_redistribution_item.new_amount|intcomma}}
+                                            {{budget_redistribution_item.new_amount|format_to_cop}}
                                           </td>
                                         </tr>  
                                       {% endfor %}
@@ -169,7 +170,7 @@
                                       <label class="col-md-12 label-control required" for="original_amount">{% trans "Current amount" %}</label>
                                     </div>
                                     <div class="col-7">
-                                      <input type="text" id="original_amount" class="form-control form-control-sm" value="${{budget_redistribution.original_amount|intcomma}}" readonly/>
+                                      <input type="text" id="original_amount" class="form-control form-control-sm" value="{{budget_redistribution.original_amount|format_to_cop}}" readonly/>
                                     </div>
                                   </div>
                                   <div class="row pt-1">
@@ -177,7 +178,7 @@
                                       <label class="col-md-12 label-control required" for="redistributed_amount">{% trans "Redistributed" %}</label>
                                     </div>
                                     <div class="col-7">
-                                      <input type="text" id="redistributed_amount" class="form-control form-control-sm" value="${{budget_redistribution.redistributed_amount|intcomma}}" readonly/>
+                                      <input type="text" id="redistributed_amount" class="form-control form-control-sm" value="{{budget_redistribution.redistributed_amount|format_to_cop}}" readonly/>
                                     </div>
                                   </div>
                                   <div class="row pt-1">
@@ -185,7 +186,7 @@
                                       <label class="col-md-12 label-control required" for="new_amount">{% trans "New Available" %}</label>
                                     </div>
                                     <div class="col-7">
-                                      <input type="text" id="new_amount" class="form-control form-control-sm" value="${{budget_redistribution.new_amount|intcomma}}" readonly/>
+                                      <input type="text" id="new_amount" class="form-control form-control-sm" value="{{budget_redistribution.new_amount|format_to_cop}}" readonly/>
                                     </div>
                                   </div>
                                 </div>

@@ -4,6 +4,7 @@
 {% load i18n %}
 {% load humanize %}
 {% load budget_tags %}
+{% load sicop_filters %}
 {% block page_title %}
   {% trans 'Budget commitment certificate' %}
 {% endblock page_title %}
@@ -453,7 +454,7 @@
                           </td>
                           <td class="row5-td-2">
                             <h5 class="item-value-text">
-                              ${{commitment.tax_amount|intcomma}}
+                              {{commitment.tax_amount|format_to_cop}}
                             </h5>
                           </td>
                         </tr>
@@ -469,7 +470,7 @@
                           </td>
                           <td class="row5-td-2">
                             <h5 class="item-value-text">
-                              ${{commitment.provision_budget_amount|intcomma}}
+                              {{commitment.provision_budget_amount|format_to_cop}}
                             </h5>
                           </td>
                           <td class="row5-td-1">
@@ -479,7 +480,7 @@
                           </td>
                           <td class="row5-td-2">
                             <h5 class="item-value-text">
-                              ${{commitment.required_amount|intcomma}}
+                              {{commitment.required_amount|format_to_cop}}
                             </h5>
                           </td>
                         </tr>
@@ -535,17 +536,17 @@
                           </td>
                           <td class="row8-td-2 text-center  ">
                             <h5 class="item-description-text">
-                              ${{item.budget_amount|intcomma}}
+                              {{item.budget_amount|format_to_cop}}
                             </h5>
                           </td>
                           <td class="row8-td-2 text-center  ">
                             <h5 class="item-description-text">
-                              ${{item.total_to_release|intcomma}}
+                              {{item.total_to_release|format_to_cop}}
                             </h5>
                           </td>
                           <td class="row8-td-2 text-center  ">
                             <h5 class="item-description-text">
-                              ${{item.budget.available_budget|intcomma}}
+                              {{item.budget.available_budget|format_to_cop}}
                             </h5>
                           </td>
                         </tr>  

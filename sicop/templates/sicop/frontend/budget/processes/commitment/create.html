@@ -3,6 +3,7 @@
 {% load static %}
 {% load i18n %}
 {% load humanize %}
+{% load sicop_filters %}
 {% block page_title %}
   {% trans 'Budget commitment create' %}
 {% endblock page_title %}
@@ -164,17 +165,17 @@
                                   <div class="row">
                                     <div class="col-4">
                                       <label class="label-project" for="cap_budget">{% trans 'CAP budget' %}</label>
-                                      <input type="text" name="cap_budget" id="cap_budget" class="form-control form-control-sm" value="${{commitment.provision_budget_amount | intcomma}}" disabled>
+                                      <input type="text" name="cap_budget" id="cap_budget" class="form-control form-control-sm" value="{{commitment.provision_budget_amount | format_to_cop}}" disabled>
                                       <input type="hidden" id="cap_budget_amount" value="{{commitment.provision_budget_amount}}">
                                     </div>
                                     <div class="col-4">
                                       <label id="type_label" class="label-project" for="required">{% trans 'Commitment budget' %}</label>
-                                      <input type="text" id="required" class="form-control form-control-sm" value="${{commitment.required_amount | intcomma}}" disabled>
+                                      <input type="text" id="required" class="form-control form-control-sm" value="{{commitment.required_amount | format_to_cop}}" disabled>
                                       <input type="hidden" id="required_amount" value="{{commitment.required_amount}}">
                                     </div>
                                     <div class="col-4">
                                       <label id="difference_label" class="label-project" for="required">{% trans 'Difference between CAP and Commitment budget' %}</label>
-                                      <input type="text" name="difference" id="difference" class="form-control form-control-sm" value="${{commitment.diference_between_required_and_provisioned | intcomma}}" disabled>
+                                      <input type="text" name="difference" id="difference" class="form-control form-control-sm" value="{{commitment.diference_between_required_and_provisioned | format_to_cop}}" disabled>
                                     </div>
                                   </div>
                                 </div>
@@ -190,16 +191,16 @@
                                   <div class="row">
                                     <div class="col-4">
                                       <label class="label-project" for="required">{% trans 'Total for release' %}</label>
-                                      <input type="text" class="form-control form-control-sm" name="to_release_text" id="to_release_text" value="${{commitment_release.total_to_release | intcomma}}" readonly>
+                                      <input type="text" class="form-control form-control-sm" name="to_release_text" id="to_release_text" value="{{commitment_release.total_to_release | format_to_cop}}" readonly>
                                       <input type="hidden" name="to_release" id="to_release" value="{{commitment_release.total_to_release}}">
                                     </div>
                                     <div class="col-4">
                                       <label class="label-project" for="released_text">{% trans 'Total released' %}</label>
-                                      <input type="text" class="form-control form-control-sm" name="released_text" id="released_text" value="${{commitment_release.total_released | intcomma}}" readonly>
+                                      <input type="text" class="form-control form-control-sm" name="released_text" id="released_text" value="{{commitment_release.total_released | format_to_cop}}" readonly>
                                     </div>
                                     <div class="col-4">
                                       <label class="label-project" for="total_pending_text">{% trans 'Pending for release' %}</label>
-                                      <input type="text" class="form-control form-control-sm" name="total_pending_text" id="total_pending_text" value="${{commitment_release.total_pending | intcomma}}" readonly>
+                                      <input type="text" class="form-control form-control-sm" name="total_pending_text" id="total_pending_text" value="{{commitment_release.total_pending | format_to_cop}}" readonly>
                                       <input type="hidden"id="total_pending_amount" value="{{commitment_release.total_pending}}">
                                     </div>
                                     <div class="col-12 mt-2">
@@ -220,7 +221,7 @@
                                                 {{commitment_release_item.budget.budget_description}}
                                               </td>
                                               <td>
-                                                ${{commitment_release_item.budget.current_budget|intcomma}}
+                                                {{commitment_release_item.budget.current_budget|format_to_cop}}
                                                 <input type="hidden" id="control_value_{{commitment_release_item.id}}" value="{{commitment_release_item.budget.current_budget}}">
                                               </td>
                                               <td>

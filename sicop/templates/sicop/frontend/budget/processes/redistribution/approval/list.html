@@ -3,6 +3,7 @@
 {% load static %}
 {% load i18n %}
 {% load humanize %}
+{% load sicop_filters %}
 {% block page_title %}
   {% trans 'Budget redistribution approval list' %}
 {% endblock page_title %}
@@ -59,7 +60,7 @@
                             {% for item in item.budget_redistribution_budget_redistribution_items.all %}
                               <tr>
                                 <td class="redistribution_font_size">{{ item.budget.budget_description }}</td>
-                                <td class="redistribution_font_size">${{ item.redistributed_amount|intcomma }}</td>
+                                <td class="redistribution_font_size">{{ item.redistributed_amount|format_to_cop }}</td>
                               </tr>
                             {% endfor %}
                           </tbody>

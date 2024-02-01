@@ -2,7 +2,7 @@
 
 {% load static %}
 {% load i18n %}
-
+{% load sicop_filters %}
 {% block page_title %}
   {% trans 'Budget list' %}
 {% endblock page_title %}
@@ -57,7 +57,7 @@
                       <td>{{ budget.id }}</td>
                       <td>{{ budget.project }}</td>
                       <td>{{ budget.budget_description }}</td>
-                      <td>${{ budget.current_budget }}</td>
+                      <td>{{ budget.current_budget|parse_to_cop }}</td>
                       <td>{{ budget.quantity }}</td>
                       <td>
                         {% if budget.status %}

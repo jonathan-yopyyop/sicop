@@ -2,6 +2,7 @@
 
 {% load static %}
 {% load i18n %}
+{% load sicop_filters %}
 {% load humanize %}
 {% block page_title %}
   {% trans 'Budget apropiation transaction list' %}
@@ -40,9 +41,9 @@
                         </ul>
                       </td>
                       
-                      <td>${{ budget_decrease_control_transaction.old_amount| intcomma }}</td>
-                      <td>${{ budget_decrease_control_transaction.requiered_amount| intcomma }}</td>
-                      <td>${{ budget_decrease_control_transaction.new_amount| intcomma }}</td>
+                      <td>{{ budget_decrease_control_transaction.old_amount| format_to_cop }}</td>
+                      <td>{{ budget_decrease_control_transaction.requiered_amount| format_to_cop }}</td>
+                      <td>{{ budget_decrease_control_transaction.new_amount| format_to_cop }}</td>
                     </tr>
                   {% endfor %}
                 </tbody>

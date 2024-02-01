@@ -2,7 +2,7 @@
 {% load humanize %}
 {% load static %}
 {% load i18n %}
-
+{% load sicop_filters %}
 {% block page_title %}
   {% trans 'Project types list' %}
 {% endblock page_title %}
@@ -55,8 +55,8 @@
                     <tr>
                       <td>{{ type.id }}</td>
                       <td>{{ type.name }}</td>
-                      <td>${{ type.cap|intcomma }}</td>
-                      <td>${{ type.redistribution_cap|intcomma }}</td>
+                      <td>{{ type.cap|format_to_cop }}</td>
+                      <td>{{ type.redistribution_cap|format_to_cop }}</td>
                       <td>
                         {% if type.status %}
                           <div class="badge badge-success">{% trans 'Active' %}</div>

@@ -4,6 +4,7 @@
 {% load i18n %}
 {% load humanize %}
 {% load budget_tags %}
+{% load sicop_filters %}
 {% block page_title %}
   {% trans 'Budget addition certificate' %}
 {% endblock page_title %}
@@ -400,17 +401,17 @@
                           </td>
                           <td class="row8-td-2 text-center  ">
                             <h5 class="item-description-text">
-                              ${{item.original_amount|intcomma}}
+                              {{item.original_amount|format_to_cop}}
                             </h5>
                           </td>
                           <td class="row8-td-2 text-center  ">
                             <h5 class="item-description-text">
-                              ${{item.added_amount|intcomma}}
+                              {{item.added_amount|format_to_cop}}
                             </h5>
                           </td>
                           <td class="row8-td-2 text-center  ">
                             <h5 class="item-description-text">
-                              ${{item.new_amount|intcomma}}
+                              {{item.new_amount|format_to_cop}}
                             </h5>
                           </td>
                         </tr>  

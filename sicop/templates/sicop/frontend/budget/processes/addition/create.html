@@ -3,6 +3,7 @@
 {% load static %}
 {% load i18n %}
 {% load humanize %}
+{% load sicop_filters %}
 {% block page_title %}
   {% trans 'Budget addition create' %}
 {% endblock page_title %}
@@ -102,7 +103,7 @@
                                             {{budget_addition_item.budget.budget_description}}
                                           </td>
                                           <td>
-                                            ${{budget_addition_item.original_amount|intcomma}}
+                                            {{budget_addition_item.original_amount|format_to_cop}}
                                             <input 
                                               type="hidden" id="budget_value_id_{{budget_addition_item.id}}" 
                                               value ="{{budget_addition_item.original_amount}}">
@@ -120,7 +121,7 @@
                                               type="text" 
                                               class="form-control form-control-sm table_item_class" 
                                               id="budget_show_value_id_{{budget_addition_item.id}}" 
-                                              value="${{budget_addition_item.new_amount|intcomma}}">
+                                              value="{{budget_addition_item.new_amount|format_to_cop}}">
                                           </td>
                                           <td>
                                             <button 

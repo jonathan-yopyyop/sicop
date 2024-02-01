@@ -2,6 +2,7 @@
 
 {% load static %}
 {% load i18n %}
+{% load sicop_filters %}
 {% load humanize %}
 {% block page_title %}
   {% trans 'Budget addition approval list' %}
@@ -59,9 +60,9 @@
                             {% for item in item.budgetadditionitem_set.all %}
                               <tr>
                                 <td class="redistribution_font_size">{{ item.budget.budget_description }}</td>
-                                <td class="redistribution_font_size">${{ item.original_amount|intcomma }}</td>
-                                <td class="redistribution_font_size">${{ item.added_amount|intcomma }}</td>
-                                <td class="redistribution_font_size">${{ item.new_amount|intcomma }}</td>
+                                <td class="redistribution_font_size">{{ item.original_amount|format_to_cop }}</td>
+                                <td class="redistribution_font_size">{{ item.added_amount|format_to_cop }}</td>
+                                <td class="redistribution_font_size">{{ item.new_amount|format_to_cop }}</td>
                               </tr>
                             {% endfor %}
                           </tbody>

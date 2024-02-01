@@ -3,6 +3,7 @@
 {% load static %}
 {% load i18n %}
 {% load humanize %}
+{% load sicop_filters %}
 {% block page_title %}
   {% trans 'Budget addition list' %}
 {% endblock page_title %}
@@ -74,9 +75,9 @@
                             {% for item in budget_addition.budgetadditionitem_set.all %}
                               <tr>
                                 <td class="redistribution_font_size">{{ item.budget.budget_description }}</td>
-                                <td class="redistribution_font_size">${{ item.original_amount|intcomma }}</td>
-                                <td class="redistribution_font_size">${{ item.added_amount|intcomma }}</td>
-                                <td class="redistribution_font_size">${{ item.new_amount|intcomma }}</td>
+                                <td class="redistribution_font_size">{{ item.original_amount|format_to_cop }}</td>
+                                <td class="redistribution_font_size">{{ item.added_amount|format_to_cop }}</td>
+                                <td class="redistribution_font_size">{{ item.new_amount|format_to_cop }}</td>
                               </tr>
                             {% endfor %}
                           </tbody>

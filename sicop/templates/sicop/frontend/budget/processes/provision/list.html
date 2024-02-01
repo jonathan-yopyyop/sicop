@@ -2,6 +2,7 @@
 
 {% load static %}
 {% load i18n %}
+{% load sicop_filters %}
 {% load humanize %}
 {% block page_title %}
   {% trans 'Budget provision list' %}
@@ -65,7 +66,7 @@
                         </ul>
                       </td>
                       <td>{{ provision_cart.user.name }}</td>
-                      <td>${{ provision_cart.total_provisioned_amount| intcomma }}</td>
+                      <td>{{ provision_cart.total_provisioned_amount| format_to_cop }}</td>
                       <td>
                         {% if provision_cart.finished %}
                           <div class="badge badge-success">{% trans 'Yes' %}</div>

@@ -3,6 +3,7 @@
 {% load static %}
 {% load i18n %}
 {% load humanize %}
+{% load sicop_filters %}
 {% block page_title %}
   {% trans 'Budget provision approval list' %}
 {% endblock page_title %}
@@ -51,7 +52,7 @@
                           {% endfor %}
                         </ul>
                       </td>
-                      <td>${{ provision_cart.provision_cart.total_provisioned_amount| intcomma }}</td>
+                      <td>{{ provision_cart.provision_cart.total_provisioned_amount| format_to_cop }}</td>
                       <td>
                         {% if provision_cart.approved %}
                           <span class="badge rounded-pill text-bg-success">{% trans "Approved" %}</span>

@@ -71,7 +71,7 @@
                                      class="form-control"
                                      placeholder="{% trans 'Cap' %}"
                                      name="cap"
-                                     value="${{ budget_cap.cap|floatformat:2|intcomma }}" />
+                                     value="{{ budget_cap.cap|format_to_cop }}" />
                             </div>
                           </div>
                           <div class="col-md-6">
