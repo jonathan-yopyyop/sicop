@@ -73,7 +73,7 @@
                                     {% for premission in permissions %}
                                       <option value="{{ premission.id }}"
                                               {% if premission.id in group_permissions %}selected{% endif %}>
-                                        {{ premission.name }}
+                                              {% trans premission.name %}
                                       </option>
                                     {% endfor %}
                                   </select>
