@@ -29,5 +29,8 @@ def multiline_text(value, line_length=50):
 
 @register.filter(name="format_to_cop")
 def format_to_cop(value):
+    # check if value is string and format to float
+    if isinstance(value, str):
+        value = float(value)
     formatted_value = f"${value:,.0f} COP"
     return formatted_value
