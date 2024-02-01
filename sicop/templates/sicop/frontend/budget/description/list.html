@@ -53,7 +53,7 @@
                   {% for budget_description in budgetdescriptions %}
                     <tr>
                       <td>{{ budget_description.id }}</td>
-                      <td>{{ budget_description.expense_concept|multiline_text:20|safe }}</td>
+                      <td>{{ budget_description.expense_concept.name|multiline_text:20|safe }}</td>
                       <td>{{ budget_description.description|multiline_text:20|safe }}</td>
                       <td>
                         {% if budget_description.status %}
