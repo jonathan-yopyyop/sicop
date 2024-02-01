@@ -126,12 +126,12 @@
                             <div class="form-group">
                               <label for="projectinput3">{% trans 'Project Type' %}</label>
                               <select class="select2 form-control" disabled name="project_type">
-                                {% for type in project_types %}
-                                  <option value="{{ area.id }}"
-                                          {% if type.id == project.type.id %}selected{% endif %}>
-                                    {{ type.name }}
-                                  </option>
-                                {% endfor %}
+                                {% for project_type in project_types %}
+                                    <option value="{{ project_type.id }}"
+                                            {% if project_type.id == project.project_type.id %}selected{% endif %}>
+                                      {{ project_type.name }}
+                                    </option>
+                                  {% endfor %}
                               </select>
                             </div>
                           </div>
