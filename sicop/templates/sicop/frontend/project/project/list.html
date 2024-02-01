@@ -60,7 +60,7 @@
                       <td>{{ project.name }}</td>
                       <td>{{ project.description|multiline_text:30|safe }}</td>
                       <td>{{ project.budget|format_to_cop }}</td>
-                      <td>{{ project.area }}</td>
+                      <td>{{ project.areamultiline_text:20 }}</td>
                       <td>
                         {% if project.status %}
                           <div class="badge badge-success">{% trans 'Active' %}</div>
