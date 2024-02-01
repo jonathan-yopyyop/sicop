@@ -55,7 +55,7 @@
                   {% for member in members %}
                     <tr>
                       <td>{{ member.id }}</td>
-                      <td>{{ member.user_full_name }}</td>
+                      <td>{{ member.user_full_name|multiline_text:20|safe }}</td>
                       <td>{{ member.user.email }}</td>
                       <td>{{ member.area }}</td>
                       <td>{{ member.role }}</td>
