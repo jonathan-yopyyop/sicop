@@ -11,6 +11,7 @@ ALLOWED_HOSTS = env.list(
     default=[
         "sicop.maloka.org",
         "sicop.artd.com.co",
+        "*",
     ],
 )
 
