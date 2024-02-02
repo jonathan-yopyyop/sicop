@@ -59,9 +59,9 @@ SECURE_CONTENT_TYPE_NOSNIFF = env.bool("DJANGO_SECURE_CONTENT_TYPE_NOSNIFF", def
 # ------------------------------------------------------------------------------
 # https://django-storages.readthedocs.io/en/latest/#installation
 INSTALLED_APPS += ["storages"]  # noqa: F405
-AZURE_ACCOUNT_KEY = env("DJANGO_AZURE_ACCOUNT_KEY")
-AZURE_ACCOUNT_NAME = env("DJANGO_AZURE_ACCOUNT_NAME")
-AZURE_CONTAINER = env("DJANGO_AZURE_CONTAINER_NAME")
+# AZURE_ACCOUNT_KEY = env("DJANGO_AZURE_ACCOUNT_KEY")
+# AZURE_ACCOUNT_NAME = env("DJANGO_AZURE_ACCOUNT_NAME")
+# AZURE_CONTAINER = env("DJANGO_AZURE_CONTAINER_NAME")
 # STATIC
 # ------------------------
 STORAGES = {
@@ -72,10 +72,10 @@ STORAGES = {
         "BACKEND": "sicop.utils.storages.StaticAzureStorage",
     },
 }
-STATIC_URL = f"https://{AZURE_ACCOUNT_NAME}.blob.core.windows.net/static/"
+# STATIC_URL = f"https://{AZURE_ACCOUNT_NAME}.blob.core.windows.net/static/"
 # MEDIA
 # ------------------------------------------------------------------------------
-MEDIA_URL = f"https://{AZURE_ACCOUNT_NAME}.blob.core.windows.net/media/"
+# MEDIA_URL = f"https://{AZURE_ACCOUNT_NAME}.blob.core.windows.net/media/"
 
 # EMAIL
 # ------------------------------------------------------------------------------
