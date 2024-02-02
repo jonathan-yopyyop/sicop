@@ -47,6 +47,7 @@ RUN mv /tmp/openssl.cnf /etc/ssl/openssl.cnf
 
 # Requirements are installed here to ensure they will be cached.
 COPY ./requirements .
+COPY .env .
 
 # Create Python Dependency and Sub-Dependency Wheels.
 RUN pip wheel --wheel-dir /usr/src/app/wheels  \
