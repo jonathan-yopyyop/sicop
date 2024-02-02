@@ -1,16 +1,13 @@
-"""
-Base settings to build other settings files upon.
-"""
+"""Base settings to build other settings files upon."""
 from pathlib import Path
 
 import environ
 from django.utils.translation import gettext_lazy as _
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
-# sicop/
-APPS_DIR = BASE_DIR / "sicop"
+# my_awesome_project/
+APPS_DIR = BASE_DIR / "my_awesome_project"
 env = environ.Env()
-# environ.Env.read_env()
 
 READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
 if READ_DOT_ENV_FILE:
