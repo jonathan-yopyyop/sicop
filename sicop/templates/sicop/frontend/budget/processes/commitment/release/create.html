@@ -182,20 +182,6 @@
                                     {% trans "Release resources" %}
                                   </h4>
                                   <div class="row">
-                                    <div class="col-4">
-                                      <label class="label-project" for="required">{% trans 'Total for release' %}</label>
-                                      <input type="text" class="form-control form-control-sm" name="to_release_text" id="to_release_text" value="{{commitment_release.total_to_release | format_to_cop}}" readonly>
-                                      <input type="hidden" name="to_release" id="to_release" value="{{commitment_release.total_to_release}}">
-                                    </div>
-                                    <div class="col-4">
-                                      <label class="label-project" for="released_text">{% trans 'Total released' %}</label>
-                                      <input type="text" class="form-control form-control-sm" name="released_text" id="released_text" value="{{commitment_release.total_released | format_to_cop}}" readonly>
-                                    </div>
-                                    <div class="col-4">
-                                      <label class="label-project" for="total_pending_text">{% trans 'Pending for release' %}</label>
-                                      <input type="text" class="form-control form-control-sm" name="total_pending_text" id="total_pending_text" value="{{commitment_release.total_pending | format_to_cop}}" readonly>
-                                      <input type="hidden"id="total_pending_amount" value="{{commitment_release.total_pending}}">
-                                    </div>
                                     <div class="col-12 mt-2">
                                       <table class="table" id="items_table">
                                         <thead>
