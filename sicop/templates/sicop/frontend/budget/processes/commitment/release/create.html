@@ -143,17 +143,17 @@
                                       <div class="row">
                                         <div class="col-4">
                                           <label class="label-project" for="cap_budget">{% trans 'CAP budget' %}</label>
-                                          <input type="text" name="cap_budget" id="cap_budget" class="form-control form-control-sm" value="{{commitment.provision_budget_amount | format_to_cop}}" disabled>
+                                          <input type="text" name="cap_budget" id="cap_budget" class="form-control" value="{{commitment.provision_budget_amount | format_to_cop}}" disabled>
                                           <input type="hidden" id="cap_budget_amount" value="{{commitment.provision_budget_amount}}">
                                         </div>
                                         <div class="col-4">
                                           <label id="type_label" class="label-project" for="required">{% trans 'Commitment budget' %}</label>
-                                          <input type="text" id="required" class="form-control form-control-sm" value="{{commitment.required_amount | format_to_cop}}" disabled>
+                                          <input type="text" id="required" class="form-control" value="{{commitment.required_amount | format_to_cop}}" disabled>
                                           <input type="hidden" id="required_amount" value="{{commitment.required_amount}}">
                                         </div>
                                         <div class="col-4">
                                           <label id="difference_label" class="label-project" for="required">{% trans 'Difference between CAP and Commitment budget' %}</label>
-                                          <input type="text" name="difference" id="difference" class="form-control form-control-sm" value="{{commitment.diference_between_required_and_provisioned | format_to_cop}}" disabled>
+                                          <input type="text" name="difference" id="difference" class="form-control" value="{{commitment.diference_between_required_and_provisioned | format_to_cop}}" disabled>
                                         </div>
                                       </div>
                                     </div>
