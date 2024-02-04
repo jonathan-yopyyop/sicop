@@ -269,11 +269,14 @@
         </a>
         <ul class="menu-content">
           {% if 'budget.view_commitment' in perms %}
-          <li {% if '/budget/commitment/' in request.path %}class="active"{% endif %}>
+          <li {% if '/budget/commitment/' in request.path and '/search/' not in request.path and '/list/' not in request.path  %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'commitment_list' %}">{% trans 'Commitments' %}</a>
           </li>
-          <li {% if 'commitment/release/search/' in request.path %}class="active"{% endif %}>
-            <a class="menu-item" href="{% url 'commitment_release_search' %}">{% trans 'Relsease' %}</a>
+          <li {% if '/release/search/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'commitment_release_search' %}">{% trans 'Create release' %}</a>
+          </li>
+          <li {% if '/release/list/' in request.path %}class="active"{% endif %}>
+            <a class="menu-item" href="{% url 'commitment_release_list' %}">{% trans 'Releases' %}</a>
           </li>
           {% endif %}
         </ul>

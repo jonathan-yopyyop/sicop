@@ -37,6 +37,9 @@ from sicop.budget.views import (
     CommitmentCertificateView,
     CommitmentCreateView,
     CommitmentListView,
+    CommitmentReleaseCertificateView,
+    CommitmentReleaseListView,
+    CommitmentReleaseOrphanUpdateView,
     CommitmentReleaseUpdateView,
     CommitmentTaxUpdateView,
     CreateAdditionItem,
@@ -395,7 +398,7 @@ urlpatterns = [
         name="commitment_release_search",
     ),
     path(
-        "commitment/<int:pk>/",
+        "commitment/release/search/result/<int:pk>/",
         BudgetRelease.as_view(),
         name="commitment_release",
     ),
@@ -423,5 +426,20 @@ urlpatterns = [
         "commitment/release/search-by-consumption/",
         BudgerReleaseSearchByConsumption.as_view(),
         name="commitment_release_search_by_consumption",
+    ),
+    path(
+        "commitment/release/orphan/update/",
+        CommitmentReleaseOrphanUpdateView.as_view(),
+        name="commitment_release_orphan_update",
+    ),
+    path(
+        "commitment/release/certificate/<int:pk>/",
+        CommitmentReleaseCertificateView.as_view(),
+        name="commitment_release_certificate",
+    ),
+    path(
+        "commitment/release/list/",
+        CommitmentReleaseListView.as_view(),
+        name="commitment_release_list",
     ),
 ]

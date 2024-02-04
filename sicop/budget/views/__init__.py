@@ -48,6 +48,7 @@ from sicop.budget.views.processes.budget_commitment import (  # noqa
     CommitmentCertificateView,
     CommitmentCreateView,
     CommitmentListView,
+    CommitmentReleaseOrphanUpdateView,
     CommitmentReleaseUpdateView,
     CommitmentTaxUpdateView,
     CreateOrdestroyReleaseTable,
@@ -79,6 +80,8 @@ from sicop.budget.views.processes.budget_release import (  # noqa
     BudgerReleaseSearchByPO,
     BudgetRelease,
     BudgetReleaseSearch,
+    CommitmentReleaseCertificateView,
+    CommitmentReleaseListView,
 )
 from sicop.budget.views.processes.cart import (  # noqa
     AddItemToProvisionInCart,

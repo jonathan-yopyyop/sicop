@@ -11,6 +11,8 @@ from sicop.budget.models.commitment import (  # noqa
     Commitment,
     CommitmentContract,
     CommitmentNotRelated,
+    CommitmentOrphanRealeaseItems,
+    CommitmentOrphanRelease,
     CommitmentPO,
     CommitmentRealeaseItems,
     CommitmentRelease,

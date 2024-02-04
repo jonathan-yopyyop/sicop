@@ -13,6 +13,7 @@ from sicop.budget.models import (
     Commitment,
     CommitmentContract,
     CommitmentNotRelated,
+    CommitmentOrphanRealeaseItems,
     CommitmentPO,
     CommitmentRealeaseItems,
     CommitmentRelease,
@@ -683,3 +684,42 @@ class CommitmentCertificateView(LoginRequiredMixin, TemplateView):
         context["key"] = key
 
         return context
+
+
+class CommitmentReleaseOrphanUpdateView(LoginRequiredMixin, TemplateView):
+    def post(self, request, *args, **kwargs):
+        try:
+            commiment_release_item_id = request.POST.get("id")
+            commitment_release_amount = request.POST.get("released_value")
+
+            commiment_release_orphan_item = CommitmentOrphanRealeaseItems.objects.get(id=commiment_release_item_id)
+            commiment_release_orphan_item.total_to_release = commitment_release_amount
+            commiment_release_orphan_item.save()
+
+            commitment_orphan_release = commiment_release_orphan_item.commitment_release
+            commitment_orphan_release_items = CommitmentOrphanRealeaseItems.objects.filter(
+                commitment_release=commitment_orphan_release,
+            )
+            total_released = 0
+            for item in commitment_orphan_release_items:
+                total_released = total_released + item.total_to_release
+            commitment_orphan_release.total_released = total_released
+            commitment_orphan_release.save()
+
+            return JsonResponse(
+                {
+                    "status": "ok",
+                    "total_to_release": commitment_orphan_release.total_to_release,
+                    "total_released": commitment_orphan_release.total_released,
+                    "total_pending": 0,
+                },
+                safe=False,
+            )
+        except Exception as e:
+            return JsonResponse(
+                {
+                    "status": "error",
+                    "message": str(e),
+                },
+                safe=False,
+            )

@@ -285,3 +285,109 @@ class CommitmentRealeaseItems(BaseModel):
     def __str__(self):
         """Unicode representation of Commitment Realease Items."""
         return str(self.id)
+
+
+class CommitmentOrphanRelease(BaseModel):
+    """Model definition for Commitment Release."""
+
+    commitment = models.ForeignKey(
+        Commitment,
+        verbose_name=_("Commitment"),
+        help_text=_("Commitment"),
+        related_name="commitment_orphan_release",
+        on_delete=models.CASCADE,
+    )
+    user = models.ForeignKey(
+        "users.User",
+        verbose_name=_("User"),
+        help_text=_("User"),
+        related_name="user_commitment_orphan_release",
+        on_delete=models.CASCADE,
+    )
+    total_to_release = models.FloatField(
+        _("Total to release"),
+        help_text=_("Total to release"),
+        default=0,
+        null=True,
+        blank=True,
+    )
+    total_released = models.FloatField(
+        _("Total released"),
+        help_text=_("Total released"),
+        default=0,
+        null=True,
+        blank=True,
+    )
+    processed = models.BooleanField(
+        _("Processed"),
+        help_text=_("Processed"),
+        default=False,
+    )
+
+    @property
+    def total_pending(self):
+        return self.total_to_release - self.total_released
+
+    class Meta:
+        """Meta definition for Commitment Release."""
+
+        verbose_name = _("Commitment Orphan Release")
+        verbose_name_plural = _("Commitment Orphan Releases")
+
+    def __str__(self):
+        """Unicode representation of Commitment Release."""
+        return str(self.id)
+
+
+class CommitmentOrphanRealeaseItems(BaseModel):
+    """Model definition for Commitment Realease Items."""
+
+    commitment_release = models.ForeignKey(
+        CommitmentOrphanRelease,
+        verbose_name=_("Commitment Release"),
+        help_text=_("Commitment Release"),
+        related_name="commitment_orphan_release_items",
+        on_delete=models.CASCADE,
+    )
+    budget = models.ForeignKey(
+        "budget.Budget",
+        verbose_name=_("Budget"),
+        help_text=_("Budget"),
+        related_name="budget_commitment_orphan_release_items",
+        on_delete=models.CASCADE,
+    )
+    budget_amount = models.FloatField(
+        _("Budget amount"),
+        help_text=_("Budget amount"),
+        default=0,
+        null=True,
+        blank=True,
+    )
+    total_to_release = models.FloatField(
+        _("Total to release"),
+        help_text=_("Total to release"),
+        default=0,
+        null=True,
+        blank=True,
+    )
+    new_db_budget_amount = models.FloatField(
+        _("New budget amount"),
+        help_text=_("New budget amount"),
+        default=0,
+        null=True,
+        blank=True,
+    )
+
+    @property
+    def new_budget_amount(self):
+        return self.budget_amount + self.total_to_release
+
+    class Meta:
+        """Meta definition for Commitment Realease Items."""
+
+        verbose_name = _("Commitment Realease Orphan Item")
+        verbose_name_plural = _("Commitment Realease Orphan Items")
+
+    def __str__(self):
+        """Unicode representation of Commitment Realease Items."""
+        return str(self.id)

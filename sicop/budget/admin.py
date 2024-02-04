@@ -16,6 +16,8 @@ from sicop.budget.models import (
     Commitment,
     CommitmentContract,
     CommitmentNotRelated,
+    CommitmentOrphanRealeaseItems,
+    CommitmentOrphanRelease,
     CommitmentPO,
     CommitmentRealeaseItems,
     CommitmentRelease,
@@ -563,4 +565,42 @@ class CommitmentNotRelatedAdmin(ImportExportModelAdmin, admin.ModelAdmin):
         "key",
         "created_at",
         "updated_at",
+    ]
+
+
+@admin.register(CommitmentOrphanRelease)
+class CommitmentOrphanReleaseAdmin(admin.ModelAdmin):
+    list_display = [
+        "id",
+        "commitment",
+        "processed",
+        "status",
+        "user",
+        "total_to_release",
+        "total_released",
+    ]
+    readonly_fields = [
+        "id",
+        "commitment",
+        "user",
+        "total_to_release",
+        "total_released",
+    ]
+
+
+@admin.register(CommitmentOrphanRealeaseItems)
+class CommitmentOrphanRealeaseItemsAdmin(admin.ModelAdmin):
+    list_display = [
+        "id",
+        "commitment_release",
+        "budget",
+        "budget_amount",
+        "total_to_release",
+    ]
+    readonly_fields = [
+        "id",
+        "commitment_release",
+        "budget",
+        "budget_amount",
+        "total_to_release",
     ]
