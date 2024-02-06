@@ -18,9 +18,9 @@ DJANGO_SERVER_EMAIL=
 
 # AWS
 # ------------------------------------------------------------------------------
-DJANGO_AWS_ACCESS_KEY_ID=
-DJANGO_AWS_SECRET_ACCESS_KEY=
-DJANGO_AWS_STORAGE_BUCKET_NAME=
+DJANGO_AWS_ACCESS_KEY_ID=AKIAYS2NXHZFBFU45KGD
+DJANGO_AWS_SECRET_ACCESS_KEY=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
+DJANGO_AWS_STORAGE_BUCKET_NAME=sicop
 
 # django-allauth
 # ------------------------------------------------------------------------------
