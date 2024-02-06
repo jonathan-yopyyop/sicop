@@ -24,6 +24,8 @@ from sicop.budget.models import (
     ProvisionCart,
     ProvisionCartApproval,
     ProvisionCartBudget,
+    ProvisionCartBudgetHistory,
+    ProvisionCartHistory,
 )
 
 
@@ -603,4 +605,47 @@ class CommitmentOrphanRealeaseItemsAdmin(admin.ModelAdmin):
         "budget",
         "budget_amount",
         "total_to_release",
+    ]
+
+
+@admin.register(ProvisionCartHistory)
+class ProvisionCartHistoryAdmin(admin.ModelAdmin):
+    list_display = [
+        "id",
+        "provision_cart",
+        "user",
+        "total_required_amount",
+        "total_provisioned_amount",
+        "total_missing_amount",
+    ]
+    readonly_fields = [
+        "id",
+        "provision_cart",
+        "user",
+        "total_required_amount",
+        "total_provisioned_amount",
+        "total_missing_amount",
+        "finished",
+        "observation",
+        "requires_approval",
+        "approved",
+        "rejected",
+    ]
+
+
+@admin.register(ProvisionCartBudgetHistory)
+class ProvisionCartBudgetHistoryAdmin(admin.ModelAdmin):
+    list_display = [
+        "id",
+        "provision_cart_history",
+        "budget",
+        "provosioned_amount",
+        "available_budget",
+    ]
+    readonly_fields = [
+        "id",
+        "provision_cart_history",
+        "budget",
+        "provosioned_amount",
+        "available_budget",
     ]

@@ -11,7 +11,13 @@ from django.views.generic.list import ListView
 
 from sicop.area.models import AreaMember
 from sicop.budget.models import Budget, BudgetDecreaseTransaction
-from sicop.budget.models.provision import ProvisionCart, ProvisionCartApproval, ProvisionCartBudget
+from sicop.budget.models.provision import (
+    ProvisionCart,
+    ProvisionCartApproval,
+    ProvisionCartBudget,
+    ProvisionCartBudgetHistory,
+    ProvisionCartHistory,
+)
 from sicop.certificate.models import Certificate
 from sicop.project.models import Project
 
@@ -108,7 +114,25 @@ class BudgetProvisionCreate(PermissionRequiredMixin, LoginRequiredMixin, Templat
             cart.finished = True
             cart.status = False
             cart.save()
-
+            provistion_cart_history = ProvisionCartHistory.objects.create(
+                provision_cart=cart,
+                user=request.user,
+                total_required_amount=cart.total_required_amount,
+                total_provisioned_amount=cart.total_provisioned_amount,
+                total_missing_amount=cart.total_missing_amount,
+                finished=cart.finished,
+                observation=cart.observation,
+                requires_approval=cart.requires_approval,
+                approved=cart.approved,
+                rejected=cart.rejected,
+            )
+            for provision_cart_budget in provision_cart_budgets:
+                ProvisionCartBudgetHistory.objects.create(
+                    provision_cart_history=provistion_cart_history,
+                    budget=provision_cart_budget.budget,
+                    provosioned_amount=provision_cart_budget.provosioned_amount,
+                    available_budget=provision_cart_budget.available_budget,
+                )
             messages.success(request, _("Budget provision created successfully."))
             return HttpResponseRedirect(
                 reverse(
@@ -211,6 +235,46 @@ class GetBudgetIncart(LoginRequiredMixin, TemplateView):
             return JsonResponse(
                 {
                     "cart_id": cart_id,
+                    "result": f"error: {str(e)}",
+                }
+            )
+
+
+class GetBudgetIncartHistory(LoginRequiredMixin, TemplateView):
+    def get(self, request, *args, **kwargs):
+        try:
+            cart_id = kwargs["cart_id"]
+            budget_id = kwargs["budget_id"]
+            cart = ProvisionCartHistory.objects.get(id=cart_id)
+            budget = Budget.objects.get(id=budget_id)
+            current_budget = budget.current_budget - budget.budget_decrease_control
+            if current_budget < 0:
+                current_budget = 0
+            provision_cart_budget = ProvisionCartBudgetHistory.objects.filter(
+                provision_cart_history=cart,
+                budget=budget,
+            ).first()
+            return JsonResponse(
+                {
+                    "cart_id": cart_id,
+                    "budget_id": budget_id,
+                    "budget_item": str(budget),
+                    "provision_cart_budget_id": provision_cart_budget.id,
+                    "provosioned_amount": budget.available_budget,
+                    "available_budget": budget.available_budget,
+                    "current_budget": budget.available_budget,
+                    "result": "ok",
+                }
+            )
+        except Exception as e:
+            print(e)
+            return JsonResponse(
+                {
+                    "cart_id": cart_id,
+                    "cart.id": cart.id,
+                    "budget_id": budget_id,
+                    "budget.id": budget.id,
+                    "provision_cart_budget": str(provision_cart_budget),
                     "result": f"error: {str(e)}",
                 }
             )

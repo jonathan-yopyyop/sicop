@@ -39,10 +39,16 @@ from sicop.budget.views.processes.budget_arrange import (  # noqa
     BudgetProvisionDetail,
     BudgetProvisionList,
     GetBudgetIncart,
+    GetBudgetIncartHistory,
     GetProvisionCartsByCriteria,
     ProvisionCartApprovalList,
     ProvisionCartApprovalUpdateView,
     ProvisionCertificateView,
+)
+from sicop.budget.views.processes.budget_arrange_addition import (  # noqa
+    ProvisionCartAdditionListView,
+    ProvisionCartSearchView,
+    ProvisionCartUpdateView,
 )
 from sicop.budget.views.processes.budget_commitment import (  # noqa
     CommitmentCertificateView,
@@ -85,9 +91,13 @@ from sicop.budget.views.processes.budget_release import (  # noqa
 )
 from sicop.budget.views.processes.cart import (  # noqa
     AddItemToProvisionInCart,
+    AddItemToProvisionInCartHistory,
     EditItemProvisionAmountInCart,
+    EditItemProvisionAmountInCartHistory,
     GetCostCentersByProject,
     RemoveItemToProvisionInCart,
+    RemoveItemToProvisionInCartHistory,
     UpdateProjectInCart,
     UpdateTotalsInCart,
+    UpdateTotalsInCartHistory,
 )

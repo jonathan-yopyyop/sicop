@@ -188,8 +188,7 @@
                                         <thead>
                                             <tr>
                                                 <th>{% trans 'Item' %}</th>
-                                                <th>{% trans 'Item initial budget' %}</th>
-                                                <th>{% trans 'Item available budget' %}</th>
+                                                <th>{% trans 'Item current available budget' %}</th>
                                                 <th>{% trans 'Amount to release' %}</th>
                                             </tr>
                                         </thead>
@@ -200,10 +199,6 @@
                                             <tr id="row_{{commitment_orphan_release_item.id}}">
                                               <td>
                                                 {{commitment_orphan_release_item.budget.budget_description}}
-                                              </td>
-                                              <td>
-                                                {{commitment_orphan_release_item.budget.initial_value|format_to_cop}}
-                                                <input type="hidden" id="initial_value_{{commitment_orphan_release_item.id}}" value="{{commitment_orphan_release_item.budget.initial_value}}">
                                               </td>
                                               <td>
                                                 {{commitment_orphan_release_item.budget.available_budget|format_to_cop}}

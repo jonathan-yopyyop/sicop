@@ -2,6 +2,7 @@ from django.urls import path
 
 from sicop.budget.views import (
     AddItemToProvisionInCart,
+    AddItemToProvisionInCartHistory,
     AdditionApprovalUpdateView,
     AdditionBudgetApprovalList,
     AdditionCertificateView,
@@ -46,21 +47,27 @@ from sicop.budget.views import (
     CreateOrdestroyReleaseTable,
     CreateRedistributionItem,
     EditItemProvisionAmountInCart,
+    EditItemProvisionAmountInCartHistory,
     GetBudgetDetailById,
     GetBudgetDetailExceptId,
     GetBudgetIncart,
+    GetBudgetIncartHistory,
     GetBudgetsByCostCenterAndProject,
     GetBudgetsByProject,
     GetCostCentersByProject,
     GetProvisionCartsByCriteria,
+    ProvisionCartAdditionListView,
     ProvisionCartApprovalList,
     ProvisionCartApprovalUpdateView,
+    ProvisionCartSearchView,
+    ProvisionCartUpdateView,
     ProvisionCertificateView,
     RedistributionBudgetApprovalList,
     RedistributionBudgetApprovalUpdate,
     RedistributionCertificateView,
     RemoveAdditionItem,
     RemoveItemToProvisionInCart,
+    RemoveItemToProvisionInCartHistory,
     RemoveRedistributionItem,
     UpdateAdditionItem,
     UpdateBudgetForRedistribution,
@@ -74,6 +81,7 @@ from sicop.budget.views import (
     UpdateRedistributionTotals,
     UpdateThirdOrPoCap,
     UpdateTotalsInCart,
+    UpdateTotalsInCartHistory,
 )
 
 urlpatterns = [
@@ -441,5 +449,50 @@ urlpatterns = [
         "commitment/release/list/",
         CommitmentReleaseListView.as_view(),
         name="commitment_release_list",
+    ),
+    path(
+        "budget/provision/search/",
+        ProvisionCartSearchView.as_view(),
+        name="budget_arrange_search",
+    ),
+    path(
+        "budget/provision/update/<int:pk>/",
+        ProvisionCartUpdateView.as_view(),
+        name="budget_arrange_update",
+    ),
+    path(
+        "budget/provision/addition/list/",
+        ProvisionCartAdditionListView.as_view(),
+        name="budget_arrange_addition_list",
+    ),
+    path(
+        "budget/provision/addition/search/",
+        ProvisionCartSearchView.as_view(),
+        name="budget_arrange_addition_search",
+    ),
+    path(
+        "budget/provision/cart/history/<int:cart_id>/remove-item/<int:budget_id>",
+        RemoveItemToProvisionInCartHistory.as_view(),
+        name="remove_item_to_provision_in_cart_history",
+    ),
+    path(
+        "budget/provision/cart/history/<int:cart_id>/",
+        UpdateTotalsInCartHistory.as_view(),
+        name="update_totals_in_cart_history",
+    ),
+    path(
+        "budget/provision/cart/history/<int:cart_id>/edit-item",
+        EditItemProvisionAmountInCartHistory.as_view(),
+        name="edit_item_provision_amount_in_cart_history",
+    ),
+    path(
+        "budget/provision/cart/history/<int:cart_id>/add-item/<int:budget_id>",
+        AddItemToProvisionInCartHistory.as_view(),
+        name="add_item_to_provision_in_cart_history",
+    ),
+    path(
+        "budget/provision/cart/<int:cart_id>/budget/<int:budget_id>/history",
+        GetBudgetIncartHistory.as_view(),
+        name="get_budget_in_cart_history",
     ),
 ]

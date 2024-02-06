@@ -39,10 +39,18 @@ class GroupUpdateView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView)
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         group = Group.objects.get(pk=self.kwargs["pk"])
-        group_permissions = list(Permission.objects.filter(group=group).values_list("id", flat=True))
+        group_permissions = list(
+            set(
+                list(
+                    Permission.objects.filter(
+                        group=group,
+                    ).values_list("id", flat=True)
+                )
+            )
+        )
         context["group"] = group
         context["group_permissions"] = group_permissions
-        context["permissions"] = Permission.objects.all()
+        context["permissions"] = Permission.objects.filter()
         return context
 
     def post(self, request, *args, **kwargs):
@@ -55,21 +63,10 @@ class GroupUpdateView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView)
             group.permissions.set(permissions)
             group.save()
             messages.success(request, _("Group updated successfully"))
-            # return JsonResponse(
-            #     {
-            #         "status": "success",
-            #         "permissions": permissions,
-            #         "post": request.POST,
-            #     }
-            # )
+
         except Exception as e:
             print(e)
             messages.warning(request, _("Group not updated"))
-            # return JsonResponse(
-            #     {
-            #         "status": "error",
-            #     }
-            # )
         return HttpResponseRedirect(
             reverse(
                 "user_group_update",
