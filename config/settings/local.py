@@ -11,7 +11,7 @@ SECRET_KEY = env(
     default="9DCUtXaPH8IHlRxyQxyeoBRQM1P4RTWUHigFKcleeZTOmUIvnLNq41BhGAON6O0g",
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [".maloka.org", "*"]
 
 # CACHES
 # ------------------------------------------------------------------------------
