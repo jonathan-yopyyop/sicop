@@ -19,7 +19,6 @@ django-redis==5.4.0  # https://github.com/jazzband/django-redis
 django-json-widget
 django-debug-toolbar
 Collectfast==2.2.0
-anymail==0.0.1
 
 
 # Theme
