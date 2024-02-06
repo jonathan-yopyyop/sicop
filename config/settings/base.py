@@ -7,6 +7,8 @@ from pathlib import Path
 import environ
 from django.utils.translation import gettext_lazy as _
 
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 # sicop/
 APPS_DIR = BASE_DIR / "sicop"
