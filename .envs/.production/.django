@@ -4,7 +4,7 @@
 DJANGO_SETTINGS_MODULE=config.settings.production
 DJANGO_SECRET_KEY=3Foyi5aYZOnDlwN7A8K71Lgu2QFMCvYgecjKNT23mVeGxebNR2KkSQuKFlt5CyyF
 DJANGO_ADMIN_URL=MBDyKQ2GP3ZiYUJK3jbwU0JSgu0msoXF/
-DJANGO_ALLOWED_HOSTS=*
+DJANGO_ALLOWED_HOSTS=.presupuesto.maloka.org
 
 # Security
 # ------------------------------------------------------------------------------

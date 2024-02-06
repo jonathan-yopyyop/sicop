@@ -42,8 +42,8 @@ services:
     volumes:
       - production_traefik:/etc/traefik/acme
     ports:
-      - "0.0.0.0:80:80"
-      - "0.0.0.0:443:443"
+      - "0.0.0.0:90:90"
+      - "0.0.0.0:443:8443"
       - "0.0.0.0:5562:5562"
 
   redis:
