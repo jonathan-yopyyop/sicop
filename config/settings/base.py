@@ -96,6 +96,7 @@ THIRD_PARTY_APPS = [
     "allauth.account",
     "django_celery_beat",
     "import_export",
+    "collectfast",
 ]
 
 LOCAL_APPS = [
