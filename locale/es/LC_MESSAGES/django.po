@@ -4555,7 +4555,7 @@ msgstr "Detalle del usuario"
 #: sicop/templates/sicop/frontend/user/user/profile.html:111
 #: sicop/templates/sicop/frontend/user/user/update.html:115
 msgid "Is active"
-msgstr "Está activo"
+msgstr "Está activo?"
 
 #: sicop/templates/sicop/frontend/user/user/list.html:7
 #: sicop/templates/sicop/frontend/user/user/list.html:15
