@@ -1,4 +1,5 @@
 {% load static i18n %}
+{% load budget_tags %}
 <style>
   .menu-title{
     font-size: 13px !important;
@@ -209,17 +210,17 @@
         </a>
         <ul class="menu-content">
           {% if 'budget.view_provisioncart' in perms %}
-          <li {% if '/budget/provision/' in request.path and 'search' not in request.path and 'approval' not in request.path and 'update' not in request.path and 'list' not in request.path %}class="active"{% endif %}>
+          <li {% if '/budget/budget/provision/list/' in request.path or '/budget/budget/provision/create/' in request.path or '/budget/budget/provision/40/certificate/' in request.path  %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'budget_provision_list' %}">{% trans 'Apropiations' %}</a>
           </li>
           {% endif %}
           {% if 'budget.view_provisioncartapproval' in perms %}
-          <li {% if 'budget/provision/approval/' in request.path %}class="active"{% endif %}>
+          <li {% if '/budget/budget/provision/approval/list/' in request.path %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'provision_cart_approval_list' %}">{% trans 'Approvals' %}</a>
           </li>
           {% endif %}
           {% if 'budget.view_provisioncart' in perms %}
-          <li {% if 'provision/addition/list/' in request.path or '/budget/provision/search/' in request.path or '/budget/provision/update/' in request.path %}class="active"{% endif %}>
+          <li {% if '/budget/budget/provision/addition/list/' in request.path or '/budget/budget/provision/addition/search/' in request.path or '/budget/budget/provision/addition/update/' in request.path  %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'budget_arrange_addition_list' %}">{% trans 'Additions' %}</a>
           </li>
           {% endif %}
@@ -274,10 +275,12 @@
         </a>
         <ul class="menu-content">
           {% if 'budget.view_commitment' in perms %}
-          <li {% if '/budget/commitment/' in request.path and '/search/' not in request.path and '/list/' not in request.path  %}class="active"{% endif %}>
+          {% check_url request.path "commitment_certificate" as valid_url %}
+          <li {% if '/budget/commitment/list/' in request.path or '/budget/commitment/create/' in request.path or valid_url %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'commitment_list' %}">{% trans 'Commitments' %}</a>
           </li>
-          <li {% if '/release/list/' or '/release/search/' in request.path in request.path %}class="active"{% endif %}>
+          {% check_url request.path "commitment_release_certificate" as valid_certificate_url %}
+          <li {% if '/budget/commitment/release/list/' in request.path or '/budget/commitment/release/search/' in request.path or valid_certificate_url  %}class="active"{% endif %}>
             <a class="menu-item" href="{% url 'commitment_release_list' %}">{% trans 'Releases' %}</a>
           </li>
           {% endif %}
