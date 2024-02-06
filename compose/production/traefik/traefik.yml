@@ -72,4 +72,4 @@ providers:
   # https://docs.traefik.io/master/providers/file/
   file:
     filename: /etc/traefik/traefik.yml
-    watch: true
+    # watch: true
