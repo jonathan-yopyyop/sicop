@@ -72,7 +72,7 @@ class ProvisionCartSearchView(PermissionRequiredMixin, LoginRequiredMixin, Templ
 
 class ProvisionCartUpdateView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = "sicop/frontend/budget/processes/provision/addition/update.html"
-    permission_required = "budget.view_provisioncart"
+    # permission_required = "budget.view_provisioncart"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
