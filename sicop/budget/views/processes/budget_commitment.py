@@ -18,7 +18,6 @@ from sicop.budget.models import (
     CommitmentRealeaseItems,
     CommitmentRelease,
     ProvisionCart,
-    ProvisionCartBudget,
 )
 from sicop.budget.models.commitment import get_commitment_types
 from sicop.certificate.models import Certificate
@@ -78,28 +77,15 @@ class CommitmentCreateView(PermissionRequiredMixin, LoginRequiredMixin, Template
         commitment.status = False
         commitment.finished = True
         commitment.save()
-        provision_cart = commitment.provision_cart
         commitment_release = CommitmentRelease.objects.filter(
             commitment=commitment,
         ).last()
         if commitment_release is not None:
             commitment_release_items = commitment_release.commitment_release_items.all()
-            total_released = 0
             for item in commitment_release_items:
-                # Budget release
-                total_released = total_released + item.total_to_release
                 budget: Budget = item.budget
                 budget.released_amount = budget.released_amount + item.total_to_release
                 budget.save()
-                # Provision release
-                provision_cart_budget = ProvisionCartBudget.objects.filter(
-                    provision_cart=provision_cart,
-                    budget=budget,
-                ).first()
-                provision_cart_budget.released_amount = provision_cart_budget.released_amount + item.total_to_release
-                provision_cart_budget.save()
-            provision_cart.total_released_amount = provision_cart.total_released_amount + total_released
-            provision_cart.save()
         return HttpResponseRedirect(
             reverse(
                 "commitment_certificate",
@@ -118,7 +104,7 @@ class UpdateCommitmentCap(LoginRequiredMixin, TemplateView):
             project = provision_cart.project
             has_tax = project.is_it_taxable
             commitment.provision_cart = provision_cart
-            commitment.provision_budget_amount = provision_cart.real_total_provisioned_amount
+            commitment.provision_budget_amount = provision_cart.total_provisioned_amount
             commitment.has_tax = has_tax
             commitment.save()
             if not commitment.has_tax:
@@ -173,7 +159,7 @@ class UpdateCommitmentCap(LoginRequiredMixin, TemplateView):
                     "status": "ok",
                     "commitment": commitment.id,
                     "provision_cart": provision_cart.id,
-                    "total_provisioned_amount": provision_cart.real_total_provisioned_amount,
+                    "total_provisioned_amount": provision_cart.total_provisioned_amount,
                     "project": project.id,
                     "has_tax": commitment.has_tax,
                     "provision_budget_amount": commitment.provision_budget_amount,
@@ -568,7 +554,7 @@ class UpdateCommitmentAmount(LoginRequiredMixin, TemplateView):
                     "provision_budget_amount": commitment.provision_budget_amount,
                     "required_amount": commitment.required_amount,
                     "diference_between_required_and_provisioned": commitment.diference_between_required_and_provisioned,  # noqa
-                    "total_provisioned_amount": commitment.provision_cart.real_total_provisioned_amount,
+                    "total_provisioned_amount": commitment.provision_cart.total_provisioned_amount,
                 },
                 safe=False,
             )

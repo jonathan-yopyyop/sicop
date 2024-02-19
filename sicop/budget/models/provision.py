@@ -81,7 +81,8 @@ class ProvisionCart(BaseModel):
 
     @property
     def real_total_provisioned_amount(self) -> float:
-        return self.total_provisioned_amount - self.total_released_amount
+        return self.total_provisioned_amount
+        # return self.total_provisioned_amount - self.total_released_amount
 
     class Meta:
         """Meta definition for Provision Cart."""
@@ -129,7 +130,8 @@ class ProvisionCartBudget(BaseModel):
 
     @property
     def real_provisioned_amount(self) -> float:
-        return self.provosioned_amount - self.released_amount
+        return self.provosioned_amount
+        # return self.provosioned_amount - self.released_amount
 
     class Meta:
         """Meta definition for Provision Budget."""
