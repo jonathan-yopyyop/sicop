@@ -45,7 +45,7 @@ class ProvisionCartSearchView(PermissionRequiredMixin, LoginRequiredMixin, Templ
                     provision_cart=provision_cart,
                     user=request.user,
                     total_required_amount=provision_cart.total_required_amount,
-                    total_provisioned_amount=provision_cart.total_provisioned_amount,
+                    total_provisioned_amount=provision_cart.real_total_provisioned_amount,
                     total_missing_amount=provision_cart.total_missing_amount,
                     finished=False,
                     approved=False,

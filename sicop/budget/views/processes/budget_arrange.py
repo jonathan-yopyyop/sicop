@@ -81,7 +81,7 @@ class BudgetProvisionCreate(PermissionRequiredMixin, LoginRequiredMixin, Templat
             project = cart.project
             provision_cart_budgets = ProvisionCartBudget.objects.filter(provision_cart=cart)
             project_type = project.project_type
-            if cart.total_provisioned_amount >= project_type.cap:
+            if cart.real_total_provisioned_amount >= project_type.cap:
                 cart.requires_approval = True
                 cart.approved = False
             else:
@@ -118,7 +118,7 @@ class BudgetProvisionCreate(PermissionRequiredMixin, LoginRequiredMixin, Templat
                 provision_cart=cart,
                 user=request.user,
                 total_required_amount=cart.total_required_amount,
-                total_provisioned_amount=cart.total_provisioned_amount,
+                total_provisioned_amount=cart.real_total_provisioned_amount,
                 total_missing_amount=cart.total_missing_amount,
                 finished=cart.finished,
                 observation=cart.observation,
