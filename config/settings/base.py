@@ -51,11 +51,10 @@ LOCALE_PATHS = [str(BASE_DIR / "locale")]
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
-<<<<<<< HEAD
-DATABASES = {
-    "default": env.db("DATABASE_URL"),
-}
-DATABASES["default"]["ATOMIC_REQUESTS"] = True
+# # DATABASES = {
+# #     "default": env.db("DATABASE_URL"),
+# # }
+# # DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
 # DATABASES = {
 #     "default": {
@@ -67,23 +66,6 @@ DATABASES["default"]["ATOMIC_REQUESTS"] = True
 #         "PORT": "5432",
 #     }
 # }
-=======
-# DATABASES = {
-#     "default": env.db("DATABASE_URL"),
-# }
-# DATABASES["default"]["ATOMIC_REQUESTS"] = True
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "sicop",
-        "USER": "myuser",
-        "PASSWORD": "mypass",
-        "HOST": "localhost",
-        "PORT": "5432",
-    }
-}
->>>>>>> f2c07ee744e5e641454a85f90f9e56f7eb92592e
 
 # https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-DEFAULT_AUTO_FIELD
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
