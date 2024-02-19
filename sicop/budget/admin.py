@@ -438,6 +438,8 @@ class CommitmentAdmin(ImportExportModelAdmin, admin.ModelAdmin):
         "has_tax",
         "provision_budget_amount",
         "required_amount",
+        "total_released",
+        "real_provision_budget_amount",
         "diference_between_required_and_provisioned",
         "created_at",
         "updated_at",

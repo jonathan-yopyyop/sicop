@@ -95,7 +95,10 @@ class BudgetRelease(LoginRequiredMixin, PermissionRequiredMixin, TemplateView):
         commitment_orphan_release_items = CommitmentOrphanRealeaseItems.objects.filter(
             commitment_release=commitment_orphan_release,
         )
+        commitment = commitment_orphan_release.commitment
+        total_to_release = 0
         for item in commitment_orphan_release_items:
+            total_to_release = total_to_release + item.total_to_release
             budget: Budget = item.budget
             budget.released_amount = budget.released_amount + item.total_to_release
             budget.save()
@@ -106,6 +109,8 @@ class BudgetRelease(LoginRequiredMixin, PermissionRequiredMixin, TemplateView):
         commitment_orphan_release_items = CommitmentOrphanRealeaseItems.objects.filter(
             commitment_release=commitment_orphan_release,
         )
+        commitment.total_released = total_to_release
+        commitment.save()
         return HttpResponseRedirect(
             reverse(
                 "commitment_release_certificate",

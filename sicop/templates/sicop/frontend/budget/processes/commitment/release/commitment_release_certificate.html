@@ -480,7 +480,7 @@
                           </td>
                           <td class="row5-td-2">
                             <h5 class="item-value-text">
-                              {{commitment.required_amount|format_to_cop}}
+                              {{commitment.real_provision_budget_amount|format_to_cop}}
                             </h5>
                           </td>
                         </tr>
@@ -536,7 +536,9 @@
                           </td>
                           <td class="row8-td-2 text-center  ">
                             <h5 class="item-description-text">
-                              {{item.budget_amount|format_to_cop}}
+                              {% rest_2_values item.budget_amount_before_change item.total_to_release as real_budget_amount_before_change %}
+                              {{item.budget_amount_before_change|format_to_cop}}
+                              
                             </h5>
                           </td>
                           <td class="row8-td-2 text-center  ">

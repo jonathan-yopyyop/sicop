@@ -88,11 +88,22 @@ class Commitment(BaseModel):
         null=True,
         blank=True,
     )
+    total_released = models.FloatField(
+        _("Total released"),
+        help_text=_("Total released"),
+        default=0,
+        null=True,
+        blank=True,
+    )
     finished = models.BooleanField(
         _("Finished"),
         help_text=_("Finished"),
         default=False,
     )
+
+    @property
+    def real_provision_budget_amount(self):
+        return self.required_amount - self.total_released
 
     class Meta:
         """Meta definition for Commitment."""
@@ -381,6 +392,10 @@ class CommitmentOrphanRealeaseItems(BaseModel):
     @property
     def new_budget_amount(self):
         return self.budget_amount + self.total_to_release
+
+    @property
+    def budget_amount_before_change(self):
+        return self.budget_amount - self.total_to_release
 
     class Meta:
         """Meta definition for Commitment Realease Items."""
