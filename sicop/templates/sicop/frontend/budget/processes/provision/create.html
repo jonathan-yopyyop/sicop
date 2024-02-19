@@ -1,0 +1,676 @@
+{% extends 'sicop/frontend/base/base.html' %}
+
+{% load static %}
+{% load i18n %}
+{% load humanize %}
+{% load sicop_filters %}
+{% block page_title %}
+  {% trans 'Budget provition Create' %}
+{% endblock page_title %}
+{% block content %}
+  <style>
+    .label-project{
+      font-size: 10px;
+    }
+    .blank-label{
+      font-size: 10px;
+      color: white;
+    }
+  </style>
+  <section id="configuration">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">{% trans 'Budget provision data' %}</h4>
+            <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+            <div class="heading-elements">
+              <ul class="list-inline mb-0">
+                <li>
+                  <a href="{% url 'budget_provision_list' %}">
+                    <button type="button" class="btn btn-icon btn-success mr-1 mb-1">
+                      <i class="fa fa-list"></i>
+                    </button>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-content collapse show">
+            <div class="card-body card-dashboard">
+              <section id="basic-form-layouts">
+                <div class="row match-height">
+                  <div class="col-md-12">
+                    <div class="card">
+                      {% if messages %}
+                        {% for message in messages %}
+                          <div class="alert alert-{{ message.tags }} alert-dismissible mb-2"
+                               role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">×</span>
+                            </button>
+                            {{ message }}
+                          </div>
+                        {% endfor %}
+                      {% endif %}
+
+                        {% csrf_token %}
+                        <div class="form-body">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <div class="row">
+                                  <div class="col-12">
+                                    <h4 class="form-section">
+                                      {% trans "Project information" %}
+                                    </h4>
+                                    <div class="row">
+                                      <div class="col-12">
+                                        <select class="select2 form-control" name="project" id="project" required>
+                                          <option value="">{% trans "Select a project" %}</option>
+                                          {% for project in projects %}
+                                            <option value="{{ project.id }}" {% if project.id == provision_cart.project.id %} selected {% endif %}>{{ project.name }}</option>
+                                          {% endfor %}
+                                        </select>
+                                      </div>
+                                      <div class="col-4">
+                                        <label class="label-project" for="project_name">{% trans 'Project' %}</label>
+                                        <input type="text" id="project_name" class="form-control form-control-sm" placeholder="Project name" value="{{provision_cart.project.name}}" readonly/>
+                                        <input type="hidden" name="project_id" id="project_id">
+                                      </div>
+                                      <div class="col-8">
+                                        <label class="label-project" for="project_description">{% trans 'Project description' %}</label>
+                                        <input type="text" id="project_description" class="form-control form-control-sm" placeholder="Project description" value="{{provision_cart.project.description}}" readonly/>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-3">
+                                        <label class="label-project" for="project_start_date">{% trans 'Start date' %}</label>
+                                        <input type="date" id="project_start_date" class="form-control form-control-sm" placeholder="Project start date" value="{{provision_cart.project.start_date|date:'Y-m-d'}}" readonly/>
+                                      </div>
+                                      <div class="col-3">
+                                        <label class="label-project" for="project_end_date">{% trans 'End date' %}</label>
+                                        <input type="date" id="project_end_date" class="form-control form-control-sm" placeholder="Project end date" value="{{provision_cart.project.end_date|date:'Y-m-d'}}" readonly/>
+                                      </div>
+                                      <div class="col-3">
+                                        <label class="label-project" for="project_budget">{% trans 'Project budget' %}</label>
+                                        <input type="text" id="project_budget" class="form-control form-control-sm" placeholder="Project budget" value="{{provision_cart.project.budget}}" readonly/>
+                                      </div>
+                                      <div class="col-3">
+                                        <label class="label-project" for="project_area">{% trans 'Project area' %}</label>
+                                        <input type="text" id="project_area" class="form-control form-control-sm" placeholder="Project area" value="{{provision_cart.projectarea.}}" readonly/>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-3">
+                                        <label class="label-project" for="project_type">{% trans 'Project type' %}</label>
+                                        <input type="text" id="project_type" class="form-control form-control-sm" placeholder="Project type" value="{{provision_cart.project.project_type}}" readonly/>
+                                      </div>
+                                      <div class="col-3">
+                                        <label class="label-project" for="project_status">{% trans 'Project status' %}</label>
+                                        <input type="text" id="project_status" class="form-control form-control-sm" placeholder="Project status" value="{{provision_cart.project.project_status}}" readonly/>
+                                      </div>
+                                      <div class="col-4">
+                                        <label class="label-project" for="project_manager">{% trans 'Project manager' %}</label>
+                                        <input type="text" id="project_manager" class="form-control form-control-sm" placeholder="Project manager" value="{{provision_cart.project.project_manager}}" readonly/>
+                                      </div>
+                                      <div class="col-2">
+                                        <label class="label-project" for="project_is_it_taxable">{% trans 'Project is taxable?' %}</label>
+                                        <input type="text" id="project_is_it_taxable" class="form-control form-control-sm" placeholder="Project budget" value="
+                                        {% if provision_cart.project.is_it_taxable %}
+                                        {% trans 'Yes' %}
+                                        {% else %}
+                                        {% trans 'No' %}
+                                        {% endif %}
+                                          " readonly/>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group row">
+                                <div class="col-12">
+                                  <h4 class="form-section">
+                                    {% trans "Project budget" %}
+                                  </h4>
+                                </div>
+                                <div class="col-4">
+                                  <label for="projectinput3">{% trans 'Cost centers' %}</label>
+                                  <select class="select2 form-control" name="costcenter" required id="costcenter" {% if provision_cart.project is None %} disabled {% endif %}>
+                                    <option value="">{% trans "Select a cost center" %}</option>
+                                    {% for cost_center in cost_centers %}
+                                      <option value="{{ cost_center.id }}">{{ cost_center.name }}</option>
+                                    {% endfor %}
+                                  </select>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group row">
+                                    <label class="col-md-12 label-control required" for="projectinput4">{% trans "Items" %}</label>
+                                    <select  name="items" class="form-control" id="items" size="4" {% if provision_cart.project is None %} disabled {% endif %}>
+                                      <option value="">{% trans "Please select a cost center" %}</option>
+                                  </select>
+                                  </div>
+                                </div>
+                                <div class="col-md-2">
+                                  <label class="col-md-12 label-control required blank-label" for="projectinput4">{% trans "Add" %}</label>
+                                  <button type="button" class="btn btn-primary btn-block"  id="add_button">
+                                    <i class="fa fa-plus"></i> {% trans 'Add' %}
+                                  </button>
+                                </div>
+                                <div class="col-12">
+                                  <table class="table" id="items_table">
+                                    <thead>
+                                        <tr>
+                                            <th>{% trans 'Item' %}</th>
+                                            <th>{% trans 'Available' %}</th>
+                                            <th>{% trans 'Taked' %}</th>
+                                            <th>{% trans 'Remaining' %}</th>
+                                            <th>{% trans 'Remove' %}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="items_table_body">
+
+                                      {% for provision_cart_budget in provision_cart.provision_cart_provision_budgets.all %}
+
+                                        <tr id="row_{{provision_cart_budget.budget.id}}">
+                                          <td>
+                                            {{provision_cart_budget.budget}}
+                                          </td>
+                                          <td>
+                                            {{provision_cart_budget.budget.available_budget|format_to_cop}}
+                                            <input type="hidden" id="budget_value_id_{{provision_cart_budget.budget.id}}" value ="{{provision_cart_budget.budget.available_budget}}">
+                                          </td>
+                                          <td>
+                                            <input
+                                              type="text" id="taked_{{provision_cart_budget.budget.id}}"
+                                              class="form-control form-control-sm table_item_class"
+                                              value ="{{provision_cart_budget.provosioned_amount}}"
+                                              onkeyup="provisioningValues('{{provision_cart_budget.budget.id}}')"/>
+                                          </td>
+                                          <td>
+                                            <input
+                                              readonly
+                                              type="text"
+                                              class="form-control form-control-sm table_item_class"
+                                              id="budget_show_value_id_{{provision_cart_budget.budget.id}}"
+                                              value="{{provision_cart_budget.available_budget|format_to_cop}}">
+                                          </td>
+                                          <td>
+                                            <button
+                                              type="button"
+                                              class="btn btn-danger btn-sm"
+                                              onclick="remove_item('{{provision_cart_budget.budget.id}}')">
+                                              <i class="fa fa-trash"></i>
+                                            </button>
+                                          </td>
+                                        </tr>
+                                      {% endfor %}
+                                    </tbody>
+                                  </table>
+                                </div>
+                                <div class="col-12">
+                                  <h4 class="form-section">
+                                    {% trans "Project Totals" %}
+                                  </h4>
+                                </div>
+                                <div class="col-7">
+
+                                </div>
+                                <div class="col-5">
+                                  <div class="row">
+                                    <div class="col-5">
+                                      <label class="col-md-12 label-control required text-white" for="projectinput4">{% trans "Required" %}</label>
+                                    </div>
+                                    <div class="col-7">
+                                      <input type="hidden" id="project_total" class="form-control form-control-sm" value="{{provision_cart.total_required_amount|format_to_cop}}" readonly/>
+                                      <input type="hidden" id="project_total_hidden" value="{{provision_cart.total_required_amount}}"/>
+                                    </div>
+                                  </div>
+                                  <div class="row pt-1">
+                                    <div class="col-5">
+                                      <label class="col-md-12 label-control required" for="projectinput4">{% trans "Provisioned" %}</label>
+                                    </div>
+                                    <div class="col-7">
+                                      <input type="text" id="project_provision" class="form-control form-control-sm" value="{{provision_cart.total_provisioned_amount|format_to_cop}}" readonly/>
+                                      <input type="hidden" id="project_provision_hidden" if value="{{provision_cart.total_provisioned_amount}}" >
+                                    </div>
+                                  </div>
+                                  <div class="row pt-1">
+                                    <div class="col-5">
+                                      <label class="col-md-12 label-control required text-white" for="projectinput4">{% trans "Missing" %}</label>
+                                    </div>
+                                    <div class="col-7">
+                                      <input type="hidden" id="project_missing" class="form-control form-control-sm" value="{{provision_cart.total_missing_amount|format_to_cop}}" readonly/>
+                                      <input type="hidden" id="project_missing_hidden" value="{{provision_cart.total_missing_amount}}"/>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      <form method="post">
+                        {% csrf_token %}
+                        <div class="col-md-12">
+                          <div class="form-group row">
+                            <div class="col-12">
+                              <label class="col-md-12 label-control required" for="projectinput4">{% trans "Observation" %}</label>
+                              <textarea class="form-control form-control-sm" name="observation" id="" cols="30" rows="10"></textarea>
+                            </div>
+                          </div>
+                          <div class="form-actions text-right">
+                            <input type="hidden" name="cart_id" id="cart_id" value="{{provision_cart.id}}">
+                            <button type="submit" class="btn btn-primary" id="create_budget" >
+                              <i class="fa fa-edit"></i> {% trans 'Create' %}
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+          integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+          crossorigin="anonymous"></script>
+  <script>
+    disableButtonByProjectDate();
+    function remove_item(id){
+      var row_id = 'row_' + id;
+      cart_id = $('#cart_id').val();
+      url_update_item_incart = "{% url 'remove_item_to_provision_in_cart' 888888888888888 999999999999999 %}".replace('888888888888888', cart_id).replace('999999999999999', id);
+      $('#' + row_id).remove();
+      $.get(url_update_item_incart, function(data) {})
+        .done(function(data) {
+
+        })
+        .fail(function(data) {
+          console.log(`Error $("#project").change ${data}`);
+        })
+    }
+    function updateTotalsInCart(project_total_hidden, project_missing_hidden, cart_id){
+      $('#create_budget').prop('disabled', true);
+      var project_provision_hidden = parseFloat($('#project_provision_hidden').val());
+        post_values={
+          'total_required_amount': project_total_hidden,
+          'total_provisioned_amount': project_provision_hidden,
+          'total_missing_amount': project_missing_hidden,
+        }
+        url = "{% url 'update_totals_in_cart' 0 %}".replace('0', cart_id);
+        post_object=$.extend({}, post_values);
+        $.ajax({
+          url: url,
+          method: 'POST',
+          type:"json",
+          beforeSend: function (xhr, settings) {
+            xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+          },
+          data: post_values,
+          success: function (response) {
+            $('#create_budget').prop('disabled', false);
+          },
+          error:function(data) {
+            console.log(`Error ${JSON.stringify(data)}`)
+          }
+        });
+    }
+    function updateProvisionAmountInCartAndBudget(cart_id, id, taked_value, available_budget){
+      $('#create_budget').prop('disabled', true);
+      url_update_item_in_cart = "{% url 'edit_item_provision_amount_in_cart' 0 %}".replace('0', cart_id);
+        post_values={
+          'provision_amount': taked_value,
+          'budget_id':id,
+          'available_budget':available_budget
+        }
+        post_object=$.extend({}, post_values);
+        $.ajax({
+          url: url_update_item_in_cart,
+          method: 'POST',
+          type:"json",
+          beforeSend: function (xhr, settings) {
+            xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+          },
+          data: post_values,
+          success: function (response) {
+            $('#create_budget').prop('disabled', false);
+          },
+          error:function(data) {
+            console.log(`Error ${JSON.stringify(data)}`)
+          }
+        });
+    }
+    function provisioningValues(id){
+      // disable the button whit ID create_budget
+
+      var taked_id = 'taked_' + id;
+      var budget_value_id = 'budget_value_id_' + id;
+
+      var taked_value = parseFloat( $('#' + taked_id).val());
+      if (isNaN(taked_value)) {
+        taked_value = 0;
+      }
+      var budget_value = parseFloat( $('#' + budget_value_id).val());
+      var available_budget = budget_value - taked_value;
+      var formated_available_budget = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(available_budget);
+      $('#budget_show_value_id_' + id).val(formated_available_budget);
+
+      budget_text_value = $('#' + budget_value_id).val() + "";
+      budget_text_value = budget_text_value.replace(',', '.');
+      var budget_value = parseFloat( budget_text_value);
+      if (budget_value >= taked_value) {
+        var project_provision_hidden = parseFloat($('#project_provision_hidden').val());
+        var total_taked = 0;
+        $("#items_table tr").each(function() {
+          var temp_row_id = this.id;
+          if (temp_row_id != "") {
+            var temp_row_id_array = temp_row_id.split("_");
+            var temp_taked_id = 'taked_' + temp_row_id_array[1];
+            var taked = parseFloat( $('#' + temp_taked_id).val());
+            if (isNaN(taked)) {
+              taked = 0;
+            }
+            total_taked = total_taked + taked;
+          }
+        });
+        var formated_total_taked = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+        }).format(total_taked);
+
+        $("#project_provision").val(formated_total_taked);
+        $("#project_provision_hidden").val(total_taked);
+
+        var project_total_hidden = parseFloat($('#project_total_hidden').val());
+        var project_missing_hidden = project_total_hidden - total_taked;
+        var formated_project_missing_hidden = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+        }).format(project_missing_hidden);
+        $("#project_missing").val(formated_project_missing_hidden);
+        $("#project_missing_hidden").val(project_missing_hidden);
+
+        cart_id = $('#cart_id').val();
+
+        // To update totals in cart
+        updateTotalsInCart(project_total_hidden, project_missing_hidden, cart_id)
+        //To updata provision_amount_in_cart in budget
+        updateProvisionAmountInCartAndBudget(cart_id, id, taked_value, available_budget);
+
+      } else {
+        console.log(`${budget_value} >= ${taked_value}`)
+        // check if taked_value variables is nana
+        if (isNaN(taked_value)) {
+          taked_value = 0;
+        }else{
+          Swal.fire({
+            title: "{% trans 'Error' %}",
+            text: "{% trans 'The value to be used in the provision cannot be greater than the available value.' %}",
+            type: 'error',
+            confirmButtonText: "{% trans 'Ok' %}"
+          });
+          $('#' + taked_id).val('0');
+          provisioningValues(id)
+        }
+
+      }
+      //--
+
+
+    }
+    function disableButtonByProjectDate(){
+      var project_end_date = $('#project_end_date').val();
+      // create a timestamp now with YYYY-mm-dd format
+      var now = new Date();
+      var dd = now.getDate();
+      var mm = now.getMonth() + 1; //January is 0!
+      var yyyy = now.getFullYear();
+      if (dd < 10) {
+        dd = '0' + dd
+      }
+      if (mm < 10) {
+        mm = '0' + mm
+      }
+      now = yyyy + '-' + mm + '-' + dd;
+      var date_project_end_date = new Date(project_end_date);
+      var date_now = new Date(now);
+      // check if project_end_date is less than now
+      if (date_project_end_date < date_now) {
+        // Disable the button with id create_budget
+        $('#create_budget').prop('disabled', true);
+        // Disabele the button with id add_button
+        $('#add_button').prop('disabled', true);
+        console.log(`Disabling project_end_date: ${project_end_date} now: ${now}`)
+      }
+    }
+    $(document).ready(function() {
+
+      // Project selecion
+      $("#project").change(function() {
+        var project_id = $("#project").val()
+        url = "{% url 'get_project_by_id' 0 %}".replace('0', project_id);
+        $.get(url, function(data) {})
+          .done(function(data) {
+            var budget = data.project_budget;
+            // format budget as money
+            budget = new Intl.NumberFormat('en-US', {
+              style: 'currency',
+              currency: 'USD',
+            }).format(budget);
+            //Setting the values
+            var project_id = data.project_id;
+            var project_end_date = data.project_end_date;
+            // create a timestamp now with YYYY-mm-dd format
+            var now = new Date();
+            var dd = now.getDate();
+            var mm = now.getMonth() + 1; //January is 0!
+            var yyyy = now.getFullYear();
+            if (dd < 10) {
+              dd = '0' + dd
+            }
+            if (mm < 10) {
+              mm = '0' + mm
+            }
+            now = yyyy + '-' + mm + '-' + dd;
+            
+            var date_project_end_date = new Date(project_end_date);
+            var date_now = new Date(now);
+
+            // check if project_end_date is less than now
+            if (date_project_end_date < date_now) {
+              console.log(`project_end_date: ${project_end_date} now: ${now}`)
+              // Disable the button with id create_budget
+              $('#create_budget').prop('disabled', true);
+              // Disabele the button with id add_button
+              $('#add_button').prop('disabled', true);
+              Swal.fire({
+                title: "{% trans 'Error' %}",
+                text: "{% trans 'The end date of the selected project is less than today.' %}",
+                type: 'error',
+                confirmButtonText: "{% trans 'Ok' %}"
+              });
+              
+            }else{
+              // Enable the button with id create_budget
+              $('#create_budget').prop('disabled', false);
+              // Enable the button with id add_button
+              $('#add_button').prop('disabled', false);
+              $('#project_id').val(project_id);
+              $('#project_name').val(data.project_name);
+              $('#project_description').val(data.project_description);
+              $('#project_start_date').val(data.project_start_date);
+              $('#project_end_date').val(data.project_end_date);
+              $('#project_budget').val(budget);
+              $('#project_area').val(data.project_area);
+              $('#project_type').val(data.project_type);
+              $('#project_status').val(data.project_status);
+              $('#project_manager').val(data.project_manager);
+              $('#project_is_it_taxable').val(data.project_is_it_taxable);  
+              $('#items').prop('disabled', false);
+              // Totals
+              $('#project_total').val(budget);
+              $('#project_provision').val('$0');
+              $('#project_missing').val(budget);
+              $('#project_total_hidden').val(data.project_budget);
+              $('#project_provision_hidden').val('0');
+              $('#project_missing_hidden').val(data.project_budget);
+              cart_id = $('#cart_id').val();
+              url_update_project_incart = "{% url 'update_project_in_cart' 888888888888888 999999999999999 %}".replace('888888888888888', cart_id).replace('999999999999999', project_id);
+              $.get(url_update_project_incart, function(data) {})
+                .done(function(data) {
+
+                })
+                .fail(function(data) {
+                  console.log(`Error $("#project").change ${data}`);
+                })
+              //GEt cost centers from project
+              url = "{% url 'get_cost_centers_by_project' 0 %}".replace('0', project_id);
+              $.get(url, function(data) {})
+                .done(function(data) {
+
+                  let cost_centers = data.cost_centers;
+                  try {
+                    $('#costcenter').empty();
+                    $('#costcenter')
+                      .append($("<option></option>")
+                        .attr("value", "")
+                        .text("..."));
+                    $.each(cost_centers, function(key, value) {
+                      $('#costcenter')
+                        .append($("<option></option>")
+                          .attr("value", value["id"])
+                          .text(value["name"]));
+                    });
+                  // Enabling fields
+                  $('#costcenter').prop('disabled', false);
+                  } catch (e) {
+                    console.log(e);
+                  }
+                })
+                .fail(function(data) {
+                  console.log(`Error $("#area").change ${data}`);
+                })
+              }
+
+          })
+          .fail(function(data) {
+            console.log(`Error $("#area").change ${data}`);
+          })
+      });
+      // Area on change
+      $("#costcenter").change(function() {
+        var cost_center = $("#costcenter").val()
+        var project_id = $("#project").val()
+        url = "{% url 'get_budgets_by_cost_center' 888888888888888 999999999999999 %}".replace('888888888888888', cost_center).replace('999999999999999', project_id);
+        console.log(url)
+        $.get(url, function(data) {})
+          .done(function(data) {
+            let items = data.items;
+            try {
+              $('#items').empty();
+              $.each(items, function(key, value) {
+                $('#items')
+                  .append($("<option></option>")
+                    .attr("value", value[0])
+                    .text(value[1]));
+              });
+              // Enabling button
+              $('#add_button').prop('disabled', false);
+            } catch (e) {
+              console.log(e);
+            }
+          })
+          .fail(function(data) {
+            console.log(`Error $("#area").change ${data}`);
+          })
+      });
+      // Add item to a table
+      $("#add_button").click(function() {
+        var item_id = $("#items").val();
+        url = "{% url 'get_budget_detail_by_id' 0 %}".replace('0', item_id);
+        console.log(url)
+        $.get(url, function(data) {})
+          .done(function(data) {
+            var budget = data.amount;
+            var row_id = 'row_' + data.budget_id;
+            // check if an element with ID row_id exists
+            if ($('#' + row_id).length) {
+              // if exists, get the value of the input
+              Swal.fire({
+                title: "{% trans 'Error' %}",
+                text: "{% trans 'This item has already selected' %}",
+                type: 'error',
+                confirmButtonText: "{% trans 'Ok' %}"
+              });
+            } else {
+              // format budget as money
+              budget = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+              }).format(budget);
+
+              // Add new item to cart
+              cart_id = $('#cart_id').val();
+              url_update_item_incart = "{% url 'add_item_to_provision_in_cart' 888888888888888 999999999999999 %}".replace('888888888888888', cart_id).replace('999999999999999', data.budget_id);
+              $.get(url_update_item_incart, function(data) {})
+                .done(function(data) {
+                  //Get budget cart
+                  url = "{% url 'get_budget_in_cart' 888888888888888 999999999999999 %}".replace('888888888888888', cart_id).replace('999999999999999', data.budget_id);
+                  $.get(url, function(data) {})
+                    .done(function(data) {
+                      console.log(`Result = ${JSON.stringify(data)}`)
+                      var budget = data.budget;
+                      var budget_value = data.budget_value;
+                      var available_budget = data.available_budget;
+                      var taked_value = data.taked_value;
+                      var current_budget = data.current_budget;
+                      var budget_item = data.budget_item;
+
+                      var formated_available_budget = new Intl.NumberFormat('en-US', {
+                        style: 'currency',
+                        currency: 'USD',
+                      }).format(available_budget);
+
+                      var formated_taked_value = new Intl.NumberFormat('en-US', {
+                        style: 'currency',
+                        currency: 'USD',
+                      }).format(taked_value);
+
+                      var formated_current_budget = new Intl.NumberFormat('en-US', {
+                        style: 'currency',
+                        currency: 'USD',
+                      }).format(current_budget);
+                      // Add a new row to the table with id items_table using jquery
+                      $('#items_table_body').append('<tr id="row_' + data.budget_id + '"><td>' + budget_item + '</td><td>' + formated_current_budget + '<input type="hidden" id="budget_value_id_'+ data.budget_id+'" value ="'+ current_budget +'"></td><td><input type="text" id="taked_' + data.budget_id + '" class="form-control form-control-sm table_item_class" value="0" onkeyup="provisioningValues('+data.budget_id+')"/></td><td><input type="text" id="budget_show_value_id_' + data.budget_id + '" class="form-control form-control-sm table_item_class" value="$0" readonly/></td><td><button type="button" class="btn btn-danger btn-sm" onclick="remove_item(' + data.budget_id + ')"><i class="fa fa-trash"></i></button></td></tr>');
+                    })
+                    .fail(function(data) {
+                      console.log(`Error $("#area").change ${data}`);
+                    })
+                })
+                .fail(function(data) {
+                  console.log(`Error $("#project").change ${data}`);
+                })
+
+
+            }
+
+          })
+          .fail(function(data) {
+            console.log(`Error $("#area").change ${data}`);
+          })
+      });
+
+
+    });
+  </script>
+{% endblock content %}

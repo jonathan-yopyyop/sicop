@@ -1,0 +1,104 @@
+{% extends 'sicop/frontend/base/base.html' %}
+
+{% load static %}
+{% load i18n %}
+{% load humanize %}
+{% block page_title %}
+  {% trans 'Budget CAP search' %}
+{% endblock page_title %}
+{% block content %}
+        <section id="configuration">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">{% trans 'CAP search' %}</h4>
+                        <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body card-dashboard">
+                            {% if messages %}
+                                {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }} alert-dismissible mb-2"
+                                    role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                    </button>
+                                    {{ message }}
+                                </div>
+                                {% endfor %}
+                            {% endif %}
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h3 class="form-section" style="font-size: 15px;">
+                                                        {% trans "Search by CAP ID" %}
+                                                    </h3>
+                                                </div>
+                                                <div class="col-12 ">
+                                                    <form method="post">
+                                                        {% csrf_token %}
+                                                        <div class="row">
+                                                            <div class="col-8">
+                                                                <input type="number" class="form-control" name="cap_id" required>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <button type="submit" class="btn btn-primary btn-block" >
+                                                                    <i class="fa fa-search"></i> {% trans 'Search by CAP' %}
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+          integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+          crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            $('#contract').select2({
+            language: "es",
+            minimumInputLength: 4,
+            ajax: {
+                url: "{% url 'contract_list_search_criteria' %}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                return {
+                    results: data
+                };
+                },
+                cache: true
+            }
+            });
+            $('#po').select2({
+                language: "es",
+                minimumInputLength: 4,
+                ajax: {
+                    url: "{% url 'purchase_order_list_search_criteria' %}",
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function(data) {
+                    return {
+                        results: data
+                    };
+                    },
+                    cache: true
+                }
+            });
+        });
+    </script>
+{% endblock content %}

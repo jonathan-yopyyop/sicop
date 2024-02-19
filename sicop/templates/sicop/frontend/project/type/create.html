@@ -1,0 +1,107 @@
+{% extends 'sicop/frontend/base/base.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block page_title %}
+  {% trans 'Project type Create' %}
+{% endblock page_title %}
+{% block content %}
+  <section id="configuration">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">{% trans 'Project type data' %}</h4>
+            <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+            <div class="heading-elements">
+              <ul class="list-inline mb-0">
+                <li>
+                  <a href="{% url 'project_type_list' %}">
+                    <button type="button" class="btn btn-icon btn-success mr-1 mb-1">
+                      <i class="fa fa-list"></i>
+                    </button>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-content collapse show">
+            <div class="card-body card-dashboard">
+              <section id="basic-form-layouts">
+                <div class="row match-height">
+                  <div class="col-md-12">
+                    <div class="card">
+                      {% if messages %}
+                        {% for message in messages %}
+                          <div class="alert alert-{{ message.tags }} alert-dismissible mb-2"
+                               role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">×</span>
+                            </button>
+                            {{ message }}
+                          </div>
+                        {% endfor %}
+                      {% endif %}
+                      <form method="post">
+                        {% csrf_token %}
+                        <div class="form-body">
+                          <h4 class="form-section">
+                            <i class="feather icon-users"></i> {% trans 'Project type Info' %}
+                          </h4>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="projectinput1">{% trans 'Name' %}</label>
+                                <input type="text"
+                                       id="projectinput1"
+                                       class="form-control"
+                                       placeholder="{% trans 'Name' %}"
+                                       required
+                                       name="name"
+                                       value="" />
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="projectinput1">{% trans 'Cap' %}</label>
+                                <input type="number"
+                                       id="projectinput1"
+                                       class="form-control"
+                                       placeholder="{% trans 'Cap' %}"
+                                       required
+                                       name="cap"
+                                       value="0" />
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="projectinput1">{% trans 'Redistribution cap' %}</label>
+                                <input type="number"
+                                       id="projectinput1"
+                                       class="form-control"
+                                       placeholder="{% trans 'Redistribution cap' %}"
+                                       required
+                                       name="redistribution_cap"
+                                       value="0" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-actions">
+                          <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-edit"></i> {% trans 'Create' %}
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}

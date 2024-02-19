@@ -1,0 +1,97 @@
+{% extends "sicop/users/base.html" %}
+
+{% load static %}
+{% load i18n %}
+{% load custom_tags %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}
+  {% translate "Sign In" %}
+{% endblock head_title %}
+{% block inner %}
+  <div class="card border-grey border-lighten-3 m-0 col-12">
+    <div class="card-header border-0">
+      <div class="card-title text-center">
+        <div class="p-1">
+          <img src="{% static 'stack/app-assets/images/logo/Logo-Maloka100x100.png' %}"
+               alt="branding logo" />
+        </div>
+      </div>
+      <h6 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2">
+        <span>{% trans 'Login on' %} {% get_app_name %}</span>
+      </h6>
+    </div>
+    <div class="card-content">
+      <div class="card-body">
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-{% if message.tags %}alert-{{ message.tags }}{% endif %} alert-dismissible mb-2"
+                 role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+              <strong>{{ message }}</strong>
+            </div>
+          {% endfor %}
+        {% endif %}
+        {% if form.errors %}
+          <div class="alert alert-warning">
+            <h4>{% trans 'Please fix the following errors' %}</h4>
+            <div class="list-group">
+              {% for field in form %}
+                {% if field.errors %}
+                  {% for error in field.errors %}<a href="#" class="list-group-item">{{ error|escape }}</a>{% endfor %}
+                {% endif %}
+              {% endfor %}
+            </div>
+            {% if form.non_field_errors %}{{ form.non_field_errors }}{% endif %}
+          </div>
+        {% endif %}
+        <form class="form-horizontal form-simple" novalidate method="post">
+          {% csrf_token %}
+          <fieldset class="form-group position-relative has-icon-left mb-0">
+            <input type="text"
+                   class="form-control form-control-lg"
+                   id="username"
+                   name="username"
+                   placeholder="{% trans 'Your Username' %}"
+                   required />
+            <div class="form-control-position">
+              <i class="feather icon-user"></i>
+            </div>
+          </fieldset>
+          <fieldset class="form-group position-relative has-icon-left">
+            <input type="password"
+                   class="form-control form-control-lg"
+                   id="password"
+                   name="password"
+                   placeholder="{% trans 'Enter Password' %}"
+                   required />
+            <div class="form-control-position">
+              <i class="fa fa-key"></i>
+            </div>
+          </fieldset>
+          <div class="form-group row">
+            <div class="col-sm-6 col-12 text-center text-sm-left">
+              <fieldset>
+                <input type="checkbox" id="remember-me" class="chk-remember" />
+                <label for="remember-me">{% trans 'Remember Me' %}</label>
+              </fieldset>
+            </div>
+            <div class="col-sm-6 col-12 text-center text-sm-right">
+              <a href="{% url 'user_reset_password' %}" class="card-link">{% trans 'Forgot Password?' %}</a>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg btn-block">
+            <i class="feather icon-unlock"></i> {% trans 'Login' %}
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="card-footer">
+      <p class="float-sm-center text-center m-0">
+        {% trans 'New to' %} {% get_app_name %}? <a href="{% url 'user_signup' %}" class="card-link">{% trans 'Sign Up' %}</a>
+      </p>
+    </div>
+  </div>
+{% endblock inner %}

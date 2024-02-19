@@ -1,0 +1,964 @@
+{% extends 'sicop/frontend/base/base.html' %}
+
+{% load static %}
+{% load i18n %}
+{% load humanize %}
+{% load sicop_filters %}
+{% block page_title %}
+  {% trans 'Budget commitment create' %}
+{% endblock page_title %}
+{% block content %}
+  <style>
+    .label-project{
+      font-size: 10px;
+    }
+    .blank-label{
+      font-size: 10px;
+      color: white;
+    }
+    #divCarga {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.7); /* Fondo semitransparente blanco */
+        justify-content: center;
+        align-items: center;
+        z-index: 9999; /* Asegura que esté encima de otros elementos */
+    }
+
+    #divCarga img {
+        width: 250px; /* Ajusta el tamaño de la imagen de carga */
+    }
+  </style>
+  <div id="divCarga">
+    <img src="{% static 'images/loading.gif' %}" alt="Cargando...">
+  </div>
+  <section id="configuration">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">{% trans 'Budget Commitment' %}</h4>
+            <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+            <div class="heading-elements">
+              <ul class="list-inline mb-0">
+                <li>
+                  <a href="{% url 'budget_redistribution_list' %}">
+                    <button type="button" class="btn btn-icon btn-success mr-1 mb-1">
+                      <i class="fa fa-list"></i>
+                    </button>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-content collapse show">
+            <div class="card-body card-dashboard">
+              <section id="basic-form-layouts">
+                <div class="row match-height">
+                  <div class="col-md-12">
+                    <div class="card">
+                      {% if messages %}
+                        {% for message in messages %}
+                          <div class="alert alert-{{ message.tags }} alert-dismissible mb-2"
+                               role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">×</span>
+                            </button>
+                            {{ message }}
+                          </div>
+                        {% endfor %}
+                      {% endif %}
+                      <div class="form-body">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <div class="row">
+                                <div class="col-12">
+                                  <h4 class="form-section">
+                                    {% trans "Commitment Information" %}
+                                    <input type="hidden" name="commitment_id" id="commitment_id" value="{{commitment.id}}">
+                                  </h4>
+                                  <div class="row">
+                                    <div class="col-10">
+                                      <label class="label-project" for="caps">{% trans 'CAPs' %}</label>
+                                      <select class="form-control" id="caps">
+                                        {% if commitment.provision_cart is None %}
+                                        <option value="">{% trans "Search and select a CAP" %}</option>
+                                        {% else %}
+                                          <option value="{{commitment.provision_cart.id}}">{{commitment.provision_cart}}</option>
+                                        {% endif %}
+                                      </select>
+                                    </div>
+                                    <div class="col-2">
+                                      <label class="label-project" for="has_tax">{% trans 'Has tax?' %}</label>
+                                      <select class="form-control select2" id="has_tax" disabled>
+                                        <option value="yes" {% if commitment.has_tax %} selected {% endif %}>{% trans "Yes" %}</option>
+                                        <option value="yes" {% if not commitment.has_tax %} selected {% endif %}>{% trans "No" %}</option>
+                                      </select>
+                                    </div>
+                                    <div class="col-12">
+                                      
+                                      <div class="row">
+                                        <div class="col-3">
+                                          <label class="label-project" for="type">{% trans 'Commitment type' %}</label>
+                                          <select class="form-control select2" id="type">
+                                            <option value="">{% trans "Select a type" %}</option>
+                                            {% for commitment_type in commitment_types %}
+                                              <option value="{{ commitment_type.0 }}" {% if commitment_type.0 == commitment.contract_or_po %} selected {% endif %}>{{ commitment_type.1 }}</option>
+                                            {% endfor %}
+                                          </select>
+                                        </div>
+                                        <div class="col-6">
+                                          <div class="row">
+                                            <div class="col-12">
+                                              <div id="contract_div" class="entity_id" {% if commitment_contract is None %} style="display: none; width: 100%;" {% endif %}>
+                                                <label class="label-project" for="contract">{% trans 'Contracts' %}</label>
+                                                <select class="form-control" id="contract" style="width: 100%;">
+                                                  {% if commitment_contract is None %}
+                                                  <option value="">{% trans "Search and select a contract" %}</option>
+                                                  {% else %}
+                                                  <option value="{{commitment_contract.id}}">{% trans "Contract" %} {{commitment_contract.contract}} {% trans "Third" %} {{commitment_contract.contract.IdTercer}}</option>  
+                                                  {% endif %}
+                                                </select>
+                                              </div>
+                                            </div>
+                                            <div class="col-12">
+                                              <div id="po_div" class="entity_id" {% if commitment_po is None %} style="display: none; width: 100%;" {% endif %}>
+                                                <label class="label-project" for="po">{% trans 'POs' %}</label>
+                                                <select class="form-control" id="po" style="width: 100%;">
+                                                  {% if commitment_po is None  %}
+                                                  <option value="">{% trans "Search and select a PO" %}</option>  
+                                                  {% else %}
+                                                  <option value="{{commitment_po.id}}">{% trans "PO" %} {{commitment_po}} {% trans "Third" %} {{commitment_po.po.IdTercer}}</option>
+                                                  {% endif %}
+                                                </select>
+                                              </div>
+                                            </div>
+                                            <div class="col-12">
+                                              <div id="other_commitment" class="entity_id" {% if commitment_not_related is None %} style="display: none; width: 100%;" {% endif %}>
+                                                <div class="row">
+                                                  <div class="col-6">
+                                                    <label class="label-project" for="contract">{% trans 'Identifier of' %}{% if commitment.contract_or_po == 'CO' %} {% trans 'Consumption' %} {% else %} {% trans 'Legalization' %} {% endif %}</label>
+                                                    <input type="text" id="not_related_identifier" name="not_related_identifier" class="form-control" value="{% if commitment_not_related.key is None %} {% else %}{{commitment_not_related.key}}{% endif %}" onkeyup="updateIdentifier('{{commitment.id}}')">
+                                                  </div>
+                                                  <div class="col-6">
+                                                    <label class="label-project" for="not_related_required_amount">{% trans 'Commitment value' %}</label>
+                                                    <input type="text" id="not_related_required_amount" name="not_related_required_amount" class="form-control" value="{{commitment.required_amount}}" onkeyup="updateNotRelated('{{commitment.id}}')">
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-3">
+                                          <label class="label-project" for="tax_amount">{% trans 'Tax amount' %}</label>
+                                          <input type="text" id="tax_amount" name="tax_amount" class="form-control" value="{{commitment.tax_amount}}" {% if not commitment.has_tax %} disabled {% endif %} onkeyup="updateTax('{{commitment.id}}')">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-12">
+                                      <label class="label-project" for="caps">{% trans 'Thirds' %}</label>
+                                      <select class="form-control" id="thirds" {% if commitment.contract_or_po == "CT" or commitment.contract_or_po == "PO" %} disabled {% endif %}>
+                                        {% if commitment.third is None %}
+                                        <option value="">{% trans "Search and select a third" %}</option>  
+                                        {% else %}
+                                        <option value="{{commitment.third.id}}">{{commitment.third}}</option>
+                                        {% endif %}
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="mt-2">
+                                <hr>
+                              </div>
+                              <div class="row">
+                                <div class="col-12">
+                                  <h4 class="form-section">
+                                    {% trans "Commitment verification" %}
+                                  </h4>
+                                  <div class="row">
+                                    <div class="col-4">
+                                      <label class="label-project" for="cap_budget">{% trans 'CAP budget' %}</label>
+                                      <input type="text" name="cap_budget" id="cap_budget" class="form-control form-control-sm" value="{{commitment.provision_budget_amount | format_to_cop}}" disabled>
+                                      <input type="hidden" id="cap_budget_amount" value="{{commitment.provision_budget_amount}}">
+                                    </div>
+                                    <div class="col-4">
+                                      <label id="type_label" class="label-project" for="required">{% trans 'Commitment budget' %}</label>
+                                      <input type="text" id="required" class="form-control form-control-sm" value="{{commitment.required_amount | format_to_cop}}" disabled>
+                                      <input type="hidden" id="required_amount" value="{{commitment.required_amount}}">
+                                    </div>
+                                    <div class="col-4">
+                                      <label id="difference_label" class="label-project" for="required">{% trans 'Difference between CAP and Commitment budget' %}</label>
+                                      <input type="text" name="difference" id="difference" class="form-control form-control-sm" value="{{commitment.diference_between_required_and_provisioned | format_to_cop}}" disabled>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="mt-2">
+                                <hr>
+                              </div>
+                              <div class="row" id="realease_div" {% if commitment.diference_between_required_and_provisioned <= 0 %} style="display: none;" {% endif %}>
+                                <div class="col-12">
+                                  <h4 class="form-section">
+                                    {% trans "Release resources" %}
+                                  </h4>
+                                  <div class="row">
+                                    <div class="col-4">
+                                      <label class="label-project" for="required">{% trans 'Total for release' %}</label>
+                                      <input type="text" class="form-control form-control-sm" name="to_release_text" id="to_release_text" value="{{commitment_release.total_to_release | format_to_cop}}" readonly>
+                                      <input type="hidden" name="to_release" id="to_release" value="{{commitment_release.total_to_release}}">
+                                    </div>
+                                    <div class="col-4">
+                                      <label class="label-project" for="released_text">{% trans 'Total released' %}</label>
+                                      <input type="text" class="form-control form-control-sm" name="released_text" id="released_text" value="{{commitment_release.total_released | format_to_cop}}" readonly>
+                                    </div>
+                                    <div class="col-4">
+                                      <label class="label-project" for="total_pending_text">{% trans 'Pending for release' %}</label>
+                                      <input type="text" class="form-control form-control-sm" name="total_pending_text" id="total_pending_text" value="{{commitment_release.total_pending | format_to_cop}}" readonly>
+                                      <input type="hidden"id="total_pending_amount" value="{{commitment_release.total_pending}}">
+                                    </div>
+                                    <div class="col-12 mt-2">
+                                      <table class="table" id="items_table">
+                                        <thead>
+                                            <tr>
+                                                <th>{% trans 'Item' %}</th>
+                                                <th>{% trans 'Item budget' %}</th>
+                                                <th>{% trans 'Amount to release' %}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="items_table_body">
+                                          
+                                          {% for commitment_release_item in commitment_release.commitment_release_items.all %}
+                                            
+                                            <tr id="row_{{commitment_release_item.id}}">
+                                              <td>
+                                                {{commitment_release_item.budget.budget_description}}
+                                              </td>
+                                              <td>
+                                                {{commitment_release_item.budget.available_budget|format_to_cop}}
+                                                <input type="hidden" id="control_value_{{commitment_release_item.id}}" value="{{commitment_release_item.budget.current_budget}}">
+                                              </td>
+                                              <td>
+                                                <input 
+                                                  type="text" id="releaseded_{{commitment_release_item.id}}" 
+                                                  class="form-control form-control-sm table_item_class" 
+                                                  value ="{{commitment_release_item.total_to_release}}" 
+                                                  onkeyup="releasingValues('{{commitment_release_item.id}}')"/>
+                                              </td>
+                                            </tr>  
+                                          {% endfor %}
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <form method="post" id="commitment_form" action="{% url 'commitment_create' %}">
+                        {% csrf_token %}
+                        <div class="col-md-12">
+                          <div class="form-group row">
+                            <div class="col-12">
+                              <textarea class="form-control form-control-sm" name="observation" id="" cols="30" rows="5" hidden></textarea>
+                            </div>
+                          </div>
+                          <div class="form-actions text-right">
+                            <input type="hidden" name="commitment_object_id" id="commitment_object_id" value="{{commitment.id}}">
+                            {% if commitment_release.total_pending is None %}
+                            <button type="submit" class="btn btn-primary" id="create_button" {% if commitment.diference_between_required_and_provisioned < 0 %} disabled{% endif %}>
+                              <i class="fa fa-edit"></i> {% trans 'Create' %}
+                            </button>
+                            {% else %}
+                            <button type="submit" class="btn btn-primary" id="create_button" {% if commitment.diference_between_required_and_provisioned < 0 or commitment_release.total_pending != 0 %} disabled{% endif %}>
+                              <i class="fa fa-edit"></i> {% trans 'Create' %}
+                            </button>  
+                            {% endif %}
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+          integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+          crossorigin="anonymous"></script>
+  <script>
+    // Validate fields
+    function validateFields(){
+      var is_complete = true;
+      console.log("Validating fields"+ is_complete);
+      var selected_cap = $("#caps").val();
+      var messages = [];
+      if (selected_cap === "") {
+      console.log("CAP is not selected");
+        is_complete = false;
+        messages.push("{% trans 'CAP is not selected' %}");
+      }
+      var selected_type = $("#type").val();
+      if (selected_type === "") {
+        console.log("Type is not selected");
+        is_complete = false;
+        messages.push("{% trans 'Type is not selected' %}");
+      }
+      if (selected_type == "CT") {
+        var selected_contract = $("#contract").val();
+        if (selected_contract === "") {
+          console.log("Contract is not selected");
+          is_complete = false;
+          messages.push("{% trans 'Contract is not selected' %}");
+        }
+      } else if (selected_type == "PO") {
+        var selected_po = $("#po").val();
+        if (selected_po === "") {
+          console.log("Purchase order is not selected");
+          is_complete = false;
+          messages.push("{% trans 'Purchase order is not selected' %}");
+        }
+      } else {
+        var selected_identifier = $("#not_related_identifier").val();
+        if (selected_identifier === "") {
+          console.log("Identifier is not selected");
+          is_complete = false;
+          messages.push("{% trans 'You have not placed an identifier' %}");
+        }
+        var selected_amount = $("#not_related_required_amount").val();
+        if (selected_amount === "") {
+          console.log("Amount is not selected");
+          is_complete = false;
+          messages.push("{% trans 'The value of the commitment has not been established' %}");
+        }  
+      }
+      var tax_amount = $("#tax_amount").val();
+      if (tax_amount === "") {
+        console.log("Tax amount is not selected");
+        is_complete = false;
+        messages.push("{% trans 'The value of the tax has not been established' %}");
+      }
+      var selected_third = $("#thirds").val();
+      if (selected_third === "") {
+        console.log("Third is not selected");
+        is_complete = false;
+        messages.push("{% trans 'Third is not selected' %}");
+      }
+      var total_pending_amount = parseFloat($("#total_pending_amount").val());
+      console.log(`total_pending_amount: ${total_pending_amount}`);
+      // verify if total_pending_amount is NaN
+      if(isNaN(total_pending_amount)){
+        total_pending_amount = 0;
+      }
+
+      if (total_pending_amount != 0) {
+        console.log("The value of the difference between the CAP and the commitment must be verified.");
+        is_complete = false;
+        messages.push("{% trans 'The value of the difference between the CAP and the commitment must be verified.' %}");
+      }
+      return {
+        is_complete: is_complete,
+        messages: messages,
+      };
+    }
+    document.getElementById("commitment_form").addEventListener('submit', function(event){
+      var validate_fields = validateFields();
+      console.log(validate_fields);
+      if (validate_fields.is_complete===false) {
+        var messages = validate_fields.messages;
+        var messages_text = "";
+        messages.forEach(function(message, i) {
+          messages_text += `${message}, `;
+        });
+        messages_text = messages_text.slice(0, -2);
+        Swal.fire({
+          title: "{% trans 'Error on submit' %}",
+          text: `${messages_text}.`,
+          type: "warning",
+          confirmButtonText: "{% trans 'Ok' %}"
+        });
+        event.preventDefault();
+      }
+      
+    });
+  </script>
+  <script>
+    // Function to for releasing
+    function releasingValues(id){
+      var released_value = $("#releaseded_"+id).val();
+      var control_value = parseFloat($("#control_value_"+id).val());
+      var total_pending_amount = parseFloat($("#total_pending_amount").val());
+      var to_release = parseFloat($("#to_release").val());
+      console.log(`released_value: ${released_value} control_value: ${control_value} total_pending_amount: ${total_pending_amount} to_release: ${to_release}`)
+      if (isNaN(released_value) || released_value > control_value) {
+          console.log('El valor ingresado debe ser menor o igual a ' + control_value);
+          $("#releaseded_"+id).val(0);
+      } else {
+        var url = "{% url 'commitment_release_update' %}";
+        var post_values = {
+          'commiment_release_item_id': id,
+          'commitment_release_amount': released_value,
+        };
+        $.ajax({
+          url: url,
+          method: "POST",
+          type: "json",
+          beforeSend: function (xhr, settings) {
+            xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+          },
+          data: post_values,
+          success: function(data) {
+            if (data.status == "ok") {
+              var total_to_release= data.total_to_release;
+              var total_released = data.total_released;
+              var total_pending = data.total_pending;
+              if(total_pending == 0){
+                $("#create_button").prop('disabled', false);
+              }else{
+                $("#create_button").prop('disabled', true);
+                if(total_pending < 0){
+                  Swal.fire({
+                    title: "{% trans 'Alert' %}",
+                    text: "{% trans 'There are differences between the values ​​to be released, please review.' %}",
+                    type: "warning",
+                    confirmButtonText: "{% trans 'Ok' %}"
+                  });
+                }
+              }
+              var formated_total_to_release = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+              }).format(total_to_release);
+              var formated_total_released = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+              }).format(total_released);
+              var formated_total_pending = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+              }).format(total_pending);
+              $("#total_pending_text").val(formated_total_pending);
+              $("#total_pending_amount").val(total_pending);
+              $("#released_text").val(formated_total_released);
+              $("#to_release_text").val(formated_total_to_release);
+            }
+            else{
+              console.log(data);
+            }
+          }
+        });
+      }
+      
+
+    }
+    // Function to update identifier
+    function updateIdentifier(id){
+      var identifier = $("#not_related_identifier").val();
+      var url = "{% url 'commitment_identifier_update' %}";
+      var post_values = {
+        'commitment_id': id,
+        'identifier':identifier,
+      };
+      $.ajax({
+        url: url,
+        method: "POST",
+        type: "json",
+        beforeSend: function (xhr, settings) {
+          xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+        },
+        data: post_values,
+        success: function(data) {
+          if (data.status == 'ok') {
+            console.log(data);
+          } else {
+            console.log(data);
+          }
+        }
+      });
+    }
+    // Function to update tax
+    function updateTax(id){
+      var tax_amount = $("#tax_amount").val();
+      var url = "{% url 'commitment_tax_update' %}";
+      var post_values = {
+        'commitment_id': id,
+        'tax_amount':tax_amount,
+      };
+      $.ajax({
+        url: url,
+        method: "POST",
+        type: "json",
+        beforeSend: function (xhr, settings) {
+          xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+        },
+        data: post_values,
+        success: function(data) {
+          if (data.status == 'ok') {
+            console.log(data);
+          } else {
+            console.log(data);
+          }
+        }
+      });
+    }
+    // Function to update not related value
+    function updateNotRelated(id){
+      var timeoutId;
+      $('#not_related_required_amount').on('keyup', function() {
+        console.log("Not related value changed");
+        // timer restart
+        clearTimeout(timeoutId);
+
+        // set the timer to 5 seconds
+        timeoutId = setTimeout(function() {
+          document.getElementById('divCarga').style.display = 'flex';
+          //----------------------------------------------
+          var amount = $("#not_related_required_amount").val();
+          var url = "{% url 'commitment_amount_update' %}";
+          var id = $('#commitment_id').val();
+          var post_values = {
+            'commitment_id': id,
+            'amount':amount,
+          };
+          $.ajax({
+            url: url,
+            method: "POST",
+            type: "json",
+            beforeSend: function (xhr, settings) {
+              xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+            },
+            data: post_values,
+            success: function(data) {
+              if (data.status == 'ok') {
+                var provision_budget_amount = data.provision_budget_amount;
+                var required_amount = data.required_amount;
+                var diference_between_required_and_provisioned = data.diference_between_required_and_provisioned;
+                var total_provisioned_amount = data.total_provisioned_amount;
+                updateResumeValues(total_provisioned_amount, required_amount, diference_between_required_and_provisioned);
+                var commitment_id = $('#commitment_id').val();
+                var url = "{% url 'create_or_destroy_release_table' %}";
+                var post_values = {
+                  'commitment_id': commitment_id,
+                };
+                $.ajax({
+                  url: url,
+                  method: "POST",
+                  type: "json",
+                  beforeSend: function (xhr, settings) {
+                    xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+                  },
+                  data: post_values,
+                  success: function(data) {
+                    if (data.status == 'ok') {
+                      var commitment_release = data.commitment_release;
+                      console.log(data);
+                      // set to 0 required and difference input
+                      $("#released_text").val("$0");
+                      var total_to_release = data.total_to_release;
+                      // format total_to_release
+                      var formated_total_to_release = new Intl.NumberFormat('en-US', {
+                        style: 'currency',
+                        currency: 'USD',
+                      }).format(total_to_release);
+                      $("#total_to_release").val(formated_total_to_release);
+                      $("total_pending_text").val(formated_total_to_release);
+                      $("#total_pending_amount").val(total_to_release);
+                      // check if the commitment_release is null
+                      if(commitment_release == null){
+                        
+                        // Clear and hide release table
+                        $("#realease_div").hide();
+                        $("#items_table_body").empty();
+                      }else{
+                        // Populate release table
+                        $("#realease_div").show();
+                        $("#items_table_body").empty();
+                        var commitment_release_items = data.commitment_release_items;
+                        clearAndPopulateReleaseTable(commitment_release_items);
+                        // reload the page
+                        location.reload();
+                      }
+                    } else {
+                      console.log(data);
+                    }
+                  }
+                });
+                //----------------------------------------------
+              } else {
+                console.log(data);
+              }
+            }
+          });
+          //----------------------------------------------
+          
+        }, 3000); // 3 seconds in miliseconds
+      });
+      
+    }
+    // Function to update resume values
+    function updateResumeValues(provision_budget_amount, required_amount, diference_between_required_and_provisioned){
+      if(diference_between_required_and_provisioned <= 0){
+        $("#create_button").prop('disabled', false);
+      }else{
+        $("#create_button").prop('disabled', true);
+      }
+      var cap_budget_amount = parseFloat($('#cap_budget_amount').val());
+      var required_amount = parseFloat($('#required_amount').val());
+
+      if(diference_between_required_and_provisioned > 0){
+        $("#realease_div").show();
+        if(cap_budget_amount > 0 && required_amount > 0){  
+          Swal.fire({
+            title: "{% trans 'Alert' %}",
+            text: "{% trans 'The value of the CAP is higher, a budget release is required.' %}",
+            type: "warning",
+            confirmButtonText: "{% trans 'Ok' %}"
+          });
+        }
+      }else{
+        $("#realease_div").hide();
+        if(cap_budget_amount > 0 && required_amount > 0){
+          Swal.fire({
+            title: "{% trans 'Error' %}",
+            text: "{% trans 'The value of the project or PO is greater than the CAP, please verify' %}",
+            type: "error",
+            confirmButtonText: "{% trans 'Ok' %}"
+          });
+        }
+        $("#create_button").prop('disabled', true);
+      }
+      var formated_provision_budget_amount = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(provision_budget_amount);
+      var formated_required_amount = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(required_amount);
+      var formated_diference_between_required_and_provisioned = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(diference_between_required_and_provisioned);
+      $("#cap_budget").val(formated_provision_budget_amount);
+      $("#cap_budget_amount").val(provision_budget_amount);
+      $("#required").val(formated_required_amount);
+      $("#required_amount").val(required_amount);
+      $("#difference").val(formated_diference_between_required_and_provisioned);
+      $("#to_release_text").val(formated_diference_between_required_and_provisioned);
+      $("#to_release").val(diference_between_required_and_provisioned);
+    }
+    // Function to update release table
+    function clearAndPopulateReleaseTable(commitment_release_items){
+      // clear the elements inside the table body with id items_table_body
+      $("#items_table_body").empty();
+      // create a loop using jquery map over commitment_release_items
+      commitment_release_items.forEach(function(item, j) {  
+        var commitment_release_item = item;
+        var budget_description = commitment_release_item.budget_description;
+        var current_budget = commitment_release_item.current_budget;
+        //format current_budget
+        formatted_current_budget = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+        }).format(current_budget);
+        var total_to_release = commitment_release_item.total_to_release;
+        var id = commitment_release_item.id;
+        var row = `
+        <tr id="row_${id}">
+          <td>
+            ${budget_description}
+          </td>
+          <td>
+            ${formatted_current_budget}
+            <input type="hidden" id="control_value_${id}" value="${current_budget}">
+          </td>
+          <td>
+            <input 
+              type="text" id="releaseded_${id}" 
+              class="form-control form-control-sm table_item_class" 
+              value ="${total_to_release}" 
+              onkeyup="releasingValues('${id}')"/>
+          </td>
+        </tr>`;
+        $("#items_table_body").append(row);
+      });
+    }
+    // ---------------------------------------------------
+    // Document ready
+    // ---------------------------------------------------
+    $(document).ready(function() {
+      // select2 search
+      $('#caps').select2({
+        language: "es",
+        minimumInputLength: 1,
+        ajax: {
+            url: "{% url 'get_provision_carts_by_criteria' %}",
+            dataType: 'json',
+            delay: 250,
+            processResults: function(data) {
+              return {
+                  results: data
+              };
+            },
+            cache: true
+        }
+      });
+      $('#contract').select2({
+        language: "es",
+        minimumInputLength: 4,
+        ajax: {
+            url: "{% url 'contract_list_search_criteria' %}",
+            dataType: 'json',
+            delay: 250,
+            processResults: function(data) {
+              return {
+                  results: data
+              };
+            },
+            cache: true
+        }
+      });
+      $('#po').select2({
+        language: "es",
+        minimumInputLength: 4,
+        ajax: {
+            url: "{% url 'purchase_order_list_search_criteria' %}",
+            dataType: 'json',
+            delay: 250,
+            processResults: function(data) {
+              return {
+                  results: data
+              };
+            },
+            cache: true
+        }
+      });
+      $('#type').on('change', function() {
+        var type = $(this).val();
+        $('#not_related_required_amount').val(0);
+        $('#not_related_identifier').val('');
+        if (type == 'CT') {
+          $('#contract_div').show();
+          $('#po_div').hide();
+          $("#thirds").prop('disabled', true);
+          $('#other_commitment').hide();
+          //change type_label text
+
+          $("#type_label").text("")
+        } else if (type == 'PO') {
+          $('#contract_div').hide();
+          $('#po_div').show();
+          $('#other_commitment').hide();
+          $("#thirds").prop('disabled', true);
+        } else {
+          $('#contract_div').hide();
+          $('#po_div').hide();
+          $('#other_commitment').show();
+          $("#thirds").prop('disabled', false);
+        }
+        // Clear and hide release table
+        $("#realease_div").hide();
+        $("#items_table_body").empty();
+        // set to 0 required and difference input
+        $("#required").val(0);
+        $("#required_amount").val(0);
+        $("#difference").val(0);
+      });
+      $('#thirds').select2({
+          language: "es",
+          minimumInputLength: 4,
+          ajax: {
+              url: "{% url 'third_list_search_criteria' %}",
+              dataType: 'json',
+              delay: 250,
+              processResults: function(data) {
+                return {
+                    results: data
+                };
+              },
+              cache: true
+          }
+        });
+      //Update CAP on commitment
+      $('#caps').on("change", function(){
+        var commitment_id = $('#commitment_id').val();
+        var cap_id = $(this).val();
+        var url = "{% url 'update_commitment_cap' %}";
+        var post_values = {
+          'commitment_id': commitment_id,
+          'cap_id':cap_id,
+        };
+        $.ajax({
+          url: url,
+          method: "POST",
+          type: "json",
+          beforeSend: function (xhr, settings) {
+            xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+          },
+          data: post_values,
+          success: function(data) {
+            if (data.status == 'ok') {
+              var has_tax = data.has_tax;
+              var total_provisioned_amount = data.total_provisioned_amount;
+              var formated_total_provisioned_amount = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+              }).format(total_provisioned_amount);
+              $("#cap_budget").val(formated_total_provisioned_amount);
+              $("#cap_budget_amount").val(total_provisioned_amount);
+              var yes_text = "{% trans 'Yes' %}"
+              var no_text = "{% trans 'No' %}"
+              // clean has_tax options
+              $('#has_tax').empty();
+              // change selected option on has_tax based on has_tax value
+              $("#tax_amount").val(0);
+              if(has_tax){
+                $("#tax_amount").prop('disabled', false);
+                $("#has_tax").append(`<option value="yes" selected>${yes_text}</option>`);
+                $("#has_tax").append(`<option value="no">${no_text}</option>`);
+              }else{
+                $("#tax_amount").prop('disabled', true);
+                $("#has_tax").append(`<option value="yes">${yes_text}</option>`);
+                $("#has_tax").append(`<option value="no" selected>${no_text}</option>`);
+              }
+              // Resume values
+              var provision_budget_amount = data.provision_budget_amount;
+              var required_amount = data.required_amount;
+              var diference_between_required_and_provisioned = data.diference_between_required_and_provisioned;
+              updateResumeValues(total_provisioned_amount, required_amount, diference_between_required_and_provisioned);
+              // Populate release table
+              if(diference_between_required_and_provisioned > 0){
+                $("#realease_div").show();
+                var commitment_release_dict = data.commitment_release_dict;
+                var commitment_release_items = commitment_release_dict.commitment_release_items;
+                clearAndPopulateReleaseTable(commitment_release_items);
+              }
+            } else {
+              console.log(data);
+            }
+          }
+        });
+      });
+      //Update commitment type
+      $('#type').on("change", function(){
+        var commitment_id = $('#commitment_id').val();
+        var type = $(this).val();
+        var url = "{% url 'update_commitment_type' %}";
+        var post_values = {
+          'commitment_id': commitment_id,
+          'type':type,
+        };
+        $.ajax({
+          url: url,
+          method: "POST",
+          type: "json",
+          beforeSend: function (xhr, settings) {
+            xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+          },
+          data: post_values,
+          success: function(data) {
+            if (data.status == 'ok') {
+              console.log(data);
+            } else {
+              console.log(data);
+            }
+          }
+        });
+      });
+      //Update third on commitment
+      $('#thirds').on("change", function(){
+        var commitment_id = $('#commitment_id').val();
+        var third_id = $(this).val();
+        var url = "{% url 'update_third_cap' %}";
+        var post_values = {
+          'commitment_id': commitment_id,
+          'third_id':third_id,
+        };
+        $.ajax({
+          url: url,
+          method: "POST",
+          type: "json",
+          beforeSend: function (xhr, settings) {
+            xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+          },
+          data: post_values,
+          success: function(data) {
+            if (data.status == 'ok') {
+              console.log(data);
+            } else {
+              console.log(data);
+            }
+          }
+        });
+      });
+      //Update contract or po entity on commitment
+      $('.entity_id').on("change", function(){
+        
+        var commitment_id = $('#commitment_id').val();
+        var entity_id = $(this).val();
+        var contract_or_po = $('#type').val();
+        if (contract_or_po == 'CT') {
+          entity_id = $("#contract").val();
+          document.getElementById('divCarga').style.display = 'flex';
+        } else if (contract_or_po == 'PO') {
+          entity_id = $("#po").val();
+          document.getElementById('divCarga').style.display = 'flex';
+        }
+        console.log(`entity_id: ${entity_id} contract_or_po: ${contract_or_po}`)
+        var url = "{% url 'update_cap_entity' %}";
+        var post_values = {
+          'commitment_id': commitment_id,
+          'entity_id':entity_id,
+          'contract_or_po':contract_or_po,
+        };
+        $.ajax({
+          url: url,
+          method: "POST",
+          type: "json",
+          beforeSend: function (xhr, settings) {
+            xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+          },
+          data: post_values,
+          success: function(data) {
+            if (data.status == 'ok') {
+              if (contract_or_po == "CT" || contract_or_po=="PO"){
+                var thid_id = data.third_id;
+                var third_name = data.third;
+                var release_items = data.release_items;
+                var diference_between_required_and_provisioned = data.diference_between_required_and_provisioned;
+                console.log(diference_between_required_and_provisioned);
+                $("#thirds").empty();
+                $("#thirds").append(`<option value="${thid_id}">${third_name}</option>`);
+                $("#thirds").prop('disabled', true);
+                clearAndPopulateReleaseTable(release_items);
+              }
+              var tax_amount = data.tax_amount;
+              $("#tax_amount").val(tax_amount);
+              var total_provisioned_amount = data.provision_budget_amount;
+              var required_amount = data.required_amount;
+              var diference_between_required_and_provisioned = data.diference_between_required_and_provisioned;
+              updateResumeValues(total_provisioned_amount, required_amount, diference_between_required_and_provisioned);
+              // wait 3 second and reload
+              setTimeout(function(){ location.reload(); }, 3000);
+              
+            } else {
+              console.log(data);
+            }
+          }
+        });
+      });
+    
+    });
+</script>
+{% endblock content %}

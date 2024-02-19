@@ -1,0 +1,310 @@
+{% extends 'sicop/frontend/base/base.html' %}
+
+{% load static %}
+{% load i18n %}
+{% load humanize %}
+{% load sicop_filters %}
+{% block page_title %}
+  {% trans 'Budget commitment release' %}
+{% endblock page_title %}
+{% block content %}
+  <style>
+    .label-project{
+      font-size: 10px;
+    }
+    .blank-label{
+      font-size: 10px;
+      color: white;
+    }
+  </style>
+  <section id="configuration">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">{% trans 'Budget Commitment release' %}</h4>
+            <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+            <div class="heading-elements">
+              <ul class="list-inline mb-0">
+                <li>
+                  <a href="{% url 'commitment_release_list' %}">
+                    <button type="button" class="btn btn-icon btn-success mr-1 mb-1">
+                      <i class="fa fa-list"></i>
+                    </button>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-content collapse show">
+            <div class="card-body card-dashboard">
+              <section id="basic-form-layouts">
+                <div class="row match-height">
+                  <div class="col-md-12">
+                    <div class="card">
+                      {% if messages %}
+                        {% for message in messages %}
+                          <div class="alert alert-{{ message.tags }} alert-dismissible mb-2"
+                               role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">×</span>
+                            </button>
+                            {{ message }}
+                          </div>
+                        {% endfor %}
+                      {% endif %}
+                      <div class="form-body">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <div class="row">
+                                <div class="col-12">
+                                  <h4 class="form-section">
+                                    {% trans "Commitment Information" %}
+                                    <input type="hidden" name="commitment_id" id="commitment_id" value="{{commitment.id}}">
+                                  </h4>
+                                  <div class="row">
+                                    <div class="col-10">
+                                      <label class="label-project" for="caps">{% trans 'CAPs' %}</label>
+                                      <select class="form-control" id="caps" disabled>
+                                        {% if commitment.provision_cart is None %}
+                                        <option value="">{% trans "Search and select a CAP" %}</option>
+                                        {% else %}
+                                          <option value="{{commitment.provision_cart.id}}">{{commitment.provision_cart}}</option>
+                                        {% endif %}
+                                      </select>
+                                    </div>
+                                    <div class="col-2">
+                                      <label class="label-project" for="has_tax">{% trans 'Has tax?' %}</label>
+                                      <select class="form-control select2" id="has_tax" disabled>
+                                        <option value="yes" {% if commitment.has_tax %} selected {% endif %}>{% trans "Yes" %}</option>
+                                        <option value="yes" {% if not commitment.has_tax %} selected {% endif %}>{% trans "No" %}</option>
+                                      </select>
+                                    </div>
+                                    <div class="col-12">
+                                      
+                                      <div class="row">
+                                        <div class="col-3">
+                                          <label class="label-project" for="type">{% trans 'Commitment type' %}</label>
+                                          <select class="form-control select2" id="type" disabled>
+                                            <option value="">{% trans "Select a type" %}</option>
+                                            {% for commitment_type in commitment_types %}
+                                              <option value="{{ commitment_type.0 }}" {% if commitment_type.0 == commitment.contract_or_po %} selected {% endif %}>{{ commitment_type.1 }}</option>
+                                            {% endfor %}
+                                          </select>
+                                        </div>
+                                        <div class="col-6">
+                                          <div class="row">
+                                            <div class="col-12">
+                                              <div id="contract_div" class="entity_id" {% if commitment_contract is None %} style="display: none; width: 100%;" {% endif %}>
+                                                <label class="label-project" for="contract">{% trans 'Contracts' %}</label>
+                                                <select class="form-control" id="contract" style="width: 100%;" disabled>
+                                                  {% if commitment_contract is None %}
+                                                  <option value="">{% trans "Search and select a contract" %}</option>
+                                                  {% else %}
+                                                  <option value="{{commitment_contract.id}}">{% trans "Contract" %} {{commitment_contract.contract}} {% trans "Third" %} {{commitment_contract.contract.IdTercer}}</option>  
+                                                  {% endif %}
+                                                </select>
+                                              </div>
+                                            </div>
+                                            <div class="col-12">
+                                              <div id="po_div" class="entity_id" {% if commitment_po is None %} style="display: none; width: 100%;" {% endif %}>
+                                                <label class="label-project" for="po">{% trans 'POs' %}</label>
+                                                <select class="form-control" id="po" style="width: 100%;">
+                                                  {% if commitment_po is None  %}
+                                                  <option value="">{% trans "Search and select a PO" %}</option>  
+                                                  {% else %}
+                                                  <option value="{{commitment_po.id}}">{% trans "PO" %} {{commitment_po}} {% trans "Third" %} {{commitment_po.po.IdTercer}}</option>
+                                                  {% endif %}
+                                                </select>
+                                              </div>
+                                            </div>
+                                            <div class="col-12">
+                                              <div id="other_commitment" class="entity_id" {% if commitment_not_related is None %} style="display: none; width: 100%;" {% endif %}>
+                                                <div class="row">
+                                                  <div class="col-6">
+                                                    <label class="label-project" for="contract">{% trans 'Identifier of' %}{% if commitment.contract_or_po == 'CO' %} {% trans 'Consumption' %} {% else %} {% trans 'Legalization' %} {% endif %}</label>
+                                                    <input type="text" id="not_related_identifier" name="not_related_identifier" class="form-control" value="{% if commitment_not_related.key is None %} {% else %}{{commitment_not_related.key}}{% endif %}" onkeyup="updateIdentifier('{{commitment.id}}')">
+                                                  </div>
+                                                  <div class="col-6">
+                                                    <label class="label-project" for="not_related_required_amount">{% trans 'Commitment value' %}</label>
+                                                    <input type="text" id="not_related_required_amount" name="not_related_required_amount" class="form-control" value="{{commitment.required_amount}}" onkeyup="updateNotRelated('{{commitment.id}}')">
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-3">
+                                          <label class="label-project" for="tax_amount">{% trans 'Tax amount' %}</label>
+                                          <input type="text" id="tax_amount" name="tax_amount" class="form-control" value="{{commitment.tax_amount}}" disabled onkeyup="updateTax('{{commitment.id}}')">
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col-4">
+                                          <label class="label-project" for="cap_budget">{% trans 'CAP budget' %}</label>
+                                          <input type="text" name="cap_budget" id="cap_budget" class="form-control" value="{{commitment.provision_budget_amount | format_to_cop}}" disabled>
+                                          <input type="hidden" id="cap_budget_amount" value="{{commitment.provision_budget_amount}}">
+                                        </div>
+                                        <div class="col-4">
+                                          <label id="type_label" class="label-project" for="required">{% trans 'Commitment budget' %}</label>
+                                          <input type="text" id="required" class="form-control" value="{{commitment.required_amount | format_to_cop}}" disabled>
+                                          <input type="hidden" id="required_amount" value="{{commitment.required_amount}}">
+                                        </div>
+                                        <div class="col-4">
+                                          <label id="difference_label" class="label-project" for="required">{% trans 'Difference between CAP and Commitment budget' %}</label>
+                                          <input type="text" name="difference" id="difference" class="form-control" value="{{commitment.diference_between_required_and_provisioned | format_to_cop}}" disabled>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-12">
+                                      <label class="label-project" for="caps">{% trans 'Thirds' %}</label>
+                                      <select class="form-control" id="thirds" {% if commitment.contract_or_po == "CT" or commitment.contract_or_po == "PO" %} disabled {% endif %}>
+                                        {% if commitment.third is None %}
+                                        <option value="">{% trans "Search and select a third" %}</option>  
+                                        {% else %}
+                                        <option value="{{commitment.third.id}}">{{commitment.third}}</option>
+                                        {% endif %}
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="mt-2">
+                                <hr>
+                              </div>
+                              <div class="row" id="realease_div" {% if commitment.diference_between_required_and_provisioned <= 0 %} style="display: none;" {% endif %}>
+                                <div class="col-12">
+                                  <h4 class="form-section">
+                                    {% trans "Release resources" %}
+                                  </h4>
+                                  <div class="row">
+                                    <div class="col-12">
+                                      <label id="difference_label" class="label-project" for="required">{% trans 'Total released' %}</label>
+                                      <input type="text" name="grand_total_released" id="grand_total_released" class="form-control form-control-sm" value="{{commitment_orphan_release.total_released | format_to_cop}}" disabled>
+                                    </div>
+                                    <div class="col-12 mt-2">
+                                      <table class="table" id="items_table">
+                                        <thead>
+                                            <tr>
+                                                <th>{% trans 'Item' %}</th>
+                                                <th>{% trans 'Item current available budget' %}</th>
+                                                <th>{% trans 'Amount to release' %}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="items_table_body">
+                                          
+                                          {% for commitment_orphan_release_item in commitment_orphan_release_items %}
+                                            
+                                            <tr id="row_{{commitment_orphan_release_item.id}}">
+                                              <td>
+                                                {{commitment_orphan_release_item.budget.budget_description}}
+                                              </td>
+                                              <td>
+                                                {{commitment_orphan_release_item.budget.available_budget|format_to_cop}}
+                                                <input type="hidden" id="available_value_{{commitment_orphan_release_item.id}}" value="{{commitment_orphan_release_item.budget.available_budget}}">
+                                              </td>
+                                              <td>
+                                                <input 
+                                                  type="text" id="releaseded_{{commitment_orphan_release_item.id}}" 
+                                                  class="form-control form-control-sm table_item_class" 
+                                                  value ="{{commitment_orphan_release_item.total_to_release}}" 
+                                                  onkeyup="releasingValues('{{commitment_orphan_release_item.id}}')"/>
+                                              </td>
+                                            </tr>  
+                                          {% endfor %}
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <form method="post">
+                        {% csrf_token %}
+                        <div class="col-md-12">
+                          <div class="form-actions text-right">
+                            <input type="hidden" name="commitment_orphan_release_object_id" id="commitment_orphan_release_object_id" value="{{commitment_orphan_release.id}}">
+                            <button type="submit" class="btn btn-primary" id="create_button">
+                              <i class="fa fa-edit"></i> {% trans 'Release' %}
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+          integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+          crossorigin="anonymous"></script>
+  <script>
+    // Function to for releasing
+    function releasingValues(id){
+      var released_value = $("#releaseded_"+id).val();
+      var initial_value = parseFloat($("#initial_value_"+id).val());
+      var available_value = parseFloat($("#available_value_"+id).val());
+      var parsed_released_value = parseFloat(released_value);
+      var parsed_initial_value = parseFloat(initial_value);
+      var parsed_available_value = parseFloat(available_value);
+      var can_be_processed = true;
+      if (isNaN(parsed_released_value)) {
+        $("#releaseded_"+id).val(0);
+        can_be_processed = false;
+      }
+      if (parsed_released_value > initial_value) {
+        console.log('El valor ingresado debe ser menor o igual a ' + available_value);
+        $("#releaseded_"+id).val(0);
+        Swal.fire({
+          title: "{% trans 'Alert' %}",
+          text: "{% trans 'The released value can not be greater than initial value.' %}",
+          type: "warning",
+          confirmButtonText: "{% trans 'Ok' %}"
+        });
+        can_be_processed = false;
+      }
+      
+      if(can_be_processed) {
+        var url = "{% url 'commitment_release_orphan_update' %}";
+        var post_values = {
+          'id': id,
+          'released_value': released_value,
+        };
+        $.ajax({
+          url: url,
+          method: "POST",
+          type: "json",
+          beforeSend: function (xhr, settings) {
+            xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+          },
+          data: post_values,
+          success: function(data) {
+            console.log(data);
+            if (data.status == "ok") {
+              var total_released= data.total_released;
+              var formated_total_released = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+              }).format(total_released);
+              $("#grand_total_released").val(formated_total_released);
+            }
+            else{
+              console.log(data);
+            }
+          }
+        });
+      }
+      
+
+    }
+</script>
+{% endblock content %}
