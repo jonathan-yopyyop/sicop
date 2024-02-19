@@ -46,6 +46,15 @@ class ProvisionCart(BaseModel):
         null=True,
         blank=True,
     )
+<<<<<<< HEAD
+=======
+    total_released_amount = models.FloatField(
+        _("Total released amount"),
+        help_text=_("Total released amount"),
+        default=0,
+        null=True,
+    )
+>>>>>>> f2c07ee744e5e641454a85f90f9e56f7eb92592e
     finished = models.BooleanField(
         _("Finished"),
         help_text=_("Finished"),
@@ -73,6 +82,13 @@ class ProvisionCart(BaseModel):
         default=False,
     )
 
+<<<<<<< HEAD
+=======
+    @property
+    def real_total_provisioned_amount(self) -> float:
+        return self.total_provisioned_amount - self.total_released_amount
+
+>>>>>>> f2c07ee744e5e641454a85f90f9e56f7eb92592e
     class Meta:
         """Meta definition for Provision Cart."""
 
@@ -106,12 +122,27 @@ class ProvisionCartBudget(BaseModel):
         help_text=_("Provosioned amount"),
         default=0,
     )
+<<<<<<< HEAD
+=======
+    released_amount = models.FloatField(
+        _("Released amount"),
+        help_text=_("Released amount"),
+        default=0,
+    )
+>>>>>>> f2c07ee744e5e641454a85f90f9e56f7eb92592e
     available_budget = models.FloatField(
         _("Budget taked"),
         help_text=_("Budget taked"),
         default=0,
     )
 
+<<<<<<< HEAD
+=======
+    @property
+    def real_provisioned_amount(self) -> float:
+        return self.provosioned_amount - self.released_amount
+
+>>>>>>> f2c07ee744e5e641454a85f90f9e56f7eb92592e
     class Meta:
         """Meta definition for Provision Budget."""
 
