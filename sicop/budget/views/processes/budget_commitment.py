@@ -714,17 +714,30 @@ class CommitmentReleaseOrphanUpdateView(LoginRequiredMixin, TemplateView):
                 commitment_release=commitment_orphan_release,
             )
             total_released = 0
+
             for item in commitment_orphan_release_items:
                 total_released = total_released + item.total_to_release
             commitment_orphan_release.total_released = total_released
             commitment_orphan_release.save()
+            exceeded = False
+            total_pending = commitment_orphan_release.total_pending
+            if total_pending < 0:
+                exceeded = True
+                commiment_release_orphan_item.total_to_release = (
+                    commiment_release_orphan_item.total_to_release + total_pending
+                )
+                commiment_release_orphan_item.save()
+                commitment_orphan_release.total_released = commitment_orphan_release.total_released + total_pending
+                commitment_orphan_release.save()
 
             return JsonResponse(
                 {
                     "status": "ok",
                     "total_to_release": commitment_orphan_release.total_to_release,
                     "total_released": commitment_orphan_release.total_released,
-                    "total_pending": 0,
+                    "total_pending": total_pending,
+                    "exceeded": exceeded,
+                    "commiment_release_orphan_item_id": commiment_release_orphan_item.id,
                 },
                 safe=False,
             )

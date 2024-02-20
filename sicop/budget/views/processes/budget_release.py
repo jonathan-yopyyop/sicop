@@ -50,10 +50,13 @@ class BudgetRelease(LoginRequiredMixin, PermissionRequiredMixin, TemplateView):
                 commitment=commitment,
                 user=user,
             ).last()
+            commitment_orphan_release.total_to_release = commitment.required_amount
+            commitment_orphan_release.save()
         else:
             commitment_orphan_release = CommitmentOrphanRelease.objects.create(
                 commitment=commitment,
                 user=user,
+                total_to_release=commitment.required_amount,
             )
             provision_cart = commitment.provision_cart
             budgets = provision_cart.provision_cart_provision_budgets.all()
@@ -111,6 +114,7 @@ class BudgetRelease(LoginRequiredMixin, PermissionRequiredMixin, TemplateView):
         )
         commitment.total_released = total_to_release
         commitment.save()
+
         return HttpResponseRedirect(
             reverse(
                 "commitment_release_certificate",

@@ -271,6 +271,7 @@
           confirmButtonText: "{% trans 'Ok' %}"
         });
         can_be_processed = false;
+        $("#create_button").prop('disabled', false);
       }
       
       if(can_be_processed) {
@@ -291,11 +292,28 @@
             console.log(data);
             if (data.status == "ok") {
               var total_released= data.total_released;
+              var exceeded = data.exceeded;
               var formated_total_released = new Intl.NumberFormat('en-US', {
                 style: 'currency',
                 currency: 'USD',
               }).format(total_released);
               $("#grand_total_released").val(formated_total_released);
+              if (exceeded) {
+                $("#create_button").prop('disabled', true);
+                Swal.fire({
+                  title: "{% trans 'Alert' %}",
+                  text: "{% trans 'The value you have set for the release is higher than allowed, give me a few seconds while I adjust it, the screen will reload itself.' %}",
+                  type: "warning",
+                });
+                // reload the page after 4 seconds
+                setTimeout(function(){
+                  location.reload();
+                }, 4000);
+              }
+              else{
+                $("#create_button").prop('disabled', false);
+              }
+
             }
             else{
               console.log(data);

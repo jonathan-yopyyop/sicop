@@ -3671,7 +3671,7 @@ msgstr "Existen diferencias entre los valores a liberar, por favor revise."
 msgid ""
 "The value you have set for the release is higher than allowed, give me a few "
 "seconds while I adjust it, the screen will reload itself."
-msgstr ""
+msgstr " El valor que has establecido para la liberación es mayor al permitido, dame unos segundos mientras lo ajusto, la pantalla se recargará por sí misma."
 
 #: sicop/templates/sicop/frontend/budget/processes/commitment/create.html:656
 msgid "The value of the CAP is higher, a budget release is required."

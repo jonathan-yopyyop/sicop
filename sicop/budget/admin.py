@@ -589,6 +589,7 @@ class CommitmentOrphanReleaseAdmin(admin.ModelAdmin):
         "user",
         "total_to_release",
         "total_released",
+        "total_pending",
     ]
 
 
