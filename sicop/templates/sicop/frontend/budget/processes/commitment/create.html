@@ -216,6 +216,7 @@
                                     <div class="col-4">
                                       <label class="label-project" for="released_text">{% trans 'Total released' %}</label>
                                       <input type="text" class="form-control form-control-sm" name="released_text" id="released_text" value="{{commitment_release.total_released | format_to_cop}}" readonly>
+                                      <input type="hidden" class="form-control form-control-sm" name="total_released_value" id="total_released_value" value="{{commitment_release.total_released}}" readonly>
                                     </div>
                                     <div class="col-4">
                                       <label class="label-project" for="total_pending_text">{% trans 'Pending for release' %}</label>
@@ -397,67 +398,97 @@
     // Function to for releasing
     function releasingValues(id){
       var released_value = $("#releaseded_"+id).val();
+      var total_released_value = parseFloat($("#total_released_value").val());
+      var difference = parseFloat($("#difference").val());
       var control_value = parseFloat($("#control_value_"+id).val());
       var total_pending_amount = parseFloat($("#total_pending_amount").val());
       var to_release = parseFloat($("#to_release").val());
-      console.log(`released_value: ${released_value} control_value: ${control_value} total_pending_amount: ${total_pending_amount} to_release: ${to_release}`)
+      var released_text = $("#released_text").val();
+      // console.log(`to_release: ${to_release} released_text: ${released_text}`)
       if (isNaN(released_value) || released_value > control_value) {
           console.log('El valor ingresado debe ser menor o igual a ' + control_value);
           $("#releaseded_"+id).val(0);
       } else {
-        var url = "{% url 'commitment_release_update' %}";
-        var post_values = {
-          'commiment_release_item_id': id,
-          'commitment_release_amount': released_value,
-        };
-        $.ajax({
-          url: url,
-          method: "POST",
-          type: "json",
-          beforeSend: function (xhr, settings) {
-            xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
-          },
-          data: post_values,
-          success: function(data) {
-            if (data.status == "ok") {
-              var total_to_release= data.total_to_release;
-              var total_released = data.total_released;
-              var total_pending = data.total_pending;
-              if(total_pending == 0){
-                $("#create_button").prop('disabled', false);
-              }else{
-                $("#create_button").prop('disabled', true);
-                if(total_pending < 0){
+        if (released_value>to_release) {
+          // console.log('El valor a liberar no puede ser mayor al valor pendiente');
+          Swal.fire({
+            title: "{% trans 'Alert' %}",
+            text: "{% trans 'The value to be released cannot be higher than the value of the commitment.' %}",
+            type: "warning",
+            confirmButtonText: "{% trans 'Ok' %}"
+          }) 
+        }else{
+          // console.log(`released_value: ${released_value}  to_release: ${to_release}`)
+          // console.log('El valor ingresado es correcto');
+          var url = "{% url 'commitment_release_update' %}";
+          var post_values = {
+            'commiment_release_item_id': id,
+            'commitment_release_amount': released_value,
+          };
+          $.ajax({
+            url: url,
+            method: "POST",
+            type: "json",
+            beforeSend: function (xhr, settings) {
+              xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+            },
+            data: post_values,
+            success: function(data) {
+              console.log(data);
+              if (data.status == "ok") {
+                var exceeded = data.exceeded;
+                var total_to_release= data.total_to_release;
+                var total_released = data.total_released;
+                var total_pending = data.total_pending;
+                if(total_pending == 0){
+                  $("#create_button").prop('disabled', false);
+                }else{
+                  $("#create_button").prop('disabled', true);
+                  if(total_pending < 0){
+                    Swal.fire({
+                      title: "{% trans 'Alert' %}",
+                      text: "{% trans 'There are differences between the values ​​to be released, please review.' %}",
+                      type: "warning",
+                      confirmButtonText: "{% trans 'Ok' %}"
+                    });
+                  }
+                }
+                var formated_total_to_release = new Intl.NumberFormat('en-US', {
+                  style: 'currency',
+                  currency: 'USD',
+                }).format(total_to_release);
+                var formated_total_released = new Intl.NumberFormat('en-US', {
+                  style: 'currency',
+                  currency: 'USD',
+                }).format(total_released);
+                var formated_total_pending = new Intl.NumberFormat('en-US', {
+                  style: 'currency',
+                  currency: 'USD',
+                }).format(total_pending);
+                $("#total_pending_text").val(formated_total_pending);
+                $("#total_pending_amount").val(total_pending);
+                $("#released_text").val(formated_total_released);
+                $("#total_released_value").val(total_released);
+                $("#to_release_text").val(formated_total_to_release);
+                if (exceeded) {
                   Swal.fire({
                     title: "{% trans 'Alert' %}",
-                    text: "{% trans 'There are differences between the values ​​to be released, please review.' %}",
+                    text: "{% trans 'The value you have set for the release is higher than allowed, give me a few seconds while I adjust it, the screen will reload itself.' %}",
                     type: "warning",
-                    confirmButtonText: "{% trans 'Ok' %}"
                   });
+                  // reload the page after 4 seconds
+                  setTimeout(function(){
+                    location.reload();
+                  }, 4000);
                 }
               }
-              var formated_total_to_release = new Intl.NumberFormat('en-US', {
-                style: 'currency',
-                currency: 'USD',
-              }).format(total_to_release);
-              var formated_total_released = new Intl.NumberFormat('en-US', {
-                style: 'currency',
-                currency: 'USD',
-              }).format(total_released);
-              var formated_total_pending = new Intl.NumberFormat('en-US', {
-                style: 'currency',
-                currency: 'USD',
-              }).format(total_pending);
-              $("#total_pending_text").val(formated_total_pending);
-              $("#total_pending_amount").val(total_pending);
-              $("#released_text").val(formated_total_released);
-              $("#to_release_text").val(formated_total_to_release);
+              else{
+                console.log(data);
+              }
             }
-            else{
-              console.log(data);
-            }
-          }
-        });
+          });
+        }
+        
       }
       
 
@@ -565,6 +596,7 @@
                       console.log(data);
                       // set to 0 required and difference input
                       $("#released_text").val("$0");
+                      $("#total_released_value").val(0);
                       var total_to_release = data.total_to_release;
                       // format total_to_release
                       var formated_total_to_release = new Intl.NumberFormat('en-US', {

@@ -458,12 +458,25 @@ class CommitmentReleaseUpdateView(LoginRequiredMixin, TemplateView):
 
             commitment_release.total_released = total_released
             commitment_release.save()
+            negative_surplus = 0
+            exceeded = False
+            if commitment_release.total_pending < 0:
+                exceeded = True
+                negative_surplus = commitment_release.total_pending
+                commiment_release_item.total_to_release = (
+                    float(commiment_release_item.total_to_release) + negative_surplus
+                )
+                commiment_release_item.save()
+                commitment_release.total_released = float(commitment_release.total_released) + negative_surplus
+                commitment_release.save()
             return JsonResponse(
                 {
                     "status": "ok",
                     "total_to_release": commitment_release.total_to_release,
                     "total_released": commitment_release.total_released,
                     "total_pending": commitment_release.total_pending,
+                    "negative_surplus": negative_surplus,
+                    "exceeded": exceeded,
                 },
                 safe=False,
             )
@@ -690,7 +703,7 @@ class CommitmentReleaseOrphanUpdateView(LoginRequiredMixin, TemplateView):
     def post(self, request, *args, **kwargs):
         try:
             commiment_release_item_id = request.POST.get("id")
-            commitment_release_amount = request.POST.get("released_value")
+            commitment_release_amount = float(request.POST.get("released_value"))
 
             commiment_release_orphan_item = CommitmentOrphanRealeaseItems.objects.get(id=commiment_release_item_id)
             commiment_release_orphan_item.total_to_release = commitment_release_amount
