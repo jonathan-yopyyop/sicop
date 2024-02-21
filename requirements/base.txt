@@ -22,7 +22,7 @@ Collectfast==2.2.0
 
 
 # Theme
-django-admin-interface==0.28.3
+django-admin-interface==0.28.5
 django-colorfield==0.10.1
 
 #Others
