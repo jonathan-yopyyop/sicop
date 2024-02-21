@@ -52,7 +52,8 @@
                   <tr>
                     <th>{% trans "ID" %}</th>
                     <th>{% trans "CAP" %}</th>
-                    <th>{% trans "Contrat/PO" %}</th>
+                    <th>{% trans "Type" %}</th>
+                    <th>{% trans "Commitment" %}</th>
                     <th>{% trans "Third" %}</th>
                     <th>{% trans "Finished?" %}</th>
                     <th>{% trans 'Detail' %}</th>
@@ -64,6 +65,7 @@
                       <td>{{ commitment_release.id }}</td>
                       <td>{{ commitment_release.commitment.provision_cart }}</td>
                       <td>{{ commitment_release.commitment.get_contract_or_po_display }}</td>
+                      <td>{{ commitment_release.commitment.get_type_id}}</td>
                       <td>{{ commitment_release.commitment.third.Razon|multiline_text:20|safe }}</td>
                       <td>
                         {% if commitment_release.processed %}
@@ -92,7 +94,8 @@
                   <tr>
                     <th>{% trans "ID" %}</th>
                     <th>{% trans "CAP" %}</th>
-                    <th>{% trans "Contrat/PO" %}</th>
+                    <th>{% trans "Type" %}</th>
+                    <th>{% trans "Commitment" %}</th>
                     <th>{% trans "Third" %}</th>
                     <th>{% trans "Finished?" %}</th>
                     <th>{% trans 'Detail' %}</th>

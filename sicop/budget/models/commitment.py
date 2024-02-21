@@ -105,6 +105,25 @@ class Commitment(BaseModel):
     def real_provision_budget_amount(self):
         return self.required_amount - self.total_released
 
+    @property
+    def get_type_id(self):
+        if self.contract_or_po == "CT":
+            commitment_contract = CommitmentContract.objects.filter(commitment=self).first()
+            contract = commitment_contract.contract
+            return contract.IdContrato
+
+        elif self.contract_or_po == "PO":
+            commitment_po = CommitmentPO.objects.filter(commitment=self).first()
+            po = commitment_po.po
+            return po.Numero
+        elif self.contract_or_po == "CO":
+            commitment_co = CommitmentNotRelated.objects.filter(commitment=self, type="CO").first()
+            return commitment_co.key
+        elif self.contract_or_po == "LG":
+            commitment_lg = CommitmentNotRelated.objects.filter(commitment=self, type="LG").first()
+            return commitment_lg.key
+        return None
+
     class Meta:
         """Meta definition for Commitment."""
 
