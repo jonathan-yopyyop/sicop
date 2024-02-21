@@ -30,7 +30,7 @@ class XiruxIntegration:
             self.xirux_user = "sicop"
             self.xirux_password = "S1c0p2024+"
             self.xirux_host = "10.0.1.156"
-            self.xirux_port = "5432"
+            self.xirux_port = "8443"
             self.xirux_db = "xirux12"
         else:
             self.xirux_user = os.getenv("MSSQL_XIRUX_USER")

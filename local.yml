@@ -34,7 +34,7 @@ services:
       - sicop_local_postgres_data:/var/lib/postgresql/data
       - sicop_local_postgres_data_backups:/backups
     ports:
-      - "5432:5432"
+      - "5434:5434"
     env_file:
       - ./.envs/.local/.postgres
 
