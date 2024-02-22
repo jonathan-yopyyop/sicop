@@ -92,6 +92,8 @@ class BudgetAdditionCreateView(PermissionRequiredMixin, LoginRequiredMixin, Temp
 
 
 class CreateAdditionItem(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
+    permission_required = "budget.add_budgetaddition"
+
     def post(self, request, *args, **kwargs):
         try:
             budget_id = request.POST["budget_id"]
@@ -129,6 +131,8 @@ class CreateAdditionItem(PermissionRequiredMixin, LoginRequiredMixin, TemplateVi
 
 
 class RemoveAdditionItem(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
+    permission_required = "budget.add_budgetaddition"
+
     def post(self, request, *args, **kwargs):
         try:
             row_id = request.POST["row_id"]
@@ -152,6 +156,8 @@ class RemoveAdditionItem(PermissionRequiredMixin, LoginRequiredMixin, TemplateVi
 
 
 class UpdateAdditionItem(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
+    permission_required = "budget.add_budgetaddition"
+
     def post(self, request, *args, **kwargs):
         try:
             row_id = request.POST["row_id"]

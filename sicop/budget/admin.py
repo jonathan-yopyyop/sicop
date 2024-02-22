@@ -642,13 +642,15 @@ class ProvisionCartBudgetHistoryAdmin(admin.ModelAdmin):
         "id",
         "provision_cart_history",
         "budget",
-        "provosioned_amount",
         "available_budget",
+        "already_taked_amount",
+        "provosioned_amount",
     ]
     readonly_fields = [
         "id",
         "provision_cart_history",
         "budget",
+        "already_taked_amount",
         "provosioned_amount",
         "available_budget",
     ]

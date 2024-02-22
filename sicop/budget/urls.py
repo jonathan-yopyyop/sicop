@@ -451,11 +451,6 @@ urlpatterns = [
         name="commitment_release_list",
     ),
     path(
-        "budget/provision/addition/search/",
-        ProvisionCartSearchView.as_view(),
-        name="budget_arrange_search",
-    ),
-    path(
         "budget/provision/addition/update/<int:pk>/",
         ProvisionCartUpdateView.as_view(),
         name="budget_arrange_update",

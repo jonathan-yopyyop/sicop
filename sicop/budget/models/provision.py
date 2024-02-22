@@ -112,6 +112,7 @@ class ProvisionCartBudget(BaseModel):
         related_name="budget_provision_budgets",
         on_delete=models.CASCADE,
     )
+
     provosioned_amount = models.FloatField(
         _("Provosioned amount"),
         help_text=_("Provosioned amount"),
@@ -130,7 +131,7 @@ class ProvisionCartBudget(BaseModel):
 
     @property
     def real_provisioned_amount(self) -> float:
-        return self.provosioned_amount
+        return self.alreaday_taked_amount + self.provosioned_amount
         # return self.provosioned_amount - self.released_amount
 
     class Meta:
@@ -282,6 +283,11 @@ class ProvisionCartBudgetHistory(BaseModel):
         help_text=_("Budget"),
         related_name="budget_provision_history_budgets",
         on_delete=models.CASCADE,
+    )
+    already_taked_amount = models.FloatField(
+        _("Alreaday taked amount"),
+        help_text=_("Alreaday taked amount"),
+        default=0,
     )
     provosioned_amount = models.FloatField(
         _("Provosioned amount"),

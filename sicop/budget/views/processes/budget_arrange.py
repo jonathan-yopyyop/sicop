@@ -130,7 +130,8 @@ class BudgetProvisionCreate(PermissionRequiredMixin, LoginRequiredMixin, Templat
                 ProvisionCartBudgetHistory.objects.create(
                     provision_cart_history=provistion_cart_history,
                     budget=provision_cart_budget.budget,
-                    provosioned_amount=provision_cart_budget.provosioned_amount,
+                    already_taked_amount=provision_cart_budget.provosioned_amount,
+                    provosioned_amount=0,
                     available_budget=provision_cart_budget.available_budget,
                 )
             messages.success(request, _("Budget provision created successfully."))

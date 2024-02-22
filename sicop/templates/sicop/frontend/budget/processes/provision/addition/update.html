@@ -136,38 +136,15 @@
                                     {% trans "Project budget" %}
                                   </h4>
                                 </div>
-                                <div class="col-4">
-                                  <label for="projectinput3">{% trans 'Cost centers' %}</label>
-                                  <select class="select2 form-control" name="costcenter" required id="costcenter" {% if provision_cart.project is None %} disabled {% endif %}>
-                                    <option value="">{% trans "Select a cost center" %}</option>
-                                    {% for cost_center in cost_centers %}
-                                      <option value="{{ cost_center.id }}">{{ cost_center.name }}</option>
-                                    {% endfor %}
-                                  </select>
-                                </div>
-                                <div class="col-md-6">
-                                  <div class="form-group row">
-                                    <label class="col-md-12 label-control required" for="projectinput4">{% trans "Items" %}</label>
-                                    <select  name="items" class="form-control" id="items" size="4" {% if provision_cart.project is None %} disabled {% endif %}>
-                                      <option value="">{% trans "Please select a cost center" %}</option>
-                                  </select>
-                                  </div>
-                                </div>
-                                <div class="col-md-2">
-                                  <label class="col-md-12 label-control required blank-label" for="projectinput4">{% trans "Add" %}</label>
-                                  <button type="button" class="btn btn-primary btn-block"  id="add_button">
-                                    <i class="fa fa-plus"></i> {% trans 'Add' %}
-                                  </button>
-                                </div>
                                 <div class="col-12">
                                   <table class="table" id="items_table">
                                     <thead>
                                         <tr>
                                             <th>{% trans 'Item' %}</th>
-                                            <th>{% trans 'Available' %}</th>
-                                            <th>{% trans 'Taked' %}</th>
                                             <th>{% trans 'Remaining' %}</th>
-                                            <th>{% trans 'Remove' %}</th>
+                                            <th>{% trans 'Already taked' %}</th>
+                                            <th>{% trans 'To add' %}</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody id="items_table_body">
@@ -179,17 +156,7 @@
                                             {{provision_cart_budget.budget}}
                                           </td>
                                           <td>
-                                            {{provision_cart_budget.budget.available_budget|format_to_cop}}
                                             <input type="hidden" id="budget_value_id_{{provision_cart_budget.budget.id}}" value ="{{provision_cart_budget.budget.available_budget}}">
-                                          </td>
-                                          <td>
-                                            <input
-                                              type="text" id="taked_{{provision_cart_budget.budget.id}}"
-                                              class="form-control form-control-sm table_item_class"
-                                              value ="{{provision_cart_budget.provosioned_amount}}"
-                                              onkeyup="provisioningValues('{{provision_cart_budget.budget.id}}')"/>
-                                          </td>
-                                          <td>
                                             <input
                                               readonly
                                               type="text"
@@ -198,12 +165,14 @@
                                               value="{{provision_cart_budget.available_budget|format_to_cop}}">
                                           </td>
                                           <td>
-                                            <button
-                                              type="button"
-                                              class="btn btn-danger btn-sm"
-                                              onclick="remove_item('{{provision_cart_budget.budget.id}}')">
-                                              <i class="fa fa-trash"></i>
-                                            </button>
+                                            {{provision_cart_budget.already_taked_amount|format_to_cop}}
+                                          </td>
+                                          <td>
+                                            <input
+                                              type="text" id="taked_{{provision_cart_budget.budget.id}}"
+                                              class="form-control form-control-sm table_item_class"
+                                              value ="{{provision_cart_budget.provosioned_amount}}"
+                                              onkeyup="provisioningValues('{{provision_cart_budget.budget.id}}')"/>
                                           </td>
                                         </tr>
                                       {% endfor %}
@@ -234,7 +203,8 @@
                                     </div>
                                     <div class="col-7">
                                       <input type="text" id="project_provision" class="form-control form-control-sm" value="{{provision_cart_history.total_provisioned_amount|format_to_cop}}" readonly/>
-                                      <input type="hidden" id="project_provision_hidden" if value="{{provision_cart_history.total_provisioned_amount}}" >
+                                      <input type="hidden" id="project_provision_hidden" value="{{provision_cart_history.total_provisioned_amount}}" >
+                                      <input type="hidden" id="current_project_provision_hidden" value="{{provision_cart_history.total_provisioned_amount}}" >
                                     </div>
                                   </div>
                                   <div class="row pt-1">
@@ -287,7 +257,6 @@
       var row_id = 'row_' + id;
       cart_id = $('#cart_id').val();
       url_update_item_incart = "{% url 'remove_item_to_provision_in_cart_history' 888888888888888 999999999999999 %}".replace('888888888888888', cart_id).replace('999999999999999', id);
-      console.log(url_update_item_incart)
       $('#' + row_id).remove();
       $.get(url_update_item_incart, function(data) {})
         .done(function(data) {
@@ -297,33 +266,64 @@
           console.log(`Error $("#project").change ${data}`);
         })
     }
-    function updateTotalsInCart(project_total_hidden, project_missing_hidden, cart_id){
+    function updateTotalsInCart(project_total_hidden, project_missing_hidden, cart_id, taked_id){
+      //--
+      
+      var taked_value = parseFloat( $('#' + taked_id).val());
+      if (isNaN(taked_value)) {
+        taked_value = 0;
+      }
+      var current_project_provision_hidden = parseFloat($('#current_project_provision_hidden').val());
+      var total_taked = 0;
+      $("#items_table tr").each(function() {
+        var temp_row_id = this.id;
+        if (temp_row_id != "") {
+          var temp_row_id_array = temp_row_id.split("_");
+          var temp_taked_id = 'taked_' + temp_row_id_array[1];
+          var taked = parseFloat( $('#' + temp_taked_id).val());
+          if (isNaN(taked)) {
+            taked = 0;
+          }
+          total_taked = total_taked + taked;
+        }
+      });
+      total_taked = current_project_provision_hidden + taked_value;
+      //--
       $('#create_budget').prop('disabled', true);
       var project_provision_hidden = parseFloat($('#project_provision_hidden').val());
-        post_values={
-          'total_required_amount': project_total_hidden,
-          'total_provisioned_amount': project_provision_hidden,
-          'total_missing_amount': project_missing_hidden,
+      post_values={
+        'total_required_amount': project_total_hidden,
+        'total_provisioned_amount': total_taked,
+        'total_missing_amount': project_missing_hidden,
+      }
+      console.log(`post_values --> ${JSON.stringify(post_values)}`)
+      url = "{% url 'update_totals_in_cart_history' 0 %}".replace('0', cart_id);
+      post_object=$.extend({}, post_values);
+      $.ajax({
+        url: url,
+        method: 'POST',
+        type:"json",
+        beforeSend: function (xhr, settings) {
+          xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+        },
+        data: post_values,
+        success: function (response) {
+          console.log(response);
+          var new_total_provisioned_amount = reponse.new_total_provisioned_amount;
+          var new_total_missing_amount_formatted = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+          }).format(response.new_total_missing_amount);
+          // $("#project_provision").val(formated_total_taked);
+          $("#project_provision_hidden").val(total_taked);
+          $('#create_budget').prop('disabled', false);
+        },
+        error:function(data) {
+          console.log(`Error ${JSON.stringify(data)}`)
         }
-        url = "{% url 'update_totals_in_cart_history' 0 %}".replace('0', cart_id);
-        post_object=$.extend({}, post_values);
-        $.ajax({
-          url: url,
-          method: 'POST',
-          type:"json",
-          beforeSend: function (xhr, settings) {
-            xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
-          },
-          data: post_values,
-          success: function (response) {
-            console.log(`Response ${JSON.stringify(response)}`)
-            $('#create_budget').prop('disabled', false);
-          },
-          error:function(data) {
-            console.log(`Error ${JSON.stringify(data)}`)
-          }
-        });
-    }
+      });
+  
+      }
     function updateProvisionAmountInCartAndBudget(cart_id, id, taked_value, available_budget){
       $('#create_budget').prop('disabled', true);
       url_update_item_in_cart = "{% url 'edit_item_provision_amount_in_cart_history' 0 %}".replace('0', cart_id);
@@ -332,8 +332,6 @@
           'budget_id':id,
           'available_budget':available_budget
         }
-        console.log(`post_values = ${JSON.stringify(post_values)}`)
-        console.log(`cart_id = ${cart_id}`)
         post_object=$.extend({}, post_values);
         $.ajax({
           url: url_update_item_in_cart,
@@ -345,6 +343,13 @@
           data: post_values,
           success: function (response) {
             console.log(response);
+            var new_total_provisioned_amount = response.new_total_provisioned_amount;
+            var new_total_provisioned_amount_formatted = new Intl.NumberFormat('en-US', {
+              style: 'currency',
+              currency: 'USD',
+            }).format(new_total_provisioned_amount);
+            $("#project_provision").val(new_total_provisioned_amount_formatted);
+            $("#project_provision_hidden").val(new_total_provisioned_amount);
             $('#create_budget').prop('disabled', false);
           },
           error:function(data) {
@@ -376,6 +381,7 @@
       var budget_value = parseFloat( budget_text_value);
       if (budget_value >= taked_value) {
         var project_provision_hidden = parseFloat($('#project_provision_hidden').val());
+        var current_project_provision_hidden = parseFloat($('#current_project_provision_hidden').val());
         var total_taked = 0;
         $("#items_table tr").each(function() {
           var temp_row_id = this.id;
@@ -389,13 +395,15 @@
             total_taked = total_taked + taked;
           }
         });
+        total_taked = current_project_provision_hidden + taked_value;
+        console.log(`total_taked --> ${total_taked}`)
         var formated_total_taked = new Intl.NumberFormat('en-US', {
           style: 'currency',
           currency: 'USD',
         }).format(total_taked);
 
-        $("#project_provision").val(formated_total_taked);
-        $("#project_provision_hidden").val(total_taked);
+        // $("#project_provision").val(formated_total_taked);
+        // $("#project_provision_hidden").val(total_taked);
 
         var project_total_hidden = parseFloat($('#project_total_hidden').val());
         var project_missing_hidden = project_total_hidden - total_taked;
@@ -409,12 +417,12 @@
         cart_id = $('#cart_id').val();
 
         // To update totals in cart
-        updateTotalsInCart(project_total_hidden, project_missing_hidden, cart_id)
         //To updata provision_amount_in_cart in budget
         updateProvisionAmountInCartAndBudget(cart_id, id, taked_value, available_budget);
+        // updateTotalsInCart(project_total_hidden, project_missing_hidden, cart_id,taked_id)
 
       } else {
-        console.log(`${budget_value} >= ${taked_value}`)
+        
         // check if taked_value variables is nana
         if (isNaN(taked_value)) {
           taked_value = 0;
@@ -456,7 +464,7 @@
         $('#create_budget').prop('disabled', true);
         // Disabele the button with id add_button
         $('#add_button').prop('disabled', true);
-        console.log(`Disabling project_end_date: ${project_end_date} now: ${now}`)
+        
       }
     }
     $(document).ready(function() {
@@ -466,7 +474,6 @@
         var cost_center = $("#costcenter").val()
         var project_id = $("#project").val()
         url = "{% url 'get_budgets_by_cost_center' 888888888888888 999999999999999 %}".replace('888888888888888', cost_center).replace('999999999999999', project_id);
-        console.log(url)
         $.get(url, function(data) {})
           .done(function(data) {
             let items = data.items;
@@ -492,7 +499,7 @@
       $("#add_button").click(function() {
         var item_id = $("#items").val();
         url = "{% url 'get_budget_detail_by_id' 0 %}".replace('0', item_id);
-        console.log(url)
+        
         $.get(url, function(data) {})
           .done(function(data) {
             var budget = data.amount;
@@ -515,12 +522,9 @@
 
               // Add new item to cart
               cart_id = $('#cart_id').val();
-              console.log(`cart_id = ${cart_id}`)
-              console.log(`data.budget_id = ${data.budget_id}`)
               url_update_item_incart = "{% url 'add_item_to_provision_in_cart_history' 888888888888888 999999999999999 %}".replace('888888888888888', cart_id).replace('999999999999999', data.budget_id);
               $.get(url_update_item_incart, function(data) {})
                 .done(function(data) {
-                  console.log(`Result = ${JSON.stringify(data)}`)
                   //Get budget cart
                   url = "{% url 'get_budget_in_cart_history' 888888888888888 999999999999999 %}".replace('888888888888888', cart_id).replace('999999999999999', data.budget_id);
                   $.get(url, function(data) {})
@@ -547,7 +551,7 @@
                         currency: 'USD',
                       }).format(current_budget);
                       // Add a new row to the table with id items_table using jquery
-                      $('#items_table_body').append('<tr id="row_' + data.budget_id + '"><td>' + budget_item + '</td><td>' + formated_current_budget + '<input type="hidden" id="budget_value_id_'+ data.budget_id+'" value ="'+ current_budget +'"></td><td><input type="text" id="taked_' + data.budget_id + '" class="form-control form-control-sm table_item_class" value="0" onkeyup="provisioningValues('+data.budget_id+')"/></td><td><input type="text" id="budget_show_value_id_' + data.budget_id + '" class="form-control form-control-sm table_item_class" value="$0" readonly/></td><td><button type="button" class="btn btn-danger btn-sm" onclick="remove_item(' + data.budget_id + ')"><i class="fa fa-trash"></i></button></td></tr>');
+                      $('#items_table_body').append('<tr id="row_' + data.budget_id + '"><td>' + budget_item + '</td><td>' + formated_current_budget + '<input type="hidden" id="budget_value_id_'+ data.budget_id+'" value ="'+ current_budget +'"></td><td><input type="text" id="taked_' + data.budget_id + '" class="form-control form-control-sm table_item_class" value="0" onkeyup="provisioningValues('+data.budget_id+')"/></td><td><input type="text" id="budget_show_value_id_' + data.budget_id + '" class="form-control form-control-sm table_item_class" value="$0" readonly/></td></tr>');
                     })
                     .fail(function(data) {
                       console.log(`Error $("#area").change ${data}`);

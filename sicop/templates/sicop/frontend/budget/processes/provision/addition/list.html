@@ -13,12 +13,12 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">{% trans 'Budget provision list' %}</h4>
+            <h4 class="card-title">{% trans 'Budget addition provision list' %}</h4>
             <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
             <div class="heading-elements">
               <ul class="list-inline mb-0">
                 <li>
-                  <a href="{% url 'budget_arrange_search' %}">
+                  <a href="{% url 'budget_arrange_addition_search' %}">
                     <button type="button" class="btn btn-icon btn-success mr-1 mb-1">
                       <i class="fa fa-plus"></i>
                     </button>
@@ -44,6 +44,7 @@
                 <thead>
                   <tr>
                     <th>{% trans "ID" %}</th>
+                    <th>{% trans "CAP" %}</th>
                     <th>{% trans "Project" %}</th>
                     <th>{% trans "Budgets" %}</th>
                     <th>{% trans "Managed by" %}</th>
@@ -57,16 +58,17 @@
                   {% for provision_cart in provision_carts %}
                     <tr>
                       <td>{{ provision_cart.id }}</td>
-                      <td>{{ provision_cart.provision_cart.project }}</td>
+                      <td>{{ provision_cart.provision_cart.id }}</td>
+                      <td style="font-size: 12px;">{{ provision_cart.provision_cart.project }}</td>
                       <td>
-                        <ul>
+                        <ul style="padding-left: 10px; margin-left: 10px;">
                           {% for budget in provision_cart.provision_cart_provision_budgets.all %}
-                            <li>{{ budget.budget.budget_description }}</li>
+                            <li style="font-size: 12px;">{{ budget.budget.budget_description }}</li>
                           {% endfor %}
                         </ul>
                       </td>
-                      <td>{{ provision_cart.user.name }}</td>
-                      <td>{{ provision_cart.total_provisioned_amount| format_to_cop }}</td>
+                      <td style="font-size: 12px;">{{ provision_cart.user.name }}</td>
+                      <td style="font-size: 12px;">{{ provision_cart.total_provisioned_amount| format_to_cop }}</td>
                       <td>
                         {% if provision_cart.finished %}
                           <div class="badge badge-success">{% trans 'Yes' %}</div>
@@ -102,6 +104,7 @@
                 <tfoot>
                   <tr>
                     <th>{% trans "ID" %}</th>
+                    <th>{% trans "CAP" %}</th>
                     <th>{% trans "Project" %}</th>
                     <th>{% trans "Budgets" %}</th>
                     <th>{% trans "Managed by" %}</th>

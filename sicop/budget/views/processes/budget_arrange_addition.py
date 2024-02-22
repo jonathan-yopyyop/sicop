@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views.generic.base import TemplateView
@@ -52,10 +52,16 @@ class ProvisionCartSearchView(PermissionRequiredMixin, LoginRequiredMixin, Templ
                 )
                 provision_cart_budgets = ProvisionCartBudget.objects.filter(provision_cart=provision_cart)
                 for provision_cart_budget in provision_cart_budgets:
+                    print(f"provision_cart_budget: {provision_cart_budget.id}")
+                    print(f"provision_cart_budget.budget: {provision_cart_budget.budget.id}")
+                    print(
+                        f"provision_cart_budget.budget.current_budget: {provision_cart_budget.budget.current_budget}"
+                    )
+                    print(f"provision_cart_budget.provosioned_amount: {provision_cart_budget.provosioned_amount}")
                     ProvisionCartBudgetHistory.objects.create(
                         provision_cart_history=provision_cart_history,
                         budget=provision_cart_budget.budget,
-                        provosioned_amount=provision_cart_budget.provosioned_amount,
+                        already_taked_amount=provision_cart_budget.provosioned_amount,
                         available_budget=provision_cart_budget.available_budget,
                     )
             return HttpResponseRedirect(
@@ -67,7 +73,7 @@ class ProvisionCartSearchView(PermissionRequiredMixin, LoginRequiredMixin, Templ
         else:
             error = _(f"Error on search, the CAP with id {cap_id} does not exist.")
             messages.warning(request, error)
-            return HttpResponseRedirect(reverse("budget_arrange_search"))
+            return HttpResponseRedirect(reverse("budget_arrange_addition_search"))
 
 
 class ProvisionCartUpdateView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
@@ -100,3 +106,31 @@ class ProvisionCartUpdateView(PermissionRequiredMixin, LoginRequiredMixin, Templ
                     cost_centers_ids.append(cost_center.id)
         context["cost_centers"] = cost_centers_list
         return context
+
+    def post(self, request, *args, **kwargs):
+        provision_cart_history_id = request.POST.get("cart_id")
+        provision_cart_history = ProvisionCartHistory.objects.get(id=provision_cart_history_id)
+        provision_cart_history_budgets = ProvisionCartBudgetHistory.objects.filter(
+            provision_cart_history=provision_cart_history
+        ).all()
+        provision_cart = ProvisionCart.objects.get(id=provision_cart_history.provision_cart.id)
+        # provision_cart_budgets = ProvisionCartBudget.objects.filter(provision_cart=provision_cart)
+
+        # Require approval
+        project = provision_cart.project
+        project_type = project.project_type
+        if provision_cart.total_provisioned_amount >= project_type.cap:
+            provision_cart.requires_approval = True
+            provision_cart.approved = False
+        else:
+            provision_cart.requires_approval = False
+            provision_cart.approved = True
+        provision_cart.save()
+        return JsonResponse(
+            {
+                "status": "success",
+                "post": request.POST,
+                "provision_cart": provision_cart.id,
+                "provision_cart_history_budgets": list(provision_cart_history_budgets.values()),
+            }
+        )

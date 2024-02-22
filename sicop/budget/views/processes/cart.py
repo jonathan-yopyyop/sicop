@@ -80,17 +80,23 @@ class UpdateTotalsInCartHistory(LoginRequiredMixin, TemplateView):
         try:
             cart_id = kwargs["cart_id"]
             total_required_amount = request.POST["total_required_amount"]
-            total_provisioned_amount = request.POST["total_provisioned_amount"]
+            # total_provisioned_amount = request.POST["total_provisioned_amount"]
             total_missing_amount = request.POST["total_missing_amount"]
             cart = ProvisionCartHistory.objects.get(id=cart_id)
-            cart.total_required_amount = total_required_amount
-            cart.total_provisioned_amount = total_provisioned_amount
-            cart.total_missing_amount = total_missing_amount
+            budgets = ProvisionCartBudgetHistory.objects.filter(provision_cart_history=cart)
+            new_total_provisioned_amount = 0
+            for budget in budgets:
+                new_total_provisioned_amount += budget.already_taked_amount + budget.provosioned_amount
+
+            cart.total_provisioned_amount = new_total_provisioned_amount
             cart.save()
 
             return JsonResponse(
                 {
                     "cart_id": cart_id,
+                    "total_required_amount": total_required_amount,
+                    "total_provisioned_amount": new_total_provisioned_amount,
+                    "total_missing_amount": total_missing_amount,
                     "result": "ok",
                 }
             )
@@ -145,6 +151,7 @@ class AddItemToProvisionInCartHistory(LoginRequiredMixin, TemplateView):
             provision_cart_budget_history = ProvisionCartBudgetHistory.objects.create(
                 provision_cart_history=provision_cart_history,
                 budget=budget,
+                already_taked_amount=0,
                 provosioned_amount=0,
                 available_budget=budget.available_budget,
             )
@@ -293,12 +300,23 @@ class EditItemProvisionAmountInCartHistory(LoginRequiredMixin, TemplateView):
             provision_cart_budget.provosioned_amount = provision_amount
             provision_cart_budget.available_budget = available_budget
             provision_cart_budget.save()
-
+            provision_cart_budgets = ProvisionCartBudgetHistory.objects.filter(
+                provision_cart_history=provision_cart_history,
+            )
+            new_total_provisioned_amount = 0
+            for provision_cart_budget in provision_cart_budgets:
+                new_total_provisioned_amount += (
+                    provision_cart_budget.already_taked_amount + provision_cart_budget.provosioned_amount
+                )
+            provision_cart_history.total_provisioned_amount = new_total_provisioned_amount
+            provision_cart_history.save()
             return JsonResponse(
                 {
                     "cart_id": cart_id,
                     "budget_id": budget_id,
                     "provision_cart_budget_id": provision_cart_budget.id,
+                    "new_total_provisioned_amount": new_total_provisioned_amount,
+                    "provision_amount": provision_amount,
                     "result": "ok",
                 }
             )
