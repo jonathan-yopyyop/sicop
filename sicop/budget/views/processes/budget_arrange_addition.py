@@ -126,11 +126,18 @@ class ProvisionCartUpdateView(PermissionRequiredMixin, LoginRequiredMixin, Templ
             provision_cart.requires_approval = False
             provision_cart.approved = True
         provision_cart.save()
-        return JsonResponse(
-            {
-                "status": "success",
-                "post": request.POST,
-                "provision_cart": provision_cart.id,
-                "provision_cart_history_budgets": list(provision_cart_history_budgets.values()),
-            }
+        # provision_certificate
+        return HttpResponseRedirect(
+            reverse(
+                "provision_certificate",
+                kwargs={"pk": provision_cart.id},
+            )
         )
+        # return JsonResponse(
+        #     {
+        #         "status": "success",
+        #         "post": request.POST,
+        #         "provision_cart": provision_cart.id,
+        #         "provision_cart_history_budgets": list(provision_cart_history_budgets.values()),
+        #     }
+        # )
