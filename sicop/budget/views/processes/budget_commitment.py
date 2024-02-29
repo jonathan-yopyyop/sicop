@@ -356,7 +356,7 @@ class UpdateCommitmentEntity(LoginRequiredMixin, TemplateView):
                         commitment=commitment,
                     ).delete()
                 tax_amount = po.VrIva
-                commitment.required_amount = po.VrNeto
+                commitment.required_amount = po.VrNeto + po.VrReteIca + po.VrReteIva
                 commitment.tax_amount = po.VrIva
                 commitment.save()
                 commitment.diference_between_required_and_provisioned = (
