@@ -10,5 +10,14 @@ REDIS_URL=redis://redis:6379/0
 # ------------------------------------------------------------------------------
 
 # Flower
+
 CELERY_FLOWER_USER=VIQrTSCexfBkYbTKeRPclRlOxmFAZGBK
 CELERY_FLOWER_PASSWORD=Qmi8GiSwOpEnPkXc9OzyMR968dyUXQlKKBFBVe2sCiveR7mCXOwakF2YLQ120RMU
+
+# Active directory
+# ------------------------------------------------------------------------------
+AD_DOMAIN=dmaloka
+AD_DOMAIN_EXTENSION=local
+AD_USER=dmaloka\Administrador
+AD_PASSWORD=*m4L0K420231nf1n1t0*
+

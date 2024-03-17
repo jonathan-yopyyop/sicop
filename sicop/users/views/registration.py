@@ -27,6 +27,11 @@ class LoginView(LoginView):
 
     def form_valid(self, form):
         """Security check complete. Log the user in."""
+        post = self.request.POST
+        username = post.get("username")
+        password = post.get("password")
+        username_splited = username.split("@")
+        username_da = username_splited[0]
         login(self.request, form.get_user())
         return HttpResponseRedirect(self.get_success_url())
 
