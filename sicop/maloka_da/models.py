@@ -109,6 +109,30 @@ class ActiveDirectoryUser(BaseModel):
         help_text=_("Active Directory user"),
         max_length=255,
     )
+    area = models.CharField(
+        _("Area"),
+        help_text=_("Active Directory user area"),
+        max_length=255,
+        blank=True,
+    )
+    role = models.CharField(
+        _("Role"),
+        help_text=_("Active Directory user role"),
+        max_length=255,
+        blank=True,
+    )
+    security_group = models.CharField(
+        _("Security Group"),
+        help_text=_("Active Directory user security group"),
+        max_length=255,
+        blank=True,
+    )
+    position = models.CharField(
+        _("Position"),
+        help_text=_("Active Directory user position"),
+        max_length=255,
+        blank=True,
+    )
 
     class Meta:
         """Meta definition for Active Directory User."""

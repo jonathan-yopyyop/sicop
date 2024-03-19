@@ -9,10 +9,12 @@ from django.views.generic import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
+from sicop.certificate.models import Certificate
 
 from sicop.area.models import Area
-from sicop.project.models import Project, ProjectStatus, ProjectType
+from sicop.project.models import Project, ProjectStatus, ProjectType, ProjectStatusHistory
 from sicop.users.models import User
+from datetime import datetime
 
 
 class ProjectListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
@@ -58,6 +60,8 @@ class ProjectUpdateView(PermissionRequiredMixin, LoginRequiredMixin, UpdateView)
         "project_manager",
         "is_it_taxable",
         "status",
+        "is_closed",
+        "closed_datetime",
     ]
     permission_required = "project.change_project"
 
@@ -90,12 +94,28 @@ class ProjectUpdateView(PermissionRequiredMixin, LoginRequiredMixin, UpdateView)
         else:
             request.POST["status"] = False
 
+        if request.POST.get("is_closed") == "True":
+            request.POST["is_closed"] = True
+            request.POST["closed_datetime"] = datetime.now()
+        else:
+            request.POST["is_closed"] = False
+
         if request.POST.get("is_it_taxable") == "True":
             request.POST["is_it_taxable"] = True
         else:
             request.POST["is_it_taxable"] = False
         current_budget = request.POST["budget"].replace(",", ".")
         request.POST["budget"] = float(current_budget)
+        if request.POST["is_closed"]:
+            request.POST["project_status"] = 3
+            object = self.get_object()
+            object_status = ProjectStatus.objects.get(id=3)
+            ProjectStatusHistory.objects.create(
+                project=object,
+                project_status=object_status,
+                comment=_("Projecto cerrado el:") + " " + datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            )
+
         return super().post(request, *args, **kwargs)
 
 
@@ -185,3 +205,19 @@ class GetProjectByID(LoginRequiredMixin, TemplateView):
                 "project_is_it_taxable": project.is_it_taxable,
             }
         )
+
+
+class ProjectCertificateteView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
+    """View for Project Certificates."""
+
+    template_name = "sicop/frontend/project/project/certificate.html"
+    permission_required = "project.view_project"
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context_data = super().get_context_data(**kwargs)
+        project_id = kwargs["pk"]
+        project = Project.objects.get(id=project_id)
+        context_data["project"] = project
+        context_data["certificate_version"] = Certificate.objects.filter(slug="project").first()
+        context_data["project_status_histories"] = ProjectStatusHistory.objects.filter(project=project)
+        return context_data

@@ -1,9 +1,12 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from datetime import datetime
 
 from config.models import BaseModel
 from sicop.area.models import Area
 from sicop.users.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class ProjectStatus(BaseModel):
@@ -117,7 +120,7 @@ class Project(BaseModel):
         ProjectStatus,
         verbose_name=_("Project status"),
         help_text=_("Project status"),
-        on_delete=models.CASCADE,
+        on_delete=models.DO_NOTHING,
     )
     project_type = models.ForeignKey(
         ProjectType,
@@ -141,6 +144,19 @@ class Project(BaseModel):
         verbose_name=_("Project manager"),
         help_text=_("Project manager"),
         on_delete=models.CASCADE,
+    )
+    is_closed = models.BooleanField(
+        _("Is closed"),
+        help_text=_("Is closed"),
+        default=False,
+    )
+    closed_datetime = models.DateTimeField(
+        _("Closed datetime"),
+        help_text=_("Closed datetime"),
+        auto_now=False,
+        auto_now_add=False,
+        null=True,
+        blank=True,
     )
 
     class Meta:
@@ -185,3 +201,18 @@ class ProjectStatusHistory(BaseModel):
     def __str__(self):
         """Unicode representation of Project Status History."""
         return self.project.name
+
+
+@receiver(post_save, sender=Project)
+def project_post_save(sender, instance, created, **kwargs):
+    if created:
+        new_object = instance
+        try:
+            project_status = ProjectStatus.objects.get(id=1)
+            ProjectStatusHistory.objects.create(
+                project=new_object,
+                project_status=project_status,
+                comment=_("El proyecto fue creado el:") + " " + datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            )
+        except Exception as e:
+            print(f"+++++++++++{e}")

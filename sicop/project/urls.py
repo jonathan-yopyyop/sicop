@@ -15,6 +15,7 @@ from sicop.project.views import (  # noqa,
     ProjectTypeListView,
     ProjectTypeUpdateView,
     ProjectUpdateView,
+    ProjectCertificateteView,
 )
 
 urlpatterns = [
@@ -87,5 +88,10 @@ urlpatterns = [
         "project/get/<pk>/",
         GetProjectByID.as_view(),
         name="get_project_by_id",
+    ),
+    path(
+        "project/certificate/<pk>/",
+        ProjectCertificateteView.as_view(),
+        name="project_certificate",
     ),
 ]

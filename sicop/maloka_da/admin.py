@@ -1,6 +1,7 @@
 from django.contrib import admin
 from sicop.maloka_da.models import ActiveDirectoryCredential, OrganizationalUnit, ActiveDirectoryUser
 from sicop.maloka_da.forms import ActiveDirectoryCredentialForm
+from import_export.admin import ImportExportModelAdmin
 
 
 @admin.register(ActiveDirectoryCredential)
@@ -13,6 +14,11 @@ class ActiveDirectoryCredentialAdmin(admin.ModelAdmin):
         "username",
         "status",
     ]
+    search_fields = [
+        "domain",
+        "domain_extension",
+        "username",
+    ]
 
 
 @admin.register(OrganizationalUnit)
@@ -23,14 +29,26 @@ class OrganizationalUnitAdmin(admin.ModelAdmin):
         "id",
         "status",
     ]
+    search_fields = [
+        "OU",
+    ]
 
 
 @admin.register(ActiveDirectoryUser)
-class ActiveDirectoryUserAdmin(admin.ModelAdmin):
+class ActiveDirectoryUserAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = [
         "organizational_unit",
         "name",
         "user",
-        "id",
+        "area",
+        "role",
+        "security_group",
         "status",
+    ]
+    search_fields = [
+        "name",
+        "user",
+        "area",
+        "role",
+        "security_group",
     ]

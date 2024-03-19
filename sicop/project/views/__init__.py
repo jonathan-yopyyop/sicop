@@ -5,6 +5,7 @@ from sicop.project.views.project import (  # noqa
     ProjectListView,
     ProjectManagerView,
     ProjectUpdateView,
+    ProjectCertificateteView,
 )
 from sicop.project.views.status import (  # noqa
     ProjectStatusCreateView,

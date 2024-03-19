@@ -1,0 +1,530 @@
+{% extends 'sicop/frontend/base/base.html' %}
+{% load arimetic_tags static i18n humanize budget_tags sicop_filters %}
+{% block page_title %}
+{% trans 'Project certificate' %}
+{% endblock page_title %}
+{% block content %}
+<style>
+  table {
+    width: 100%;
+    padding: -1px;
+    margin: -1px;
+    border: 0px solid black;
+  }
+
+  td {
+    height: 30px;
+  }
+
+  .certificate-title {
+    font-size: 10px;
+    font-weight: bold;
+    color: black;
+  }
+
+  .row1-td-1 {
+    width: 10%;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    text-align: center;
+    background-color: white;
+  }
+
+  .row1-td-2 {
+    width: 50%;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    text-align: center;
+    background-color: white;
+  }
+
+  .row1-td-3 {
+    width: 40%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    text-align: center;
+    background-color: white;
+  }
+
+  .row1-td-3-top {
+    width: 100%;
+    padding: -1px;
+    margin: -1px;
+    text-align: center;
+    background-color: white;
+  }
+
+  .row1-td-3-bottom-col1 {
+    width: 30%;
+    border-top: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    text-align: center;
+    background-color: white;
+  }
+
+  .item-description-text {
+    font-size: 10px;
+    font-weight: bold;
+    color: black;
+    margin-left: 5px;
+  }
+
+  .item-value-text {
+    font-size: 10px;
+    font-weight: bold;
+    color: #642D90;
+    margin-left: 5px;
+  }
+
+  .item-value-text-white {
+    font-size: 10px;
+    font-weight: bold;
+    color: white;
+    margin-left: 5px;
+  }
+
+  .row1-td-3-bottom-col2 {
+    width: 70%;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+  }
+
+  .row2-td-1 {
+    width: 20%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: #CC99FF;
+  }
+
+  .row2-td-2 {
+    width: 40%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: white;
+  }
+
+  .row2-td-3 {
+    width: 15%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: #CC99FF;
+  }
+
+  .row2-td-4 {
+    width: 25%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: white;
+  }
+
+  .row3-td-1 {
+    width: 100%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: #642D90;
+  }
+
+  .row4-td-1 {
+    width: 20%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: #CC99FF;
+  }
+
+  .row4-td-2 {
+    width: 80%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: white;
+  }
+
+  .row5-td-1 {
+    width: 20%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: #CC99FF;
+  }
+
+  .row5-td-2 {
+    width: 30%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: white;
+  }
+
+  .row5-td-2-9 {
+    width: 80%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: white;
+  }
+
+  .row5-td-3 {
+    width: 10%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: #CC99FF;
+  }
+
+  .row5-td-4 {
+    width: 40%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: white;
+  }
+
+  .row6-td-1 {
+    width: 100%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: white;
+    height: 5px;
+  }
+
+  .row7-td-1 {
+    width: 28%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: #CC99FF;
+  }
+
+  .row7-td-2 {
+    width: 24%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: #CC99FF;
+  }
+
+  .row8-td-1 {
+    width: 28%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: white;
+    color: #642D90;
+  }
+
+  .row8-td-2 {
+    width: 24%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: white;
+    color: #642D90;
+  }
+
+  .row9-td-1 {
+    width: 28%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: #CC99FF;
+    color: black;
+    height: 50px;
+  }
+
+  .row9-td-2 {
+    width: 72%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: white;
+    color: black;
+    height: 60px;
+  }
+
+  .row10-td-1 {
+    width: 28%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: #CC99FF;
+    color: black;
+    height: 40px;
+  }
+
+  .row10-td-2 {
+    width: 72%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: white;
+    color: black;
+    height: 40px;
+  }
+
+  .row11-td-1 {
+    width: 100%;
+    border: 1px solid black;
+    padding: -1px;
+    margin: -1px;
+    background-color: white;
+    height: 30px;
+  }
+
+  .bottom-text {
+    font-size: 10px;
+    font-weight: bold;
+    color: black;
+  }
+
+</style>
+<section class="app-invoice-wrapper">
+  <div class="row">
+    <div class="col-xl-9 col-md-8 col-12 printable-content">
+      <!-- using a bootstrap card -->
+      <div class="card">
+        <!-- card body -->
+        <div class="card-body p-2">
+          <table>
+            <tr>
+              <td class="row1-td-1">
+                <img src="{% static 'stack/app-assets/images/logo/Logo-Maloka.png' %}" alt="logo" width="50px">
+              </td>
+              <td class="row1-td-2">
+                <h5 class="text-center certificate-title">{% trans "PROJECT CERTIFICATE" %}</h5>
+              </td>
+              <td class="row1-td-3">
+                <table>
+                  <tr>
+                    <td class="row1-td-3-top">
+                      <h5 class="text-center certificate-title">{% trans "Code" %}: {{certificate_version.code}}</h5>
+                    </td>
+                  </tr>
+                  <tr>
+                    <table>
+                      <tr>
+                        <td class="row1-td-3-bottom-col1">
+                          <h5 class="text-center certificate-title">{% trans "Version" %}:
+                            {{certificate_version.version}}</h5>
+                        </td>
+                        <td class="row1-td-3-bottom-col2">
+                          <h5 class="text-center certificate-title">{% trans "Version date" %}:
+                            {{certificate_version.date|date:"Y/m/d"}}</h5>
+                        </td>
+                      </tr>
+                    </table>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <table>
+                <tr>
+                  <td class="row2-td-1">
+                    <h5 class="item-description-text">
+                      {% trans "CREATION DATE" %}
+                    </h5>
+                  </td>
+                  <td class="row2-td-2">
+                    <h5 class="item-value-text">
+                      {{project.created_at|date:"Y/m/d"}}
+                    </h5>
+                  </td>
+                  <td class="row2-td-3">
+                    <h5 class="item-description-text">
+                      {% trans "NUMBER" %}
+                    </h5>
+                  </td>
+                  <td class="row2-td-4">
+                    <h5 class="item-value-text">
+                      {{project.id}}
+                    </h5>
+                  </td>
+                </tr>
+              </table>
+            </tr>
+            <tr>
+              <table>
+                <td class="row3-td-1">
+                  <h5 class="item-value-text-white">
+                    {% trans "GENERAL INFORMATION" %}
+                  </h5>
+                </td>
+              </table>
+            </tr>
+            <tr>
+              <table>
+                <tr>
+                  <td class="row5-td-1">
+                    <h5 class="item-description-text">
+                      {% trans "PROJECT NAME" %}
+                    </h5>
+                  </td>
+                  <td class="row5-td-2">
+                    <h5 class="item-value-text">
+                      {{project.name}}
+                    </h5>
+                  </td>
+                  <td class="row5-td-3">
+                    <h5 class="item-description-text">
+                      {% trans "MANAGER" %}
+                    </h5>
+                  </td>
+                  <td class="row5-td-4  ">
+                    <h5 class="item-value-text">
+                      {{project.project_manager.name}}
+                    </h5>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="row5-td-1">
+                    <h5 class="item-description-text">
+                      {% trans "START DATE" %}
+                    </h5>
+                  </td>
+                  <td class="row5-td-2">
+                    <h5 class="item-value-text">
+                      {{project.start_date}}
+                    </h5>
+                  </td>
+                  <td class="row5-td-3">
+                    <h5 class="item-description-text">
+                      {% trans "END DATE" %}
+                    </h5>
+                  </td>
+                  <td class="row5-td-4  ">
+                    <h5 class="item-value-text">
+                      {{project.end_date}}
+                    </h5>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="row5-td-1">
+                    <h5 class="item-description-text">
+                      {% trans "PROJECT TYPE" %}
+                    </h5>
+                  </td>
+                  <td class="row5-td-2">
+                    <h5 class="item-value-text">
+                      {{project.project_type}}
+                    </h5>
+                  </td>
+                  <td class="row5-td-3">
+                    <h5 class="item-description-text">
+                      {% trans "IS IT TAXABLE?" %}
+                    </h5>
+                  </td>
+                  <td class="row5-td-4  ">
+                    <h5 class="item-value-text">
+                      {% if project.is_it_taxable %}
+                      {% trans "Yes" %}
+                      {% else %}
+                      {% trans "No" %}
+                      {% endif %}
+                    </h5>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="row5-td-1">
+                    <h5 class="item-description-text">
+                      {% trans "BUDGET" %}
+                    </h5>
+                  </td>
+                  <td class="row5-td-2">
+                    <h5 class="item-value-text">
+                      {{project.budget|format_to_cop}}
+                    </h5>
+                  </td>
+                  <td class="row5-td-3">
+                    <h5 class="item-description-text">
+                      {% trans "STATUS" %}
+                    </h5>
+                  </td>
+                  <td class="row5-td-4  ">
+                    <h5 class="item-value-text">
+                      {{project.project_status}}
+                    </h5>
+                  </td>
+                </tr>
+              </table>
+            </tr>
+            <tr>
+              <table>
+                <tr>
+                  <td class="row6-td-1"></td>
+                </tr>
+              </table>
+            </tr>
+            <tr>
+              <table>
+                <td class="row3-td-1">
+                  <h5 class="item-value-text-white">
+                    {% trans "PROJECT HISTORY" %}
+                  </h5>
+                </td>
+              </table>
+            </tr>
+            <tr>
+              <table>
+
+                {% for item in project_status_histories %}
+                <tr>
+                  <td class="row5-td-1">
+                    <h5 class="item-description-text">
+                      {% trans "STATUS" %}
+                    </h5>
+                  </td>
+                  <td class="row5-td-2">
+                    <h5 class="item-value-text">
+                      {{item.project_status}}
+                    </h5>
+                  </td>
+                  <td class="row5-td-1">
+                    <h5 class="item-description-text">
+                      {% trans "DETAIL" %}
+                    </h5>
+                  </td>
+                  <td class="row5-td-2">
+                    <h5 class="item-value-text">
+                      {{item.comment}}
+                    </h5>
+                  </td>
+                </tr>
+                {% endfor %}
+              </table>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- buttons section -->
+    <div class="col-xl-3 col-md-4 col-12 action-btns">
+      <div class="card">
+        <div class="card-body p-2">
+          {% if project.is_closed %}
+          <a href="#" class="btn btn-primary btn-block mb-1 print-invoice"> <i
+              class="feather icon-printer mr-25 common-size"></i> {% trans "Print" %}</a>
+          {% endif %}
+          <a href="{% url 'project_list' %}" class="btn btn-info btn-block mb-1"><i
+              class="feather icon-list mr-25 common-size"></i> {% trans "Go to CCP list" %}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  {% endblock content %}

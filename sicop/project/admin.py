@@ -15,13 +15,8 @@ class ProjectStatusAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     resource_classes = [ProjectResource]
     list_display = (
         "name",
+        "code",
         "id",
-        "status",
-        "created_at",
-        "updated_at",
-    )
-    list_filter = (
-        "name",
         "status",
         "created_at",
         "updated_at",
@@ -40,7 +35,6 @@ class ProjectStatusAdmin(ImportExportModelAdmin, admin.ModelAdmin):
         "created_at",
         "updated_at",
         "id",
-        "code",
     )
 
 

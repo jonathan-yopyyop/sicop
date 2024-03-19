@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-16 17:58-0500\n"
+"POT-Creation-Date: 2024-03-17 22:53-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,8 +53,8 @@ msgid "English"
 msgstr ""
 
 #: sicop/area/apps.py:8 sicop/area/models.py:29 sicop/area/models.py:48
-#: sicop/area/models.py:49 sicop/project/models.py:135
-#: sicop/project/models.py:136
+#: sicop/area/models.py:49 sicop/maloka_da/models.py:113
+#: sicop/project/models.py:135 sicop/project/models.py:136
 #: sicop/templates/sicop/frontend/area/member/create.html:93
 #: sicop/templates/sicop/frontend/area/member/detail.html:66
 #: sicop/templates/sicop/frontend/area/member/list.html:48
@@ -63,8 +63,8 @@ msgstr ""
 #: sicop/templates/sicop/frontend/base/main_menu.html:67
 #: sicop/templates/sicop/frontend/project/project/create.html:111
 #: sicop/templates/sicop/frontend/project/project/detail.html:114
-#: sicop/templates/sicop/frontend/project/project/list.html:51
-#: sicop/templates/sicop/frontend/project/project/list.html:87
+#: sicop/templates/sicop/frontend/project/project/list.html:50
+#: sicop/templates/sicop/frontend/project/project/list.html:94
 #: sicop/templates/sicop/frontend/project/project/update.html:111
 msgid "Area"
 msgstr ""
@@ -239,8 +239,8 @@ msgstr ""
 #: sicop/templates/sicop/frontend/project/project/create.html:104
 #: sicop/templates/sicop/frontend/project/project/detail.html:102
 #: sicop/templates/sicop/frontend/project/project/detail.html:106
-#: sicop/templates/sicop/frontend/project/project/list.html:50
-#: sicop/templates/sicop/frontend/project/project/list.html:86
+#: sicop/templates/sicop/frontend/project/project/list.html:49
+#: sicop/templates/sicop/frontend/project/project/list.html:93
 #: sicop/templates/sicop/frontend/project/project/update.html:100
 #: sicop/templates/sicop/frontend/project/project/update.html:104
 msgid "Budget"
@@ -471,8 +471,8 @@ msgstr ""
 #: sicop/templates/sicop/frontend/project/project/create.html:70
 #: sicop/templates/sicop/frontend/project/project/detail.html:66
 #: sicop/templates/sicop/frontend/project/project/detail.html:70
-#: sicop/templates/sicop/frontend/project/project/list.html:49
-#: sicop/templates/sicop/frontend/project/project/list.html:85
+#: sicop/templates/sicop/frontend/project/project/list.html:48
+#: sicop/templates/sicop/frontend/project/project/list.html:92
 #: sicop/templates/sicop/frontend/project/project/update.html:66
 #: sicop/templates/sicop/frontend/project/project/update.html:70
 msgid "Description"
@@ -489,8 +489,8 @@ msgstr ""
 #: sicop/budget/models/budget.py:42 sicop/budget/models/budget.py:43
 #: sicop/budget/models/budget.py:163 sicop/budget/models/budget.py:164
 #: sicop/budget/models/provision.py:14 sicop/budget/models/provision.py:15
-#: sicop/project/apps.py:8 sicop/project/models.py:149
-#: sicop/project/models.py:162 sicop/project/models.py:163
+#: sicop/project/apps.py:8 sicop/project/models.py:154
+#: sicop/project/models.py:167 sicop/project/models.py:168
 #: sicop/templates/sicop/frontend/base/main_menu.html:151
 #: sicop/templates/sicop/frontend/budget/budget/create.html:66
 #: sicop/templates/sicop/frontend/budget/budget/detail.html:55
@@ -1182,8 +1182,8 @@ msgstr ""
 #: sicop/templates/sicop/frontend/project/project/create.html:59
 #: sicop/templates/sicop/frontend/project/project/detail.html:54
 #: sicop/templates/sicop/frontend/project/project/detail.html:58
-#: sicop/templates/sicop/frontend/project/project/list.html:48
-#: sicop/templates/sicop/frontend/project/project/list.html:84
+#: sicop/templates/sicop/frontend/project/project/list.html:47
+#: sicop/templates/sicop/frontend/project/project/list.html:91
 #: sicop/templates/sicop/frontend/project/project/update.html:55
 #: sicop/templates/sicop/frontend/project/project/update.html:59
 #: sicop/templates/sicop/frontend/project/status/create.html:55
@@ -2109,8 +2109,8 @@ msgstr ""
 #: sicop/templates/sicop/frontend/expense/type/list.html:47
 #: sicop/templates/sicop/frontend/expense/type/list.html:77
 #: sicop/templates/sicop/frontend/project/project/detail.html:175
-#: sicop/templates/sicop/frontend/project/project/list.html:52
-#: sicop/templates/sicop/frontend/project/project/list.html:88
+#: sicop/templates/sicop/frontend/project/project/list.html:51
+#: sicop/templates/sicop/frontend/project/project/list.html:95
 #: sicop/templates/sicop/frontend/project/project/update.html:172
 #: sicop/templates/sicop/frontend/project/status/detail.html:65
 #: sicop/templates/sicop/frontend/project/status/list.html:47
@@ -2198,11 +2198,44 @@ msgstr ""
 msgid "Active Directory user"
 msgstr ""
 
-#: sicop/maloka_da/models.py:116
+#: sicop/maloka_da/models.py:114
+msgid "Active Directory user area"
+msgstr ""
+
+#: sicop/maloka_da/models.py:119
+#: sicop/templates/sicop/frontend/area/member/create.html:69
+#: sicop/templates/sicop/frontend/area/member/detail.html:79
+#: sicop/templates/sicop/frontend/area/member/list.html:49
+#: sicop/templates/sicop/frontend/area/member/list.html:85
+#: sicop/templates/sicop/frontend/area/member/update.html:82
+msgid "Role"
+msgstr ""
+
+#: sicop/maloka_da/models.py:120
+msgid "Active Directory user role"
+msgstr ""
+
+#: sicop/maloka_da/models.py:125
+msgid "Security Group"
+msgstr ""
+
+#: sicop/maloka_da/models.py:126
+msgid "Active Directory user security group"
+msgstr ""
+
+#: sicop/maloka_da/models.py:131
+msgid "Position"
+msgstr ""
+
+#: sicop/maloka_da/models.py:132
+msgid "Active Directory user position"
+msgstr ""
+
+#: sicop/maloka_da/models.py:140
 msgid "Active Directory User"
 msgstr ""
 
-#: sicop/maloka_da/models.py:117
+#: sicop/maloka_da/models.py:141
 msgid "Active Directory Users"
 msgstr ""
 
@@ -2251,7 +2284,7 @@ msgid "End date"
 msgstr ""
 
 #: sicop/project/models.py:118 sicop/project/models.py:119
-#: sicop/project/models.py:168 sicop/project/models.py:169
+#: sicop/project/models.py:173 sicop/project/models.py:174
 #: sicop/templates/sicop/frontend/budget/processes/provision/addition/update.html:110
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:110
 #: sicop/templates/sicop/frontend/budget/processes/provision/detail.html:100
@@ -2276,20 +2309,24 @@ msgstr ""
 msgid "Project manager"
 msgstr ""
 
-#: sicop/project/models.py:150
+#: sicop/project/models.py:146 sicop/project/models.py:147
+msgid "Is closed"
+msgstr ""
+
+#: sicop/project/models.py:155
 #: sicop/templates/sicop/frontend/base/main_menu.html:166
 msgid "Projects"
 msgstr ""
 
-#: sicop/project/models.py:173 sicop/project/models.py:174
+#: sicop/project/models.py:178 sicop/project/models.py:179
 msgid "Comment"
 msgstr ""
 
-#: sicop/project/models.py:182
+#: sicop/project/models.py:187
 msgid "Project Status History"
 msgstr ""
 
-#: sicop/project/models.py:183
+#: sicop/project/models.py:188
 msgid "Project Status Histories"
 msgstr ""
 
@@ -2631,8 +2668,8 @@ msgstr ""
 #: sicop/templates/sicop/frontend/expense/concept/list.html:75
 #: sicop/templates/sicop/frontend/expense/type/list.html:45
 #: sicop/templates/sicop/frontend/expense/type/list.html:75
-#: sicop/templates/sicop/frontend/project/project/list.html:47
-#: sicop/templates/sicop/frontend/project/project/list.html:83
+#: sicop/templates/sicop/frontend/project/project/list.html:46
+#: sicop/templates/sicop/frontend/project/project/list.html:90
 #: sicop/templates/sicop/frontend/project/status/list.html:45
 #: sicop/templates/sicop/frontend/project/status/list.html:75
 #: sicop/templates/sicop/frontend/project/type/list.html:45
@@ -2683,7 +2720,7 @@ msgstr ""
 #: sicop/templates/sicop/frontend/expense/type/list.html:48
 #: sicop/templates/sicop/frontend/expense/type/list.html:78
 #: sicop/templates/sicop/frontend/project/project/list.html:53
-#: sicop/templates/sicop/frontend/project/project/list.html:89
+#: sicop/templates/sicop/frontend/project/project/list.html:97
 #: sicop/templates/sicop/frontend/project/status/list.html:48
 #: sicop/templates/sicop/frontend/project/status/list.html:78
 #: sicop/templates/sicop/frontend/project/type/list.html:50
@@ -2740,14 +2777,6 @@ msgstr ""
 
 #: sicop/templates/sicop/frontend/area/member/create.html:57
 msgid "Select an user"
-msgstr ""
-
-#: sicop/templates/sicop/frontend/area/member/create.html:69
-#: sicop/templates/sicop/frontend/area/member/detail.html:79
-#: sicop/templates/sicop/frontend/area/member/list.html:49
-#: sicop/templates/sicop/frontend/area/member/list.html:85
-#: sicop/templates/sicop/frontend/area/member/update.html:82
-msgid "Role"
 msgstr ""
 
 #: sicop/templates/sicop/frontend/area/member/create.html:82
@@ -4437,6 +4466,19 @@ msgstr ""
 msgid "Project list"
 msgstr ""
 
+#: sicop/templates/sicop/frontend/project/project/list.html:52
+#: sicop/templates/sicop/frontend/project/project/list.html:96
+msgid "Is closed?"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/project/project/list.html:73
+msgid "Closed"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/project/project/list.html:75
+msgid "Open"
+msgstr ""
+
 #: sicop/templates/sicop/frontend/project/project/update.html:7
 #: sicop/templates/sicop/frontend/project/project/update.html:15
 msgid "Project update"
@@ -5766,15 +5808,15 @@ msgstr ""
 msgid "Group not created"
 msgstr ""
 
-#: sicop/users/views/registration.py:47
+#: sicop/users/views/registration.py:59
 msgid "Tu usuario fue creado exitosamente, ahora puedes iniciar sesión."
 msgstr ""
 
-#: sicop/users/views/registration.py:112
+#: sicop/users/views/registration.py:124
 msgid "Tu contraseña fue cambiada exitosamente."
 msgstr ""
 
-#: sicop/users/views/registration.py:114
+#: sicop/users/views/registration.py:126
 msgid "Las contraseñas no coinciden."
 msgstr ""
 

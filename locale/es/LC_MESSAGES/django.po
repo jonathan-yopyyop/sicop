@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-16 17:58-0500\n"
+"POT-Creation-Date: 2024-03-17 22:53-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,8 +53,8 @@ msgid "English"
 msgstr "Inglés"
 
 #: sicop/area/apps.py:8 sicop/area/models.py:29 sicop/area/models.py:48
-#: sicop/area/models.py:49 sicop/project/models.py:135
-#: sicop/project/models.py:136
+#: sicop/area/models.py:49 sicop/maloka_da/models.py:113
+#: sicop/project/models.py:135 sicop/project/models.py:136
 #: sicop/templates/sicop/frontend/area/member/create.html:93
 #: sicop/templates/sicop/frontend/area/member/detail.html:66
 #: sicop/templates/sicop/frontend/area/member/list.html:48
@@ -63,59 +63,59 @@ msgstr "Inglés"
 #: sicop/templates/sicop/frontend/base/main_menu.html:67
 #: sicop/templates/sicop/frontend/project/project/create.html:111
 #: sicop/templates/sicop/frontend/project/project/detail.html:114
-#: sicop/templates/sicop/frontend/project/project/list.html:51
-#: sicop/templates/sicop/frontend/project/project/list.html:87
+#: sicop/templates/sicop/frontend/project/project/list.html:50
+#: sicop/templates/sicop/frontend/project/project/list.html:94
 #: sicop/templates/sicop/frontend/project/project/update.html:111
 msgid "Area"
 msgstr "Área"
 
 #: sicop/area/management/commands/create_roles.py:12
 msgid "director"
-msgstr ""
+msgstr "director"
 
 #: sicop/area/management/commands/create_roles.py:12
 msgid "Director"
-msgstr ""
+msgstr "Director"
 
 #: sicop/area/management/commands/create_roles.py:13
 msgid "chief"
-msgstr ""
+msgstr "jefe"
 
 #: sicop/area/management/commands/create_roles.py:13
 msgid "Jefe"
-msgstr ""
+msgstr "Jefe"
 
 #: sicop/area/management/commands/create_roles.py:14
 msgid "executor"
-msgstr ""
+msgstr "ejecutor"
 
 #: sicop/area/management/commands/create_roles.py:14
 msgid "Ejecutor"
-msgstr ""
+msgstr "Ejecutor"
 
 #: sicop/area/management/commands/create_roles.py:15
 msgid "administrator"
-msgstr ""
+msgstr "administrador"
 
 #: sicop/area/management/commands/create_roles.py:15
 msgid "Administrador"
-msgstr ""
+msgstr "Administrador"
 
 #: sicop/area/management/commands/create_roles.py:16
 msgid "president"
-msgstr ""
+msgstr "presidente"
 
 #: sicop/area/management/commands/create_roles.py:16
 msgid "Presidente"
-msgstr ""
+msgstr "PResidente"
 
 #: sicop/area/management/commands/create_roles.py:17
 msgid "administrative_director"
-msgstr ""
+msgstr "director administratico"
 
 #: sicop/area/management/commands/create_roles.py:17
 msgid "Director administrativo"
-msgstr ""
+msgstr "Director administrativo"
 
 #: sicop/area/models.py:14 sicop/area/models.py:15
 msgid "Area name"
@@ -239,8 +239,8 @@ msgstr "Rol de área no actualizado, por favor revise los datos"
 #: sicop/templates/sicop/frontend/project/project/create.html:104
 #: sicop/templates/sicop/frontend/project/project/detail.html:102
 #: sicop/templates/sicop/frontend/project/project/detail.html:106
-#: sicop/templates/sicop/frontend/project/project/list.html:50
-#: sicop/templates/sicop/frontend/project/project/list.html:86
+#: sicop/templates/sicop/frontend/project/project/list.html:49
+#: sicop/templates/sicop/frontend/project/project/list.html:93
 #: sicop/templates/sicop/frontend/project/project/update.html:100
 #: sicop/templates/sicop/frontend/project/project/update.html:104
 msgid "Budget"
@@ -471,8 +471,8 @@ msgstr "Concepto de gasto"
 #: sicop/templates/sicop/frontend/project/project/create.html:70
 #: sicop/templates/sicop/frontend/project/project/detail.html:66
 #: sicop/templates/sicop/frontend/project/project/detail.html:70
-#: sicop/templates/sicop/frontend/project/project/list.html:49
-#: sicop/templates/sicop/frontend/project/project/list.html:85
+#: sicop/templates/sicop/frontend/project/project/list.html:48
+#: sicop/templates/sicop/frontend/project/project/list.html:92
 #: sicop/templates/sicop/frontend/project/project/update.html:66
 #: sicop/templates/sicop/frontend/project/project/update.html:70
 msgid "Description"
@@ -489,8 +489,8 @@ msgstr "Descripciones de presupuesto"
 #: sicop/budget/models/budget.py:42 sicop/budget/models/budget.py:43
 #: sicop/budget/models/budget.py:163 sicop/budget/models/budget.py:164
 #: sicop/budget/models/provision.py:14 sicop/budget/models/provision.py:15
-#: sicop/project/apps.py:8 sicop/project/models.py:149
-#: sicop/project/models.py:162 sicop/project/models.py:163
+#: sicop/project/apps.py:8 sicop/project/models.py:154
+#: sicop/project/models.py:167 sicop/project/models.py:168
 #: sicop/templates/sicop/frontend/base/main_menu.html:151
 #: sicop/templates/sicop/frontend/budget/budget/create.html:66
 #: sicop/templates/sicop/frontend/budget/budget/detail.html:55
@@ -941,10 +941,8 @@ msgid "Provision Cart Histories"
 msgstr "Histórico"
 
 #: sicop/budget/models/provision.py:288 sicop/budget/models/provision.py:289
-#, fuzzy
-#| msgid "Already taked"
 msgid "Alreaday taked amount"
-msgstr "Ya tomado"
+msgstr "Monto ya tomado"
 
 #: sicop/budget/models/provision.py:306
 msgid "Provision Budget history"
@@ -1060,10 +1058,8 @@ msgid "Budget provision created successfully."
 msgstr "CAP creado exitosament."
 
 #: sicop/budget/views/processes/budget_arrange_addition.py:74
-#, fuzzy, python-brace-format
-#| msgid "Error on search, the CAP with id {cap_id} does not exist."
 msgid "Error on search, the CAP with id {cap_id} does not exist."
-msgstr "Error en la búsqueda, el CAP con id {pk} no existe."
+msgstr "Error en la búsqueda, el CAP con id {cap_id} no existe."
 
 #: sicop/budget/views/processes/budget_redistribution.py:175
 msgid "Budget updated"
@@ -1185,8 +1181,8 @@ msgstr "Código"
 #: sicop/templates/sicop/frontend/project/project/create.html:59
 #: sicop/templates/sicop/frontend/project/project/detail.html:54
 #: sicop/templates/sicop/frontend/project/project/detail.html:58
-#: sicop/templates/sicop/frontend/project/project/list.html:48
-#: sicop/templates/sicop/frontend/project/project/list.html:84
+#: sicop/templates/sicop/frontend/project/project/list.html:47
+#: sicop/templates/sicop/frontend/project/project/list.html:91
 #: sicop/templates/sicop/frontend/project/project/update.html:55
 #: sicop/templates/sicop/frontend/project/project/update.html:59
 #: sicop/templates/sicop/frontend/project/status/create.html:55
@@ -2056,28 +2052,20 @@ msgid "DA Maloka"
 msgstr ""
 
 #: sicop/maloka_da/models.py:7
-#, fuzzy
-#| msgid "created at"
 msgid "Created at"
 msgstr "creado en"
 
 #: sicop/maloka_da/models.py:8
-#, fuzzy
-#| msgid "Date time on which the object was created."
 msgid "Date time on which the object was created"
-msgstr "Fecha y hora en la que se creó el objeto."
+msgstr "Fecha y hora en la que se creó el objeto"
 
 #: sicop/maloka_da/models.py:12
-#, fuzzy
-#| msgid "updated at"
 msgid "Updated at"
 msgstr "actualizado en"
 
 #: sicop/maloka_da/models.py:13
-#, fuzzy
-#| msgid "Date time on which the object was last updated."
 msgid "Date time on which the object was last updated"
-msgstr "Fecha y hora en la que se actualizó por última vez el objeto."
+msgstr "Fecha y hora en la que se actualizó por última vez el objeto"
 
 #: sicop/maloka_da/models.py:17
 #: sicop/templates/sicop/frontend/area/area/create.html:77
@@ -2120,8 +2108,8 @@ msgstr "Fecha y hora en la que se actualizó por última vez el objeto."
 #: sicop/templates/sicop/frontend/expense/type/list.html:47
 #: sicop/templates/sicop/frontend/expense/type/list.html:77
 #: sicop/templates/sicop/frontend/project/project/detail.html:175
-#: sicop/templates/sicop/frontend/project/project/list.html:52
-#: sicop/templates/sicop/frontend/project/project/list.html:88
+#: sicop/templates/sicop/frontend/project/project/list.html:51
+#: sicop/templates/sicop/frontend/project/project/list.html:95
 #: sicop/templates/sicop/frontend/project/project/update.html:172
 #: sicop/templates/sicop/frontend/project/status/detail.html:65
 #: sicop/templates/sicop/frontend/project/status/list.html:47
@@ -2136,36 +2124,32 @@ msgid "Status"
 msgstr "Estado"
 
 #: sicop/maloka_da/models.py:18
-#, fuzzy
-#| msgid "Project status"
 msgid "Object status"
-msgstr "Estado del proyecto"
+msgstr "Estado del objeto"
 
 #: sicop/maloka_da/models.py:30
 msgid "Domain"
-msgstr ""
+msgstr "Domínio"
 
 #: sicop/maloka_da/models.py:31
 msgid "Active Directory domain"
-msgstr ""
+msgstr "Domínio Active Directory"
 
 #: sicop/maloka_da/models.py:35
 msgid "Domain Extension"
-msgstr ""
+msgstr "Extensión de dominio"
 
 #: sicop/maloka_da/models.py:36
 msgid "Active Directory domain extension"
-msgstr ""
+msgstr "Extensión de dominio Active Directory"
 
 #: sicop/maloka_da/models.py:40
-#, fuzzy
-#| msgid "Your Username"
 msgid "Username"
 msgstr "Tu nombre de usuario"
 
 #: sicop/maloka_da/models.py:41
 msgid "Active Directory username"
-msgstr ""
+msgstr "Usuario de Active Directory"
 
 #: sicop/maloka_da/models.py:45
 #: sicop/templates/sicop/frontend/user/user/create.html:79
@@ -2179,47 +2163,80 @@ msgstr "Contraseña"
 
 #: sicop/maloka_da/models.py:46
 msgid "Active Directory password"
-msgstr ""
+msgstr "Contraseña de Active Directory"
 
 #: sicop/maloka_da/models.py:61
 msgid "Active Directory Credential"
-msgstr ""
+msgstr "Credencial de Active Directory"
 
 #: sicop/maloka_da/models.py:62
 msgid "Active Directory Credentialss"
-msgstr ""
+msgstr "Credenciales de Active Directory"
 
 #: sicop/maloka_da/models.py:75
 msgid "Active Directory credential"
-msgstr ""
+msgstr "Credencial de Active Directory"
 
 #: sicop/maloka_da/models.py:78 sicop/maloka_da/models.py:86
 msgid "Organizational Unit"
-msgstr ""
+msgstr "Unidad organizativa"
 
 #: sicop/maloka_da/models.py:79 sicop/maloka_da/models.py:100
 msgid "Active Directory Organizational Unit"
-msgstr ""
+msgstr "Unidad organizativa de Active Directory"
 
 #: sicop/maloka_da/models.py:87
 msgid "Organizational Units"
-msgstr ""
+msgstr "Unidades organizativas"
 
 #: sicop/maloka_da/models.py:104
 msgid "Active Directory user name"
-msgstr ""
+msgstr "Nombre de usuario de Active Directory"
 
 #: sicop/maloka_da/models.py:109
 msgid "Active Directory user"
-msgstr ""
+msgstr "Usuario de Active Directory"
 
-#: sicop/maloka_da/models.py:116
+#: sicop/maloka_da/models.py:114
+msgid "Active Directory user area"
+msgstr "Área de usuario de Active Directory"
+
+#: sicop/maloka_da/models.py:119
+#: sicop/templates/sicop/frontend/area/member/create.html:69
+#: sicop/templates/sicop/frontend/area/member/detail.html:79
+#: sicop/templates/sicop/frontend/area/member/list.html:49
+#: sicop/templates/sicop/frontend/area/member/list.html:85
+#: sicop/templates/sicop/frontend/area/member/update.html:82
+msgid "Role"
+msgstr "Rol"
+
+#: sicop/maloka_da/models.py:120
+msgid "Active Directory user role"
+msgstr "Rol de usuario de Active Directory"
+
+#: sicop/maloka_da/models.py:125
+msgid "Security Group"
+msgstr "Grupo de seguridad"
+
+#: sicop/maloka_da/models.py:126
+msgid "Active Directory user security group"
+msgstr "Grupo de seguridad de usuario de Active Directory"
+
+#: sicop/maloka_da/models.py:131
+msgid "Position"
+msgstr "Cargo"
+
+#: sicop/maloka_da/models.py:132
+msgid "Active Directory user position"
+msgstr "Cargo de usuario de Active Directory"
+
+#: sicop/maloka_da/models.py:140
 msgid "Active Directory User"
-msgstr ""
+msgstr "Usuario de Active Directory"
 
-#: sicop/maloka_da/models.py:117
+#: sicop/maloka_da/models.py:141
 msgid "Active Directory Users"
-msgstr ""
+msgstr "Usuarios de Active Directory"
 
 #: sicop/project/models.py:28
 #: sicop/templates/sicop/frontend/project/project/create.html:139
@@ -2266,7 +2283,7 @@ msgid "End date"
 msgstr "Finaliza en"
 
 #: sicop/project/models.py:118 sicop/project/models.py:119
-#: sicop/project/models.py:168 sicop/project/models.py:169
+#: sicop/project/models.py:173 sicop/project/models.py:174
 #: sicop/templates/sicop/frontend/budget/processes/provision/addition/update.html:110
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:110
 #: sicop/templates/sicop/frontend/budget/processes/provision/detail.html:100
@@ -2291,20 +2308,24 @@ msgstr "¿Es gravable?"
 msgid "Project manager"
 msgstr "Gerente de proyecto"
 
-#: sicop/project/models.py:150
+#: sicop/project/models.py:146 sicop/project/models.py:147
+msgid "Is closed"
+msgstr "Está cerrado"
+
+#: sicop/project/models.py:155
 #: sicop/templates/sicop/frontend/base/main_menu.html:166
 msgid "Projects"
 msgstr "Proyectos"
 
-#: sicop/project/models.py:173 sicop/project/models.py:174
+#: sicop/project/models.py:178 sicop/project/models.py:179
 msgid "Comment"
 msgstr "Comentario"
 
-#: sicop/project/models.py:182
+#: sicop/project/models.py:187
 msgid "Project Status History"
 msgstr "Estado histórico del proyecto"
 
-#: sicop/project/models.py:183
+#: sicop/project/models.py:188
 msgid "Project Status Histories"
 msgstr "Lista de estados historicos de proyectos"
 
@@ -2646,8 +2667,8 @@ msgstr "Lista de áreas"
 #: sicop/templates/sicop/frontend/expense/concept/list.html:75
 #: sicop/templates/sicop/frontend/expense/type/list.html:45
 #: sicop/templates/sicop/frontend/expense/type/list.html:75
-#: sicop/templates/sicop/frontend/project/project/list.html:47
-#: sicop/templates/sicop/frontend/project/project/list.html:83
+#: sicop/templates/sicop/frontend/project/project/list.html:46
+#: sicop/templates/sicop/frontend/project/project/list.html:90
 #: sicop/templates/sicop/frontend/project/status/list.html:45
 #: sicop/templates/sicop/frontend/project/status/list.html:75
 #: sicop/templates/sicop/frontend/project/type/list.html:45
@@ -2698,7 +2719,7 @@ msgstr "ID"
 #: sicop/templates/sicop/frontend/expense/type/list.html:48
 #: sicop/templates/sicop/frontend/expense/type/list.html:78
 #: sicop/templates/sicop/frontend/project/project/list.html:53
-#: sicop/templates/sicop/frontend/project/project/list.html:89
+#: sicop/templates/sicop/frontend/project/project/list.html:97
 #: sicop/templates/sicop/frontend/project/status/list.html:48
 #: sicop/templates/sicop/frontend/project/status/list.html:78
 #: sicop/templates/sicop/frontend/project/type/list.html:50
@@ -2756,14 +2777,6 @@ msgstr "Miembro"
 #: sicop/templates/sicop/frontend/area/member/create.html:57
 msgid "Select an user"
 msgstr "Seleccionar un usuario"
-
-#: sicop/templates/sicop/frontend/area/member/create.html:69
-#: sicop/templates/sicop/frontend/area/member/detail.html:79
-#: sicop/templates/sicop/frontend/area/member/list.html:49
-#: sicop/templates/sicop/frontend/area/member/list.html:85
-#: sicop/templates/sicop/frontend/area/member/update.html:82
-msgid "Role"
-msgstr "Rol"
 
 #: sicop/templates/sicop/frontend/area/member/create.html:82
 #: sicop/templates/sicop/frontend/area/member/create.html:86
@@ -4456,6 +4469,19 @@ msgstr "Detalle del proyecto"
 msgid "Project list"
 msgstr "Lista de proyectos"
 
+#: sicop/templates/sicop/frontend/project/project/list.html:52
+#: sicop/templates/sicop/frontend/project/project/list.html:96
+msgid "Is closed?"
+msgstr "¿Está cerrado?"
+
+#: sicop/templates/sicop/frontend/project/project/list.html:73
+msgid "Closed"
+msgstr "Cerrado"
+
+#: sicop/templates/sicop/frontend/project/project/list.html:75
+msgid "Open"
+msgstr "Abierto"
+
 #: sicop/templates/sicop/frontend/project/project/update.html:7
 #: sicop/templates/sicop/frontend/project/project/update.html:15
 msgid "Project update"
@@ -5790,15 +5816,15 @@ msgstr "Grupo creado con éxito"
 msgid "Group not created"
 msgstr "Grupo no creado"
 
-#: sicop/users/views/registration.py:47
+#: sicop/users/views/registration.py:59
 msgid "Tu usuario fue creado exitosamente, ahora puedes iniciar sesión."
 msgstr "Tu usuario ha sido creado exitosamente, ahora puedes iniciar sesión."
 
-#: sicop/users/views/registration.py:112
+#: sicop/users/views/registration.py:124
 msgid "Tu contraseña fue cambiada exitosamente."
 msgstr "Tu contraseña ha sido cambiada exitosamente."
 
-#: sicop/users/views/registration.py:114
+#: sicop/users/views/registration.py:126
 msgid "Las contraseñas no coinciden."
 msgstr "Las contraseñas no coinciden."
 

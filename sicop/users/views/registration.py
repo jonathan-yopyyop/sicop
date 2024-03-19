@@ -32,6 +32,13 @@ class LoginView(LoginView):
         password = post.get("password")
         username_splited = username.split("@")
         username_da = username_splited[0]
+
+        print("-----------------")
+        print(
+            username,
+            password,
+        )
+        print("-----------------")
         login(self.request, form.get_user())
         return HttpResponseRedirect(self.get_success_url())
 
