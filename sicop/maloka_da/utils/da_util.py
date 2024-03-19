@@ -24,12 +24,8 @@ class ActiveDirectoryUtil:
             self.__domain_extension = self.__credential.domain_extension
             self.__username = self.__credential.username
             self.__password = self.__credential.password
-            # self.__server = Server(
-            #     f"ldap://{self.__domain}.{self.__domain_extension}",
-            #     get_info=ALL,
-            # )
             self.__server = Server(
-                f"ldap://10.0.1.5",
+                f"ldap://{self.__domain}.{self.__domain_extension}",
                 get_info=ALL,
             )
 
