@@ -29,7 +29,10 @@ class BudgetProvisionList(PermissionRequiredMixin, LoginRequiredMixin, ListView)
     permission_required = "budget.view_provisioncart"
 
     def get_queryset(self):
-        return ProvisionCart.objects.filter()
+        return ProvisionCart.objects.filter(
+            project__project_manager=self.request.user,
+            status=True,
+        )
 
 
 class BudgetProvisionDetail(PermissionRequiredMixin, LoginRequiredMixin, DetailView):

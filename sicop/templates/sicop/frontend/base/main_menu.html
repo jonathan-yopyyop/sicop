@@ -57,7 +57,6 @@
     <ul class="navigation navigation-main navigation-sicop" id="main-menu-navigation" data-menu="menu-navigation">
       <li class="navigation-header">
         <span>{% trans "Configuration" %}</span>
-        <span>{{user.areamember_set.last.role.code}}</span>
         <i class="feather icon-minus" data-toggle="tooltip" data-placement="right"
           data-original-title="{% trans 'Configuration' %}">
         </i>
@@ -69,7 +68,7 @@
           <span class="menu-title" data-i18n="Dashboard">{% trans 'Area' %}</span>
         </a>
         <ul class="menu-content">
-          {% if 'area.view_area' in perms %}
+          {% if 'area.view_area' in perms and user.areamember_set.last.role.code == 'director_administrativo' %}
           <li {% if '/area/areas/' in request.path %}class="active" {% endif %}>
             <a class="menu-item" href="{% url 'area_area_list' %}">{% trans 'Areas' %}</a>
           </li>
@@ -211,8 +210,8 @@
             <a class="menu-item" href="{% url 'budget_provision_list' %}">{% trans 'Apropiations' %}</a>
           </li>
           {% endif %}
-          {% if 'budget.view_provisioncartapproval' in perms %}
-          <li {% if '/budget/budget/provision/approval/list/' in request.path %}class="active" {% endif %}>
+          {% if 'budget.view_provisioncartapproval' in perms and user.areamember_set.last.role.code == 'director_administrativo' %}
+          <li {% if '/budget/budget/provision/approval/list/' in request.path  %}class="active" {% endif %}>
             <a class="menu-item" href="{% url 'provision_cart_approval_list' %}">{% trans 'Approvals' %}</a>
           </li>
           {% endif %}
@@ -238,7 +237,7 @@
             <a class="menu-item" href="{% url 'budget_redistribution_list' %}">{% trans 'Redistributions' %}</a>
           </li>
           {% endif %}
-          {% if 'budget.view_budgetredistributionitemapproval' in perms %}
+          {% if 'budget.view_budgetredistributionitemapproval' in perms and user.areamember_set.last.role.code == 'director_administrativo' %}
           <li {% if '/budget/redistribution/approval/list/' in request.path %}class="active" {% endif %}>
             <a class="menu-item" href="{% url 'redistribution_budget_approval_list' %}">{% trans 'Approvals' %}</a>
           </li>
