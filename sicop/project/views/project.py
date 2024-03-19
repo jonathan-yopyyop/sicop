@@ -10,6 +10,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
 from sicop.certificate.models import Certificate
+from sicop.area.models import Area, AreaMember, AreaRole
 
 from sicop.area.models import Area
 from sicop.project.models import Project, ProjectStatus, ProjectType, ProjectStatusHistory
@@ -26,10 +27,19 @@ class ProjectListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
     permission_required = "project.view_project"
 
     def get_queryset(self):
-        return Project.objects.filter(
-            project_manager=self.request.user,
-            status=True,
-        )
+        user = self.request.user
+        area_member = AreaMember.objects.filter(user=user).first()
+        role = area_member.role
+        if role.name == "chief" or role.name == "jefe":
+            return Project.objects.filter(
+                project_manager=user,
+                status=True,
+            )
+        elif role.name == "director":
+            return Project.objects.filter(
+                status=True,
+                area=area_member.area,
+            )
 
 
 class ProjectDetailView(PermissionRequiredMixin, LoginRequiredMixin, DetailView):
