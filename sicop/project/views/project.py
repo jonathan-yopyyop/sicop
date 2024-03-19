@@ -25,6 +25,12 @@ class ProjectListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
     context_object_name = "projects"
     permission_required = "project.view_project"
 
+    def get_queryset(self):
+        return Project.objects.filter(
+            project_manager=self.request.user,
+            status=True,
+        )
+
 
 class ProjectDetailView(PermissionRequiredMixin, LoginRequiredMixin, DetailView):
     """View for Project detail."""
