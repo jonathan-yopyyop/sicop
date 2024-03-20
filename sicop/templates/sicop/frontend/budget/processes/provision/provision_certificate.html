@@ -1953,7 +1953,9 @@
         </div>
       </div>
       <!-- Approval card -->
-
+      {{ area_member.role.code }}
+      {{ area_member.role }}
+      {{ area_member }}
       {% if not provision_cart.approved and not provision_cart.rejected %}
 
       {% if area_member.role.code == 'director_administrativo' or area_member.role.code == 'director' %}
