@@ -189,12 +189,19 @@ class ProvisionCertificateView(PermissionRequiredMixin, LoginRequiredMixin, Temp
         pk = self.kwargs.get("pk")
         cart = ProvisionCart.objects.get(id=pk)
         user = cart.user
+        current_user = self.request.user
         if AreaMember.objects.filter(user=user).exists():
             area_member = AreaMember.objects.filter(user=user).last()
             area_rol = area_member.role
         else:
             area_member = None
             area_rol = None
+        if AreaMember.objects.filter(user=current_user).exists():
+            current_user_area_member = AreaMember.objects.filter(user=current_user).last()
+            current_user_area_rol = current_user_area_member.role
+        else:
+            current_user_area_member = None
+            current_user_area_rol = None
         if ProvisionCartApproval.objects.filter(provision_cart=cart).exists():
             provision_cart_approval = ProvisionCartApproval.objects.filter(provision_cart=cart).last()
         else:
@@ -205,6 +212,9 @@ class ProvisionCertificateView(PermissionRequiredMixin, LoginRequiredMixin, Temp
         context["project"] = cart.project
         context["area_member"] = area_member
         context["certificate_version"] = Certificate.objects.filter(slug="cap").first()
+        context["current_user_area_rol"] = current_user_area_rol
+        context["current_user_area_member"] = current_user_area_member
+
         return context
 
 

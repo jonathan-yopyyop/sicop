@@ -1953,12 +1953,12 @@
         </div>
       </div>
       <!-- Approval card -->
-      {{ area_member.role.code }}
-      {{ area_member.role }}
+      {{ current_user_area_member.role.code }}
+      {{ current_user_area_member.role }}
       {{ area_member }}
-      {% if not provision_cart.approved and not provision_cart.rejected %}
+      {% if not current_user_area_member.approved and not provision_cart.rejected %}
 
-      {% if area_member.role.code == 'director_administrativo' or area_member.role.code == 'director' %}
+      {% if current_user_area_member.role.code == 'director_administrativo' or current_user_area_member.role.code == 'director' %}
       <div class="card">
         <div class="card-body p-2">
           <form action="{% url 'provision_cart_approval_update' provision_cart_approval.id %}" method="post">
