@@ -28,6 +28,21 @@ class BudgetProvisionList(PermissionRequiredMixin, LoginRequiredMixin, ListView)
     context_object_name = "provision_carts"
     permission_required = "budget.view_provisioncart"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        area_member = AreaMember.objects.filter(user=user).first()
+        role: AreaRole = area_member.role
+        context["area_member"] = area_member
+        context["role"] = role
+        print(
+            "-------------------------------",
+            context,
+            "-------------------------------",
+            sep="\n",
+        )
+        return context
+
     def get_queryset(self):
         user = self.request.user
         area_member = AreaMember.objects.filter(user=user).first()

@@ -89,7 +89,7 @@ class ProjectAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = (
         "name",
         "id",
-        "description",
+        "area",
         "budget",
         "project_status",
         "project_type",
@@ -101,6 +101,7 @@ class ProjectAdmin(ImportExportModelAdmin, admin.ModelAdmin):
         "project_type",
         "created_at",
         "updated_at",
+        "area__name",
     )
     search_fields = (
         "name",

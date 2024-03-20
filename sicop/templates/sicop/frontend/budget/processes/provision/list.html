@@ -5,124 +5,130 @@
 {% load sicop_filters %}
 {% load humanize %}
 {% block page_title %}
-  {% trans 'Budget provision list' %}
+{% trans 'Budget provision list' %}
 {% endblock page_title %}
 {% block content %}
-  <section id="configuration">
-    <div class="row">
-      <div class="col-12">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title">{% trans 'Budget provision list' %}</h4>
-            <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-            <div class="heading-elements">
-              <ul class="list-inline mb-0">
-                <li>
-                  <a href="{% url 'budget_provision_create' %}">
-                    <button type="button" class="btn btn-icon btn-success mr-1 mb-1">
-                      <i class="fa fa-plus"></i>
-                    </button>
-                  </a>
-                </li>
-              </ul>
-            </div>
+<section id="configuration">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">{% trans 'Budget provision list--------------' %}</h4>
+          <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+          <div class="heading-elements">
+            <ul class="list-inline mb-0">
+              fola
+              --{{request.user}}
+              --{{area_member.area.id}}
+              --{{role}}--
+              <li>
+                <a href="{% url 'budget_provision_create' %}">
+                  <button type="button" class="btn btn-icon btn-success mr-1 mb-1">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </a>
+              </li>
+            </ul>
           </div>
-          <div class="card-content collapse show">
-            <div class="card-body card-dashboard">
-              {% if messages %}
-                {% for message in messages %}
-                  <div class="alert alert-{{ message.tags }} alert-dismissible mb-2"
-                       role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">×</span>
-                    </button>
-                    {{ message }}
-                  </div>
-                {% endfor %}
-              {% endif %}
-              <table class="table table-striped table-bordered default-ordering" id="ordered_table">
-                <thead>
-                  <tr>
-                    <th>{% trans "CAP" %}</th>
-                    <th>{% trans "Project" %}</th>
-                    <th>{% trans "Budgets" %}</th>
-                    <th>{% trans "Managed by" %}</th>
-                    <th>{% trans "Provisionado" %}</th>
-                    <th>{% trans "Finished?" %}</th>
-                    <th>{% trans "Approved?" %}</th>
-                    <th>{% trans 'Detail' %}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for provision_cart in provision_carts %}
-                    <tr>
-                      <td>{{ provision_cart.id }}</td>
-                      <td>{{ provision_cart.project }}</td>
-                      <td>
-                        <ul>
-                          {% for budget in provision_cart.provision_cart_provision_budgets.all %}
-                            <li>{{ budget.budget.budget_description }}</li>
-                          {% endfor %}
-                        </ul>
-                      </td>
-                      <td>{{ provision_cart.user.name }}</td>
-                      <td>{{ provision_cart.total_provisioned_amount| format_to_cop }}</td>
-                      <td>
-                        {% if provision_cart.finished %}
-                          <div class="badge badge-success">{% trans 'Yes' %}</div>
-                        {% else %}
-                          <div class="badge badge-warning">{% trans 'No' %}</div>
-                        {% endif %}
-                      </td>
-                      <td>
-                        {% if provision_cart.rejected %}
-                        <div class="badge badge-secondary">{% trans 'Rejected' %}</div>
-                        {% else %}
-                          {% if provision_cart.approved %}
-                            <div class="badge badge-success">{% trans 'Approved' %}</div>
-                          {% else %}
-                            <div class="badge badge-warning">{% trans 'Pending' %}</div>
-                          {% endif %}
-                        {% endif %}
-                      </td>
-                      <td>
-                        <div class="row">
-                          <div class="col-12">
-                            <a href="{% url 'provision_certificate' provision_cart.id %}">
-                              <button type="button" class="btn btn-sm btn-icon btn-secondary mr-1 mb-1">
-                                <i class="fa fa-file-pdf-o"></i>
-                              </button>
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                  {% endfor %}
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <th>{% trans "CAP" %}</th>
-                    <th>{% trans "Project" %}</th>
-                    <th>{% trans "Budgets" %}</th>
-                    <th>{% trans "Managed by" %}</th>
-                    <th>{% trans "Provisionado" %}</th>
-                    <th>{% trans "Finished?" %}</th>
-                    <th>{% trans "Approved?" %}</th>
-                    <th>{% trans 'Detail' %}</th>
-                  </tr>
-                </tfoot>
-              </table>
+        </div>
+        <div class="card-content collapse show">
+          <div class="card-body card-dashboard">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible mb-2" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+              {{ message }}
             </div>
+            {% endfor %}
+            {% endif %}
+            <table class="table table-striped table-bordered default-ordering" id="ordered_table">
+              <thead>
+                <tr>
+                  <th>{% trans "CAP" %}</th>
+                  <th>{% trans "Project" %}</th>
+                  <th>{% trans "Budgets" %}</th>
+                  <th>{% trans "Managed by" %}</th>
+                  <th>{% trans "Provisionado" %}</th>
+                  <th>{% trans "Finished?" %}</th>
+                  <th>{% trans "Approved?" %}</th>
+                  <th>{% trans 'Detail' %}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for provision_cart in provision_carts %}
+                <tr>
+                  <td>{{ provision_cart.id }}</td>
+                  <td>{{ provision_cart.project }}</td>
+                  <td>
+                    <ul>
+                      {% for budget in provision_cart.provision_cart_provision_budgets.all %}
+                      <li>{{ budget.budget.budget_description }}</li>
+                      {% endfor %}
+                    </ul>
+                  </td>
+                  <td>{{ provision_cart.user.name }}</td>
+                  <td>{{ provision_cart.total_provisioned_amount| format_to_cop }}</td>
+                  <td>
+                    {% if provision_cart.finished %}
+                    <div class="badge badge-success">{% trans 'Yes' %}</div>
+                    {% else %}
+                    <div class="badge badge-warning">{% trans 'No' %}</div>
+                    {% endif %}
+                  </td>
+                  <td>
+                    {% if provision_cart.rejected %}
+                    <div class="badge badge-secondary">{% trans 'Rejected' %}</div>
+                    {% else %}
+                    {% if provision_cart.approved %}
+                    <div class="badge badge-success">{% trans 'Approved' %}</div>
+                    {% else %}
+                    <div class="badge badge-warning">{% trans 'Pending' %}</div>
+                    {% endif %}
+                    {% endif %}
+                  </td>
+                  <td>
+                    <div class="row">
+                      <div class="col-12">
+                        <a href="{% url 'provision_certificate' provision_cart.id %}">
+                          <button type="button" class="btn btn-sm btn-icon btn-secondary mr-1 mb-1">
+                            <i class="fa fa-file-pdf-o"></i>
+                          </button>
+                        </a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>{% trans "CAP" %}</th>
+                  <th>{% trans "Project" %}</th>
+                  <th>{% trans "Budgets" %}</th>
+                  <th>{% trans "Managed by" %}</th>
+                  <th>{% trans "Provisionado" %}</th>
+                  <th>{% trans "Finished?" %}</th>
+                  <th>{% trans "Approved?" %}</th>
+                  <th>{% trans 'Detail' %}</th>
+                </tr>
+              </tfoot>
+            </table>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  <script>
-    $(document).ready(function() {
-      $('#ordered_table').DataTable({
-        "order": [[ 0, "desc" ]]
-      });
+  </div>
+</section>
+<script>
+  $(document).ready(function () {
+    $('#ordered_table').DataTable({
+      "order": [
+        [0, "desc"]
+      ]
     });
-  </script>
+  });
+
+</script>
 {% endblock content %}
