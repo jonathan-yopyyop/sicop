@@ -112,7 +112,7 @@ class ProvisionCartAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     )
     search_fields = (
         "project__name",
-        "user__username",
+        "user__email",
     )
     list_filter = (
         "project",
