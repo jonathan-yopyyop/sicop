@@ -47,24 +47,19 @@ class BudgetProvisionList(PermissionRequiredMixin, LoginRequiredMixin, ListView)
         user = self.request.user
         area_member = AreaMember.objects.filter(user=user).first()
         role: AreaRole = area_member.role
-        print(role.code)
-        print(area_member.area)
-        print(user)
         if role.code == "chief" or role.code == "jefe":
-            print("--------------->chief or jefe")
             return ProvisionCart.objects.filter(
                 project__project_manager=user,
             )
         elif role.code == "director":
-            print("--------------->director")
             return ProvisionCart.objects.filter(
                 project__area=area_member.area,
             )
         elif role.code == "director_administrativo":
-            print("--------------->director_administrativo")
-            return ProvisionCart.objects.filter()
+            return ProvisionCart.objects.filter(
+                area=area_member.area,
+            )
         else:
-            print("--------------->others")
             return ProvisionCart.objects.filter(
                 project__project_manager=self.request.user,
             )
