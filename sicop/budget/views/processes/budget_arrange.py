@@ -9,7 +9,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 
-from sicop.area.models import AreaMember
+from sicop.area.models import AreaMember, AreaRole
 from sicop.budget.models import Budget, BudgetDecreaseTransaction
 from sicop.budget.models.provision import (
     ProvisionCart,
@@ -29,10 +29,21 @@ class BudgetProvisionList(PermissionRequiredMixin, LoginRequiredMixin, ListView)
     permission_required = "budget.view_provisioncart"
 
     def get_queryset(self):
-        return ProvisionCart.objects.filter(
-            project__project_manager=self.request.user,
-            status=True,
-        )
+        user = self.request.user
+        area_member = AreaMember.objects.filter(user=user).first()
+        role: AreaRole = area_member.role
+        if role.code == "chief" or role.code == "jefe":
+            return ProvisionCart.objects.filter(
+                project__project_manager=user,
+            )
+        elif role.code == "director" or role.code == "director_administrativo":
+            return ProvisionCart.objects.filter(
+                project__area=area_member.area,
+            )
+        else:
+            return ProvisionCart.objects.filter(
+                project__project_manager=self.request.user,
+            )
 
 
 class BudgetProvisionDetail(PermissionRequiredMixin, LoginRequiredMixin, DetailView):
