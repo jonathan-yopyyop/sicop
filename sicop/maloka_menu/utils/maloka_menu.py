@@ -6,10 +6,7 @@ from django.contrib.auth.models import Permission
 
 def get_menu_and_menu_options(user: User):
     """Get menu and menu options."""
-    security_groups = user.groups.all()
     user_permissions = user.get_all_permissions()
-    area_member = AreaMember.objects.filter(user=user).first()
-    role: AreaRole = area_member.role
     permissions = []
     menu = {}
     for user_permission in user_permissions:
