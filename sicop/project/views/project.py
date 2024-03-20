@@ -26,6 +26,15 @@ class ProjectListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
     context_object_name = "projects"
     permission_required = "project.view_project"
 
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context_data = super().get_context_data(**kwargs)
+        user = self.request.user
+        area_member = AreaMember.objects.filter(user=user).first()
+        role: AreaRole = area_member.role
+        context_data["area_member"] = area_member
+        context_data["role"] = role
+        return context_data
+
     def get_queryset(self):
         user = self.request.user
         area_member = AreaMember.objects.filter(user=user).first()
