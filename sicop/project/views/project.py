@@ -33,11 +33,9 @@ class ProjectListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
         if role.code == "chief" or role.code == "jefe":
             return Project.objects.filter(
                 project_manager=user,
-                status=True,
             )
         elif role.code == "director" or role.code == "director_administrativo":
             return Project.objects.filter(
-                status=True,
                 area=area_member.area,
             )
 

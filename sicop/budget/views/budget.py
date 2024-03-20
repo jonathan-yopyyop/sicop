@@ -12,6 +12,7 @@ from django.views.generic.list import ListView
 from sicop.budget.models import Budget, BudgetDescription
 from sicop.cost_center.models import CostCenter
 from sicop.project.models import Project
+from sicop.area.models import Area, AreaMember, AreaRole
 
 
 class BudgetListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
@@ -21,6 +22,19 @@ class BudgetListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
     template_name = "sicop/frontend/budget/budget/list.html"
     context_object_name = "budgets"
     permission_required = "budget.view_budget"
+
+    def get_queryset(self):
+        user = self.request.user
+        area_member = AreaMember.objects.filter(user=user).first()
+        role: AreaRole = area_member.role
+        if role.code == "chief" or role.code == "jefe":
+            return Budget.objects.filter(
+                project__project_manager=user,
+            )
+        elif role.code == "director" or role.code == "director_administrativo":
+            return Budget.objects.filter(
+                project__area=area_member.area,
+            )
 
 
 class BudgetDetailView(PermissionRequiredMixin, LoginRequiredMixin, DetailView):
