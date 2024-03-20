@@ -51,10 +51,12 @@ class BudgetProvisionList(PermissionRequiredMixin, LoginRequiredMixin, ListView)
             return ProvisionCart.objects.filter(
                 project__project_manager=user,
             )
-        elif role.code == "director" or role.code == "director_administrativo":
+        elif role.code == "director":
             return ProvisionCart.objects.filter(
                 project__area=area_member.area,
             )
+        elif role.code == "director_administrativo":
+            return ProvisionCart.objects.filter()
         else:
             return ProvisionCart.objects.filter(
                 project__project_manager=self.request.user,
