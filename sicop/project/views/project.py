@@ -39,16 +39,24 @@ class ProjectListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
         user = self.request.user
         area_member = AreaMember.objects.filter(user=user).first()
         role: AreaRole = area_member.role
+        print(role.code)
+        print(area_member.area)
+        print(user)
+
         if role.code == "director":
-            return Project.objects.filter(
+            query_set = Project.objects.filter(
                 area=area_member.area,
             )
+            print("--------------->director")
         elif role.code == "director_administrativo":
-            return Project.objects.filter()
+            query_set = Project.objects.filter()
+            print("--------------->director_administrativo")
         else:
-            return Project.objects.filter(
+            query_set = Project.objects.filter(
                 project_manager=user,
             )
+            print("--------------->others")
+        return query_set
 
 
 class ProjectDetailView(PermissionRequiredMixin, LoginRequiredMixin, DetailView):
