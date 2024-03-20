@@ -117,6 +117,7 @@ LOCAL_APPS = [
     "sicop.purchase_order",
     "sicop.sicop_error_handler",
     "sicop.maloka_da",
+    "sicop.maloka_menu",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -222,6 +223,7 @@ TEMPLATES = [
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
                 "sicop.users.context_processors.allauth_settings",
+                "sicop.users.context_processors.menu_processor",
             ],
         },
     }

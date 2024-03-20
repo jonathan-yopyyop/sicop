@@ -106,22 +106,22 @@ urlpatterns = [
         name="budget_description_update",
     ),
     path(
-        "budget/list/",
+        "budgets/list/",
         BudgetListView.as_view(),
         name="budget_list",
     ),
     path(
-        "budget/<int:pk>/",
+        "budgets/<int:pk>/",
         BudgetDetailView.as_view(),
         name="budget_detail",
     ),
     path(
-        "budget/create/",
+        "budgets/create/",
         BudgetCreateView.as_view(),
         name="budget_create",
     ),
     path(
-        "budget/<int:pk>/update/",
+        "budgets/<int:pk>/update/",
         BudgetUpdateView.as_view(),
         name="budget_update",
     ),
@@ -341,12 +341,12 @@ urlpatterns = [
         name="addition_budget_approval_list",
     ),
     path(
-        "commitment/list/",
+        "commitment/commitment/list/",
         CommitmentListView.as_view(),
         name="commitment_list",
     ),
     path(
-        "commitment/create/",
+        "commitment/commitment/create/",
         CommitmentCreateView.as_view(),
         name="commitment_create",
     ),

@@ -29,7 +29,7 @@ class ProjectListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
     def get_queryset(self):
         user = self.request.user
         area_member = AreaMember.objects.filter(user=user).first()
-        role = area_member.role
+        role: AreaRole = area_member.role
         if role.name == "chief" or role.name == "jefe":
             return Project.objects.filter(
                 project_manager=user,
