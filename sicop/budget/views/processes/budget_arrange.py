@@ -57,7 +57,7 @@ class BudgetProvisionList(PermissionRequiredMixin, LoginRequiredMixin, ListView)
             )
         elif role.code == "director_administrativo":
             return ProvisionCart.objects.filter(
-                area=area_member.area,
+                project__area=area_member.area,
             )
         else:
             return ProvisionCart.objects.filter(
