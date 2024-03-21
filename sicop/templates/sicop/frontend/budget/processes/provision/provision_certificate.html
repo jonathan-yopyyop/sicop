@@ -1951,6 +1951,7 @@
           <a href="{% url 'budget_provision_list' %}" class="btn btn-info btn-block mb-1"><i
               class="feather icon-list mr-25 common-size"></i> {% trans "Go to list" %}</a>
         </div>
+        --{{provision_cart_approval_url}}--
       </div>
       <!-- Approval card -->
       {% if not current_user_area_member.approved and not provision_cart.rejected %}
