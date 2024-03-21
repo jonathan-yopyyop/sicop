@@ -389,17 +389,18 @@ class ProvisionCartApprovalUpdateView(PermissionRequiredMixin, LoginRequiredMixi
                     budget = provision_cart_budget.budget
                     old_value = budget.current_budget
                     new_value = old_value - provision_cart_budget.provosioned_amount
-                    provosioned_amount = provision_cart_budget.provosioned_amount
-                    budget.budget_decrease_control = budget.budget_decrease_control + provosioned_amount
-                    budget.save()
-                    BudgetDecreaseTransaction.objects.create(
-                        budget=budget,
-                        old_amount=old_value,
-                        requiered_amount=old_value - new_value,
-                        new_amount=new_value,
-                        project=project,
-                        provision_cart=cart,
-                    )
+                    if new_value >= 0:
+                        provosioned_amount = provision_cart_budget.provosioned_amount
+                        budget.budget_decrease_control = budget.budget_decrease_control + provosioned_amount
+                        budget.save()
+                        BudgetDecreaseTransaction.objects.create(
+                            budget=budget,
+                            old_amount=old_value,
+                            requiered_amount=old_value - new_value,
+                            new_amount=new_value,
+                            project=project,
+                            provision_cart=cart,
+                        )
             else:
                 request.POST["approved"] = False
                 cart = provision_cart_approval.provision_cart
