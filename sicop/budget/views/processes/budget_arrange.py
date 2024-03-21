@@ -35,12 +35,6 @@ class BudgetProvisionList(PermissionRequiredMixin, LoginRequiredMixin, ListView)
         role: AreaRole = area_member.role
         context["area_member"] = area_member
         context["role"] = role
-        print(
-            "-------------------------------",
-            context,
-            "-------------------------------",
-            sep="\n",
-        )
         return context
 
     def get_queryset(self):
@@ -51,7 +45,7 @@ class BudgetProvisionList(PermissionRequiredMixin, LoginRequiredMixin, ListView)
             return ProvisionCart.objects.filter(
                 project__project_manager=user,
             )
-        elif role.code == "director":
+        elif role.code == "director" or role.code == "administrator":
             return ProvisionCart.objects.filter(
                 project__area=area_member.area,
             )
