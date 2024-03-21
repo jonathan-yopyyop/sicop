@@ -251,7 +251,31 @@ class ProvisionCertificateView(PermissionRequiredMixin, LoginRequiredMixin, Temp
         context["current_user_area_member"] = current_user_area_member
         context["provision_cart_approval_url"] = provision_cart_approval_url
         context["current_user"] = current_user
+        # ------------------------------------------
+        provision_cart = cart
+        provision_cart_budgets = ProvisionCartBudget.objects.filter(provision_cart=provision_cart)
+        is_viable = True
+        test = []
+        for provision_cart_budget in provision_cart_budgets:
+            current_budget = Budget.objects.get(id=provision_cart_budget.budget.id)
+            available_budget = current_budget.available_budget
 
+            if float(available_budget) < float(provision_cart_budget.provosioned_amount):
+                is_viable = False
+                print(f"======================================= {is_viable} =======================================")
+            print("------------------------------------------------------------------")
+            print(f"{available_budget} > {provision_cart_budget.provosioned_amount} = {is_viable}")
+            print("------------------------------------------------------------------")
+            test.append(
+                {
+                    "id": provision_cart_budget.budget.id,
+                    "available_budget": provision_cart_budget.budget.available_budget,
+                    "provosioned_amount": provision_cart_budget.provosioned_amount,
+                }
+            )
+        context["is_viable"] = is_viable
+        context["test"] = test
+        # ------------------------------------------
         return context
 
 
@@ -366,7 +390,29 @@ class ProvisionCartApprovalUpdateView(PermissionRequiredMixin, LoginRequiredMixi
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         provision_cart_approval = ProvisionCartApproval.objects.get(id=self.kwargs["pk"])
+
+        provision_cart = provision_cart_approval.provision_cart
+        provision_cart_budgets = ProvisionCartBudget.objects.filter(provision_cart=provision_cart)
+        is_viable = True
+        test = []
+        for provision_cart_budget in provision_cart_budgets:
+            current_budget = Budget.objects.get(id=provision_cart_budget.budget.id)
+            available_budget = current_budget.available_budget
+            if available_budget >= provision_cart_budget.provosioned_amount:
+                print("------------------------------------------------------------------")
+                print(f"{available_budget} >= {provision_cart_budget.provosioned_amount}")
+                print("------------------------------------------------------------------")
+                is_viable = False
+            test.append(
+                {
+                    "id": provision_cart_budget.budget.id,
+                    "available_budget": available_budget,
+                    "provosioned_amount": provision_cart_budget.provosioned_amount,
+                }
+            )
         context["provision_cart_approval"] = provision_cart_approval
+        context["is_viable"] = is_viable
+        context["test"] = test
         return context
 
     def post(self, request, *args: str, **kwargs):
@@ -385,11 +431,29 @@ class ProvisionCartApprovalUpdateView(PermissionRequiredMixin, LoginRequiredMixi
                 provision_cart_approval.rejected = False
                 provision_cart_approval.approved = True
                 provision_cart_approval.save()
+                test = []
+                is_viable = True
                 for provision_cart_budget in provision_cart_budgets:
+                    current_budget = Budget.objects.get(id=provision_cart_budget.budget.id)
+                    available_budget = current_budget.available_budget
+                    if available_budget >= provision_cart_budget.provosioned_amount:
+                        is_viable = False
+                    test.append(
+                        {
+                            "id": provision_cart_budget.budget.id,
+                            "available_budget": provision_cart_budget.budget.available_budget,
+                            "provosioned_amount": provision_cart_budget.provosioned_amount,
+                        }
+                    )
+
+                for provision_cart_budget in provision_cart_budgets:
+                    current_budget = Budget.objects.get(id=provision_cart_budget.budget.id)
+                    available_budget = current_budget.available_budget
+
                     budget = provision_cart_budget.budget
                     old_value = budget.current_budget
                     new_value = old_value - provision_cart_budget.provosioned_amount
-                    if new_value >= 0:
+                    if available_budget >= provision_cart_budget.provosioned_amount:
                         provosioned_amount = provision_cart_budget.provosioned_amount
                         budget.budget_decrease_control = budget.budget_decrease_control + provosioned_amount
                         budget.save()

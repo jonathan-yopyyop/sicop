@@ -1955,9 +1955,20 @@
       <!-- Approval card -->
       {% if not current_user_area_member.approved and not provision_cart.rejected %}
       {% if current_user_area_member.role.code == 'director_administrativo' or current_user_area_member.role.code == 'director' %}
-
       {% if provision_cart_approval_url != "#" %}
-
+      {% if not is_viable %}
+      <div class="card">
+        <div class="card-body p-2">
+          <div class="row">
+            <div class="col-12">
+              <p>
+                {% trans "The approval of this CAP cannot be allowed because some of the budget items do not have the required value." %}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% else %}
       <div class="card">
         <div class="card-body p-2">
           <form action="{{provision_cart_approval_url}}" method="post">
@@ -1993,6 +2004,7 @@
           </form>
         </div>
       </div>
+      {% endif %}
       {% endif %}
       {% endif %}
       {% endif %}
