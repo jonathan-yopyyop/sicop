@@ -5,86 +5,122 @@
 {% load humanize %}
 {% load sicop_filters %}
 {% block page_title %}
-  {% trans 'Budget provision approval list' %}
+{% trans 'Budget provision approval list' %}
 {% endblock page_title %}
 {% block content %}
-  <section id="configuration">
-    <div class="row">
-      <div class="col-12">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title">{% trans 'Budget provision approval list' %}</h4>
-          </div>
-          <div class="card-content collapse show">
-            <div class="card-body card-dashboard">
-              {% if messages %}
-                {% for message in messages %}
-                  <div class="alert alert-{{ message.tags }} alert-dismissible mb-2"
-                       role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">×</span>
-                    </button>
-                    {{ message }}
-                  </div>
-                {% endfor %}
-              {% endif %}
-              <table class="table table-striped table-bordered default-ordering">
-                <thead>
-                  <tr>
-                    <th>{% trans "CAP" %}</th>
-                    <th>{% trans "Project" %}</th>
-                    <th>{% trans "Budgets" %}</th>
-                    <th>{% trans "Provisionado" %}</th>
-                    <th>{% trans 'Approve' %}</th>
-                    <th>{% trans 'Detail' %}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for provision_cart in provision_carts %}
-                    <tr>
-                      <td>{{ provision_cart.provision_cart.id }}</td>
-                      <td>{{ provision_cart.provision_cart.project }}</td>
-                      <td>
-                        {{provision_cart.provision_cart_provision_budgets.all}}
-                        <ul>
-                          {% for budget in provision_cart.provision_cart.provision_cart_provision_budgets.all %}
-                            <li>{{ budget.budget.budget_description }}</li>
-                          {% endfor %}
-                        </ul>
-                      </td>
-                      <td>{{ provision_cart.provision_cart.total_provisioned_amount| format_to_cop }}</td>
-                      <td>
-                        {% if provision_cart.approved %}
-                          <span class="badge rounded-pill text-bg-success">{% trans "Approved" %}</span>
-                        {% else %}
-                          <span class="badge rounded-pill text-bg-warning">{% trans "Pending" %}</span>
-                        {% endif %}
-                      </td>
-                      <td>
-                        <a href="{% url 'provision_certificate' provision_cart.provision_cart.id %}" target="_blank">
-                          <button type="button" class="btn btn-sm btn-icon btn-primary mr-1 mb-1">
-                            <i class="fa fa-eye"></i>
-                          </button>
-                        </a>
-                      </td>
-                    </tr>
-                  {% endfor %}
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <th>{% trans "CAP" %}</th>
-                    <th>{% trans "Project" %}</th>
-                    <th>{% trans "Budgets" %}</th>
-                    <th>{% trans "Provisionado" %}</th>
-                    <th>{% trans 'Approve' %}</th>
-                    <th>{% trans 'Detail' %}</th>
-                  </tr>
-                </tfoot>
-              </table>
+<style>
+  .td-style {
+    max-width: 100px;
+    /* ajusta el valor según tu preferencia */
+    word-wrap: break-word;
+    /* esta propiedad asegura que el texto se divida automáticamente en líneas */
+    border: 1px solid #ddd;
+    /* solo para fines de visualización */
+    padding: 2px;
+    font-size: 11px;
+  }
+
+  .ul-style {
+    list-style-type: none;
+    padding: 0px !important;
+    margin: 0px !important;
+    word-wrap: break-word;
+  }
+
+  .li-style {
+    word-wrap: break-word;
+    /* Rompe las palabras largas dentro de los elementos li */
+    white-space: normal;
+    /* Fuerza un salto de línea en lugar de recortar el texto */
+    max-width: 90px;
+  }
+
+  .p-style {
+    word-wrap: break-word;
+    /* Rompe las palabras largas dentro de los elementos li */
+    white-space: normal;
+
+  }
+
+</style>
+<section id="configuration">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">{% trans 'Budget provision approval list' %}</h4>
+        </div>
+        <div class="card-content collapse show">
+          <div class="card-body card-dashboard">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible mb-2" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+              {{ message }}
             </div>
+            {% endfor %}
+            {% endif %}
+            <table class="table table-striped table-bordered default-ordering">
+              <thead>
+                <tr>
+                  <th>{% trans "CAP" %}</th>
+                  <th>{% trans "Project" %}</th>
+                  <th>{% trans "Budgets" %}</th>
+                  <th>{% trans "Provisionado" %}</th>
+                  <th>{% trans 'Approve' %}</th>
+                  <th>{% trans 'Detail' %}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for provision_cart in provision_carts %}
+                <tr>
+                  <td class="td-style">{{ provision_cart.provision_cart.id }}</td>
+                  <td class="td-style">
+                    <p class="p-style">{{ provision_cart.provision_cart.project }}</p>
+                  </td>
+                  <td class="td-style">
+                    {{provision_cart.provision_cart_provision_budgets.all}}
+                    <ul class="ul-style">
+                      {% for budget in provision_cart.provision_cart.provision_cart_provision_budgets.all %}
+                      <li class="li-style">{{ budget.budget.budget_description }}</li>
+                      {% endfor %}
+                    </ul>
+                  </td>
+                  <td class="td-style">{{ provision_cart.provision_cart.total_provisioned_amount| format_to_cop }}</td>
+                  <td class="td-style">
+                    {% if provision_cart.approved %}
+                    <span class="badge rounded-pill text-bg-success">{% trans "Approved" %}</span>
+                    {% else %}
+                    <span class="badge rounded-pill text-bg-warning">{% trans "Pending" %}</span>
+                    {% endif %}
+                  </td>
+                  <td class="td-style">
+                    <a href="{% url 'provision_certificate' provision_cart.provision_cart.id %}" target="_blank">
+                      <button type="button" class="btn btn-sm btn-icon btn-primary mr-1 mb-1">
+                        <i class="fa fa-eye"></i>
+                      </button>
+                    </a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>{% trans "CAP" %}</th>
+                  <th>{% trans "Project" %}</th>
+                  <th>{% trans "Budgets" %}</th>
+                  <th>{% trans "Provisionado" %}</th>
+                  <th>{% trans 'Approve' %}</th>
+                  <th>{% trans 'Detail' %}</th>
+                </tr>
+              </tfoot>
+            </table>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 {% endblock content %}
