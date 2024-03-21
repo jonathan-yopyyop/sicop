@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-21 12:08-0500\n"
+"POT-Creation-Date: 2024-03-21 13:23-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -264,9 +264,9 @@ msgstr "Terminado"
 #: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:539
 #: sicop/templates/sicop/frontend/budget/processes/addition/create.html:148
 #: sicop/templates/sicop/frontend/budget/processes/provision/addition/update.html:229
-#: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:55
+#: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:54
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:259
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1907
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1905
 #: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1990
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:261
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/detail.html:200
@@ -973,11 +973,11 @@ msgstr "Aprobación de ítem de resdistribución de presupuesto"
 msgid "Budget Redistribution Item Approvals"
 msgstr "Aprobación de ítems de resdistribución de presupuesto"
 
-#: sicop/budget/views/budget.py:80
+#: sicop/budget/views/budget.py:86
 msgid "Budget created successfully."
 msgstr "Presupuesto creado exitosamente."
 
-#: sicop/budget/views/budget.py:125
+#: sicop/budget/views/budget.py:131
 msgid "Budget updated successfully."
 msgstr "Presupuesto actualizado exitosamente."
 
@@ -1041,7 +1041,7 @@ msgstr "Aadición de presupuesto creada exitosamente."
 msgid "Budget addition rejected."
 msgstr "Adición al presupuesto rechazada"
 
-#: sicop/budget/views/processes/budget_arrange.py:170
+#: sicop/budget/views/processes/budget_arrange.py:164
 msgid "Budget provision created successfully."
 msgstr "CAP creado exitosament."
 
@@ -2820,7 +2820,7 @@ msgstr "Actualizar área"
 #: sicop/templates/sicop/frontend/budget/cap/update.html:101
 #: sicop/templates/sicop/frontend/budget/description/update.html:93
 #: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:548
-#: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:72
+#: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:74
 #: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:2001
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:601
 #: sicop/templates/sicop/frontend/business_unit/update.html:96
@@ -3256,7 +3256,7 @@ msgid "NAME"
 msgstr "NOMBRE"
 
 #: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:468
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1900
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1898
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:510
 msgid "Approved by"
 msgstr "Aprobado por"
@@ -3280,7 +3280,7 @@ msgstr "Este CADP no requiere aprobación"
 #: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:509
 #: sicop/templates/sicop/frontend/budget/processes/commitment/commitment_certificate.html:574
 #: sicop/templates/sicop/frontend/budget/processes/commitment/release/commitment_release_certificate.html:576
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1951
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1949
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:550
 #: sicop/templates/sicop/frontend/project/project/certificate.html:521
 msgid "Print"
@@ -3302,7 +3302,7 @@ msgstr "Aprobar?"
 #: sicop/templates/sicop/frontend/budget/processes/addition/approval/list.html:93
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:72
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:115
-#: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:63
+#: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:64
 #: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1984
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/approval/list.html:44
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/approval/list.html:92
@@ -3311,7 +3311,7 @@ msgid "Approve"
 msgstr "Aprobado"
 
 #: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:535
-#: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:64
+#: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:66
 #: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1986
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:588
 msgid "Reject"
@@ -4042,7 +4042,7 @@ msgstr "Datos de aprobación de provisión de presupuesto"
 msgid "Budget provision approval data"
 msgstr "Datos de aprobación provisión de presupuesto"
 
-#: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:50
+#: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:49
 msgid "Budget provision approval Information"
 msgstr "Información de aprobación de presupuesto"
 
@@ -4078,27 +4078,33 @@ msgstr "Datos de apropiación presupuestal"
 msgid "Budget provision certificate"
 msgstr "Crear provisión de presupuesto"
 
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1896
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1894
 msgid "This CAP was rejected"
 msgstr "Éste documento ha sido rechazado"
 
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1902
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1900
 msgid "This CAP does not require approval"
 msgstr "Este CAP no requiere aprobación"
 
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1905
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1903
 msgid "This CAP has not yet been approved"
 msgstr "Este CAP no ha sido aprobado aún"
 
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1954
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1952
 msgid "Go to list"
 msgstr "Lista de CAPs"
+
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1954
+msgid "Go to approval list"
+msgstr "Lista de aprobaciones de CAPs"
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1967
 msgid ""
 "The approval of this CAP cannot be allowed because some of the budget items "
 "do not have the required value."
-msgstr "La aprobación de este CAP no puede ser permitida porque algunos de los ítems del presupuesto no tienen el valor requerido."
+msgstr ""
+"La aprobación de este CAP no puede ser permitida porque algunos de los ítems "
+"del presupuesto no tienen el valor requerido."
 
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/approval/list.html:8
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/approval/list.html:23
