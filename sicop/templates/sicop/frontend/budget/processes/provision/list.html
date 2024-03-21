@@ -8,6 +8,41 @@
 {% trans 'Budget provision list' %}
 {% endblock page_title %}
 {% block content %}
+<style>
+  .td-style {
+    max-width: 100px;
+    /* ajusta el valor según tu preferencia */
+    word-wrap: break-word;
+    /* esta propiedad asegura que el texto se divida automáticamente en líneas */
+    border: 1px solid #ddd;
+    /* solo para fines de visualización */
+    padding: 2px;
+    font-size: 11px;
+  }
+
+  .ul-style {
+    list-style-type: none;
+    padding: 0px !important;
+    margin: 0px !important;
+    word-wrap: break-word;
+  }
+
+  .li-style {
+    word-wrap: break-word;
+    /* Rompe las palabras largas dentro de los elementos li */
+    white-space: normal;
+    /* Fuerza un salto de línea en lugar de recortar el texto */
+    max-width: 90px;
+  }
+
+  .p-style {
+    word-wrap: break-word;
+    /* Rompe las palabras largas dentro de los elementos li */
+    white-space: normal;
+
+  }
+
+</style>
 <section id="configuration">
   <div class="row">
     <div class="col-12">
@@ -16,9 +51,8 @@
           <h4 class="card-title">{% trans 'Budget provision list' %}</h4>
           <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
           <div class="heading-elements">
-            <ul class="list-inline mb-0">
-
-              <li>
+            <ul class="list-inline mb-0" style="margin: 1px; padding: 1px">
+              <li style="margin: 1px; padding: 1px">
                 <a href="{% url 'budget_provision_create' %}">
                   <button type="button" class="btn btn-icon btn-success mr-1 mb-1">
                     <i class="fa fa-plus"></i>
@@ -56,25 +90,29 @@
               <tbody>
                 {% for provision_cart in provision_carts %}
                 <tr>
-                  <td>{{ provision_cart.id }}</td>
-                  <td>{{ provision_cart.project }}</td>
-                  <td>
-                    <ul>
+                  <td class="td-style">{{ provision_cart.id }}</td>
+                  <td class="td-style">
+                    <p class="p-style">{{ provision_cart.project }}</p>
+                  </td>
+                  <td class="td-style">
+                    <ul class="ul-style">
                       {% for budget in provision_cart.provision_cart_provision_budgets.all %}
-                      <li>{{ budget.budget.budget_description }}</li>
+                      <li class="li-style">{{ budget.budget.budget_description }}</li>
                       {% endfor %}
                     </ul>
                   </td>
-                  <td>{{ provision_cart.user.name }}</td>
-                  <td>{{ provision_cart.total_provisioned_amount| format_to_cop }}</td>
-                  <td>
+                  <td class="td-style">
+                    <p class="p-style">{{ provision_cart.user.name }}</p>
+                  </td>
+                  <td class="td-style">{{ provision_cart.total_provisioned_amount| format_to_cop }}</td>
+                  <td class="td-style">
                     {% if provision_cart.finished %}
                     <div class="badge badge-success">{% trans 'Yes' %}</div>
                     {% else %}
                     <div class="badge badge-warning">{% trans 'No' %}</div>
                     {% endif %}
                   </td>
-                  <td>
+                  <td class="td-style">
                     {% if provision_cart.rejected %}
                     <div class="badge badge-secondary">{% trans 'Rejected' %}</div>
                     {% else %}
@@ -85,7 +123,7 @@
                     {% endif %}
                     {% endif %}
                   </td>
-                  <td>
+                  <td class="td-style">
                     <div class="row">
                       <div class="col-12">
                         <a href="{% url 'provision_certificate' provision_cart.id %}">
