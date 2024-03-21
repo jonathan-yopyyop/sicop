@@ -371,6 +371,10 @@ class ProvisionCartApprovalList(PermissionRequiredMixin, LoginRequiredMixin, Lis
                 provision_cart__approved=False,
                 rejected=False,
             ).distinct("provision_cart__id")
+        elif role.code == "administrator":
+            queryset = ProvisionCartApproval.objects.filter(
+                provision_cart__approved=False,
+            ).distinct("provision_cart__id")
 
         return queryset
 
