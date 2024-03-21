@@ -234,8 +234,13 @@ class ProvisionCertificateView(PermissionRequiredMixin, LoginRequiredMixin, Temp
             current_user_area_rol = None
         if ProvisionCartApproval.objects.filter(provision_cart=cart).exists():
             provision_cart_approval = ProvisionCartApproval.objects.filter(provision_cart=cart).last()
+            provision_cart_approval_url = reverse(
+                "provision_cart_approval_update",
+                kwargs={"pk": provision_cart_approval.id},
+            )
         else:
             provision_cart_approval = None
+            provision_cart_approval_url = "#"
         context["provision_cart_approval"] = provision_cart_approval
         context["provision_cart"] = cart
         context["area_rol"] = area_rol
@@ -244,6 +249,8 @@ class ProvisionCertificateView(PermissionRequiredMixin, LoginRequiredMixin, Temp
         context["certificate_version"] = Certificate.objects.filter(slug="cap").first()
         context["current_user_area_rol"] = current_user_area_rol
         context["current_user_area_member"] = current_user_area_member
+        context["provision_cart_approval_url"] = provision_cart_approval_url
+        context["current_user"] = current_user
 
         return context
 

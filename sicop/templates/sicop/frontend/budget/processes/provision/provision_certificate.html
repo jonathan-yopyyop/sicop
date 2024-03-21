@@ -1957,9 +1957,7 @@
       {% if current_user_area_member.role.code == 'director_administrativo' or current_user_area_member.role.code == 'director' %}
       <div class="card">
         <div class="card-body p-2">
-          <form {% if provision_cart_approval is None %}
-            action="{% url 'provision_cart_approval_update' provision_cart_approval.id %}" {% else %}
-            action="{% url 'provision_cart_approval_update' 0 %}" {% endif %} method="post">
+          <form action="" method="post">
             {% csrf_token %}
             <div class="row">
               <div class="col-12">
