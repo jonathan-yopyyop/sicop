@@ -1955,6 +1955,9 @@
       <!-- Approval card -->
       {% if not current_user_area_member.approved and not provision_cart.rejected %}
       {% if current_user_area_member.role.code == 'director_administrativo' or current_user_area_member.role.code == 'director' %}
+
+      {% if provision_cart_approval_url != "" %}
+
       <div class="card">
         <div class="card-body p-2">
           <form action="{{provision_cart_approval_url}}" method="post">
@@ -1990,6 +1993,7 @@
           </form>
         </div>
       </div>
+      {% endif %}
       {% endif %}
       {% endif %}
     </div>
