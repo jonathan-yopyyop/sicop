@@ -45,13 +45,9 @@ class ProjectListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
                 area=area_member.area,
             )
         elif role.code == "director_administrativo":
-            query_set = Project.objects.filter(
-                area=area_member.area,
-            )
+            query_set = Project.objects.filter()
         elif role.code == "administrator":
-            query_set = Project.objects.filter(
-                area=area_member.area,
-            )
+            query_set = Project.objects.filter()
         else:
             query_set = Project.objects.filter(
                 project_manager=user,
