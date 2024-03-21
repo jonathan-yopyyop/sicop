@@ -332,11 +332,21 @@ class ProvisionCartApprovalList(PermissionRequiredMixin, LoginRequiredMixin, Lis
 
     def get_queryset(self):
         user = self.request.user
-        queryset = ProvisionCartApproval.objects.filter(
-            must_be_approved_by=user,
-            provision_cart__approved=False,
-            rejected=False,
-        ).distinct("provision_cart__id")
+        area_member = AreaMember.objects.filter(user=user).first()
+        role: AreaRole = area_member.role
+        queryset = None
+        if role.code == "director":
+            queryset = ProvisionCartApproval.objects.filter(
+                provision_cart__project__area=area_member.area,
+                provision_cart__approved=False,
+                rejected=False,
+            ).distinct("provision_cart__id")
+        elif role.code == "director_administrativo":
+            queryset = ProvisionCartApproval.objects.filter(
+                provision_cart__approved=False,
+                rejected=False,
+            ).distinct("provision_cart__id")
+
         return queryset
 
 

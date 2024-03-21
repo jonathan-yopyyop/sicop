@@ -226,7 +226,7 @@ urlpatterns = [
         name="get_budget_in_cart",
     ),
     path(
-        "budget/provision/approval/list/",
+        "provision/budget/approval/list/",
         ProvisionCartApprovalList.as_view(),
         name="provision_cart_approval_list",
     ),
