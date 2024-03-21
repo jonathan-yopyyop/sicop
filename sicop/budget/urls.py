@@ -456,7 +456,7 @@ urlpatterns = [
         name="budget_arrange_update",
     ),
     path(
-        "addition/budget/provision/list/",
+        "addition/provision/budget/list/",
         ProvisionCartAdditionListView.as_view(),
         name="budget_arrange_addition_list",
     ),
