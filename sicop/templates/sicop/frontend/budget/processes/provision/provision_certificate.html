@@ -1954,7 +1954,7 @@
       </div>
       <!-- Approval card -->
       {% if not current_user_area_member.approved and not provision_cart.rejected %}
-
+      {% if current_user_area_member.role.code == 'director_administrativo' or current_user_area_member.role.code == 'director' %}
       <div class="card">
         <div class="card-body p-2">
           <form {% if provision_cart_approval is None %}
@@ -1992,7 +1992,7 @@
           </form>
         </div>
       </div>
-
+      {% endif %}
       {% endif %}
     </div>
   </div>

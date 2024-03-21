@@ -356,6 +356,12 @@ class ProvisionCartApprovalUpdateView(PermissionRequiredMixin, LoginRequiredMixi
     template_name = "sicop/frontend/budget/processes/provision/approval/update.html"
     permission_required = "budget.change_provisioncartapproval"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        provision_cart_approval = ProvisionCartApproval.objects.get(id=self.kwargs["pk"])
+        context["provision_cart_approval"] = provision_cart_approval
+        return context
+
     def post(self, request, *args: str, **kwargs):
         try:
             request.POST._mutable = True
