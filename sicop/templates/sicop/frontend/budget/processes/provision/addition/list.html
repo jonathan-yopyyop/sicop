@@ -93,7 +93,9 @@
                 <tr>
                   <td>{{ provision_cart.id }}</td>
                   <td>{{ provision_cart.provision_cart.id }}</td>
-                  <td class="td-style">{{ provision_cart.provision_cart.project }}</td>
+                  <td class="td-style">
+                    <p class="p-style">{{ provision_cart.provision_cart.project }}</p>
+                  </td>
                   <td class="td-style">
                     <ul class="ul-style">
                       {% for budget in provision_cart.provision_cart_provision_budgets.all %}
@@ -101,7 +103,9 @@
                       {% endfor %}
                     </ul>
                   </td>
-                  <td class="td-style">{{ provision_cart.user.name }}</td>
+                  <td class="td-style">
+                    <p class="p-style">{{ provision_cart.user.name }}</p>
+                  </td>
                   <td class="td-style">{{ provision_cart.total_provisioned_amount| format_to_cop }}</td>
                   <td class="td-style">
                     {% if provision_cart.finished %}
