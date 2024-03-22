@@ -1,5 +1,7 @@
+from typing import Any
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.db.models.query import QuerySet
 from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -15,6 +17,7 @@ from sicop.budget.models.redistribution import (
 )
 from sicop.certificate.models import Certificate
 from sicop.project.models import Project
+from sicop.area.models import AreaRole
 
 
 class BudgetRedistributionListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
@@ -29,6 +32,20 @@ class BudgetRedistributionListView(PermissionRequiredMixin, LoginRequiredMixin, 
         """Add extra context."""
         context = super().get_context_data(**kwargs)
         return context
+
+    def get_queryset(self):
+        user = self.request.user
+        user = self.request.user
+        area_member = AreaMember.objects.filter(user=user).first()
+        role: AreaRole = area_member.role
+        if role.code == "chief" or role.code == "jefe":
+            return BudgetRedistribution.objects.all()
+        elif role.code == "director":
+            return BudgetRedistribution.objects.all()
+        elif role.code == "administrator" or role.code == "director_administrativo":
+            return BudgetRedistribution.objects.all()
+        else:
+            return None
 
 
 class BudgetRedistributionCreate(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):

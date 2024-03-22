@@ -43,7 +43,7 @@ class BudgetProvisionList(PermissionRequiredMixin, LoginRequiredMixin, ListView)
         role: AreaRole = area_member.role
         if role.code == "chief" or role.code == "jefe":
             return ProvisionCart.objects.filter(
-                project__project_manager=user,
+                project__area=area_member.area,
             )
         elif role.code == "director":
             return ProvisionCart.objects.filter(
@@ -372,8 +372,10 @@ class ProvisionCartApprovalList(PermissionRequiredMixin, LoginRequiredMixin, Lis
                 rejected=False,
             ).distinct("provision_cart__id")
         elif role.code == "administrator":
+            queryset = ProvisionCartApproval.objects.filter().distinct("provision_cart__id")
+        elif role.code == "chief" or role.code == "jefe":
             queryset = ProvisionCartApproval.objects.filter(
-                provision_cart__approved=False,
+                provision_cart__project__area=area_member.area,
             ).distinct("provision_cart__id")
 
         return queryset

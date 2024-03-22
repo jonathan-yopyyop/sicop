@@ -29,7 +29,7 @@ class BudgetListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
         role: AreaRole = area_member.role
         if role.code == "chief" or role.code == "jefe":
             return Budget.objects.filter(
-                project__project_manager=user,
+                project__area=area_member.area,
             )
         elif role.code == "director":
             return Budget.objects.filter(
