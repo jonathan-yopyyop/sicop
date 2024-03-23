@@ -42,4 +42,4 @@ def get_expense_type_and_budget(text):
     exploted_text = text.split("(")
     expense_type = exploted_text[0]
     budget = exploted_text[1].split(")")[0]
-    return expense_type, budget
+    return [expense_type, budget]
