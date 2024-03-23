@@ -216,6 +216,7 @@ class ProvisionCartApprovalAdmin(ImportExportModelAdmin, admin.ModelAdmin):
         "provision_cart",
         "id",
         "must_be_approved_by",
+        "approved_by",
         "approved",
     ]
     readonly_fields = [

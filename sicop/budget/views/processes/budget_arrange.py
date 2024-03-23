@@ -430,6 +430,7 @@ class ProvisionCartApprovalUpdateView(PermissionRequiredMixin, LoginRequiredMixi
                 cart.save()
                 provision_cart_approval.rejected = False
                 provision_cart_approval.approved = True
+                provision_cart_approval.approved_by = request.user
                 provision_cart_approval.save()
                 test = []
                 is_viable = True

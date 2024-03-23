@@ -178,6 +178,15 @@ class ProvisionCartApproval(BaseModel):
         help_text=_("Observation"),
         default="",
     )
+    approved_by = models.ForeignKey(
+        "users.User",
+        verbose_name=_("Approved by"),
+        help_text=_("Approved by"),
+        related_name="approved_by_fk",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+    )
 
     class Meta:
         """Meta definition for Provision Cart Approval."""
