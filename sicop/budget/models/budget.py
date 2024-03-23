@@ -133,8 +133,8 @@ class Budget(BaseModel):
         return self.project.name
 
     @property
-    def get_project_description(self):
-        return self.project.description
+    def get_budget_description(self):
+        return self.budget_description
 
     def save(self, *args, **kwargs):
         self.initial_value = float(self.unit_value) * float(self.quantity)
