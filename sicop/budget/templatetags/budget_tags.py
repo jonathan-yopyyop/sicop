@@ -35,3 +35,11 @@ def check_url(request_path, pattern_key):
     url = request_path[3:]
     pattern = RE_URL.get(pattern_key)
     return bool(re.search(pattern, url))
+
+
+@register.simple_tag
+def get_expense_type_and_budget(text):
+    exploted_text = text.split("(")
+    expense_type = exploted_text[0]
+    budget = exploted_text[1].split(")")[0]
+    return expense_type, budget
