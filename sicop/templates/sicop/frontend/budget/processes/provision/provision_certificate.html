@@ -2070,12 +2070,6 @@
       <!-- Anullation card -->
 
       {% if provision_cart.annulled %}
-      Anulled: True
-      {% else %}
-      Anulled: False
-      {% endif %}
-      Role: {{current_user_area_member.role.code}}
-      {% if provision_cart.annulled %}
       <div class="card">
         <div class="card-body p-2">
           <div class="row">
