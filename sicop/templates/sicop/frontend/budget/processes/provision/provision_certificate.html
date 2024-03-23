@@ -1,9 +1,5 @@
 {% extends 'sicop/frontend/base/base.html' %}
-{% load arimetic_tags %}
-{% load static %}
-{% load i18n %}
-{% load humanize %}
-{% load budget_tags %}
+{% load arimetic_tags static i18n humanize budget_tags %}
 {% block page_title %}
 {% trans 'Budget provision certificate' %}
 {% endblock page_title %}
@@ -1834,7 +1830,7 @@
 
               {% sum_2_values provision_cart_budget.provosioned_amount rest_value2 as sum_value4 %}
               {% rest_2_values provision_cart_budget.budget.current_budget sum_value4 as rest_value3 %}
-
+              {% get_expense_type_and_budget provision_cart_budget.budget.project as expense_type budget %}
               <tr class="row10">
                 <td class="column0 style1 null"></td>
                 <td class="column1 style43 s">
@@ -1842,7 +1838,7 @@
                   {{provision_cart_budget.budget.cost_centers.first.name}}
                 </td>
                 <td class="column2 style43 s">
-                  --{{provision_cart_budget.budget.project}}--{{provision_cart_budget.budget.project_name}}--{{provision_cart_budget.budget.get_budget_description}}
+                  --{{provision_cart_budget.budget.project}}--{{expense_type}}--{{budget}}
                 </td>
                 <td class="column3 style44 s style45" colspan="2">{{provision_cart_budget.budget.project}}</td>
                 <td class="column5 style46 s style45" colspan="5">{{provision_cart_budget.budget.budget_description}}
