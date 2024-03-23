@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-21 13:23-0500\n"
+"POT-Creation-Date: 2024-03-23 13:05-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -133,7 +133,7 @@ msgstr ""
 #: sicop/budget/models/commitment.py:27 sicop/budget/models/commitment.py:28
 #: sicop/budget/models/commitment.py:332 sicop/budget/models/commitment.py:333
 #: sicop/budget/models/provision.py:23 sicop/budget/models/provision.py:24
-#: sicop/budget/models/provision.py:206 sicop/budget/models/provision.py:207
+#: sicop/budget/models/provision.py:220 sicop/budget/models/provision.py:221
 #: sicop/budget/models/redistribution.py:13
 #: sicop/budget/models/redistribution.py:14 sicop/maloka_da/models.py:108
 msgid "User"
@@ -216,14 +216,14 @@ msgid "AreaRole not updated, please review the data"
 msgstr ""
 
 #: sicop/budget/apps.py:8 sicop/budget/models/addition.py:84
-#: sicop/budget/models/addition.py:85 sicop/budget/models/budget.py:124
-#: sicop/budget/models/budget.py:141 sicop/budget/models/budget.py:142
-#: sicop/budget/models/budget.py:194 sicop/budget/models/budget.py:195
-#: sicop/budget/models/budget.py:239 sicop/budget/models/budget.py:240
+#: sicop/budget/models/addition.py:85 sicop/budget/models/budget.py:135
+#: sicop/budget/models/budget.py:160 sicop/budget/models/budget.py:161
+#: sicop/budget/models/budget.py:213 sicop/budget/models/budget.py:214
+#: sicop/budget/models/budget.py:258 sicop/budget/models/budget.py:259
 #: sicop/budget/models/commitment.py:285 sicop/budget/models/commitment.py:286
 #: sicop/budget/models/commitment.py:384 sicop/budget/models/commitment.py:385
-#: sicop/budget/models/provision.py:110 sicop/budget/models/provision.py:111
-#: sicop/budget/models/provision.py:282 sicop/budget/models/provision.py:283
+#: sicop/budget/models/provision.py:115 sicop/budget/models/provision.py:116
+#: sicop/budget/models/provision.py:296 sicop/budget/models/provision.py:297
 #: sicop/budget/models/redistribution.py:25
 #: sicop/budget/models/redistribution.py:26
 #: sicop/budget/models/redistribution.py:114
@@ -245,7 +245,7 @@ msgstr ""
 #: sicop/budget/models/addition.py:19 sicop/budget/models/addition.py:20
 #: sicop/budget/models/commitment.py:99 sicop/budget/models/commitment.py:100
 #: sicop/budget/models/provision.py:56 sicop/budget/models/provision.py:57
-#: sicop/budget/models/provision.py:233 sicop/budget/models/provision.py:234
+#: sicop/budget/models/provision.py:247 sicop/budget/models/provision.py:248
 #: sicop/budget/models/redistribution.py:19
 #: sicop/budget/models/redistribution.py:20
 msgid "Finished"
@@ -253,8 +253,9 @@ msgstr ""
 
 #: sicop/budget/models/addition.py:24 sicop/budget/models/addition.py:25
 #: sicop/budget/models/provision.py:61 sicop/budget/models/provision.py:62
-#: sicop/budget/models/provision.py:177 sicop/budget/models/provision.py:178
-#: sicop/budget/models/provision.py:238 sicop/budget/models/provision.py:239
+#: sicop/budget/models/provision.py:182 sicop/budget/models/provision.py:183
+#: sicop/budget/models/provision.py:252 sicop/budget/models/provision.py:253
+#: sicop/budget/models/provision.py:379 sicop/budget/models/provision.py:380
 #: sicop/budget/models/redistribution.py:54
 #: sicop/budget/models/redistribution.py:55
 #: sicop/budget/models/redistribution.py:187
@@ -266,8 +267,9 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/processes/provision/addition/update.html:229
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:54
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:259
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1905
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1990
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1961
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:2047
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:2104
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:261
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/detail.html:200
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:512
@@ -283,7 +285,7 @@ msgstr ""
 #: sicop/budget/models/addition.py:38 sicop/budget/models/addition.py:39
 #: sicop/budget/models/addition.py:110 sicop/budget/models/addition.py:111
 #: sicop/budget/models/provision.py:67 sicop/budget/models/provision.py:68
-#: sicop/budget/models/provision.py:244 sicop/budget/models/provision.py:245
+#: sicop/budget/models/provision.py:258 sicop/budget/models/provision.py:259
 #: sicop/budget/models/redistribution.py:67
 #: sicop/budget/models/redistribution.py:68
 #: sicop/budget/models/redistribution.py:141
@@ -294,7 +296,7 @@ msgstr ""
 #: sicop/budget/models/addition.py:43 sicop/budget/models/addition.py:44
 #: sicop/budget/models/addition.py:115 sicop/budget/models/addition.py:116
 #: sicop/budget/models/provision.py:72 sicop/budget/models/provision.py:73
-#: sicop/budget/models/provision.py:249 sicop/budget/models/provision.py:250
+#: sicop/budget/models/provision.py:263 sicop/budget/models/provision.py:264
 #: sicop/budget/models/redistribution.py:72
 #: sicop/budget/models/redistribution.py:73
 #: sicop/budget/models/redistribution.py:146
@@ -305,7 +307,7 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/processes/addition/list.html:99
 #: sicop/templates/sicop/frontend/budget/processes/provision/addition/list.html:122
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:94
-#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:120
+#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:123
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/approval/list.html:72
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/list.html:99
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/list.html:105
@@ -316,13 +318,13 @@ msgstr ""
 #: sicop/budget/models/addition.py:120 sicop/budget/models/addition.py:121
 #: sicop/budget/models/addition.py:173 sicop/budget/models/addition.py:174
 #: sicop/budget/models/provision.py:77 sicop/budget/models/provision.py:78
-#: sicop/budget/models/provision.py:172 sicop/budget/models/provision.py:173
-#: sicop/budget/models/provision.py:254 sicop/budget/models/provision.py:255
+#: sicop/budget/models/provision.py:177 sicop/budget/models/provision.py:178
+#: sicop/budget/models/provision.py:268 sicop/budget/models/provision.py:269
 #: sicop/budget/models/redistribution.py:77
 #: sicop/budget/models/redistribution.py:78
 #: sicop/templates/sicop/frontend/budget/processes/addition/list.html:96
 #: sicop/templates/sicop/frontend/budget/processes/provision/addition/list.html:119
-#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:117
+#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:120
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/list.html:96
 msgid "Rejected"
 msgstr ""
@@ -350,8 +352,8 @@ msgid "Budget addition item"
 msgstr ""
 
 #: sicop/budget/models/addition.py:89 sicop/budget/models/addition.py:90
-#: sicop/budget/models/budget.py:200 sicop/budget/models/budget.py:201
-#: sicop/budget/models/budget.py:245 sicop/budget/models/budget.py:246
+#: sicop/budget/models/budget.py:219 sicop/budget/models/budget.py:220
+#: sicop/budget/models/budget.py:264 sicop/budget/models/budget.py:265
 #: sicop/budget/models/redistribution.py:33
 #: sicop/budget/models/redistribution.py:34
 #: sicop/budget/models/redistribution.py:120
@@ -362,16 +364,16 @@ msgid "Original amount"
 msgstr ""
 
 #: sicop/budget/models/addition.py:96 sicop/budget/models/addition.py:97
-#: sicop/budget/models/budget.py:250 sicop/budget/models/budget.py:251
+#: sicop/budget/models/budget.py:269 sicop/budget/models/budget.py:270
 #: sicop/templates/sicop/frontend/budget/processes/addition/approval/list.html:56
 #: sicop/templates/sicop/frontend/budget/processes/addition/list.html:71
 msgid "Added amount"
 msgstr ""
 
 #: sicop/budget/models/addition.py:103 sicop/budget/models/addition.py:104
-#: sicop/budget/models/budget.py:157 sicop/budget/models/budget.py:158
-#: sicop/budget/models/budget.py:210 sicop/budget/models/budget.py:211
-#: sicop/budget/models/budget.py:255 sicop/budget/models/budget.py:256
+#: sicop/budget/models/budget.py:176 sicop/budget/models/budget.py:177
+#: sicop/budget/models/budget.py:229 sicop/budget/models/budget.py:230
+#: sicop/budget/models/budget.py:274 sicop/budget/models/budget.py:275
 #: sicop/budget/models/redistribution.py:47
 #: sicop/budget/models/redistribution.py:48
 #: sicop/budget/models/redistribution.py:134
@@ -399,28 +401,28 @@ msgid "Budget Addition Items"
 msgstr ""
 
 #: sicop/budget/models/addition.py:162 sicop/budget/models/addition.py:163
-#: sicop/budget/models/provision.py:161 sicop/budget/models/provision.py:162
+#: sicop/budget/models/provision.py:166 sicop/budget/models/provision.py:167
 msgid "Must be approbed by"
 msgstr ""
 
 #: sicop/budget/models/addition.py:168 sicop/budget/models/addition.py:169
-#: sicop/budget/models/provision.py:167 sicop/budget/models/provision.py:168
+#: sicop/budget/models/provision.py:172 sicop/budget/models/provision.py:173
 #: sicop/templates/sicop/frontend/budget/processes/addition/list.html:57
 #: sicop/templates/sicop/frontend/budget/processes/addition/list.html:125
 #: sicop/templates/sicop/frontend/budget/processes/provision/addition/list.html:87
 #: sicop/templates/sicop/frontend/budget/processes/provision/addition/list.html:151
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:86
-#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:148
+#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:152
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/list.html:59
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/list.html:130
 msgid "Approved?"
 msgstr ""
 
-#: sicop/budget/models/addition.py:181 sicop/budget/models/provision.py:185
+#: sicop/budget/models/addition.py:181 sicop/budget/models/provision.py:199
 msgid "Provision Cart Approval"
 msgstr ""
 
-#: sicop/budget/models/addition.py:182 sicop/budget/models/provision.py:186
+#: sicop/budget/models/addition.py:182 sicop/budget/models/provision.py:200
 msgid "Provision Cart Approvals"
 msgstr ""
 
@@ -432,7 +434,8 @@ msgid "Expense concept"
 msgstr ""
 
 #: sicop/budget/models/budget.py:22 sicop/budget/models/budget.py:23
-#: sicop/budget/models/budget.py:297 sicop/budget/models/budget.py:298
+#: sicop/budget/models/budget.py:316 sicop/budget/models/budget.py:317
+#: sicop/budget/models/provision.py:337 sicop/budget/models/provision.py:338
 #: sicop/project/models.py:92 sicop/project/models.py:93
 #: sicop/templates/sicop/frontend/area/area/create.html:66
 #: sicop/templates/sicop/frontend/area/area/create.html:70
@@ -457,6 +460,13 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/description/detail.html:66
 #: sicop/templates/sicop/frontend/budget/description/update.html:68
 #: sicop/templates/sicop/frontend/budget/description/update.html:72
+#: sicop/templates/sicop/frontend/budget/provision/anullation/create.html:61
+#: sicop/templates/sicop/frontend/budget/provision/anullation/create.html:63
+#: sicop/templates/sicop/frontend/budget/provision/anullation/detail.html:59
+#: sicop/templates/sicop/frontend/budget/provision/anullation/detail.html:61
+#: sicop/templates/sicop/frontend/budget/provision/anullation/list.html:47
+#: sicop/templates/sicop/frontend/budget/provision/anullation/list.html:79
+#: sicop/templates/sicop/frontend/budget/provision/anullation/update.html:62
 #: sicop/templates/sicop/frontend/cost_center/create.html:67
 #: sicop/templates/sicop/frontend/cost_center/create.html:71
 #: sicop/templates/sicop/frontend/cost_center/detail.html:65
@@ -481,7 +491,7 @@ msgid "Budget Descriptions"
 msgstr ""
 
 #: sicop/budget/models/budget.py:42 sicop/budget/models/budget.py:43
-#: sicop/budget/models/budget.py:163 sicop/budget/models/budget.py:164
+#: sicop/budget/models/budget.py:182 sicop/budget/models/budget.py:183
 #: sicop/budget/models/provision.py:14 sicop/budget/models/provision.py:15
 #: sicop/project/apps.py:8 sicop/project/models.py:165
 #: sicop/project/models.py:178 sicop/project/models.py:179
@@ -501,7 +511,7 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:77
 #: sicop/templates/sicop/frontend/budget/processes/provision/detail.html:67
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:81
-#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:143
+#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:147
 msgid "Project"
 msgstr ""
 
@@ -587,41 +597,45 @@ msgid "Budget decrease control"
 msgstr ""
 
 #: sicop/budget/models/budget.py:92 sicop/budget/models/budget.py:93
-#: sicop/budget/models/provision.py:122 sicop/budget/models/provision.py:123
+#: sicop/budget/models/provision.py:127 sicop/budget/models/provision.py:128
 msgid "Released amount"
 msgstr ""
 
-#: sicop/budget/models/budget.py:125
+#: sicop/budget/models/budget.py:97 sicop/budget/models/budget.py:98
+msgid "Anulled amount"
+msgstr ""
+
+#: sicop/budget/models/budget.py:136
 #: sicop/templates/sicop/frontend/budget/processes/provision/addition/list.html:83
 #: sicop/templates/sicop/frontend/budget/processes/provision/addition/list.html:147
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:70
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:113
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:82
-#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:144
+#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:148
 msgid "Budgets"
 msgstr ""
 
-#: sicop/budget/models/budget.py:147 sicop/budget/models/budget.py:148
+#: sicop/budget/models/budget.py:166 sicop/budget/models/budget.py:167
 msgid "Old amount"
 msgstr ""
 
-#: sicop/budget/models/budget.py:152 sicop/budget/models/budget.py:153
+#: sicop/budget/models/budget.py:171 sicop/budget/models/budget.py:172
 msgid "Requiered amount"
 msgstr ""
 
-#: sicop/budget/models/budget.py:170 sicop/budget/models/budget.py:171
+#: sicop/budget/models/budget.py:189 sicop/budget/models/budget.py:190
 msgid "Provision cart"
 msgstr ""
 
-#: sicop/budget/models/budget.py:181
+#: sicop/budget/models/budget.py:200
 msgid "Budget Decrease Transaction"
 msgstr ""
 
-#: sicop/budget/models/budget.py:182
+#: sicop/budget/models/budget.py:201
 msgid "Budget Decrease Transactions"
 msgstr ""
 
-#: sicop/budget/models/budget.py:205 sicop/budget/models/budget.py:206
+#: sicop/budget/models/budget.py:224 sicop/budget/models/budget.py:225
 #: sicop/budget/models/redistribution.py:40
 #: sicop/budget/models/redistribution.py:41
 #: sicop/budget/models/redistribution.py:127
@@ -629,31 +643,31 @@ msgstr ""
 msgid "Redistributed amount"
 msgstr ""
 
-#: sicop/budget/models/budget.py:216 sicop/budget/models/budget.py:217
+#: sicop/budget/models/budget.py:235 sicop/budget/models/budget.py:236
 msgid "Redistribution item"
 msgstr ""
 
-#: sicop/budget/models/budget.py:225
+#: sicop/budget/models/budget.py:244
 msgid "Budget Redistribution Transaction"
 msgstr ""
 
-#: sicop/budget/models/budget.py:226
+#: sicop/budget/models/budget.py:245
 msgid "Budget Redistribution Transactions"
 msgstr ""
 
-#: sicop/budget/models/budget.py:261 sicop/budget/models/budget.py:262
+#: sicop/budget/models/budget.py:280 sicop/budget/models/budget.py:281
 msgid "addition item"
 msgstr ""
 
-#: sicop/budget/models/budget.py:270
+#: sicop/budget/models/budget.py:289
 msgid "Budget Addition Transaction"
 msgstr ""
 
-#: sicop/budget/models/budget.py:271
+#: sicop/budget/models/budget.py:290
 msgid "Budget Addition Transactions"
 msgstr ""
 
-#: sicop/budget/models/budget.py:286 sicop/budget/models/budget.py:287
+#: sicop/budget/models/budget.py:305 sicop/budget/models/budget.py:306
 #: sicop/templates/sicop/frontend/budget/cap/create.html:55
 #: sicop/templates/sicop/frontend/budget/cap/detail.html:54
 #: sicop/templates/sicop/frontend/budget/cap/list.html:47
@@ -662,7 +676,7 @@ msgstr ""
 msgid "Business unit"
 msgstr ""
 
-#: sicop/budget/models/budget.py:292 sicop/budget/models/budget.py:293
+#: sicop/budget/models/budget.py:311 sicop/budget/models/budget.py:312
 #: sicop/project/models.py:55 sicop/project/models.py:56
 #: sicop/templates/sicop/frontend/budget/cap/create.html:65
 #: sicop/templates/sicop/frontend/budget/cap/create.html:69
@@ -683,11 +697,11 @@ msgstr ""
 msgid "Cap"
 msgstr ""
 
-#: sicop/budget/models/budget.py:304
+#: sicop/budget/models/budget.py:323
 msgid "Budget Cap"
 msgstr ""
 
-#: sicop/budget/models/budget.py:305
+#: sicop/budget/models/budget.py:324
 msgid "Budget Caps"
 msgstr ""
 
@@ -717,11 +731,12 @@ msgid "Legalization"
 msgstr ""
 
 #: sicop/budget/models/commitment.py:34 sicop/budget/models/commitment.py:35
-#: sicop/budget/models/provision.py:90 sicop/budget/models/provision.py:103
-#: sicop/budget/models/provision.py:104 sicop/budget/models/provision.py:154
-#: sicop/budget/models/provision.py:155 sicop/budget/models/provision.py:199
-#: sicop/budget/models/provision.py:200 sicop/budget/models/provision.py:275
-#: sicop/budget/models/provision.py:276
+#: sicop/budget/models/provision.py:95 sicop/budget/models/provision.py:108
+#: sicop/budget/models/provision.py:109 sicop/budget/models/provision.py:159
+#: sicop/budget/models/provision.py:160 sicop/budget/models/provision.py:213
+#: sicop/budget/models/provision.py:214 sicop/budget/models/provision.py:289
+#: sicop/budget/models/provision.py:290 sicop/budget/models/provision.py:359
+#: sicop/budget/models/provision.py:360
 msgid "Provision Cart"
 msgstr ""
 
@@ -880,17 +895,17 @@ msgid "Commitment Realease Orphan Items"
 msgstr ""
 
 #: sicop/budget/models/provision.py:29 sicop/budget/models/provision.py:30
-#: sicop/budget/models/provision.py:212 sicop/budget/models/provision.py:213
+#: sicop/budget/models/provision.py:226 sicop/budget/models/provision.py:227
 msgid "Total required amount"
 msgstr ""
 
 #: sicop/budget/models/provision.py:36 sicop/budget/models/provision.py:37
-#: sicop/budget/models/provision.py:219 sicop/budget/models/provision.py:220
+#: sicop/budget/models/provision.py:233 sicop/budget/models/provision.py:234
 msgid "Total provisioned amount"
 msgstr ""
 
 #: sicop/budget/models/provision.py:43 sicop/budget/models/provision.py:44
-#: sicop/budget/models/provision.py:226 sicop/budget/models/provision.py:227
+#: sicop/budget/models/provision.py:240 sicop/budget/models/provision.py:241
 msgid "Total missing amount"
 msgstr ""
 
@@ -898,226 +913,60 @@ msgstr ""
 msgid "Total released amount"
 msgstr ""
 
-#: sicop/budget/models/provision.py:91
+#: sicop/budget/models/provision.py:82 sicop/budget/models/provision.py:83
+msgid "Annulled"
+msgstr ""
+
+#: sicop/budget/models/provision.py:96
 msgid "Provision Carts"
 msgstr ""
 
-#: sicop/budget/models/provision.py:117 sicop/budget/models/provision.py:118
-#: sicop/budget/models/provision.py:293 sicop/budget/models/provision.py:294
+#: sicop/budget/models/provision.py:122 sicop/budget/models/provision.py:123
+#: sicop/budget/models/provision.py:307 sicop/budget/models/provision.py:308
 msgid "Provosioned amount"
 msgstr ""
 
-#: sicop/budget/models/provision.py:127 sicop/budget/models/provision.py:128
-#: sicop/budget/models/provision.py:298 sicop/budget/models/provision.py:299
+#: sicop/budget/models/provision.py:132 sicop/budget/models/provision.py:133
+#: sicop/budget/models/provision.py:312 sicop/budget/models/provision.py:313
 msgid "Budget taked"
 msgstr ""
 
-#: sicop/budget/models/provision.py:140
+#: sicop/budget/models/provision.py:145
 msgid "Provision Budget"
 msgstr ""
 
-#: sicop/budget/models/provision.py:141
+#: sicop/budget/models/provision.py:146
 msgid "Provision Budgets"
 msgstr ""
 
-#: sicop/budget/models/provision.py:262
+#: sicop/budget/models/provision.py:188 sicop/budget/models/provision.py:189
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:468
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1954
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:510
+msgid "Approved by"
+msgstr ""
+
+#: sicop/budget/models/provision.py:276
 msgid "Provision Cart History"
 msgstr ""
 
-#: sicop/budget/models/provision.py:263
+#: sicop/budget/models/provision.py:277
 msgid "Provision Cart Histories"
 msgstr ""
 
-#: sicop/budget/models/provision.py:288 sicop/budget/models/provision.py:289
+#: sicop/budget/models/provision.py:302 sicop/budget/models/provision.py:303
 msgid "Alreaday taked amount"
 msgstr ""
 
-#: sicop/budget/models/provision.py:306
+#: sicop/budget/models/provision.py:320
 msgid "Provision Budget history"
 msgstr ""
 
-#: sicop/budget/models/provision.py:307
+#: sicop/budget/models/provision.py:321
 msgid "Provision Budget histories"
 msgstr ""
 
-#: sicop/budget/models/redistribution.py:60
-#: sicop/budget/models/redistribution.py:61
-msgid "Approval observation"
-msgstr ""
-
-#: sicop/budget/models/redistribution.py:94
-#: sicop/budget/models/redistribution.py:107
-#: sicop/budget/models/redistribution.py:108
-msgid "Budget Redistribution"
-msgstr ""
-
-#: sicop/budget/models/redistribution.py:95
-msgid "Budget Redistributions"
-msgstr ""
-
-#: sicop/budget/models/redistribution.py:168
-#: sicop/budget/models/redistribution.py:181
-#: sicop/budget/models/redistribution.py:182
-msgid "Budget Redistribution Item"
-msgstr ""
-
-#: sicop/budget/models/redistribution.py:169
-msgid "Budget Redistribution Items"
-msgstr ""
-
-#: sicop/budget/models/redistribution.py:202
-msgid "Budget Redistribution Item Approval"
-msgstr ""
-
-#: sicop/budget/models/redistribution.py:203
-msgid "Budget Redistribution Item Approvals"
-msgstr ""
-
-#: sicop/budget/views/budget.py:86
-msgid "Budget created successfully."
-msgstr ""
-
-#: sicop/budget/views/budget.py:131
-msgid "Budget updated successfully."
-msgstr ""
-
-#: sicop/budget/views/cap.py:60
-msgid "Budget cap created successfully"
-msgstr ""
-
-#: sicop/budget/views/cap.py:64
-msgid "Budget cap not created"
-msgstr ""
-
-#: sicop/budget/views/cap.py:111
-msgid "Budget cap updated successfully"
-msgstr ""
-
-#: sicop/budget/views/cap.py:115
-msgid "Budget cap not updated"
-msgstr ""
-
-#: sicop/budget/views/description.py:58
-msgid "Budget description created successfully"
-msgstr ""
-
-#: sicop/budget/views/description.py:62
-msgid "Budget description not created"
-msgstr ""
-
-#: sicop/budget/views/description.py:98
-msgid "Budget description updated successfully"
-msgstr ""
-
-#: sicop/budget/views/description.py:102
-msgid "Budget description not updated"
-msgstr ""
-
-#: sicop/budget/views/processes/budget_addition.py:78
-#: sicop/budget/views/processes/budget_redistribution.py:124
-msgid "Budget redistribution created successfully."
-msgstr ""
-
-#: sicop/budget/views/processes/budget_addition.py:113
-#: sicop/budget/views/processes/budget_redistribution.py:204
-msgid "Item created"
-msgstr ""
-
-#: sicop/budget/views/processes/budget_addition.py:146
-#: sicop/budget/views/processes/budget_redistribution.py:235
-msgid "Item deleted"
-msgstr ""
-
-#: sicop/budget/views/processes/budget_addition.py:179
-#: sicop/budget/views/processes/budget_redistribution.py:266
-msgid "Item updated"
-msgstr ""
-
-#: sicop/budget/views/processes/budget_addition.py:253
-msgid "Budget addition approved successfully."
-msgstr ""
-
-#: sicop/budget/views/processes/budget_addition.py:264
-msgid "Budget addition rejected."
-msgstr ""
-
-#: sicop/budget/views/processes/budget_arrange.py:164
-msgid "Budget provision created successfully."
-msgstr ""
-
-#: sicop/budget/views/processes/budget_arrange_addition.py:74
-#, python-brace-format
-msgid "Error on search, the CAP with id {cap_id} does not exist."
-msgstr ""
-
-#: sicop/budget/views/processes/budget_redistribution.py:175
-msgid "Budget updated"
-msgstr ""
-
-#: sicop/budget/views/processes/budget_redistribution.py:302
-msgid "Totals updated"
-msgstr ""
-
-#: sicop/budget/views/processes/budget_redistribution.py:433
-msgid "Budget redistribution approved successfully."
-msgstr ""
-
-#: sicop/budget/views/processes/budget_redistribution.py:435
-msgid "Budget redistribution rejected."
-msgstr ""
-
-#: sicop/budget/views/processes/budget_redistribution.py:447
-msgid "Budget redistribution error"
-msgstr ""
-
-#: sicop/budget/views/processes/budget_release.py:142
-#, python-brace-format
-msgid "Error on search, the commitment with id {pk} does not exist."
-msgstr ""
-
-#: sicop/budget/views/processes/budget_release.py:167
-#, python-brace-format
-msgid "Error on search, the contract with id {pk} does not exist."
-msgstr ""
-
-#: sicop/budget/views/processes/budget_release.py:192
-#, python-brace-format
-msgid "Error on search, the PO with id {pk} does not exist."
-msgstr ""
-
-#: sicop/budget/views/processes/budget_release.py:217
-#, python-brace-format
-msgid "Error on search, the legalization with id {pk} does not exist."
-msgstr ""
-
-#: sicop/budget/views/processes/budget_release.py:242
-#, python-brace-format
-msgid "Error on search, the consumption with id {pk} does not exist."
-msgstr ""
-
-#: sicop/business_unit/apps.py:8 sicop/business_unit/models.py:33
-#: sicop/integration/models/xirux.py:608
-msgid "Business Unit"
-msgstr ""
-
-#: sicop/business_unit/models.py:12 sicop/business_unit/models.py:13
-#: sicop/certificate/models.py:30 sicop/certificate/models.py:31
-#: sicop/expense_concept/models.py:11 sicop/expense_concept/models.py:12
-#: sicop/expense_type/models.py:12 sicop/expense_type/models.py:13
-#: sicop/integration/models/config.py:16 sicop/project/models.py:16
-#: sicop/project/models.py:17 sicop/project/models.py:43
-#: sicop/project/models.py:44
-#: sicop/templates/sicop/frontend/area/role/detail.html:65
-#: sicop/templates/sicop/frontend/area/role/list.html:47
-#: sicop/templates/sicop/frontend/area/role/list.html:79
-#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:276
-#: sicop/templates/sicop/frontend/budget/processes/commitment/commitment_certificate.html:286
-#: sicop/templates/sicop/frontend/budget/processes/commitment/release/commitment_release_certificate.html:286
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:276
-#: sicop/templates/sicop/frontend/project/project/certificate.html:315
-msgid "Code"
-msgstr ""
-
+#: sicop/budget/models/provision.py:332 sicop/budget/models/provision.py:333
 #: sicop/business_unit/models.py:25 sicop/business_unit/models.py:26
 #: sicop/certificate/models.py:16 sicop/certificate/models.py:17
 #: sicop/contractor/models.py:11 sicop/contractor/models.py:12
@@ -1149,6 +998,15 @@ msgstr ""
 #: sicop/templates/sicop/frontend/area/role/update.html:59
 #: sicop/templates/sicop/frontend/budget/description/list.html:47
 #: sicop/templates/sicop/frontend/budget/description/list.html:79
+#: sicop/templates/sicop/frontend/budget/provision/anullation/create.html:54
+#: sicop/templates/sicop/frontend/budget/provision/anullation/create.html:56
+#: sicop/templates/sicop/frontend/budget/provision/anullation/detail.html:52
+#: sicop/templates/sicop/frontend/budget/provision/anullation/detail.html:53
+#: sicop/templates/sicop/frontend/budget/provision/anullation/list.html:46
+#: sicop/templates/sicop/frontend/budget/provision/anullation/list.html:78
+#: sicop/templates/sicop/frontend/budget/provision/anullation/update.html:54
+#: sicop/templates/sicop/frontend/budget/provision/anullation/update.html:56
+#: sicop/templates/sicop/frontend/budget/provision/anullation/update.html:64
 #: sicop/templates/sicop/frontend/business_unit/list.html:46
 #: sicop/templates/sicop/frontend/business_unit/list.html:76
 #: sicop/templates/sicop/frontend/cost_center/create.html:55
@@ -1212,6 +1070,225 @@ msgstr ""
 #: sicop/templates/sicop/frontend/user/user/update.html:55
 #: sicop/templates/sicop/frontend/user/user/update.html:59
 msgid "Name"
+msgstr ""
+
+#: sicop/budget/models/provision.py:346
+msgid "Provision Cart Anullation Reason"
+msgstr ""
+
+#: sicop/budget/models/provision.py:347
+msgid "Provision Cart Anullations Reason"
+msgstr ""
+
+#: sicop/budget/models/provision.py:366 sicop/budget/models/provision.py:367
+msgid "Anulled by"
+msgstr ""
+
+#: sicop/budget/models/provision.py:373 sicop/budget/models/provision.py:374
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:2095
+msgid "Reason"
+msgstr ""
+
+#: sicop/budget/models/provision.py:388
+msgid "Provision Cart Anullation"
+msgstr ""
+
+#: sicop/budget/models/provision.py:389
+msgid "Provision Cart Anullations"
+msgstr ""
+
+#: sicop/budget/models/redistribution.py:60
+#: sicop/budget/models/redistribution.py:61
+msgid "Approval observation"
+msgstr ""
+
+#: sicop/budget/models/redistribution.py:94
+#: sicop/budget/models/redistribution.py:107
+#: sicop/budget/models/redistribution.py:108
+msgid "Budget Redistribution"
+msgstr ""
+
+#: sicop/budget/models/redistribution.py:95
+msgid "Budget Redistributions"
+msgstr ""
+
+#: sicop/budget/models/redistribution.py:168
+#: sicop/budget/models/redistribution.py:181
+#: sicop/budget/models/redistribution.py:182
+msgid "Budget Redistribution Item"
+msgstr ""
+
+#: sicop/budget/models/redistribution.py:169
+msgid "Budget Redistribution Items"
+msgstr ""
+
+#: sicop/budget/models/redistribution.py:202
+msgid "Budget Redistribution Item Approval"
+msgstr ""
+
+#: sicop/budget/models/redistribution.py:203
+msgid "Budget Redistribution Item Approvals"
+msgstr ""
+
+#: sicop/budget/views/anullation_reason.py:65
+msgid "Provision Cart Anullation Reason created successfully"
+msgstr ""
+
+#: sicop/budget/views/anullation_reason.py:70
+msgid "Provision Cart Anullation Reason not created, please review the data"
+msgstr ""
+
+#: sicop/budget/views/anullation_reason.py:95
+msgid "Provision Cart Anullation Reason updated successfully"
+msgstr ""
+
+#: sicop/budget/views/anullation_reason.py:100
+msgid "Provision Cart Anullation Reason not updated, please review the data"
+msgstr ""
+
+#: sicop/budget/views/budget.py:86
+msgid "Budget created successfully."
+msgstr ""
+
+#: sicop/budget/views/budget.py:131
+msgid "Budget updated successfully."
+msgstr ""
+
+#: sicop/budget/views/cap.py:60
+msgid "Budget cap created successfully"
+msgstr ""
+
+#: sicop/budget/views/cap.py:64
+msgid "Budget cap not created"
+msgstr ""
+
+#: sicop/budget/views/cap.py:111
+msgid "Budget cap updated successfully"
+msgstr ""
+
+#: sicop/budget/views/cap.py:115
+msgid "Budget cap not updated"
+msgstr ""
+
+#: sicop/budget/views/description.py:58
+msgid "Budget description created successfully"
+msgstr ""
+
+#: sicop/budget/views/description.py:62
+msgid "Budget description not created"
+msgstr ""
+
+#: sicop/budget/views/description.py:98
+msgid "Budget description updated successfully"
+msgstr ""
+
+#: sicop/budget/views/description.py:102
+msgid "Budget description not updated"
+msgstr ""
+
+#: sicop/budget/views/processes/budget_addition.py:78
+#: sicop/budget/views/processes/budget_redistribution.py:141
+msgid "Budget redistribution created successfully."
+msgstr ""
+
+#: sicop/budget/views/processes/budget_addition.py:113
+#: sicop/budget/views/processes/budget_redistribution.py:221
+msgid "Item created"
+msgstr ""
+
+#: sicop/budget/views/processes/budget_addition.py:146
+#: sicop/budget/views/processes/budget_redistribution.py:252
+msgid "Item deleted"
+msgstr ""
+
+#: sicop/budget/views/processes/budget_addition.py:179
+#: sicop/budget/views/processes/budget_redistribution.py:283
+msgid "Item updated"
+msgstr ""
+
+#: sicop/budget/views/processes/budget_addition.py:253
+msgid "Budget addition approved successfully."
+msgstr ""
+
+#: sicop/budget/views/processes/budget_addition.py:264
+msgid "Budget addition rejected."
+msgstr ""
+
+#: sicop/budget/views/processes/budget_arrange.py:166
+msgid "Budget provision created successfully."
+msgstr ""
+
+#: sicop/budget/views/processes/budget_arrange_addition.py:74
+#, python-brace-format
+msgid "Error on search, the CAP with id {cap_id} does not exist."
+msgstr ""
+
+#: sicop/budget/views/processes/budget_redistribution.py:192
+msgid "Budget updated"
+msgstr ""
+
+#: sicop/budget/views/processes/budget_redistribution.py:319
+msgid "Totals updated"
+msgstr ""
+
+#: sicop/budget/views/processes/budget_redistribution.py:450
+msgid "Budget redistribution approved successfully."
+msgstr ""
+
+#: sicop/budget/views/processes/budget_redistribution.py:452
+msgid "Budget redistribution rejected."
+msgstr ""
+
+#: sicop/budget/views/processes/budget_redistribution.py:464
+msgid "Budget redistribution error"
+msgstr ""
+
+#: sicop/budget/views/processes/budget_release.py:142
+#, python-brace-format
+msgid "Error on search, the commitment with id {pk} does not exist."
+msgstr ""
+
+#: sicop/budget/views/processes/budget_release.py:167
+#, python-brace-format
+msgid "Error on search, the contract with id {pk} does not exist."
+msgstr ""
+
+#: sicop/budget/views/processes/budget_release.py:192
+#, python-brace-format
+msgid "Error on search, the PO with id {pk} does not exist."
+msgstr ""
+
+#: sicop/budget/views/processes/budget_release.py:217
+#, python-brace-format
+msgid "Error on search, the legalization with id {pk} does not exist."
+msgstr ""
+
+#: sicop/budget/views/processes/budget_release.py:242
+#, python-brace-format
+msgid "Error on search, the consumption with id {pk} does not exist."
+msgstr ""
+
+#: sicop/business_unit/apps.py:8 sicop/business_unit/models.py:33
+#: sicop/integration/models/xirux.py:608
+msgid "Business Unit"
+msgstr ""
+
+#: sicop/business_unit/models.py:12 sicop/business_unit/models.py:13
+#: sicop/certificate/models.py:30 sicop/certificate/models.py:31
+#: sicop/expense_concept/models.py:11 sicop/expense_concept/models.py:12
+#: sicop/expense_type/models.py:12 sicop/expense_type/models.py:13
+#: sicop/integration/models/config.py:16 sicop/project/models.py:16
+#: sicop/project/models.py:17 sicop/project/models.py:43
+#: sicop/project/models.py:44
+#: sicop/templates/sicop/frontend/area/role/detail.html:65
+#: sicop/templates/sicop/frontend/area/role/list.html:47
+#: sicop/templates/sicop/frontend/area/role/list.html:79
+#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:276
+#: sicop/templates/sicop/frontend/budget/processes/commitment/commitment_certificate.html:286
+#: sicop/templates/sicop/frontend/budget/processes/commitment/release/commitment_release_certificate.html:286
+#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:276
+#: sicop/templates/sicop/frontend/project/project/certificate.html:315
+msgid "Code"
 msgstr ""
 
 #: sicop/business_unit/models.py:34 sicop/integration/models/xirux.py:609
@@ -2087,6 +2164,10 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/description/list.html:48
 #: sicop/templates/sicop/frontend/budget/description/list.html:80
 #: sicop/templates/sicop/frontend/budget/description/update.html:79
+#: sicop/templates/sicop/frontend/budget/provision/anullation/detail.html:67
+#: sicop/templates/sicop/frontend/budget/provision/anullation/list.html:48
+#: sicop/templates/sicop/frontend/budget/provision/anullation/list.html:80
+#: sicop/templates/sicop/frontend/budget/provision/anullation/update.html:70
 #: sicop/templates/sicop/frontend/business_unit/detail.html:65
 #: sicop/templates/sicop/frontend/business_unit/list.html:47
 #: sicop/templates/sicop/frontend/business_unit/list.html:77
@@ -2587,6 +2668,9 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/description/detail.html:76
 #: sicop/templates/sicop/frontend/budget/description/list.html:60
 #: sicop/templates/sicop/frontend/budget/description/update.html:81
+#: sicop/templates/sicop/frontend/budget/provision/anullation/detail.html:70
+#: sicop/templates/sicop/frontend/budget/provision/anullation/list.html:60
+#: sicop/templates/sicop/frontend/budget/provision/anullation/update.html:74
 #: sicop/templates/sicop/frontend/business_unit/detail.html:67
 #: sicop/templates/sicop/frontend/business_unit/list.html:58
 #: sicop/templates/sicop/frontend/business_unit/update.html:68
@@ -2631,6 +2715,9 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/description/detail.html:79
 #: sicop/templates/sicop/frontend/budget/description/list.html:62
 #: sicop/templates/sicop/frontend/budget/description/update.html:84
+#: sicop/templates/sicop/frontend/budget/provision/anullation/detail.html:74
+#: sicop/templates/sicop/frontend/budget/provision/anullation/list.html:62
+#: sicop/templates/sicop/frontend/budget/provision/anullation/update.html:77
 #: sicop/templates/sicop/frontend/business_unit/detail.html:68
 #: sicop/templates/sicop/frontend/business_unit/list.html:60
 #: sicop/templates/sicop/frontend/business_unit/update.html:69
@@ -2668,6 +2755,7 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/processes/provision/addition/update.html:236
 #: sicop/templates/sicop/frontend/budget/processes/provision/create.html:266
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/create.html:268
+#: sicop/templates/sicop/frontend/budget/provision/anullation/create.html:70
 #: sicop/templates/sicop/frontend/business_unit/create.html:84
 #: sicop/templates/sicop/frontend/cost_center/create.html:81
 #: sicop/templates/sicop/frontend/expense/concept/create.html:68
@@ -2694,6 +2782,7 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/budget/detail.html:159
 #: sicop/templates/sicop/frontend/budget/cap/detail.html:103
 #: sicop/templates/sicop/frontend/budget/description/detail.html:89
+#: sicop/templates/sicop/frontend/budget/provision/anullation/detail.html:83
 #: sicop/templates/sicop/frontend/business_unit/detail.html:90
 #: sicop/templates/sicop/frontend/cost_center/detail.html:89
 #: sicop/templates/sicop/frontend/expense/concept/detail.html:77
@@ -2737,6 +2826,8 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/approval/list.html:89
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/list.html:53
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/list.html:124
+#: sicop/templates/sicop/frontend/budget/provision/anullation/list.html:45
+#: sicop/templates/sicop/frontend/budget/provision/anullation/list.html:77
 #: sicop/templates/sicop/frontend/business_unit/list.html:45
 #: sicop/templates/sicop/frontend/business_unit/list.html:75
 #: sicop/templates/sicop/frontend/cost_center/list.html:45
@@ -2783,11 +2874,13 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:73
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:116
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:87
-#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:149
+#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:153
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/approval/list.html:45
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/approval/list.html:93
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/list.html:60
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/list.html:131
+#: sicop/templates/sicop/frontend/budget/provision/anullation/list.html:49
+#: sicop/templates/sicop/frontend/budget/provision/anullation/list.html:81
 #: sicop/templates/sicop/frontend/business_unit/list.html:48
 #: sicop/templates/sicop/frontend/business_unit/list.html:78
 #: sicop/templates/sicop/frontend/cost_center/list.html:48
@@ -2821,8 +2914,9 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/description/update.html:93
 #: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:548
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:74
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:2001
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:2058
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:601
+#: sicop/templates/sicop/frontend/budget/provision/anullation/update.html:85
 #: sicop/templates/sicop/frontend/business_unit/update.html:96
 #: sicop/templates/sicop/frontend/cost_center/update.html:88
 #: sicop/templates/sicop/frontend/expense/concept/update.html:77
@@ -3088,7 +3182,7 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:68
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:111
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:80
-#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:142
+#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:146
 msgid "CAP"
 msgstr ""
 
@@ -3255,12 +3349,6 @@ msgstr ""
 msgid "NAME"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:468
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1898
-#: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:510
-msgid "Approved by"
-msgstr ""
-
 #: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:474
 msgid "This CADP has been rejected."
 msgstr ""
@@ -3280,7 +3368,7 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:509
 #: sicop/templates/sicop/frontend/budget/processes/commitment/commitment_certificate.html:574
 #: sicop/templates/sicop/frontend/budget/processes/commitment/release/commitment_release_certificate.html:576
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1949
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:2006
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:550
 #: sicop/templates/sicop/frontend/project/project/certificate.html:521
 msgid "Print"
@@ -3292,7 +3380,7 @@ msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:532
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:61
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1980
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:2037
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:585
 msgid "Approve?"
 msgstr ""
@@ -3303,7 +3391,7 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:72
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:115
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:64
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1984
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:2041
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/approval/list.html:44
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/approval/list.html:92
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:587
@@ -3312,7 +3400,7 @@ msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/processes/addition/addition_certificate.html:535
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/update.html:66
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1986
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:2043
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:588
 msgid "Reject"
 msgstr ""
@@ -3351,7 +3439,7 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/processes/addition/list.html:101
 #: sicop/templates/sicop/frontend/budget/processes/provision/addition/list.html:124
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:96
-#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:122
+#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:125
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/approval/list.html:74
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/list.html:101
 msgid "Pending"
@@ -3503,7 +3591,7 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/processes/provision/addition/list.html:84
 #: sicop/templates/sicop/frontend/budget/processes/provision/addition/list.html:148
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:83
-#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:145
+#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:149
 msgid "Managed by"
 msgstr ""
 
@@ -3521,7 +3609,7 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/processes/provision/addition/list.html:86
 #: sicop/templates/sicop/frontend/budget/processes/provision/addition/list.html:150
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:85
-#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:147
+#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:151
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/list.html:58
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/list.html:129
 msgid "Finished?"
@@ -3917,7 +4005,7 @@ msgstr ""
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:71
 #: sicop/templates/sicop/frontend/budget/processes/provision/approval/list.html:114
 #: sicop/templates/sicop/frontend/budget/processes/provision/list.html:84
-#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:146
+#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:150
 msgid "Provisionado"
 msgstr ""
 
@@ -4070,34 +4158,65 @@ msgstr ""
 msgid "Budget provition detail"
 msgstr ""
 
+#: sicop/templates/sicop/frontend/budget/processes/provision/list.html:117
+msgid "Anulled"
+msgstr ""
+
 #: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:8
 msgid "Budget provision certificate"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1894
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1748
+msgid "REJECTED"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1946
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:2077
+msgid "This cap was overridden on "
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1947
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:2078
+msgid " by "
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1947
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:2078
+msgid " and the values were returned."
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1950
 msgid "This CAP was rejected"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1900
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1956
 msgid "This CAP does not require approval"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1903
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1959
 msgid "This CAP has not yet been approved"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1952
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:2009
 msgid "Go to list"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1954
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:2011
 msgid "Go to approval list"
 msgstr ""
 
-#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1967
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:2024
 msgid ""
 "The approval of this CAP cannot be allowed because some of the budget items "
 "do not have the required value."
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:2092
+msgid "CAP anullation"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:2112
+msgid "Anull"
 msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/approval/list.html:8
@@ -4248,6 +4367,38 @@ msgstr ""
 
 #: sicop/templates/sicop/frontend/budget/processes/redistribution/redistribution_certificate.html:573
 msgid "Items for approval"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/provision/anullation/create.html:7
+msgid "Anullation reason Create"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/provision/anullation/create.html:15
+#: sicop/templates/sicop/frontend/budget/provision/anullation/update.html:15
+msgid "Anullation reason data"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/provision/anullation/create.html:49
+#: sicop/templates/sicop/frontend/budget/provision/anullation/detail.html:47
+#: sicop/templates/sicop/frontend/budget/provision/anullation/update.html:49
+msgid "Anullation reason Info"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/provision/anullation/detail.html:7
+msgid "Anullation reason Detail"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/provision/anullation/detail.html:15
+msgid "Anullation reason detail"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/provision/anullation/list.html:7
+#: sicop/templates/sicop/frontend/budget/provision/anullation/list.html:15
+msgid "Anullation reason list"
+msgstr ""
+
+#: sicop/templates/sicop/frontend/budget/provision/anullation/update.html:7
+msgid "Anullation reason Update"
 msgstr ""
 
 #: sicop/templates/sicop/frontend/business_unit/create.html:7
@@ -4966,43 +5117,43 @@ msgid "Can change log entry"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:5
-msgid "Can view Commitment No related"
+msgid "Can view Commitment Realease Orphan Item"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:6
-msgid "Can add Commitment PO"
+msgid "Can add Commitment Orphan Release"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:7
-msgid "Can change Commitment PO"
+msgid "Can change Commitment Orphan Release"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:8
-msgid "Can delete Commitment PO"
+msgid "Can delete Commitment Orphan Release"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:9
-msgid "Can view Commitment PO"
+msgid "Can view Commitment Orphan Release"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:10
-msgid "Can add Commitment Realease Items"
+msgid "Can add Commitment PO"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:11
-msgid "Can change Commitment Realease Items"
+msgid "Can change Commitment PO"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:12
-msgid "Can delete Commitment Realease Items"
+msgid "Can delete Commitment PO"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:13
-msgid "Can view Commitment Realease Items"
+msgid "Can view Commitment PO"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:14
-msgid "Can add Commitment Release"
+msgid "Can add Commitment Realease Item"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:15
@@ -5010,46 +5161,43 @@ msgid "Can delete log entry"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:16
-msgid "Can change Commitment Release"
+msgid "Can change Commitment Realease Item"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:17
-msgid "Can delete Commitment Release"
+msgid "Can delete Commitment Realease Item"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:18
-msgid "Can view Commitment Release"
+msgid "Can view Commitment Realease Item"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:19
-msgid "Can add Provision Cart"
+msgid "Can add Commitment Release"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:20
-msgid "Can change Provision Cart"
+msgid "Can change Commitment Release"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:21
-msgid "Can delete Provision Cart"
+msgid "Can delete Commitment Release"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:22
-msgid "Can view Provision Cart"
+msgid "Can view Commitment Release"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:23
-#: sicop/users/utils/permission_names.py:187
-msgid "Can add Provision Cart Approval"
+msgid "Can add Provision Cart"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:24
-#: sicop/users/utils/permission_names.py:188
-msgid "Can change Provision Cart Approval"
+msgid "Can change Provision Cart"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:25
-#: sicop/users/utils/permission_names.py:189
-msgid "Can delete Provision Cart Approval"
+msgid "Can delete Provision Cart"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:26
@@ -5057,48 +5205,44 @@ msgid "Can view log entry"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:27
-#: sicop/users/utils/permission_names.py:190
-msgid "Can view Provision Cart Approval"
+msgid "Can view Provision Cart"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:28
-msgid "Can add Provision Budget"
+msgid "Can add Provision Cart Anullation"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:29
-msgid "Can change Provision Budget"
+msgid "Can change Provision Cart Anullation"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:30
-msgid "Can delete Provision Budget"
+msgid "Can delete Provision Cart Anullation"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:31
-msgid "Can view Provision Budget"
+msgid "Can view Provision Cart Anullation"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:32
-#: sicop/users/utils/permission_names.py:102
-msgid "Can add Business Unit"
+msgid "Can add Provision Cart Anullation Reason"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:33
-#: sicop/users/utils/permission_names.py:104
-msgid "Can change Business Unit"
+msgid "Can change Provision Cart Anullation Reason"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:34
-#: sicop/users/utils/permission_names.py:105
-msgid "Can delete Business Unit"
+msgid "Can delete Provision Cart Anullation Reason"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:35
-#: sicop/users/utils/permission_names.py:106
-msgid "Can view Business Unit"
+msgid "Can view Provision Cart Anullation Reason"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:36
-msgid "Can add Certificate"
+#: sicop/users/utils/permission_names.py:231
+msgid "Can add Provision Cart Approval"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:37
@@ -5106,46 +5250,46 @@ msgid "Can add Theme"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:38
-msgid "Can change Certificate"
+#: sicop/users/utils/permission_names.py:232
+msgid "Can change Provision Cart Approval"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:39
-msgid "Can delete Certificate"
+#: sicop/users/utils/permission_names.py:233
+msgid "Can delete Provision Cart Approval"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:40
-msgid "Can view Certificate"
+#: sicop/users/utils/permission_names.py:234
+msgid "Can view Provision Cart Approval"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:41
-msgid "Can add content type"
+msgid "Can add Provision Budget"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:42
-msgid "Can change content type"
+msgid "Can change Provision Budget"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:43
-msgid "Can delete content type"
+msgid "Can delete Provision Budget"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:44
-msgid "Can view content type"
+msgid "Can view Provision Budget"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:45
-#: sicop/users/utils/permission_names.py:107
-msgid "Can add Contract"
+msgid "Can add Provision Budget history"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:46
-#: sicop/users/utils/permission_names.py:108
-msgid "Can change Contract"
+msgid "Can change Provision Budget history"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:47
-#: sicop/users/utils/permission_names.py:109
-msgid "Can delete Contract"
+msgid "Can delete Provision Budget history"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:48
@@ -5153,45 +5297,47 @@ msgid "Can change Theme"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:49
-#: sicop/users/utils/permission_names.py:110
-msgid "Can view Contract"
+msgid "Can view Provision Budget history"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:50
-msgid "Can add Contractor"
+msgid "Can add Provision Cart History"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:51
-msgid "Can change Contractor"
+msgid "Can change Provision Cart History"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:52
-msgid "Can delete Contractor"
+msgid "Can delete Provision Cart History"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:53
-msgid "Can view Contractor"
+msgid "Can view Provision Cart History"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:54
-msgid "Can add Contractor File"
+#: sicop/users/utils/permission_names.py:125
+msgid "Can add Business Unit"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:55
-msgid "Can change Contractor File"
+#: sicop/users/utils/permission_names.py:127
+msgid "Can change Business Unit"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:56
-msgid "Can delete Contractor File"
+#: sicop/users/utils/permission_names.py:128
+msgid "Can delete Business Unit"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:57
-msgid "Can view Contractor File"
+#: sicop/users/utils/permission_names.py:129
+msgid "Can view Business Unit"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:58
-#: sicop/users/utils/permission_names.py:111
-msgid "Can add Cost Center"
+msgid "Can add Certificate"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:59
@@ -5199,46 +5345,46 @@ msgid "Can delete Theme"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:60
-#: sicop/users/utils/permission_names.py:112
-msgid "Can change Cost Center"
+msgid "Can change Certificate"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:61
-#: sicop/users/utils/permission_names.py:113
-msgid "Can delete Cost Center"
+msgid "Can delete Certificate"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:62
-#: sicop/users/utils/permission_names.py:116
-msgid "Can view Cost Center"
+msgid "Can view Certificate"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:63
-msgid "Can add clocked"
+msgid "Can add content type"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:64
-msgid "Can change clocked"
+msgid "Can change content type"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:65
-msgid "Can delete clocked"
+msgid "Can delete content type"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:66
-msgid "Can view clocked"
+msgid "Can view content type"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:67
-msgid "Can add crontab"
+#: sicop/users/utils/permission_names.py:130
+msgid "Can add Contract"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:68
-msgid "Can change crontab"
+#: sicop/users/utils/permission_names.py:131
+msgid "Can change Contract"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:69
-msgid "Can delete crontab"
+#: sicop/users/utils/permission_names.py:132
+msgid "Can delete Contract"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:70
@@ -5246,43 +5392,45 @@ msgid "Can view Theme"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:71
-msgid "Can view crontab"
+#: sicop/users/utils/permission_names.py:133
+msgid "Can view Contract"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:72
-msgid "Can add interval"
+msgid "Can add Contractor"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:73
-msgid "Can change interval"
+msgid "Can change Contractor"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:74
-msgid "Can delete interval"
+msgid "Can delete Contractor"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:75
-msgid "Can view interval"
+msgid "Can view Contractor"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:76
-msgid "Can add periodic task"
+msgid "Can add Contractor File"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:77
-msgid "Can change periodic task"
+msgid "Can change Contractor File"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:78
-msgid "Can delete periodic task"
+msgid "Can delete Contractor File"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:79
-msgid "Can view periodic task"
+msgid "Can view Contractor File"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:80
-msgid "Can add periodic tasks"
+#: sicop/users/utils/permission_names.py:134
+msgid "Can add Cost Center"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:81
@@ -5290,46 +5438,46 @@ msgid "Can add Area"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:82
-msgid "Can change periodic tasks"
+#: sicop/users/utils/permission_names.py:135
+msgid "Can change Cost Center"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:83
-msgid "Can delete periodic tasks"
+#: sicop/users/utils/permission_names.py:136
+msgid "Can delete Cost Center"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:84
-msgid "Can view periodic tasks"
+#: sicop/users/utils/permission_names.py:138
+msgid "Can view Cost Center"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:85
-msgid "Can add solar event"
+msgid "Can add clocked"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:86
-msgid "Can change solar event"
+msgid "Can change clocked"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:87
-msgid "Can delete solar event"
+msgid "Can delete clocked"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:88
-msgid "Can view solar event"
+msgid "Can view clocked"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:89
-#: sicop/users/utils/permission_names.py:117
-msgid "Can add Expense Concept"
+msgid "Can add crontab"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:90
-#: sicop/users/utils/permission_names.py:118
-msgid "Can change Expense Concept"
+msgid "Can change crontab"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:91
-#: sicop/users/utils/permission_names.py:119
-msgid "Can delete Expense Concept"
+msgid "Can delete crontab"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:92
@@ -5337,48 +5485,90 @@ msgid "Can change Area"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:93
-#: sicop/users/utils/permission_names.py:120
-msgid "Can view Expense Concept"
+msgid "Can view crontab"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:94
-#: sicop/users/utils/permission_names.py:121
-msgid "Can add Expense Type"
+msgid "Can add interval"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:95
-#: sicop/users/utils/permission_names.py:122
-msgid "Can change Expense Type"
+msgid "Can change interval"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:96
-#: sicop/users/utils/permission_names.py:123
-msgid "Can delete Expense Type"
+msgid "Can delete interval"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:97
-#: sicop/users/utils/permission_names.py:124
-msgid "Can view Expense Type"
+msgid "Can view interval"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:98
-msgid "Can add Active Integration"
+msgid "Can add periodic task"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:99
-msgid "Can change Active Integration"
+msgid "Can change periodic task"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:100
-msgid "Can delete Active Integration"
+msgid "Can delete periodic task"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:101
-msgid "Can view Active Integration"
+msgid "Can view periodic task"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:102
+msgid "Can add periodic tasks"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:103
 msgid "Can delete Area"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:104
+msgid "Can change periodic tasks"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:105
+msgid "Can delete periodic tasks"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:106
+msgid "Can view periodic tasks"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:107
+msgid "Can add solar event"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:108
+msgid "Can change solar event"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:109
+msgid "Can delete solar event"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:110
+msgid "Can view solar event"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:111
+#: sicop/users/utils/permission_names.py:139
+msgid "Can add Expense Concept"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:112
+#: sicop/users/utils/permission_names.py:140
+msgid "Can change Expense Concept"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:113
+#: sicop/users/utils/permission_names.py:141
+msgid "Can delete Expense Concept"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:114
@@ -5389,100 +5579,58 @@ msgstr ""
 msgid "Can view Area"
 msgstr ""
 
-#: sicop/users/utils/permission_names.py:125
-#: sicop/users/utils/permission_names.py:152
-msgid "Can add Purchase Order"
+#: sicop/users/utils/permission_names.py:116
+#: sicop/users/utils/permission_names.py:142
+msgid "Can view Expense Concept"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:117
+#: sicop/users/utils/permission_names.py:143
+msgid "Can add Expense Type"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:118
+#: sicop/users/utils/permission_names.py:144
+msgid "Can change Expense Type"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:119
+#: sicop/users/utils/permission_names.py:145
+msgid "Can delete Expense Type"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:120
+#: sicop/users/utils/permission_names.py:146
+msgid "Can view Expense Type"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:121
+msgid "Can add Active Integration"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:122
+msgid "Can change Active Integration"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:123
+msgid "Can delete Active Integration"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:124
+msgid "Can view Active Integration"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:126
 msgid "Can add Area Member"
 msgstr ""
 
-#: sicop/users/utils/permission_names.py:127
-#: sicop/users/utils/permission_names.py:153
-msgid "Can change Purchase Order"
-msgstr ""
-
-#: sicop/users/utils/permission_names.py:128
-#: sicop/users/utils/permission_names.py:154
-msgid "Can delete Purchase Order"
-msgstr ""
-
-#: sicop/users/utils/permission_names.py:129
-#: sicop/users/utils/permission_names.py:155
-msgid "Can view Purchase Order"
-msgstr ""
-
-#: sicop/users/utils/permission_names.py:130
-msgid "Can add Third"
-msgstr ""
-
-#: sicop/users/utils/permission_names.py:131
-msgid "Can change Third"
-msgstr ""
-
-#: sicop/users/utils/permission_names.py:132
-msgid "Can delete Third"
-msgstr ""
-
-#: sicop/users/utils/permission_names.py:133
-msgid "Can view Third"
-msgstr ""
-
-#: sicop/users/utils/permission_names.py:134
-msgid "Can add Project"
-msgstr ""
-
-#: sicop/users/utils/permission_names.py:135
-msgid "Can change Project"
-msgstr ""
-
-#: sicop/users/utils/permission_names.py:136
-msgid "Can delete Project"
-msgstr ""
-
 #: sicop/users/utils/permission_names.py:137
 msgid "Can change Area Member"
 msgstr ""
 
-#: sicop/users/utils/permission_names.py:138
-msgid "Can view Project"
-msgstr ""
-
-#: sicop/users/utils/permission_names.py:139
-msgid "Can add Project Status"
-msgstr ""
-
-#: sicop/users/utils/permission_names.py:140
-msgid "Can change Project Status"
-msgstr ""
-
-#: sicop/users/utils/permission_names.py:141
-msgid "Can delete Project Status"
-msgstr ""
-
-#: sicop/users/utils/permission_names.py:142
-msgid "Can view Project Status"
-msgstr ""
-
-#: sicop/users/utils/permission_names.py:143
-msgid "Can add Project Status History"
-msgstr ""
-
-#: sicop/users/utils/permission_names.py:144
-msgid "Can change Project Status History"
-msgstr ""
-
-#: sicop/users/utils/permission_names.py:145
-msgid "Can delete Project Status History"
-msgstr ""
-
-#: sicop/users/utils/permission_names.py:146
-msgid "Can view Project Status History"
-msgstr ""
-
 #: sicop/users/utils/permission_names.py:147
-msgid "Can add Project Type"
+#: sicop/users/utils/permission_names.py:200
+msgid "Can add Purchase Order"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:148
@@ -5490,27 +5638,46 @@ msgid "Can delete Area Member"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:149
-msgid "Can change Project Type"
+#: sicop/users/utils/permission_names.py:201
+msgid "Can change Purchase Order"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:150
-msgid "Can delete Project Type"
+#: sicop/users/utils/permission_names.py:202
+msgid "Can delete Purchase Order"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:151
-msgid "Can view Project Type"
+#: sicop/users/utils/permission_names.py:204
+msgid "Can view Purchase Order"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:152
+msgid "Can add Third"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:153
+msgid "Can change Third"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:154
+msgid "Can delete Third"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:155
+msgid "Can view Third"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:156
-msgid "Can add session"
+msgid "Can add Active Directory Credential"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:157
-msgid "Can change session"
+msgid "Can change Active Directory Credential"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:158
-msgid "Can delete session"
+msgid "Can delete Active Directory Credential"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:159
@@ -5518,335 +5685,495 @@ msgid "Can view Area Member"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:160
-msgid "Can view session"
+msgid "Can view Active Directory Credential"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:161
-msgid "Can add user"
+msgid "Can add Active Directory User"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:162
-msgid "Can change user"
+msgid "Can change Active Directory User"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:163
-msgid "Can delete user"
+msgid "Can delete Active Directory User"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:164
-msgid "Can view user"
+msgid "Can view Active Directory User"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:165
-msgid "Can add Area Role"
+msgid "Can add Organizational Unit"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:166
-msgid "Can change Area Role"
+msgid "Can change Organizational Unit"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:167
-msgid "Can delete Area Role"
+msgid "Can delete Organizational Unit"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:168
-msgid "Can view Area Role"
+msgid "Can view Organizational Unit"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:169
-msgid "Can add group"
+msgid "Can add Menu"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:170
-msgid "Can delete email address"
+msgid "Can add Area Role"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:171
-msgid "Can change group"
+msgid "Can change Menu"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:172
-msgid "Can delete group"
+msgid "Can delete Menu"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:173
-msgid "Can view group"
+msgid "Can view Menu"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:174
-msgid "Can add permission"
+msgid "Can add Menu Group"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:175
-msgid "Can change permission"
+msgid "Can change Menu Group"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:176
-msgid "Can delete permission"
+msgid "Can delete Menu Group"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:177
-msgid "Can view permission"
+msgid "Can view Menu Group"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:178
-msgid "Can add Budget"
+msgid "Can add Menu Option"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:179
-msgid "Can change Budget"
+msgid "Can change Menu Option"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:180
-msgid "Can delete Budget"
+msgid "Can delete Menu Option"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:181
-msgid "Can view email address"
+msgid "Can change Area Role"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:182
-msgid "Can view Budget"
+msgid "Can view Menu Option"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:183
-msgid "Can add Budget Addition"
+msgid "Can add Project"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:184
-msgid "Can change Budget Addition"
+msgid "Can change Project"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:185
-msgid "Can delete Budget Addition"
+msgid "Can delete Project"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:186
-msgid "Can view Budget Addition"
+msgid "Can view Project"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:187
+msgid "Can add Project Status"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:188
+msgid "Can change Project Status"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:189
+msgid "Can delete Project Status"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:190
+msgid "Can view Project Status"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:191
-msgid "Can add Budget Addition Item"
+msgid "Can add Project Status History"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:192
-msgid "Can add email confirmation"
+msgid "Can delete Area Role"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:193
-msgid "Can change Budget Addition Item"
+msgid "Can change Project Status History"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:194
-msgid "Can delete Budget Addition Item"
+msgid "Can delete Project Status History"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:195
-msgid "Can view Budget Addition Item"
+msgid "Can view Project Status History"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:196
-msgid "Can add Budget Addition Transaction"
+msgid "Can add Project Type"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:197
-msgid "Can change Budget Addition Transaction"
+msgid "Can change Project Type"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:198
-msgid "Can delete Budget Addition Transaction"
+msgid "Can delete Project Type"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:199
-msgid "Can view Budget Addition Transaction"
-msgstr ""
-
-#: sicop/users/utils/permission_names.py:200
-msgid "Can add Budget Cap"
-msgstr ""
-
-#: sicop/users/utils/permission_names.py:201
-msgid "Can change Budget Cap"
-msgstr ""
-
-#: sicop/users/utils/permission_names.py:202
-msgid "Can delete Budget Cap"
+msgid "Can view Project Type"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:203
-msgid "Can change email confirmation"
-msgstr ""
-
-#: sicop/users/utils/permission_names.py:204
-msgid "Can view Budget Cap"
+msgid "Can view Area Role"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:205
-msgid "Can add Budet Transaction"
+msgid "Can add session"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:206
-msgid "Can add Budget Decrease Transaction"
+msgid "Can change session"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:207
-msgid "Can change Budet Transaction"
+msgid "Can delete session"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:208
-msgid "Can change Budget Decrease Transaction"
+msgid "Can view session"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:209
-msgid "Can delete Budet Transaction"
+msgid "Can add user"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:210
-msgid "Can delete Budget Decrease Transaction"
+msgid "Can change user"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:211
-msgid "Can view Budet Transaction"
+msgid "Can delete user"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:212
-msgid "Can view Budget Decrease Transaction"
+msgid "Can view user"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:213
-msgid "Can add Budget Description"
+msgid "Can add group"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:214
-msgid "Can delete email confirmation"
+msgid "Can delete email address"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:215
-msgid "Can change Budget Description"
+msgid "Can change group"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:216
-msgid "Can delete Budget Description"
+msgid "Can delete group"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:217
-msgid "Can view Budget Description"
+msgid "Can view group"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:218
-msgid "Can add Budget Redistribution"
+msgid "Can add permission"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:219
-msgid "Can change Budget Redistribution"
+msgid "Can change permission"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:220
-msgid "Can delete Budget Redistribution"
+msgid "Can delete permission"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:221
-msgid "Can view Budget Redistribution"
+msgid "Can view permission"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:222
-msgid "Can add Budget Redistribution Item"
+msgid "Can add Budget"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:223
-msgid "Can change Budget Redistribution Item"
+msgid "Can change Budget"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:224
-msgid "Can delete Budget Redistribution Item"
+msgid "Can delete Budget"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:225
-msgid "Can view email confirmation"
+msgid "Can view email address"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:226
-msgid "Can view Budget Redistribution Item"
+msgid "Can view Budget"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:227
-msgid "Can add Budget Redistribution Item Approval"
+msgid "Can add Budget Addition"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:228
-msgid "Can change Budget Redistribution Item Approval"
+msgid "Can change Budget Addition"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:229
-msgid "Can delete Budget Redistribution Item Approval"
+msgid "Can delete Budget Addition"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:230
-msgid "Can view Budget Redistribution Item Approval"
-msgstr ""
-
-#: sicop/users/utils/permission_names.py:231
-msgid "Can add Budget Redistribution Transaction"
-msgstr ""
-
-#: sicop/users/utils/permission_names.py:232
-msgid "Can change Budget Redistribution Transaction"
-msgstr ""
-
-#: sicop/users/utils/permission_names.py:233
-msgid "Can delete Budget Redistribution Transaction"
-msgstr ""
-
-#: sicop/users/utils/permission_names.py:234
-msgid "Can view Budget Redistribution Transaction"
+msgid "Can view Budget Addition"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:235
-msgid "Can add Commitment"
+msgid "Can add Budget Addition Item"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:236
-msgid "Can add log entry"
+msgid "Can add email confirmation"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:237
-msgid "Can change Commitment"
+msgid "Can change Budget Addition Item"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:238
-msgid "Can delete Commitment"
+msgid "Can delete Budget Addition Item"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:239
-msgid "Can view Commitment"
+msgid "Can view Budget Addition Item"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:240
-msgid "Can add Commitment Contract"
+msgid "Can add Budget Addition Transaction"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:241
-msgid "Can change Commitment Contract"
+msgid "Can change Budget Addition Transaction"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:242
-msgid "Can delete Commitment Contract"
+msgid "Can delete Budget Addition Transaction"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:243
-msgid "Can view Commitment Contract"
+msgid "Can view Budget Addition Transaction"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:244
-msgid "Can add Commitment No related"
+msgid "Can add Budget Cap"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:245
-msgid "Can change Commitment No related"
+msgid "Can change Budget Cap"
 msgstr ""
 
 #: sicop/users/utils/permission_names.py:246
+msgid "Can delete Budget Cap"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:247
+msgid "Can change email confirmation"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:248
+msgid "Can view Budget Cap"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:249
+msgid "Can add Budget Decrease Transaction"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:250
+msgid "Can change Budget Decrease Transaction"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:251
+msgid "Can delete Budget Decrease Transaction"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:252
+msgid "Can view Budget Decrease Transaction"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:253
+msgid "Can add Budget Description"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:254
+msgid "Can change Budget Description"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:255
+msgid "Can delete Budget Description"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:256
+msgid "Can view Budget Description"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:257
+msgid "Can add Budget Redistribution"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:258
+msgid "Can delete email confirmation"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:259
+msgid "Can change Budget Redistribution"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:260
+msgid "Can delete Budget Redistribution"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:261
+msgid "Can view Budget Redistribution"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:262
+msgid "Can add Budget Redistribution Item"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:263
+msgid "Can change Budget Redistribution Item"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:264
+msgid "Can delete Budget Redistribution Item"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:265
+msgid "Can view Budget Redistribution Item"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:266
+msgid "Can add Budget Redistribution Item Approval"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:267
+msgid "Can change Budget Redistribution Item Approval"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:268
+msgid "Can delete Budget Redistribution Item Approval"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:269
+msgid "Can view email confirmation"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:270
+msgid "Can view Budget Redistribution Item Approval"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:271
+msgid "Can add Budget Redistribution Transaction"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:272
+msgid "Can change Budget Redistribution Transaction"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:273
+msgid "Can delete Budget Redistribution Transaction"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:274
+msgid "Can view Budget Redistribution Transaction"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:275
+msgid "Can add Commitment"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:276
+msgid "Can change Commitment"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:277
+msgid "Can delete Commitment"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:278
+msgid "Can view Commitment"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:279
+msgid "Can add Commitment Contract"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:280
+msgid "Can add log entry"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:281
+msgid "Can change Commitment Contract"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:282
+msgid "Can delete Commitment Contract"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:283
+msgid "Can view Commitment Contract"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:284
+msgid "Can add Commitment No related"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:285
+msgid "Can change Commitment No related"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:286
 msgid "Can delete Commitment No related"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:287
+msgid "Can view Commitment No related"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:288
+msgid "Can add Commitment Realease Orphan Item"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:289
+msgid "Can change Commitment Realease Orphan Item"
+msgstr ""
+
+#: sicop/users/utils/permission_names.py:290
+msgid "Can delete Commitment Realease Orphan Item"
 msgstr ""
 
 #: sicop/users/views/groups.py:65

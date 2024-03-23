@@ -23,6 +23,8 @@ from sicop.budget.models.provision import (  # noqa
     ProvisionCartBudget,
     ProvisionCartBudgetHistory,
     ProvisionCartHistory,
+    ProvisionCartAnullationReason,
+    ProvisionCartAnullation,
 )
 from sicop.budget.models.redistribution import (  # noqa
     BudgetRedistribution,

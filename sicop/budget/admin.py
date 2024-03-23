@@ -26,6 +26,8 @@ from sicop.budget.models import (
     ProvisionCartBudget,
     ProvisionCartBudgetHistory,
     ProvisionCartHistory,
+    ProvisionCartAnullationReason,
+    ProvisionCartAnullation,
 )
 
 
@@ -654,4 +656,50 @@ class ProvisionCartBudgetHistoryAdmin(admin.ModelAdmin):
         "already_taked_amount",
         "provosioned_amount",
         "available_budget",
+    ]
+
+
+@admin.register(ProvisionCartAnullationReason)
+class ProvisionCartAnullationReasonAdmin(admin.ModelAdmin):
+    list_display = [
+        "id",
+        "name",
+        "description",
+        "status",
+    ]
+    readonly_fields = [
+        "id",
+        "created_at",
+        "updated_at",
+    ]
+    search_fields = [
+        "name",
+        "description",
+    ]
+
+
+@admin.register(ProvisionCartAnullation)
+class ProvisionCartAnullationAdmin(admin.ModelAdmin):
+    list_display = [
+        "id",
+        "provision_cart",
+        "reason",
+        "anulled_by",
+        "created_at",
+        "updated_at",
+    ]
+    readonly_fields = [
+        "id",
+        "provision_cart",
+        "anulled_by",
+        "reason",
+        "observation",
+        "created_at",
+        "updated_at",
+    ]
+    search_fields = [
+        "provision_cart__id",
+        "reason__name",
+        "anulled_by__email",
+        "anulled_by__name",
     ]

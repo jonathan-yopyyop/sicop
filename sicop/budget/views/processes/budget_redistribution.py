@@ -42,7 +42,7 @@ class BudgetRedistributionListView(PermissionRequiredMixin, LoginRequiredMixin, 
             return BudgetRedistribution.objects.all()
         elif role.code == "director":
             return BudgetRedistribution.objects.all()
-        elif role.code == "administrator" or role.code == "director_administrativo":
+        elif role.code == "administrator" or role.code == "administrador" or role.code == "director_administrativo":
             return BudgetRedistribution.objects.all()
         else:
             return None

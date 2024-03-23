@@ -58,7 +58,7 @@ from sicop.budget.views import (
     GetProvisionCartsByCriteria,
     ProvisionCartAdditionListView,
     ProvisionCartApprovalList,
-    ProvisionCartApprovalUpdateView,
+    ProvisionCartAnullationUpdateView,
     ProvisionCartSearchView,
     ProvisionCartUpdateView,
     ProvisionCertificateView,
@@ -82,6 +82,11 @@ from sicop.budget.views import (
     UpdateThirdOrPoCap,
     UpdateTotalsInCart,
     UpdateTotalsInCartHistory,
+    AnullationReasonListView,
+    ProvisionCartAnullationReasonDetailView,
+    ProvisionCartAnullationReasonCreateView,
+    ProvisionCartAnullationReasonUpdateView,
+    ProvisionCartApprovalUpdateView,
 )
 
 urlpatterns = [
@@ -234,6 +239,11 @@ urlpatterns = [
         "budget/provision/approval/update/<int:pk>/",
         ProvisionCartApprovalUpdateView.as_view(),
         name="provision_cart_approval_update",
+    ),
+    path(
+        "budget/provision/anullation/update/<int:pk>/",
+        ProvisionCartAnullationUpdateView.as_view(),
+        name="provision_cart_anullation_update",
     ),
     path(
         "budget/decrease_transaction/list/",
@@ -489,5 +499,25 @@ urlpatterns = [
         "budget/provision/cart/<int:cart_id>/budget/<int:budget_id>/history",
         GetBudgetIncartHistory.as_view(),
         name="get_budget_in_cart_history",
+    ),
+    path(
+        "budget/anullation_reason/list",
+        AnullationReasonListView.as_view(),
+        name="anullation_reason_list",
+    ),
+    path(
+        "budget/anullation_reason/create/",
+        ProvisionCartAnullationReasonCreateView.as_view(),
+        name="anullation_reason_create",
+    ),
+    path(
+        "budget/anullation_reason/<int:pk>/",
+        ProvisionCartAnullationReasonDetailView.as_view(),
+        name="anullation_reason_detail",
+    ),
+    path(
+        "budget/anullation_reason/<int:pk>/update/",
+        ProvisionCartAnullationReasonUpdateView.as_view(),
+        name="anullation_reason_update",
     ),
 ]

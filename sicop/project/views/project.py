@@ -46,7 +46,7 @@ class ProjectListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
             )
         elif role.code == "director_administrativo":
             query_set = Project.objects.filter()
-        elif role.code == "administrator":
+        elif role.code == "administrator" or role.code == "administrador":
             query_set = Project.objects.filter()
         else:
             query_set = Project.objects.filter(

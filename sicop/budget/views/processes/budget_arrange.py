@@ -17,6 +17,8 @@ from sicop.budget.models.provision import (
     ProvisionCartBudget,
     ProvisionCartBudgetHistory,
     ProvisionCartHistory,
+    ProvisionCartAnullationReason,
+    ProvisionCartAnullation,
 )
 from sicop.certificate.models import Certificate
 from sicop.project.models import Project
@@ -49,7 +51,7 @@ class BudgetProvisionList(PermissionRequiredMixin, LoginRequiredMixin, ListView)
             return ProvisionCart.objects.filter(
                 project__area=area_member.area,
             )
-        elif role.code == "director_administrativo" or role.code == "administrator":
+        elif role.code == "director_administrativo" or role.code == "administrator" or role.code == "administrador":
             return ProvisionCart.objects.filter(
                 # project__area=area_member.area,
             )
@@ -234,7 +236,11 @@ class ProvisionCertificateView(PermissionRequiredMixin, LoginRequiredMixin, Temp
             )
         else:
             provision_cart_approval = None
-            provision_cart_approval_url = "#"
+
+        provision_cart_anullation_url = reverse(
+            "provision_cart_anullation_update",
+            kwargs={"pk": provision_cart_approval.id},
+        )
         context["provision_cart_approval"] = provision_cart_approval
         context["provision_cart"] = cart
         context["area_rol"] = area_rol
@@ -244,6 +250,9 @@ class ProvisionCertificateView(PermissionRequiredMixin, LoginRequiredMixin, Temp
         context["current_user_area_rol"] = current_user_area_rol
         context["current_user_area_member"] = current_user_area_member
         context["provision_cart_approval_url"] = provision_cart_approval_url
+        context["provision_cart_anullation_url"] = provision_cart_anullation_url
+        context["provision_cart_anullation_reasons"] = ProvisionCartAnullationReason.objects.filter(status=True)
+        context["provision_cart_anullations"] = ProvisionCartAnullation.objects.filter(provision_cart=cart).last()
         context["current_user"] = current_user
         # ------------------------------------------
         provision_cart = cart
@@ -256,10 +265,6 @@ class ProvisionCertificateView(PermissionRequiredMixin, LoginRequiredMixin, Temp
 
             if float(available_budget) < float(provision_cart_budget.provosioned_amount):
                 is_viable = False
-                print(f"======================================= {is_viable} =======================================")
-            print("------------------------------------------------------------------")
-            print(f"{available_budget} > {provision_cart_budget.provosioned_amount} = {is_viable}")
-            print("------------------------------------------------------------------")
             test.append(
                 {
                     "id": provision_cart_budget.budget.id,
@@ -371,7 +376,7 @@ class ProvisionCartApprovalList(PermissionRequiredMixin, LoginRequiredMixin, Lis
                 provision_cart__approved=False,
                 rejected=False,
             ).distinct("provision_cart__id")
-        elif role.code == "administrator":
+        elif role.code == "administrator" or role.code == "administrador":
             queryset = ProvisionCartApproval.objects.filter().distinct("provision_cart__id")
         elif role.code == "chief" or role.code == "jefe":
             queryset = ProvisionCartApproval.objects.filter(
@@ -508,3 +513,52 @@ class GetProvisionCartsByCriteria(TemplateView):
             result_list,
             safe=False,
         )
+
+
+class ProvisionCartAnullationUpdateView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
+    """View for Area update."""
+
+    template_name = "sicop/frontend/budget/processes/provision/anullation/update.html"
+    permission_required = "budget.change_provisioncartanullation"
+
+    def post(self, request, *args: str, **kwargs):
+        try:
+            # get the post values
+            request.POST._mutable = True
+            provision_cart = ProvisionCart.objects.get(id=kwargs["pk"])
+            reason_id = request.POST.get("reason")
+            observation = request.POST.get("observation")
+            # Create the anullation
+            reason = ProvisionCartAnullationReason.objects.get(id=reason_id)
+            ProvisionCartAnullation.objects.create(
+                provision_cart=provision_cart,
+                anulled_by=request.user,
+                reason=reason,
+                observation=observation,
+            )
+            # Anull the provision cart
+            provision_cart.rejected = True
+            provision_cart.approved = False
+            provision_cart.annulled = True
+            provision_cart.save()
+            # return the values
+            if provision_cart.approved:
+                provision_cart_budgets = ProvisionCartBudget.objects.filter(provision_cart=provision_cart)
+                for provision_cart_budget in provision_cart_budgets:
+                    budget = provision_cart_budget.budget
+                    provosioned_amount = provision_cart_budget.provosioned_amount
+                    budget.anulled_amount = budget.anulled_amount + provosioned_amount
+                    budget.save()
+
+            url = reverse(
+                "provision_certificate",
+                kwargs={"pk": provision_cart.id},
+            )
+            return HttpResponseRedirect(url)
+        except Exception as e:
+            print(e)
+            return JsonResponse(
+                {
+                    "result": f"error: {str(e)}",
+                }
+            )

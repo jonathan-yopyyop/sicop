@@ -44,6 +44,7 @@ from sicop.budget.views.processes.budget_arrange import (  # noqa
     ProvisionCartApprovalList,
     ProvisionCartApprovalUpdateView,
     ProvisionCertificateView,
+    ProvisionCartAnullationUpdateView,
 )
 from sicop.budget.views.processes.budget_arrange_addition import (  # noqa
     ProvisionCartAdditionListView,
@@ -100,4 +101,10 @@ from sicop.budget.views.processes.cart import (  # noqa
     UpdateProjectInCart,
     UpdateTotalsInCart,
     UpdateTotalsInCartHistory,
+)
+from sicop.budget.views.anullation_reason import (  # noqa
+    AnullationReasonListView,
+    ProvisionCartAnullationReasonDetailView,
+    ProvisionCartAnullationReasonCreateView,
+    ProvisionCartAnullationReasonUpdateView,
 )

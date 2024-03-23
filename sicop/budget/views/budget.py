@@ -35,7 +35,7 @@ class BudgetListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
             return Budget.objects.filter(
                 project__area=area_member.area,
             )
-        elif role.code == "administrator" or role.code == "director_administrativo":
+        elif role.code == "administrator" or role.code == "administrador" or role.code == "director_administrativo":
             return Budget.objects.all()
         else:
             return Budget.objects.filter(

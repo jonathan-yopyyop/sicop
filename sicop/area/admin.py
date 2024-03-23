@@ -64,8 +64,8 @@ class AreaMembersAdmin(ImportExportModelAdmin, admin.ModelAdmin):
         "updated_at",
     )
     search_fields = (
-        "user",
-        "area",
+        "user__name",
+        "area__name",
         "job_title",
     )
     ordering = (

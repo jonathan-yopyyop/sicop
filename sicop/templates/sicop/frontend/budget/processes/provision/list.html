@@ -113,6 +113,9 @@
                     {% endif %}
                   </td>
                   <td class="td-style">
+                    {% if provision_cart.annulled %}
+                    <div class="badge badge-secondary">{% trans 'Anulled' %}</div>
+                    {% else %}
                     {% if provision_cart.rejected %}
                     <div class="badge badge-secondary">{% trans 'Rejected' %}</div>
                     {% else %}
@@ -120,6 +123,7 @@
                     <div class="badge badge-success">{% trans 'Approved' %}</div>
                     {% else %}
                     <div class="badge badge-warning">{% trans 'Pending' %}</div>
+                    {% endif %}
                     {% endif %}
                     {% endif %}
                   </td>

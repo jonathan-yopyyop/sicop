@@ -78,6 +78,11 @@ class ProvisionCart(BaseModel):
         help_text=_("Rejected"),
         default=False,
     )
+    annulled = models.BooleanField(
+        _("Annulled"),
+        help_text=_("Annulled"),
+        default=False,
+    )
 
     @property
     def real_total_provisioned_amount(self) -> float:
@@ -318,3 +323,71 @@ class ProvisionCartBudgetHistory(BaseModel):
     def __str__(self):
         """Unicode representation of Provision Budget history."""
         return f"{self.provision_cart_history}"
+
+
+class ProvisionCartAnullationReason(BaseModel):
+    """Model definition for Provision Cart Anullation Reason."""
+
+    name = models.CharField(
+        _("Name"),
+        help_text=_("Name"),
+        max_length=255,
+    )
+    description = models.TextField(
+        _("Description"),
+        help_text=_("Description"),
+        null=True,
+        blank=True,
+    )
+
+    class Meta:
+        """Meta definition for Provision Cart Anullation Reason."""
+
+        verbose_name = _("Provision Cart Anullation Reason")
+        verbose_name_plural = _("Provision Cart Anullations Reason")
+
+    def __str__(self):
+        """Unicode representation of Provision Cart Anullation."""
+        return f"{self.name}"
+
+
+class ProvisionCartAnullation(BaseModel):
+    """Model definition for Provision Cart Anullation."""
+
+    provision_cart = models.ForeignKey(
+        ProvisionCart,
+        verbose_name=_("Provision Cart"),
+        help_text=_("Provision Cart"),
+        related_name="provision_cart_anullations",
+        on_delete=models.CASCADE,
+    )
+    anulled_by = models.ForeignKey(
+        "users.User",
+        verbose_name=_("Anulled by"),
+        help_text=_("Anulled by"),
+        related_name="anulled_by_fk",
+        on_delete=models.CASCADE,
+    )
+    reason = models.ForeignKey(
+        ProvisionCartAnullationReason,
+        verbose_name=_("Reason"),
+        help_text=_("Reason"),
+        related_name="reason_fk",
+        on_delete=models.CASCADE,
+    )
+    observation = models.TextField(
+        _("Observation"),
+        help_text=_("Observation"),
+        null=True,
+        blank=True,
+    )
+
+    class Meta:
+        """Meta definition for Provision Cart Anullation."""
+
+        verbose_name = _("Provision Cart Anullation")
+        verbose_name_plural = _("Provision Cart Anullations")
+
+    def __str__(self):
+        """Unicode representation of Provision Cart Anullation."""
+        return str(self.id)
