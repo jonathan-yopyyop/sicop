@@ -1837,28 +1837,18 @@
 
               <tr class="row10">
                 <td class="column0 style1 null"></td>
-                <td class="column1 style43 s">
-                  {{provision_cart_budget.budget.cost_centers.first.cost_center_id}}
+                <td class="column1 style43 s">{{provision_cart_budget.budget.cost_centers.first.cost_center_id}}
                   {{provision_cart_budget.budget.cost_centers.first.name}}</td>
-                <td class="column2 style43 s">
-                  {{provision_cart_budget.budget.budget_description}}
-                </td>
-                <td class="column3 style44 s style45" colspan="2">
-                  {{provision_cart_budget.budget.project}}
-                </td>
-                <td class="column5 style46 s style45" colspan="5">
-                  {{provision_cart_budget.budget.budget_description}}
+                <td class="column2 style43 s">{{provision_cart_budget.budget.budget_description}}</td>
+                <td class="column3 style44 s style45" colspan="2">{{provision_cart_budget.budget.project}}</td>
+                <td class="column5 style46 s style45" colspan="5">{{provision_cart_budget.budget.budget_description}}
                 </td>
                 <td class="column10 style47 n style45" colspan="2">$
                   {{provision_cart_budget.provosioned_amount|intcomma}}</td>
                 <td class="column12 style60 n style61" colspan="2">$
                   {{provision_cart_budget.budget.current_budget|intcomma}}</td>
-                <td class="column14 style62 n">
-                  $ {{rest_value2|intcomma}}
-                </td>
-                <td class="column15 style60 f style61" colspan="2">
-                  $ {{rest_value3|intcomma}}
-                </td>
+                <td class="column14 style62 n">$ {{rest_value2|intcomma}}</td>
+                <td class="column15 style60 f style61" colspan="2">$ {{rest_value3|intcomma}}</td>
                 <td class="column17 style3 null"></td>
               </tr>
               {% endfor %}
