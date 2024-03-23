@@ -128,6 +128,14 @@ class Budget(BaseModel):
         """Unicode representation of Budget."""
         return f"{self.project} ({self.budget_description})"
 
+    @property
+    def project_name(self):
+        return self.project.name
+
+    @property
+    def get_project_description(self):
+        return self.project.description
+
     def save(self, *args, **kwargs):
         self.initial_value = float(self.unit_value) * float(self.quantity)
         super().save(*args, **kwargs)
