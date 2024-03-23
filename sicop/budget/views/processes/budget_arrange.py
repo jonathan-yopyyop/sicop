@@ -239,7 +239,7 @@ class ProvisionCertificateView(PermissionRequiredMixin, LoginRequiredMixin, Temp
 
         provision_cart_anullation_url = reverse(
             "provision_cart_anullation_update",
-            kwargs={"pk": provision_cart_approval.id},
+            kwargs={"pk": provision_cart.id},
         )
         context["provision_cart_approval"] = provision_cart_approval
         context["provision_cart"] = cart

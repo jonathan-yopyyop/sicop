@@ -1968,9 +1968,13 @@
               </tr>
               <tr class="row17">
                 <td class="column0 style1 null"></td>
+                {% if provision_cart.approved %}
                 <td class="column1 style48 s style50" colspan="16">Por medio del presente documento se confirma
-                  aprobación presupuestal de acuerdo a la información relacionada</td>
+                  aprobación presupuestal de acuerdo a la información relacionada
+                </td>
+                {% endif %}
                 <td class="column17 style3 null"></td>
+
               </tr>
               <tr class="row18">
                 <td class="column0 style1 null"></td>
@@ -2001,7 +2005,7 @@
     <div class="col-xl-3 col-md-4 col-12 action-btns">
       <div class="card">
         <div class="card-body p-2">
-          {% if provision_cart.approved or provision_cart.anulled %}
+          {% if provision_cart.approved or provision_cart.annulled %}
           <a href="#" class="btn btn-primary btn-block mb-1 print-invoice"> <i
               class="feather icon-printer mr-25 common-size"></i> {% trans "Print" %}</a>
           {% endif %}
