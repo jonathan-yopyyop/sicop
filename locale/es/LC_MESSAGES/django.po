@@ -4173,7 +4173,7 @@ msgstr "Crear provisión de presupuesto"
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1748
 msgid "REJECTED"
-msgstr "RECHAZADO"
+msgstr "ANULADO"
 
 #: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:1946
 #: sicop/templates/sicop/frontend/budget/processes/provision/provision_certificate.html:2077
