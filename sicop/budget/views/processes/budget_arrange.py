@@ -236,6 +236,7 @@ class ProvisionCertificateView(PermissionRequiredMixin, LoginRequiredMixin, Temp
             )
         else:
             provision_cart_approval = None
+            provision_cart_approval_url = "#"
 
         provision_cart_anullation_url = reverse(
             "provision_cart_anullation_update",
