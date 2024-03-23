@@ -370,11 +370,13 @@ class ProvisionCartApprovalList(PermissionRequiredMixin, LoginRequiredMixin, Lis
             queryset = ProvisionCartApproval.objects.filter(
                 provision_cart__project__area=area_member.area,
                 provision_cart__approved=False,
+                provision_cart__annulled=False,
                 rejected=False,
             ).distinct("provision_cart__id")
         elif role.code == "director_administrativo":
             queryset = ProvisionCartApproval.objects.filter(
                 provision_cart__approved=False,
+                provision_cart__annulled=False,
                 rejected=False,
             ).distinct("provision_cart__id")
         elif role.code == "administrator" or role.code == "administrador":
