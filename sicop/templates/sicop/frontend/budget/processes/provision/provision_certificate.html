@@ -1907,7 +1907,7 @@
                   {% else %}
                   {% if provision_cart.approved %}
                   {% if provision_cart.total_provisioned_amount >= project.project_type.cap %}
-                  {% trans "Approved by" %}: {{provision_cart_approval.must_be_approved_by.name}}
+                  {% trans "Approved by" %}: {{provision_cart_approval.approved_by.name}}
                   {% else %}
                   {% trans "This CAP does not require approval" %}
                   {% endif %}
