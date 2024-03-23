@@ -2001,7 +2001,7 @@
     <div class="col-xl-3 col-md-4 col-12 action-btns">
       <div class="card">
         <div class="card-body p-2">
-          {% if provision_cart.approved %}
+          {% if provision_cart.approved or provision_cart.anulled %}
           <a href="#" class="btn btn-primary btn-block mb-1 print-invoice"> <i
               class="feather icon-printer mr-25 common-size"></i> {% trans "Print" %}</a>
           {% endif %}
