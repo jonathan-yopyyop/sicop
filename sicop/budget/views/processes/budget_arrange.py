@@ -73,8 +73,13 @@ class BudgetProvisionCreate(PermissionRequiredMixin, LoginRequiredMixin, Templat
     permission_required = "budget.add_provisioncart"
 
     def get_context_data(self, **kwargs):
+        user = self.request.user
+        area = AreaMember.objects.filter(user=user).first().area
         context = super().get_context_data(**kwargs)
-        context["projects"] = Project.objects.filter(status=True)
+        context["projects"] = Project.objects.filter(
+            status=True,
+            area=area,
+        )
         user = self.request.user
         if ProvisionCart.objects.filter(user=user, status=True).exists():
             provision_cart = ProvisionCart.objects.get(user=user, status=True)
