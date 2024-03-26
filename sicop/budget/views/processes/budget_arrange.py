@@ -73,13 +73,25 @@ class BudgetProvisionCreate(PermissionRequiredMixin, LoginRequiredMixin, Templat
     permission_required = "budget.add_provisioncart"
 
     def get_context_data(self, **kwargs):
-        user = self.request.user
-        area = AreaMember.objects.filter(user=user).first().area
         context = super().get_context_data(**kwargs)
-        context["projects"] = Project.objects.filter(
-            status=True,
-            area=area,
-        )
+        user = self.request.user
+        area_member = AreaMember.objects.filter(user=user).first()
+        area = area_member.area
+        role: AreaRole = area_member.role
+        if (
+            role.code == "administrator"
+            or role.code == "administrador"
+            or role.code == "director_administrativo"
+            or role.code == "administrative_director"
+        ):
+            context["projects"] = Project.objects.filter(
+                status=True,
+                area=area,
+            )
+        else:
+            context["projects"] = Project.objects.filter(
+                status=True,
+            )
         user = self.request.user
         if ProvisionCart.objects.filter(user=user, status=True).exists():
             provision_cart = ProvisionCart.objects.get(user=user, status=True)
