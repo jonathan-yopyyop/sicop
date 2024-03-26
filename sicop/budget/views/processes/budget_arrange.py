@@ -86,11 +86,11 @@ class BudgetProvisionCreate(PermissionRequiredMixin, LoginRequiredMixin, Templat
         ):
             context["projects"] = Project.objects.filter(
                 status=True,
-                area=area,
             )
         else:
             context["projects"] = Project.objects.filter(
                 status=True,
+                area=area,
             )
         user = self.request.user
         if ProvisionCart.objects.filter(user=user, status=True).exists():
