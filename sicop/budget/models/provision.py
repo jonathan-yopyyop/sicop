@@ -142,8 +142,8 @@ class ProvisionCartBudget(BaseModel):
     class Meta:
         """Meta definition for Provision Budget."""
 
-        verbose_name = _("Provision Budget")
-        verbose_name_plural = _("Provision Budgets")
+        verbose_name = _("Provision Cart Budget")
+        verbose_name_plural = _("Provision Cart Budgets")
         unique_together = ("provision_cart", "budget")
 
     def __str__(self):
