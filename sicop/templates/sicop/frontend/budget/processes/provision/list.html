@@ -74,7 +74,7 @@
             </div>
             {% endfor %}
             {% endif %}
-            <table class="table table-striped table-bordered default-ordering" id="ordered_table">
+            <table class="table table-striped table-bordered file-export">
               <thead>
                 <tr>
                   <th>{% trans "CAP" %}</th>
@@ -160,14 +160,4 @@
     </div>
   </div>
 </section>
-<script>
-  $(document).ready(function () {
-    $('#ordered_table').DataTable({
-      "order": [
-        [0, "desc"]
-      ]
-    });
-  });
-
-</script>
 {% endblock content %}

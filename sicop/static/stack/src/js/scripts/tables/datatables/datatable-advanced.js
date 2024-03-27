@@ -207,7 +207,8 @@ $(document).ready(function() {
         dom: '<"d-flex justify-content-between align-items-center"<"btn-group"B>f>rtip',
         buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
+        ],
+        url: '//cdn.datatables.net/plug-ins/2.0.3/i18n/es-ES.json',
     });
     $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn mb-2');
 

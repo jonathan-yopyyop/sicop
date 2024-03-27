@@ -5,79 +5,78 @@
 
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
-  <!-- BEGIN: Head-->
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
-    <title> {% get_app_name %} |
-      {% block page_title %}
-      {% endblock page_title %}
-    </title>
-    <link rel="apple-touch-icon"
-          href="{% static 'stack/app-assets/images/ico/apple-icon-120.png' %}" />
-    <link rel="shortcut icon"
-          type="image/x-icon"
-          href="{% static 'stack/app-assets/images/ico/favicon.ico' %}" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i"
-          rel="stylesheet" />
-    <!-- BEGIN: Vendor CSS-->
-    {% include 'sicop/frontend/base/vendor_css.html' %}
-    <!-- END: Vendor CSS-->
-    <!-- BEGIN: Theme CSS-->
-    {% include 'sicop/frontend/base/theme_css.html' %}
-    <!-- END: Theme CSS-->
-    <!-- BEGIN: Page CSS-->
-    {% include 'sicop/frontend/base/page_css.html' %}
-    <!-- link(rel='stylesheet', type='text/css', href=app_assets_path+'/css'+rtl+'/pages/users.css' %}')-->
-    <!-- END: Page CSS-->
-  </head>
-  <!-- END: Head-->
-  <!-- BEGIN: Body-->
-  <body class="vertical-layout vertical-menu-modern 2-columns fixed-navbar"
-        data-open="click"
-        data-menu="vertical-menu-modern"
-        data-col="2-columns">
-    <!-- BEGIN: Header-->
-    {% include 'sicop/frontend/base/header.html' %}
-    <!-- END: Header-->
-    <!-- BEGIN: Main Menu-->
-    {% include 'sicop/frontend/base/main_menu.html' %}
-    <!-- END: Main Menu-->
-    <!-- BEGIN: Content-->
-    <div class="app-content content">
-      <div class="content-overlay"></div>
-      <div class="content-wrapper">
-        <div class="content-header row"></div>
-        <div class="content-body">
-          {% block content %}
-          {% endblock content %}
-        </div>
+<!-- BEGIN: Head-->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
+  <title> {% get_app_name %} |
+    {% block page_title %}
+    {% endblock page_title %}
+  </title>
+  <link rel="apple-touch-icon" href="{% static 'stack/app-assets/images/ico/apple-icon-120.png' %}" />
+  <link rel="shortcut icon" type="image/x-icon" href="{% static 'stack/app-assets/images/ico/favicon.ico' %}" />
+  <link
+    href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i"
+    rel="stylesheet" />
+  <!-- BEGIN: Vendor CSS-->
+  {% include 'sicop/frontend/base/vendor_css.html' %}
+  <!-- END: Vendor CSS-->
+  <!-- BEGIN: Theme CSS-->
+  {% include 'sicop/frontend/base/theme_css.html' %}
+  <!-- END: Theme CSS-->
+  <!-- BEGIN: Page CSS-->
+  {% include 'sicop/frontend/base/page_css.html' %}
+  <!-- link(rel='stylesheet', type='text/css', href=app_assets_path+'/css'+rtl+'/pages/users.css' %}')-->
+  <!-- END: Page CSS-->
+</head>
+<!-- END: Head-->
+<!-- BEGIN: Body-->
+
+<body class="vertical-layout vertical-menu-modern 2-columns fixed-navbar" data-open="click"
+  data-menu="vertical-menu-modern" data-col="2-columns">
+  <!-- BEGIN: Header-->
+  {% include 'sicop/frontend/base/header.html' %}
+  <!-- END: Header-->
+  <!-- BEGIN: Main Menu-->
+  {% include 'sicop/frontend/base/main_menu.html' %}
+  <!-- END: Main Menu-->
+  <!-- BEGIN: Content-->
+  <div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+      <div class="content-header row"></div>
+      <div class="content-body">
+        {% block content %}
+        {% endblock content %}
       </div>
     </div>
-    <!-- END: Content-->
-    <div class="sidenav-overlay"></div>
-    <div class="drag-target"></div>
-    <!-- BEGIN: Footer-->
-    {% include 'sicop/frontend/base/footer.html' %}
-    <!-- END: Footer-->
-    <!-- BEGIN: Vendor JS-->
-    {% include 'sicop/frontend/base/vendor_js.html' %}
-    <!-- BEGIN Vendor JS-->
-    <!-- BEGIN: Page Vendor JS-->
-    {% include 'sicop/frontend/base/page_vendor_js.html' %}
-    <!-- END: Page Vendor JS-->
-    <!-- BEGIN: Page JS-->
-    {% include 'sicop/frontend/base/page_js.html' %}
-    <!-- END: Page JS-->
-    {% block blockjs %}
-    {% endblock blockjs %}
-    <script>
-      // new DataTable('#ordered_table', {
-      //     order: [[0, 'desc']]
-      // });
-    </script>
-  </body>
-  <!-- END: Body-->
+  </div>
+  <!-- END: Content-->
+  <div class="sidenav-overlay"></div>
+  <div class="drag-target"></div>
+  <!-- BEGIN: Footer-->
+  {% include 'sicop/frontend/base/footer.html' %}
+  <!-- END: Footer-->
+  <!-- BEGIN: Vendor JS-->
+  {% include 'sicop/frontend/base/vendor_js.html' %}
+  <!-- BEGIN Vendor JS-->
+  <!-- BEGIN: Page Vendor JS-->
+  {% include 'sicop/frontend/base/page_vendor_js.html' %}
+  <!-- END: Page Vendor JS-->
+  <!-- BEGIN: Page JS-->
+  {% include 'sicop/frontend/base/page_js.html' %}
+  <!-- END: Page JS-->
+  {% block blockjs %}
+  {% endblock blockjs %}
+  <script>
+    // new DataTable('#ordered_table', {
+    //     order: [[0, 'desc']]
+    // });
+
+  </script>
+</body>
+<!-- END: Body-->
+
 </html>
