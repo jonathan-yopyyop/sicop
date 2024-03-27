@@ -231,9 +231,11 @@ class XiruxIntegration:
             query_xirux = "select * from ConTercer"
         else:
             fecha_actual = datetime.now()
-            fecha_hace_seis_meses = fecha_actual - timedelta(days=6 * 30)
+            fecha_hace_seis_meses = fecha_actual - timedelta(days=5 * 3)
             fecha_formateada = fecha_hace_seis_meses.strftime("%Y-%m-%d")
             query_xirux = f"select * from ConTercer where FecMod > '{fecha_formateada}'"
+
+        print("------------------------", query_xirux, "------------------------", sep="\n")
 
         results_xirux = self.get_results_xirux(query_xirux)
         for result in results_xirux:
@@ -718,24 +720,24 @@ class XiruxIntegration:
     def purchase_orders(self):
         if PurchaseOrder.objects.all().count() == 0:
             query_xirux = """
-            select IdCompro, IdOperac, Numero, Fecha, FecContab, FecVen, IdTercer, IdActICA,
-            IdRetFte, VlrRetFte, FechaCruce, FactProvee, FecEntrega, CostoTtal, VrBruto, VrDesc,
-            VrIva,VrReteIva,VrReteIca, VrNeto, VrBaseImp, Direccion, FecMod
-            from ConDocume cd
-            where IdCompro ='0031' or IdCompro ='0039' or IdCompro ='0065'
-            order by FecMod desc
+            SELECT IdCompro, IdOperac, Numero, Fecha, FecContab, FecVen, IdTercer, IdActICA,
+                IdRetFte, VlrRetFte, FechaCruce, FactProvee, FecEntrega, CostoTtal, VrBruto, VrDesc,
+                VrIva, VrReteIva, VrReteIca, VrNeto, VrBaseImp, Direccion, FecMod
+            FROM ConDocume cd
+            WHERE (IdCompro ='0031' OR IdCompro ='0039' OR IdCompro ='0065')
+            ORDER BY FecMod DESC
             """
         else:
             fecha_actual = datetime.now()
             fecha_hace_seis_meses = fecha_actual - timedelta(days=30)
             fecha_formateada = fecha_hace_seis_meses.strftime("%Y-%m-%d")
             query_xirux = f"""
-            select IdCompro, IdOperac, Numero, Fecha, FecContab, FecVen, IdTercer, IdActICA,
-            IdRetFte, VlrRetFte, FechaCruce, FactProvee, FecEntrega, CostoTtal, VrBruto, VrDesc,
-            VrIva,VrReteIva,VrReteIca, VrNeto, VrBaseImp, Direccion, FecMod
-            from ConDocume cd
-            where IdCompro ='0031' or IdCompro ='0039' or IdCompro ='0065' and FecMod > '{fecha_formateada}'
-            order by FecMod desc
+            SELECT IdCompro, IdOperac, Numero, Fecha, FecContab, FecVen, IdTercer, IdActICA,
+                IdRetFte, VlrRetFte, FechaCruce, FactProvee, FecEntrega, CostoTtal, VrBruto, VrDesc,
+                VrIva, VrReteIva, VrReteIca, VrNeto, VrBaseImp, Direccion, FecMod
+            FROM ConDocume cd
+            WHERE (IdCompro ='0031' OR IdCompro ='0039' OR IdCompro ='0065') AND FecMod > '{fecha_formateada}'
+            ORDER BY FecMod DESC
             """
         print(query_xirux)
         results_xirux = self.get_results_xirux(query_xirux)
