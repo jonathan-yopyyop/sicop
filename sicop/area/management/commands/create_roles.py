@@ -19,8 +19,11 @@ class Command(BaseCommand):
         for role in roles:
             if AreaRole.objects.filter(code=role["code"], name=role["name"]).count() == 0:
                 try:
-                    AreaRole.objects.create(**role)
-                    self.stdout.write(self.style.SUCCESS(f'Role {role["name"]} created successfully'))
+                    if AreaRole.objects.filter(code=role["code"]).count() > 0:
+                        self.stdout.write(self.style.WARNING(f'Role {role["name"]} already exists'))
+                    else:
+                        AreaRole.objects.create(**role)
+                        self.stdout.write(self.style.SUCCESS(f'Role {role["name"]} created successfully'))
                 except Exception as e:
                     self.stdout.write(f"Error: {str(e)}")
             else:

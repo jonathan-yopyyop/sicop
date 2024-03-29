@@ -118,6 +118,7 @@ LOCAL_APPS = [
     "sicop.sicop_error_handler",
     "sicop.maloka_da",
     "sicop.maloka_menu",
+    "sicop.maloka_report",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

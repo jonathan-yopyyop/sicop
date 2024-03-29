@@ -13,6 +13,13 @@ class MenuGroup(BaseModel):
         help_text=_("Name"),
         max_length=150,
     )
+    order = models.IntegerField(
+        _("Order"),
+        help_text=_("Order"),
+        unique=True,
+        blank=True,
+        null=True,
+    )
 
     class Meta:
         """Meta definition for Menu Group."""

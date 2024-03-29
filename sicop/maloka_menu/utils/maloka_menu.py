@@ -16,7 +16,7 @@ def get_menu_and_menu_options(user: User):
 
     menu_options_queryset = MenuOption.objects.filter(
         permissions__in=permissions,
-    )
+    ).order_by("menu__group__order")
     # print(menu_options_queryset)
     for menu_option in menu_options_queryset:
         menu_group_object = menu_option.menu.group

@@ -57,6 +57,8 @@ class MenuGroupAdmin(admin.ModelAdmin):
     form = MenuGroupAdminForm
     list_display = [
         "name",
+        "order",
+        "status",
     ]
     search_fields = [
         "name",

@@ -3,14 +3,15 @@
 {% load static %}
 
 {% block page_title %}
-  Home
+Home
 {% endblock page_title %}
 {% block content %}
-  <section class="row flexbox-container">
-    <div class="col-12 d-flex align-items-center justify-content-center">
-      <div class="col-lg-8 col-md-8 col-8 p-0">
-        <h1>Home</h1>
-      </div>
+<section class="row flexbox-container">
+  <div class="col-12 d-flex align-items-center justify-content-center">
+    <div class="col-lg-8 col-md-8 col-8 p-0 text-center">
+      <h1 style="color: #5C246A; font-size: 80px !important; margin-top: 50px;">SICOP</h1>
+      <img src="{% static 'images/maloka.png' %}" style="border-radius: 10px;" class="img-fluid" alt="maloka_logo">
     </div>
-  </section>
+  </div>
+</section>
 {% endblock content %}

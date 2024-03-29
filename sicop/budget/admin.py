@@ -74,9 +74,7 @@ class BudgetAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     )
     search_fields = (
         "project__name",
-        "budget_description__code",
-        "start_date",
-        "budget_description__code",
+        "budget_description__description",
     )
     list_filter = (
         "project",

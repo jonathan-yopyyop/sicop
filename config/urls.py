@@ -76,6 +76,10 @@ urlpatterns = i18n_patterns(
         "integration/",
         include("sicop.integration.urls"),
     ),
+    path(
+        "report/",
+        include("sicop.maloka_report.urls"),
+    ),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Error handler

@@ -1,0 +1,41 @@
+{% extends 'sicop/frontend/base/base.html' %}
+{% load static i18n static %}
+
+{% block page_title %}
+Report Home
+{% endblock page_title %}
+{% block content %}
+<section class="row flexbox-container">
+  <div class="col-12 d-flex align-items-center justify-content-center">
+    <div class="col-lg-8 col-md-8 col-8 p-0 text-center">
+      <h1 style="color: #5C246A; font-size: 40px !important; margin-top: 20px;">{% trans "Reports" %}</h1>
+    </div>
+  </div>
+  <div class="container mt-4">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col text-center" style="width: 10rem; padding-left: 100px; padding-right: 100px;">
+          <a href="{% url 'report_by_areas' %}">
+            <div class="card" style="border-radius: 10px;">
+              <div class=" card-body">
+                <h5 class="card-title" style="font-size: 20px; color: #5C246A;">{% trans "Area" %}</h5>
+                <i class="fa fa-users" style="font-size: 100px; color: #5C246A;"></i>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col text-center" style="width: 10rem; padding-left: 100px; padding-right: 100px;">
+          <a href="#">
+            <div class="card" style="border-radius: 10px;">
+              <div class="card-body">
+                <h5 class="card-title" style="font-size: 20px; color: #5C246A;">{% trans "Bussines unit" %}</h5>
+                <i class="fa fa-suitcase" style="font-size: 100px; color: #5C246A;"></i>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}
