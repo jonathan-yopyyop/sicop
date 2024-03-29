@@ -5,16 +5,33 @@
 Report project detail
 {% endblock page_title %}
 {% block content %}
+<style>
+  .label-report {
+    color: #5C246A;
+    font-weight: bolder;
+  }
+
+  .input-report {
+    border-color: #5C246A !important;
+  }
+
+</style>
 <section id="configuration">
   <div class="row">
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title" id="horz-layout-colored-controls">{{project.name}}</h4>
+          <h4 class="card-title" id="horz-layout-colored-controls" style="color: #5C246A;">{{project.name}}</h4>
           <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
           <div class="heading-elements">
             <ul class="list-inline mb-0">
-              <li><a data-action="expand"><i class="feather icon-maximize"></i></a></li>
+              <li>
+                <a href="{% url 'report_home' %}">
+                  <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-book" style="font-size: 20px;"></i>
+                  </button>
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -22,31 +39,36 @@ Report project detail
           <div class="card-body">
             <form class="form form-horizontal">
               <div class="row">
+                <div class="col-12">
+                  <h4 class="form-section" style="color: #5C246A;"><i class="fa fa-th-list"></i>
+                    {% trans "General" %}</h4>
+                </div>
                 <div class="col-5">
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group row">
-                        <label class="col-md-3 label-control" for="userinput1">{% trans "Year" %}</label>
+                        <label class="col-md-3 label-control label-report" for="userinput1">{% trans "Year" %}</label>
                         <div class="col-md-9">
-                          <input type="text" class="form-control form-control-sm"
+                          <input type="text" class="form-control form-control-sm input-report"
                             value="{{project.start_date|date:'Y'}}">
                         </div>
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="form-group row">
-                        <label class="col-md-3 label-control" for="userinput3">{% trans "Month" %}</label>
+                        <label class="col-md-3 label-control label-report" for="userinput3">{% trans "Month" %}</label>
                         <div class="col-md-9">
-                          <input type="text" class="form-control form-control-sm"
+                          <input type="text" class="form-control form-control-sm input-report"
                             value="{{project.start_date|date:'m'}}">
                         </div>
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="form-group row">
-                        <label class="col-md-3 label-control" for="userinput3">{% trans "Validity" %}</label>
+                        <label class="col-md-3 label-control label-report"
+                          for="userinput3">{% trans "Validity" %}</label>
                         <div class="col-md-9">
-                          <input type="text" class="form-control form-control-sm"
+                          <input type="text" class="form-control form-control-sm input-report"
                             value="{% trans 'from' %} {{project.start_date|date:'Y-m-d'}} {% trans 'to' %} {{project.end_date|date:'Y-m-d'}}">
                         </div>
                       </div>
@@ -57,24 +79,30 @@ Report project detail
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group row">
-                        <label class="col-md-3 label-control" for="userinput2">{% trans "Project ID" %}</label>
+                        <label class="col-md-3 label-control label-report"
+                          for="userinput2">{% trans "Project ID" %}</label>
                         <div class="col-md-9">
-                          <input type="text" class="form-control form-control-sm" value="{{project.id}}">
+                          <input type="text" class="form-control form-control-sm input-report" value="{{project.id}}">
                         </div>
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="form-group row">
-                        <label class="col-md-3 label-control" for="userinput4">{% trans "Description" %}</label>
+                        <label class="col-md-3 label-control label-report"
+                          for="userinput4">{% trans "Description" %}</label>
                         <div class="col-md-9">
-                          <input type="text" class="form-control form-control-sm" value="{{project.description}}">
+                          <input type="text" class="form-control form-control-sm input-report"
+                            value="{{project.description}}">
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                <div class="col-12">
+                  <h4 class="form-section" style="color: #5C246A;"><i class="fa fa-list-alt"></i>
+                    {% trans "Detail" %}</h4>
+                </div>
                 <div class="col-12 mt-4">
-                  {{project.budgets|safe}}
                   <table class="table display nowrap table-striped table-bordered scroll-horizontal">
                     <thead>
                       <tr>
