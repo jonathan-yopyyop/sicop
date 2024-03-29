@@ -1,5 +1,12 @@
 from django.urls import path
-from sicop.maloka_report.views import ReportHomeView, ReportByAreasView, ReportByProjectView, ReportProjectDetailView
+from sicop.maloka_report.views import (
+    ReportHomeView,
+    ReportByAreasView,
+    ReportByProjectView,
+    ReportProjectDetailView,
+    ReportSelectBussinesUnitView,
+    ReportBussinesUnitView,
+)
 
 urlpatterns = [
     path(
@@ -21,5 +28,15 @@ urlpatterns = [
         "principal/projects/<int:project>/project/",
         ReportProjectDetailView.as_view(),
         name="report_project_detail",
+    ),
+    path(
+        "principal/select_bussines_unit/",
+        ReportSelectBussinesUnitView.as_view(),
+        name="select_bussines_unit",
+    ),
+    path(
+        "principal/bussines_unit/<int:business_unit>/",
+        ReportBussinesUnitView.as_view(),
+        name="report_bussines_unit",
     ),
 ]

@@ -5,6 +5,7 @@ from sicop.business_unit.views import (
     BusinessUnitDetailView,
     BusinessUnitListView,
     BusinessUnitUpdateView,
+    get_bussines_units,
 )
 
 urlpatterns = [
@@ -27,5 +28,10 @@ urlpatterns = [
         "create/",
         BusinessUnitCreateView.as_view(),
         name="business_unit_create",
+    ),
+    path(
+        "get_bussines_units/",
+        get_bussines_units,
+        name="get_bussines_units",
     ),
 ]

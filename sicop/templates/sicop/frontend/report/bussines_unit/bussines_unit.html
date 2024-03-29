@@ -1,0 +1,149 @@
+{% extends 'sicop/frontend/base/base.html' %}
+{% load static i18n static sicop_filters %}
+
+{% block page_title %}
+Report Bussines Unit
+{% endblock page_title %}
+{% block content %}
+<section class="row flexbox-container">
+  <div class="col-11 d-flex align-items-center justify-content-center">
+    <div class="col-12 p-0 text-center">
+      <h1 style="color: #5C246A; font-size: 30px !important; margin-top: 20px;">
+        {% trans "Report for the business unit " %} {{bussines_unit.name}}</h1>
+    </div>
+  </div>
+  <div class="col-1 d-flex align-items-center justify-content-center">
+    <div class="col-12 p-0 text-left">
+      <a href="{% url 'select_bussines_unit' %}">
+        <button type="submit" class="btn btn-primary">
+          <i class="fa fa-suitcase" style="font-size: 20px;"></i>
+        </button>
+      </a>
+    </div>
+  </div>
+  <div class="container mt-4">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-12 text-center" style="padding-left: 10px; padding-right: 10px;">
+          <div class="card" style="border-radius: 10px;">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12">
+                  <h5 class="card-title" style="font-size: 15px; color: #5C246A;">{{busines_unit.name}}</h5>
+                </div>
+                <div class="col-4" style="border: 1px !important; border-color: #5C246A !important;">
+                  <!-- Graphs -->
+                  <canvas id="budget_canvas" width="400" height="400"></canvas>
+                  <!-- Graphs ends -->
+                </div>
+                <div class="col-4">
+                  <table class="table display nowrap table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>{% trans "Concept" %}</th>
+                        <th>{% trans "Value" %}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{% trans "Total" %}</td>
+                        <td>{{cost_center_total_budget|format_to_cop}}</td>
+                      </tr>
+                      <tr>
+                        <td>{% trans "Used" %}</td>
+                        <td>{{cost_center_available_budget|format_to_cop}}</td>
+                      </tr>
+                      <tr>
+                        <td>{% trans "Available" %}</td>
+                        <td>{{cost_center_used_budget|format_to_cop}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-4">
+                </div>
+                <div class="col-12">
+                  <a href="#" class="py-2 col-6">
+                    <button type="submit" class="btn btn-primary">
+                      <i class="fa fa-bar-chart"></i> {% trans 'Detail' %}
+                    </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cost centers table -->
+            <div class="col-12 text-left">
+              <hr>
+              <h4 class="form-section" style="color: #5C246A;"><i class="fa fa-list-alt"></i>
+                {% trans "Cost centers" %}
+              </h4>
+            </div>
+            <div class="col-12 mt-4">
+              <table class="table display nowrap table-striped table-bordered scroll-horizontal">
+                <thead>
+                  <tr>
+                    <th>{% trans "ID" %}</th>
+                    <th>{% trans "Description" %}</th>
+                    <th>{% trans "Current budget" %}</th>
+                    <th>{% trans "Requested budget" %}</th>
+                    <th>{% trans "Available Budget" %}</th>
+                    <th>{% trans "Engaged" %}</th>
+                    <th>{% trans "By Engage" %}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for cost_center_data in cost_centers_data %}
+                  <tr>
+                    <td>
+                      {{cost_center_data.cost_center.id}}
+                    </td>
+                    <td>
+                      {{cost_center_data.cost_center.description}} ({{cost_center_data.cost_center.cost_center_id}})
+                    </td>
+                    <td>
+                      {{cost_center_data.cost_center_budget|format_to_cop}}
+                    </td>
+                    <td>
+                      {{cost_center_data.cost_center_available_budget|format_to_cop}}
+                    </td>
+                    <td>
+                      {{cost_center_data.cost_center_used_budget|format_to_cop}}
+                    </td>
+                    <td>
+                      {{cost_center_data.business_unit_available_budget|format_to_cop}}
+                    </td>
+                    <td>
+                      {{cost_center_data.cost_center.id}}
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <!-- Cost centers table ends -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js">
+</script>
+<script>
+  var data = {{graph_data.data | safe}}
+  var ctx = document.getElementById('budget_canvas');
+  new Chart(ctx, {
+    type: 'pie',
+    data: data,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+</script>
+{% endblock content %}

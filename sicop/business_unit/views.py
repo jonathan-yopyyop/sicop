@@ -3,7 +3,7 @@ from typing import Any
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.forms.models import BaseModelForm
-from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views.generic.detail import DetailView
@@ -169,3 +169,15 @@ class BusinessUnitCreateView(PermissionRequiredMixin, LoginRequiredMixin, Create
                     "business_unit_create",
                 )
             )
+
+
+def get_bussines_units(request):
+    term = request.GET.get("term", "")
+    cities = BusinessUnit.objects.filter(name__icontains=term).values(
+        "id",
+        "name",
+    )
+    return JsonResponse(
+        list(cities),
+        safe=False,
+    )

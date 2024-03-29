@@ -1,6 +1,7 @@
-from sicop.budget.models import Budget, Commitment
+from sicop.budget.models import Budget, Commitment, ProvisionCart, ProvisionCartBudget
 from sicop.project.models import Project
 from sicop.area.models import Area
+from sicop.business_unit.models import BusinessUnit
 import re
 import unicodedata
 from django.utils.translation import gettext as _
@@ -115,3 +116,70 @@ def get_budget_by_projects_in_area(area: Area):
             }
         )
     return budgets
+
+
+def get_budget_by_business_unit(business_unit: BusinessUnit):
+    cost_centers = business_unit.cost_centers.all()
+    cost_centers_data = []
+    provision_cart_ids = []
+    provision_carts = []
+    for cost_center in cost_centers:
+        provision_cart_budgets = ProvisionCartBudget.objects.filter(budget__cost_centers__in=[cost_center])
+        business_unit_budget = 0
+        business_unit_used_budget = 0
+        business_unit_available_budget = 0
+
+        for provision_cart_budget in provision_cart_budgets:
+            provision_cart: ProvisionCart = provision_cart_budget.provision_cart
+            if provision_cart.id not in provision_cart_ids:
+                provision_cart_ids.append(provision_cart.id)
+                provision_carts.append(provision_cart)
+            budget = provision_cart_budget.budget
+            business_unit_budget += budget.unit_value
+            business_unit_available_budget += budget.available_budget
+            business_unit_used_budget += budget.unit_value - budget.available_budget
+        cost_centers_data.append(
+            {
+                "cost_center": cost_center,
+                "cost_center_budget": business_unit_budget,
+                "cost_center_used_budget": business_unit_used_budget,
+                "cost_center_available_budget": business_unit_available_budget,
+            }
+        )
+    comitments = Commitment.objects.filter(provision_cart__in=provision_carts)
+    for commitment in comitments:
+        commitment_provision_cart: ProvisionCart = commitment.provision_cart
+        commitment_provision_cart_budgets = commitment_provision_cart.provision_cart_provision_budgets.all()
+        for provision_cart_budget in commitment_provision_cart_budgets:
+            commitment_provision_cart_budget: ProvisionCartBudget = provision_cart_budget
+            commitment_budget: Budget = commitment_provision_cart_budget.budget
+            commitment_budget_cost_centers = commitment_budget.cost_centers.all()
+            print(commitment_budget_cost_centers)
+
+    cost_center_budget = 0
+    cost_center_used_budget = 0
+    cost_center_available_budget = 0
+    for cost_center_data in cost_centers_data:
+        cost_center_budget += cost_center_data["cost_center_budget"]
+        cost_center_used_budget += cost_center_data["cost_center_used_budget"]
+        cost_center_available_budget += cost_center_data["cost_center_available_budget"]
+
+    cost_center_used_budget_percentage = (cost_center_used_budget / cost_center_budget) * 100
+    cost_center_available_budget_percentage = (cost_center_available_budget / cost_center_budget) * 100
+    graph_data = {
+        "data": {
+            "labels": [_("Used"), _("Available")],
+            "datasets": [
+                {
+                    "label": business_unit.name,
+                    "data": [
+                        f"{cost_center_available_budget_percentage:.2f}",
+                        f"{cost_center_used_budget_percentage:.2f}",
+                    ],
+                    "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)"],
+                    "hoverOffset": 4,
+                }
+            ],
+        }
+    }
+    return cost_centers_data, graph_data, cost_center_used_budget, cost_center_available_budget
