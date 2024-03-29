@@ -46,6 +46,7 @@ class ReportProjectDetailView(PermissionRequiredMixin, LoginRequiredMixin, Templ
         project_id = kwargs.get("project")
         project = Project.objects.get(id=project_id)
         project_budgets = project.project_budgets.all()
+        area = project.area
         budgets = []
         for project_budget in project_budgets:
             budgets.append(
@@ -55,4 +56,5 @@ class ReportProjectDetailView(PermissionRequiredMixin, LoginRequiredMixin, Templ
             )
         context["project"] = project
         context["budgets"] = budgets
+        context["area"] = area
         return context
