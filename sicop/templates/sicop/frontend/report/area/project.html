@@ -50,7 +50,7 @@ Report project detail
                         <label class="col-md-3 label-control label-report" for="userinput1">{% trans "Year" %}</label>
                         <div class="col-md-9">
                           <input type="text" class="form-control form-control-sm input-report"
-                            value="{{project.start_date|date:'Y'}}">
+                            value="{{project.start_date|date:'Y'}}" disabled>
                         </div>
                       </div>
                     </div>
@@ -59,7 +59,7 @@ Report project detail
                         <label class="col-md-3 label-control label-report" for="userinput3">{% trans "Month" %}</label>
                         <div class="col-md-9">
                           <input type="text" class="form-control form-control-sm input-report"
-                            value="{{project.start_date|date:'m'}}">
+                            value="{{project.start_date|date:'m'}}" disabled>
                         </div>
                       </div>
                     </div>
@@ -69,7 +69,8 @@ Report project detail
                           for="userinput3">{% trans "Validity" %}</label>
                         <div class="col-md-9">
                           <input type="text" class="form-control form-control-sm input-report"
-                            value="{% trans 'from' %} {{project.start_date|date:'Y-m-d'}} {% trans 'to' %} {{project.end_date|date:'Y-m-d'}}">
+                            value="{% trans 'from' %} {{project.start_date|date:'Y-m-d'}} {% trans 'to' %} {{project.end_date|date:'Y-m-d'}}"
+                            disabled>
                         </div>
                       </div>
                     </div>
@@ -82,7 +83,8 @@ Report project detail
                         <label class="col-md-3 label-control label-report"
                           for="userinput2">{% trans "Project ID" %}</label>
                         <div class="col-md-9">
-                          <input type="text" class="form-control form-control-sm input-report" value="{{project.id}}">
+                          <input type="text" class="form-control form-control-sm input-report" value="{{project.id}}"
+                            disabled>
                         </div>
                       </div>
                     </div>
@@ -92,7 +94,17 @@ Report project detail
                           for="userinput4">{% trans "Description" %}</label>
                         <div class="col-md-9">
                           <input type="text" class="form-control form-control-sm input-report"
-                            value="{{project.description}}">
+                            value="{{project.description}}" disabled>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group row">
+                        <label class="col-md-3 label-control label-report"
+                          for="userinput4">{% trans "Budget total" %}</label>
+                        <div class="col-md-9">
+                          <input type="text" class="form-control form-control-sm input-report"
+                            value="{{project.budget|format_to_cop}}" disabled>
                         </div>
                       </div>
                     </div>
@@ -102,9 +114,21 @@ Report project detail
                   <h4 class="form-section" style="color: #5C246A;"><i class="fa fa-list-alt"></i>
                     {% trans "Detail" %}</h4>
                 </div>
+
                 <div class="col-12 mt-4">
                   <table class="table display nowrap table-striped table-bordered scroll-horizontal">
                     <thead>
+                      <tr style="background-color: #5C246A; color: white;">
+                        <th>{% trans "Project totals" %}</th>
+                        <th>{{totals.total_budget|format_to_cop}}</th>
+                        <th>{{totals.provisioned_amount|format_to_cop}}</th>
+                        <th>{{totals.total_available_budget|format_to_cop}}</th>
+                        <th>{{totals.total_available_budget_percentage}}%</th>
+                        <th>{{totals.total_commiment|format_to_cop}}</th>
+                        <th>{{totals.total_commitet_percentage}}%</th>
+                        <th>{{totals.total_by_engaded|format_to_cop}}</th>
+                        <th>{{totals.total_by_engaded_percentage}}%</th>
+                      </tr>
                       <tr>
                         <th>{% trans "Budget item / type of expense" %}</th>
                         <th>{% trans "Current budget" %}</th>
@@ -115,24 +139,20 @@ Report project detail
                         <th>{% trans "% engaged" %}</th>
                         <th>{% trans "By Commit" %}</th>
                         <th>{% trans "% by Commit" %}</th>
-                        <th>{% trans "% Costs" %}</th>
-                        <th>{% trans "Compliance" %}</th>
                       </tr>
                     </thead>
                     <tbody>
                       {% for budget in budgets %}
                       <tr>
                         <td>{{budget.budget}}</td>
-                        <td>{{budget.budget.unit_value|format_to_cop}}</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
-                        <td>5421</td>
-                        <td>t.nixon@datatables.net</td>
-                        <td>5421</td>
-                        <td>t.nixon@datatables.net</td>
+                        <td>{{budget.budget.initial_value|format_to_cop}}</td>
+                        <td>{{budget.provisioned_amount|format_to_cop}}</td>
+                        <td>{{budget.available_budget|format_to_cop}}</td>
+                        <td>{{budget.available_percentage}}%</td>
+                        <td>{{budget.commitment_amount|format_to_cop}}</td>
+                        <td>{{budget.commitment_percentage}}%</td>
+                        <td>{{budget.by_engaged|format_to_cop}}</td>
+                        <td>{{budget.by_engaged_percentage}}%</td>
                       </tr>
                       {% endfor %}
                     </tbody>

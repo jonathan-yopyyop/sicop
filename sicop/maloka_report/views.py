@@ -8,6 +8,7 @@ from sicop.maloka_report.utils.area_report import (
     get_budget_by_areas,
     get_budget_by_projects_in_area,
     get_budget_by_business_unit,
+    get_project_detail,
 )
 from sicop.area.models import Area
 from sicop.project.models import Project
@@ -52,17 +53,11 @@ class ReportProjectDetailView(PermissionRequiredMixin, LoginRequiredMixin, Templ
         context = super().get_context_data(**kwargs)
         project_id = kwargs.get("project")
         project = Project.objects.get(id=project_id)
-        project_budgets = project.project_budgets.all()
         area = project.area
-        budgets = []
-        for project_budget in project_budgets:
-            budgets.append(
-                {
-                    "budget": project_budget,
-                }
-            )
+        budgets, totals = get_project_detail(project)
         context["project"] = project
         context["budgets"] = budgets
+        context["totals"] = totals
         context["area"] = area
         return context
 
@@ -88,13 +83,8 @@ class ReportBussinesUnitView(PermissionRequiredMixin, LoginRequiredMixin, Templa
         context = super().get_context_data(**kwargs)
         bussines_unit_id = kwargs.get("business_unit")
         busines_unit = BusinessUnit.objects.get(id=bussines_unit_id)
-        cost_centers_data, graph_data, cost_center_used_budget, cost_center_available_budget = (
-            get_budget_by_business_unit(busines_unit)
-        )
+        cost_centers_data, graph_data = get_budget_by_business_unit(busines_unit)
         context["busines_unit"] = busines_unit
         context["cost_centers_data"] = cost_centers_data
         context["graph_data"] = graph_data
-        context["cost_center_used_budget"] = cost_center_used_budget
-        context["cost_center_available_budget"] = cost_center_available_budget
-        context["cost_center_total_budget"] = cost_center_used_budget + cost_center_available_budget
         return context

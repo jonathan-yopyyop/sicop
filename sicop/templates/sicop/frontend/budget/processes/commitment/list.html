@@ -1,21 +1,10 @@
 {% extends 'sicop/frontend/base/base.html' %}
 
-{% load static %}
-{% load i18n %}
-{% load sicop_filters %}
-{% load humanize %}
+{% load static i18n sicop_filters humanize %}
 {% block page_title %}
 {% trans 'Budget communtment list' %}
 {% endblock page_title %}
 {% block content %}
-<style>
-  .redistribution_font_size {
-    font-size: 8px !important;
-    padding: 5px !important;
-    margin: 5px !important;
-  }
-
-</style>
 <section id="configuration">
   <div class="row">
     <div class="col-12">
@@ -52,9 +41,15 @@
                 <tr>
                   <th>{% trans "ID" %}</th>
                   <th>{% trans "CAP" %}</th>
+                  <th>{% trans "Area" %}</th>
                   <th>{% trans "Contrat/PO" %}</th>
                   <th>{% trans "Third" %}</th>
-                  <th>{% trans "Hax tax?" %}</th>
+                  <th>{% trans "Provisiones" %}</th>
+                  <th>{% trans "Required" %}</th>
+                  <th>{% trans "Difference" %}</th>
+                  <th>{% trans "Released" %}</th>
+                  <th>
+                    {% trans "Hax tax?" %}</th>
                   <th>{% trans "Finished?" %}</th>
                   <th>{% trans 'Detail' %}</th>
                 </tr>
@@ -62,10 +57,16 @@
               <tbody>
                 {% for commitment in commitments %}
                 <tr>
-                  <td>{{ commitment.id }}</td>
-                  <td>{{ commitment.provision_cart }}</td>
-                  <td>{{ commitment.get_contract_or_po_display }}</td>
-                  <td>{{ commitment.third.Razon|multiline_text:20|safe }}</td>
+                  <td class="redistribution_font_size">{{ commitment.id }}</td>
+                  <td class="redistribution_font_size">{{ commitment.provision_cart }}</td>
+                  <td class="redistribution_font_size">{{ commitment.provision_cart.project.area }}</td>
+                  <td class="redistribution_font_size">{{ commitment.get_contract_or_po_display }}</td>
+                  <td class="redistribution_font_size">{{ commitment.third.Razon|multiline_text:20|safe }}</td>
+                  <td class="redistribution_font_size">{{ commitment.provision_budget_amount|format_to_cop }}</td>
+                  <td class="redistribution_font_size">{{ commitment.required_amount|format_to_cop }}</td>
+                  <td class="redistribution_font_size">
+                    {{ commitment.diference_between_required_and_provisioned|format_to_cop }}</td>
+                  <td class="redistribution_font_size">{{ commitment.total_released|format_to_cop }}</td>
                   <td>
                     {% if commitment.has_tax %}
                     <div class="badge badge-success">{% trans 'Yes' %}</div>
@@ -96,17 +97,6 @@
                 </tr>
                 {% endfor %}
               </tbody>
-              <tfoot>
-                <tr>
-                  <th>{% trans "ID" %}</th>
-                  <th>{% trans "CAP" %}</th>
-                  <th>{% trans "Contrat/PO" %}</th>
-                  <th>{% trans "Third" %}</th>
-                  <th>{% trans "Hax tax?" %}</th>
-                  <th>{% trans "Finished?" %}</th>
-                  <th>{% trans 'Detail' %}</th>
-                </tr>
-              </tfoot>
             </table>
           </div>
         </div>

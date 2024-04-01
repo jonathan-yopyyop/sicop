@@ -44,6 +44,7 @@
                   <th>{% trans "ID" %}</th>
                   <th>{% trans "Project" %}</th>
                   <th>{% trans 'Budget description' %}</th>
+                  <th>{% trans "Area" %}</th>
                   <th>{% trans "Current budget" %}</th>
                   <th>{% trans "Quantity" %}</th>
                   <th>{% trans "Status" %}</th>
@@ -56,6 +57,7 @@
                   <td>{{ budget.id }}</td>
                   <td>{{ budget.project.name|multiline_text:20|safe }}</td>
                   <td>{{ budget.budget_description.description|multiline_text:20|safe }}</td>
+                  <td>{{ budget.project.area }}</td>
                   <td>{{ budget.available_budget|format_to_cop }}</td>
                   <td>{{ budget.quantity }}</td>
                   <td>
@@ -75,17 +77,6 @@
                 </tr>
                 {% endfor %}
               </tbody>
-              <tfoot>
-                <tr>
-                  <th>{% trans "ID" %}</th>
-                  <th>{% trans "Project" %}</th>
-                  <th>{% trans 'Budget description' %}</th>
-                  <th>{% trans "Current budget" %}</th>
-                  <th>{% trans "Quantity" %}</th>
-                  <th>{% trans "Status" %}</th>
-                  <th>{% trans 'Detail' %}</th>
-                </tr>
-              </tfoot>
             </table>
           </div>
         </div>

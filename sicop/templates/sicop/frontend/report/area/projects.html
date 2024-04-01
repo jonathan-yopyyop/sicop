@@ -1,10 +1,20 @@
 {% extends 'sicop/frontend/base/base.html' %}
-{% load static i18n static %}
+{% load static i18n static sicop_filters %}
 
 {% block page_title %}
 Report projects by area
 {% endblock page_title %}
 {% block content %}
+<style>
+  .table-text-size {
+    font-size: 9px !important;
+  }
+
+  .table-row-height {
+    height: 15px;
+  }
+
+</style>
 <section class="row flexbox-container">
   <div class="col-11 d-flex align-items-center justify-content-center">
     <div class="col-12 p-0 text-center">
@@ -36,6 +46,23 @@ Report projects by area
                 <i class="fa fa-bar-chart"></i> {% trans 'Detail' %}
               </button>
             </a>
+            <div class="text-center p-2">
+              <table class="table table-striped table-bordered table-text-size">
+                <tbody>
+                  <tr class="table-row-height">
+                    <td>{% trans "Available" %}</td>
+                    <td>{{project.values.total_available_budget|format_to_cop}}</td>
+                  </tr>
+                  <tr class="table-row-height">
+                    <td>{% trans "Engaged" %}</td>
+                    <td>{{project.values.total_commiment|format_to_cop}}</td>
+                  </tr>
+                  <tr class="table-row-height">
+                    <td>{% trans "By Engaged" %}</td>
+                    <td>{{project.values.total_by_engaded|format_to_cop}}</td>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
         {% endfor %}

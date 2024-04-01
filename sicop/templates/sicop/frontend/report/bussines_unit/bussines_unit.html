@@ -5,6 +5,16 @@
 Report Bussines Unit
 {% endblock page_title %}
 {% block content %}
+<style>
+  .table-text-size {
+    font-size: 9px !important;
+  }
+
+  .table-row-height {
+    height: 15px;
+  }
+
+</style>
 <section class="row flexbox-container">
   <div class="col-11 d-flex align-items-center justify-content-center">
     <div class="col-12 p-0 text-center">
@@ -31,34 +41,12 @@ Report Bussines Unit
                 <div class="col-12">
                   <h5 class="card-title" style="font-size: 15px; color: #5C246A;">{{busines_unit.name}}</h5>
                 </div>
+                <div class="col-4">
+                </div>
                 <div class="col-4" style="border: 1px !important; border-color: #5C246A !important;">
                   <!-- Graphs -->
                   <canvas id="budget_canvas" width="400" height="400"></canvas>
                   <!-- Graphs ends -->
-                </div>
-                <div class="col-4">
-                  <table class="table display nowrap table-striped table-bordered">
-                    <thead>
-                      <tr>
-                        <th>{% trans "Concept" %}</th>
-                        <th>{% trans "Value" %}</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>{% trans "Total" %}</td>
-                        <td>{{cost_center_total_budget|format_to_cop}}</td>
-                      </tr>
-                      <tr>
-                        <td>{% trans "Used" %}</td>
-                        <td>{{cost_center_available_budget|format_to_cop}}</td>
-                      </tr>
-                      <tr>
-                        <td>{% trans "Available" %}</td>
-                        <td>{{cost_center_used_budget|format_to_cop}}</td>
-                      </tr>
-                    </tbody>
-                  </table>
                 </div>
                 <div class="col-4">
                 </div>
@@ -71,7 +59,6 @@ Report Bussines Unit
                 </div>
               </div>
             </div>
-
             <!-- Cost centers table -->
             <div class="col-12 text-left">
               <hr>
@@ -84,7 +71,7 @@ Report Bussines Unit
                 <thead>
                   <tr>
                     <th>{% trans "ID" %}</th>
-                    <th>{% trans "Description" %}</th>
+                    <th>{% trans "Cost center description" %}</th>
                     <th>{% trans "Current budget" %}</th>
                     <th>{% trans "Requested budget" %}</th>
                     <th>{% trans "Available Budget" %}</th>
@@ -96,28 +83,48 @@ Report Bussines Unit
                   {% for cost_center_data in cost_centers_data %}
                   <tr>
                     <td>
-                      {{cost_center_data.cost_center.id}}
+                      {{cost_center_data.id}}
                     </td>
                     <td>
-                      {{cost_center_data.cost_center.description}} ({{cost_center_data.cost_center.cost_center_id}})
+                      {{cost_center_data.name}} ({{cost_center_data.cost_center_id}})
                     </td>
                     <td>
-                      {{cost_center_data.cost_center_budget|format_to_cop}}
+                      {{cost_center_data.cost_center_initial_value|format_to_cop}}
                     </td>
                     <td>
-                      {{cost_center_data.cost_center_available_budget|format_to_cop}}
+                      {{cost_center_data.cost_center_total_provisioned_amount|format_to_cop}}
                     </td>
                     <td>
-                      {{cost_center_data.cost_center_used_budget|format_to_cop}}
+                      {{cost_center_data.cost_center_total_available_budget|format_to_cop}}
                     </td>
                     <td>
-                      {{cost_center_data.business_unit_available_budget|format_to_cop}}
+                      {{cost_center_data.cost_center_total_commiment|format_to_cop}}
                     </td>
                     <td>
-                      {{cost_center_data.cost_center.id}}
+                      {{cost_center_data.cost_center_total_by_engaded|format_to_cop}}
                     </td>
                   </tr>
                   {% endfor %}
+                  <tr style="background-color: #5C246A; color: white;">
+                    <td style="background-color: #5C246A; color: #5C246A;">10000000</td>
+                    <td>
+                      <b>{% trans "Totals" %}</b>
+                    </td>
+                    <td>{{graph_data.values.initial_value|format_to_cop}}</td>
+                    <td>{{graph_data.values.total_provisioned_amount|format_to_cop}}</td>
+                    <td>{{graph_data.values.total_available_budget|format_to_cop}}</td>
+                    <td>{{graph_data.values.total_commiment|format_to_cop}}</td>
+                    <td>{{graph_data.values.total_by_engaded|format_to_cop}}</td>
+                  </tr>
+                  <tr style="background-color: #5C246A; color: white;">
+                    <td style="background-color: #5C246A; color: #5C246A;">10000001</td>
+                    <td></td>
+                    <td><b>{% trans "Progress" %}</b></td>
+                    <td>{{graph_data.values.grand_total_provisioned_percentage}}%</td>
+                    <td>{{graph_data.values.grand_total_available_budget_percentage}}%</td>
+                    <td>{{graph_data.values.grand_total_commitet_percentage}}%</td>
+                    <td>{{graph_data.values.grand_total_by_engaded_percentage}}%</td>
+                  </tr>
                 </tbody>
               </table>
             </div>

@@ -2,6 +2,7 @@ from sicop.budget.models import Budget, Commitment, ProvisionCart, ProvisionCart
 from sicop.project.models import Project
 from sicop.area.models import Area
 from sicop.business_unit.models import BusinessUnit
+from sicop.cost_center.models import CostCenter
 import re
 import unicodedata
 from django.utils.translation import gettext as _
@@ -15,56 +16,97 @@ def text_to_slug(text):
     return text
 
 
+# Report functions by areas
+def get_current_budget_by_area(area: Area):
+    budgets = Budget.objects.filter(project__area=area)
+    unit_value = 0
+    initial_value = 0
+    available_budget = 0
+    for budget in budgets:
+        unit_value += budget.unit_value
+        initial_value += budget.initial_value
+        available_budget += budget.available_budget
+    if area.name == "Comunicaciones y Cultura":
+        print(unit_value, initial_value, available_budget)
+    return unit_value, initial_value, available_budget
+
+
+def get_total_cap_requested_by_area(area: Area):
+    caps = ProvisionCart.objects.filter(
+        project__area=area,
+        approved=True,
+        rejected=False,
+        annulled=False,
+        finished=True,
+    )
+    total_provisioned_amount = 0
+    total_required_amount = 0
+    for cap in caps:
+        total_provisioned_amount += cap.total_provisioned_amount
+        total_required_amount += cap.total_required_amount
+    return total_provisioned_amount, total_required_amount
+
+
+def get_total_commiment_by_area(area: Area):
+    total_commiment = 0
+    commitments = Commitment.objects.filter(
+        provision_cart__project__area=area,
+        provision_cart__approved=True,
+        provision_cart__rejected=False,
+        provision_cart__annulled=False,
+        finished=True,
+    )
+    for commitment in commitments:
+        total_commiment += commitment.provision_budget_amount
+    return total_commiment
+
+
 def get_budget_by_areas():
-    projects = Project.objects.filter()
     areas = Area.objects.all()
     budgets = []
     for area in areas:
-        area_budget = 0
-        area_used_budget = 0
-        area_available_budget = 0
-        area_commitments = 0
-        commitments = Commitment.objects.filter(provision_cart__project__area=area)
-        for commitment in commitments:
-            area_commitments += commitment.provision_budget_amount
-        for project in projects:
-            if project.area == area:
-                budget = Budget.objects.filter(project=project).first()
-                if budget:
-                    area_budget += budget.unit_value
-                    area_available_budget += budget.available_budget
-                    area_used_budget += budget.unit_value - budget.available_budget
-        total_to_evaluate = area_available_budget + area_used_budget + area_commitments
-        if total_to_evaluate == 0:
-            area_available_budget_percentage = 0
-            area_used_budget_percentage = 0
-            area_commitments_percentage = 0
-
+        unit_value, initial_value, available_budget = get_current_budget_by_area(area)
+        total_provisioned_amount, total_required_amount = get_total_cap_requested_by_area(area)
+        # Graph totals
+        total_commiment = get_total_commiment_by_area(area)
+        total_available_budget = available_budget - total_provisioned_amount
+        total_by_engaded = total_provisioned_amount - total_commiment
+        # Graph percents
+        if available_budget == 0:
+            total_commitet_percentage = 0
+            total_available_budget_percentage = 0
+            total_by_engaded_percentage = 0
         else:
-            area_available_budget_percentage = (area_available_budget / total_to_evaluate) * 100
-            area_used_budget_percentage = (area_used_budget / total_to_evaluate) * 100
-            area_commitments_percentage = (area_commitments / total_to_evaluate) * 100
+            total_commitet_percentage = (total_commiment / available_budget) * 100
+            total_available_budget_percentage = (total_available_budget / available_budget) * 100
+            total_by_engaded_percentage = (total_by_engaded / available_budget) * 100
+
         budgets.append(
             {
                 "area": area.name,
                 "id": area.id,
                 "slug": text_to_slug(area.name),
-                "budget": area_budget,
-                "available_budget": area_available_budget,
-                "area_used_budget": area_used_budget,
-                "area_commitments": area_commitments,
-                "area_available_budget_percentage": f"{area_available_budget_percentage:.2f}",
-                "area_used_budget_percentage": f"{area_used_budget_percentage:.2f}",
-                "area_commitments_percentage": f"{area_commitments_percentage:.2f}",
+                "values": {
+                    "unit_value": unit_value,
+                    "initial_value": initial_value,
+                    "available_budget": available_budget,
+                    "total_provisioned_amount": total_provisioned_amount,
+                    "total_available_budget": total_available_budget,
+                    "total_commiment": total_commiment,
+                    "total_by_engaded": total_by_engaded,
+                    "total_commitet_percentage": f"{total_commitet_percentage:.2f}",
+                    "total_available_budget_percentage": f"{total_available_budget_percentage:.2f}",
+                    "total_by_engaded_percentage": f"{total_by_engaded_percentage:.2f}",
+                },
                 "data": {
-                    "labels": [_("Available"), _("Used"), _("Commitments")],
+                    "labels": [_("Available"), _("Engaged"), _("By Engaged")],
                     "datasets": [
                         {
                             "label": area.name,
                             "data": [
-                                f"{area_available_budget_percentage:.2f}",
-                                f"{area_used_budget_percentage:.2f}",
-                                f"{area_commitments_percentage:.2f}",
+                                f"{total_available_budget_percentage:.2f}",
+                                f"{total_commitet_percentage:.2f}",
+                                f"{total_by_engaded_percentage:.2f}",
                             ],
                             "backgroundColor": [
                                 "rgb(255, 99, 132)",
@@ -80,35 +122,106 @@ def get_budget_by_areas():
     return budgets
 
 
+# Report functions by proyects
+def get_current_budget_by_project(project: Project):
+    budgets = Budget.objects.filter(project=project)
+    unit_value = 0
+    initial_value = 0
+    available_budget = 0
+    for budget in budgets:
+        unit_value += budget.unit_value
+        initial_value += budget.initial_value
+        available_budget += budget.available_budget
+        if project.area.name == "Comunicaciones y Cultura":
+            print(budget.available_budget)
+    if project.area.name == "Comunicaciones y Cultura":
+        print("=================")
+        print(unit_value, initial_value, available_budget)
+    return unit_value, initial_value, available_budget
+
+
+def get_total_cap_requested_by_project(project: Project):
+    caps = ProvisionCart.objects.filter(
+        project=project,
+        approved=True,
+        rejected=False,
+        annulled=False,
+        finished=True,
+    )
+    total_provisioned_amount = 0
+    total_required_amount = 0
+    for cap in caps:
+        total_provisioned_amount += cap.total_provisioned_amount
+        total_required_amount += cap.total_required_amount
+    return total_provisioned_amount, total_required_amount
+
+
+def get_total_commiment_by_project(project: Project):
+    total_commiment = 0
+    commitments = Commitment.objects.filter(
+        provision_cart__project=project,
+        provision_cart__approved=True,
+        provision_cart__rejected=False,
+        provision_cart__annulled=False,
+        finished=True,
+    )
+    for commitment in commitments:
+        total_commiment += commitment.provision_budget_amount
+    return total_commiment
+
+
 def get_budget_by_projects_in_area(area: Area):
     projects = Project.objects.filter(area=area)
     budgets = []
+
     for project in projects:
-        commitments = Commitment.objects.filter(provision_cart__project=project)
-        project_commitments = 0
-        project_budget = project.budget
-        for commitment in commitments:
-            project_commitments += commitment.provision_budget_amount
-        pending = project_budget - project_commitments
-        commitment_percentage = (project_commitments / project_budget) * 100
-        pending_percentage = (pending / project_budget) * 100
+        unit_value, initial_value, available_budget = get_current_budget_by_project(project)
+        total_provisioned_amount, total_required_amount = get_total_cap_requested_by_project(project)
+        # Graph totals
+        total_commiment = get_total_commiment_by_project(project)
+        total_available_budget = available_budget - total_provisioned_amount
+        total_by_engaded = total_provisioned_amount - total_commiment
+        # Graph percents
+        if available_budget == 0:
+            total_commitet_percentage = 0
+            total_available_budget_percentage = 0
+            total_by_engaded_percentage = 0
+        else:
+            total_commitet_percentage = (total_commiment / available_budget) * 100
+            total_available_budget_percentage = (total_available_budget / available_budget) * 100
+            total_by_engaded_percentage = (total_by_engaded / available_budget) * 100
         budgets.append(
             {
                 "project": project.name,
                 "id": project.id,
                 "slug": text_to_slug(project.name),
-                "budget": project_budget,
-                "commitments": project_commitments,
-                "pending": pending,
-                "commitment_percentage": f"{commitment_percentage:.2f}",
-                "pending_percentage": f"{pending_percentage:.2f}",
+                "values": {
+                    "unit_value": unit_value,
+                    "initial_value": initial_value,
+                    "available_budget": available_budget,
+                    "total_provisioned_amount": total_provisioned_amount,
+                    "total_available_budget": total_available_budget,
+                    "total_commiment": total_commiment,
+                    "total_by_engaded": total_by_engaded,
+                    "total_commitet_percentage": f"{total_commitet_percentage:.2f}",
+                    "total_available_budget_percentage": f"{total_available_budget_percentage:.2f}",
+                    "total_by_engaded_percentage": f"{total_by_engaded_percentage:.2f}",
+                },
                 "data": {
-                    "labels": [_("Commitments"), _("Pending")],
+                    "labels": [_("Available"), _("Engaged"), _("By Engaged")],
                     "datasets": [
                         {
                             "label": project.name,
-                            "data": [f"{commitment_percentage:.2f}", f"{pending_percentage:.2f}"],
-                            "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)"],
+                            "data": [
+                                f"{total_available_budget_percentage:.2f}",
+                                f"{total_commitet_percentage:.2f}",
+                                f"{total_by_engaded_percentage:.2f}",
+                            ],
+                            "backgroundColor": [
+                                "rgb(255, 99, 132)",
+                                "rgb(54, 162, 235)",
+                                "rgb(255, 205, 86)",
+                            ],
                             "hoverOffset": 4,
                         }
                     ],
@@ -118,68 +231,346 @@ def get_budget_by_projects_in_area(area: Area):
     return budgets
 
 
-def get_budget_by_business_unit(business_unit: BusinessUnit):
-    cost_centers = business_unit.cost_centers.all()
-    cost_centers_data = []
-    provision_cart_ids = []
-    provision_carts = []
-    for cost_center in cost_centers:
-        provision_cart_budgets = ProvisionCartBudget.objects.filter(budget__cost_centers__in=[cost_center])
-        business_unit_budget = 0
-        business_unit_used_budget = 0
-        business_unit_available_budget = 0
+# Functions by project
+def get_total_cap_requested_by_budget(budget: Budget):
+    provision_cart_query_set = ProvisionCartBudget.objects.filter(
+        budget=budget,
+        provision_cart__approved=True,
+        provision_cart__rejected=False,
+        provision_cart__annulled=False,
+        provision_cart__finished=True,
+    )
+    provosioned_amount = 0
+    commitment_amount = 0
 
-        for provision_cart_budget in provision_cart_budgets:
-            provision_cart: ProvisionCart = provision_cart_budget.provision_cart
-            if provision_cart.id not in provision_cart_ids:
-                provision_cart_ids.append(provision_cart.id)
-                provision_carts.append(provision_cart)
-            budget = provision_cart_budget.budget
-            business_unit_budget += budget.unit_value
-            business_unit_available_budget += budget.available_budget
-            business_unit_used_budget += budget.unit_value - budget.available_budget
-        cost_centers_data.append(
+    if provision_cart_query_set.count() > 0:
+        provision_budget = provision_cart_query_set.last()
+        provosioned_amount = provision_budget.provosioned_amount
+        provision_cart = provision_budget.provision_cart
+        provosioned_amount = provision_budget.provosioned_amount
+        commitment_query_set = Commitment.objects.filter(
+            provision_cart=provision_cart,
+            finished=True,
+        )
+        if commitment_query_set.count() > 0:
+            commitment_amount = provision_budget.provosioned_amount - provision_budget.released_amount
+
+    return provosioned_amount, commitment_amount
+
+
+def get_current_budget_by_project_detail(project: Project):
+    budgets = Budget.objects.filter(project=project)
+    unit_value = 0
+    initial_value = 0
+    available_budget = 0
+    for budget in budgets:
+        unit_value += budget.unit_value
+        initial_value += budget.initial_value
+        available_budget += budget.available_budget
+    return unit_value, initial_value, available_budget
+
+
+def get_total_cap_requested_by_project_detail(project: Project):
+    caps = ProvisionCart.objects.filter(
+        project=project,
+        approved=True,
+        rejected=False,
+        annulled=False,
+        finished=True,
+    )
+    total_provisioned_amount = 0
+    total_required_amount = 0
+    for cap in caps:
+        total_provisioned_amount += cap.total_provisioned_amount
+        total_required_amount += cap.total_required_amount
+    return total_provisioned_amount, total_required_amount
+
+
+def get_total_commiment_by_project_detail(project: Project):
+    total_commiment = 0
+    commitments = Commitment.objects.filter(
+        provision_cart__project=project,
+        provision_cart__approved=True,
+        provision_cart__rejected=False,
+        provision_cart__annulled=False,
+        finished=True,
+    )
+    for commitment in commitments:
+        total_commiment += commitment.provision_budget_amount
+    return total_commiment
+
+
+def get_project_detail(project: Project):
+    project_budgets = project.project_budgets.all()
+    budgets = []
+    # ---------------------------------
+    unit_value, initial_value, available_budget = get_current_budget_by_project_detail(project)
+    total_provisioned_amount, total_required_amount = get_total_cap_requested_by_project_detail(project)
+    # Graph totals
+    total_commiment = get_total_commiment_by_project_detail(project)
+    total_available_budget = available_budget - total_provisioned_amount
+    total_by_engaded = total_provisioned_amount - total_commiment
+    # Graph percents
+    if available_budget == 0:
+        total_commitet_percentage = 0
+        total_available_budget_percentage = 0
+        total_by_engaded_percentage = 0
+    else:
+        total_commitet_percentage = (total_commiment / available_budget) * 100
+        total_available_budget_percentage = (total_available_budget / available_budget) * 100
+        total_by_engaded_percentage = (total_by_engaded / available_budget) * 100
+    # ---------------------------------
+    for project_budget in project_budgets:
+
+        budget: Budget = project_budget
+        provisioned_amount, commitment_amount = get_total_cap_requested_by_budget(budget)
+        if budget.unit_value > 0:
+            available_percentage = (budget.available_budget / budget.unit_value) * 100
+        else:
+            available_percentage = 0
+        if budget.available_budget > 0:
+            commitment_percentage = (commitment_amount / budget.unit_value) * 100
+            by_engaged_percentage = ((provisioned_amount - commitment_amount) / budget.unit_value) * 100
+        else:
+            commitment_percentage = 0
+            by_engaged_percentage = 0
+        data = {
+            "budget": budget,
+            "initial_value": budget.initial_value,
+            "available_budget": budget.available_budget,
+            "provisioned_amount": provisioned_amount,
+            "available_percentage": f"{available_percentage:.2f}",
+            "commitment_amount": commitment_amount,
+            "commitment_percentage": f"{commitment_percentage:.2f}",
+            "by_engaged": provisioned_amount - commitment_amount,
+            "by_engaged_percentage": f"{by_engaged_percentage:.2f}",
+        }
+        budgets.append(data)
+    totals = {
+        "provisioned_amount": 0,
+        "total_available_budget": total_available_budget,
+        "total_commiment": total_commiment,
+        "total_by_engaded": total_by_engaded,
+        "total_commitet_percentage": f"{total_commitet_percentage:.2f}",
+        "total_available_budget_percentage": f"{total_available_budget_percentage:.2f}",
+        "total_by_engaded_percentage": f"{total_by_engaded_percentage:.2f}",
+    }
+    for budget in budgets:
+        totals["provisioned_amount"] += budget["provisioned_amount"]
+    totals["total_budget"] = totals["provisioned_amount"] + totals["total_available_budget"]
+    print(totals)
+    return budgets, totals
+
+
+# Report functions by BusinessUnit
+def get_current_budget_by_business_unit(business_unit: BusinessUnit):
+    cost_centers = business_unit.cost_centers.all()
+    budgets = Budget.objects.filter(cost_centers__in=cost_centers)
+    unit_value = 0
+    initial_value = 0
+    available_budget = 0
+    for budget in budgets:
+        unit_value += budget.unit_value
+        initial_value += budget.initial_value
+        available_budget += budget.available_budget
+    return unit_value, initial_value, available_budget
+
+
+def get_current_budget_by_cost_center(cost_center: CostCenter):
+    budgets = Budget.objects.filter(cost_centers__in=[cost_center])
+    unit_value = 0
+    initial_value = 0
+    available_budget = 0
+    for budget in budgets:
+        unit_value += budget.unit_value
+        initial_value += budget.initial_value
+        available_budget += budget.available_budget
+    return unit_value, initial_value, available_budget
+
+
+def get_total_cap_requested_by_business_unit(business_unit: BusinessUnit):
+    cost_centers = business_unit.cost_centers.all()
+    budgets = Budget.objects.filter(cost_centers__in=cost_centers)
+    projects = []
+    for budget in budgets:
+        projects.append(budget.project)
+
+    caps = ProvisionCart.objects.filter(
+        project__in=projects,
+        approved=True,
+        rejected=False,
+        annulled=False,
+        finished=True,
+    )
+    total_provisioned_amount = 0
+    total_required_amount = 0
+    for cap in caps:
+        total_provisioned_amount += cap.total_provisioned_amount
+        total_required_amount += cap.total_required_amount
+    return total_provisioned_amount, total_required_amount
+
+
+def get_total_cap_requested_by_cost_center(cost_center: CostCenter):
+    budgets = Budget.objects.filter(cost_centers__in=[cost_center])
+    projects = []
+    for budget in budgets:
+        projects.append(budget.project)
+
+    caps = ProvisionCart.objects.filter(
+        project__in=projects,
+        approved=True,
+        rejected=False,
+        annulled=False,
+        finished=True,
+    )
+    total_provisioned_amount = 0
+    total_required_amount = 0
+    for cap in caps:
+        total_provisioned_amount += cap.total_provisioned_amount
+        total_required_amount += cap.total_required_amount
+    return total_provisioned_amount, total_required_amount
+
+
+def get_total_commiment_by_business_unit(business_unit: BusinessUnit):
+    total_commiment = 0
+    cost_centers = business_unit.cost_centers.all()
+    budgets = Budget.objects.filter(cost_centers__in=cost_centers)
+    projects = []
+    for budget in budgets:
+        projects.append(budget.project)
+    commitments = Commitment.objects.filter(
+        provision_cart__project__in=projects,
+        provision_cart__approved=True,
+        provision_cart__rejected=False,
+        provision_cart__annulled=False,
+        finished=True,
+    )
+    for commitment in commitments:
+        total_commiment += commitment.provision_budget_amount
+    return total_commiment
+
+
+def get_total_commiment_by_cost_center(cost_center: CostCenter):
+    total_commiment = 0
+    budgets = Budget.objects.filter(cost_centers__in=[cost_center])
+    projects = []
+    for budget in budgets:
+        projects.append(budget.project)
+    commitments = Commitment.objects.filter(
+        provision_cart__project__in=projects,
+        provision_cart__approved=True,
+        provision_cart__rejected=False,
+        provision_cart__annulled=False,
+        finished=True,
+    )
+    for commitment in commitments:
+        total_commiment += commitment.provision_budget_amount
+    return total_commiment
+
+
+def get_budget_by_business_unit(business_unit: BusinessUnit):
+    unit_value, initial_value, available_budget = get_current_budget_by_business_unit(business_unit)
+    total_provisioned_amount, total_required_amount = get_total_cap_requested_by_business_unit(business_unit)
+    total_commiment = get_total_commiment_by_business_unit(business_unit)
+    # Graph totals
+    total_available_budget = available_budget - total_provisioned_amount
+    total_by_engaded = total_provisioned_amount - total_commiment
+    # Graph percents
+    if available_budget == 0:
+        total_commitet_percentage = 0
+        total_available_budget_percentage = 0
+        total_by_engaded_percentage = 0
+    else:
+        total_commitet_percentage = (total_commiment / available_budget) * 100
+        total_available_budget_percentage = (total_available_budget / available_budget) * 100
+        total_by_engaded_percentage = (total_by_engaded / available_budget) * 100
+
+    cost_centers = business_unit.cost_centers.all()
+    cost_center_data = []
+
+    for cost_center in cost_centers:
+        # Totals
+        cost_center_unit_value, cost_center_initial_value, cost_center_available_budget = (
+            get_current_budget_by_cost_center(cost_center)
+        )
+        cost_center_total_provisioned_amount, cost_center_total_required_amount = (
+            get_total_cap_requested_by_cost_center(cost_center)
+        )
+        cost_center_total_commiment = get_total_commiment_by_cost_center(cost_center)
+        # Graph totals
+        cost_center_total_available_budget = cost_center_available_budget - cost_center_total_provisioned_amount
+        cost_center_total_by_engaded = cost_center_total_provisioned_amount - cost_center_total_commiment
+        # Graph percents
+        if cost_center_available_budget == 0:
+            cost_center_total_commitet_percentage = 0
+            cost_center_total_available_budget_percentage = 0
+            cost_center_total_by_engaded_percentage = 0
+        else:
+            cost_center_total_commitet_percentage = (cost_center_total_commiment / cost_center_available_budget) * 100
+            cost_center_total_available_budget_percentage = (
+                cost_center_total_available_budget / cost_center_available_budget
+            ) * 100
+            cost_center_total_by_engaded_percentage = (
+                cost_center_total_by_engaded / cost_center_available_budget
+            ) * 100
+        # Totals end
+        cost_center_data.append(
             {
-                "cost_center": cost_center,
-                "cost_center_budget": business_unit_budget,
-                "cost_center_used_budget": business_unit_used_budget,
-                "cost_center_available_budget": business_unit_available_budget,
+                "id": cost_center.id,
+                "name": cost_center.name,
+                "cost_center_id": cost_center.cost_center_id,
+                "cost_center_initial_value": cost_center_initial_value,
+                "cost_center_total_commiment": cost_center_total_commiment,
+                "cost_center_total_available_budget": cost_center_total_available_budget,
+                "cost_center_total_provisioned_amount": cost_center_total_provisioned_amount,
+                "cost_center_total_by_engaded": cost_center_total_by_engaded,
+                "cost_center_total_commitet_percentage": f"{cost_center_total_commitet_percentage:.2f}",
+                "cost_center_total_available_budget_percentage": f"{cost_center_total_available_budget_percentage:.2f}",
+                "cost_center_total_by_engaded_percentage": f"{cost_center_total_by_engaded_percentage:.2f}",
             }
         )
-    comitments = Commitment.objects.filter(provision_cart__in=provision_carts)
-    for commitment in comitments:
-        commitment_provision_cart: ProvisionCart = commitment.provision_cart
-        commitment_provision_cart_budgets = commitment_provision_cart.provision_cart_provision_budgets.all()
-        for provision_cart_budget in commitment_provision_cart_budgets:
-            commitment_provision_cart_budget: ProvisionCartBudget = provision_cart_budget
-            commitment_budget: Budget = commitment_provision_cart_budget.budget
-            commitment_budget_cost_centers = commitment_budget.cost_centers.all()
-            print(commitment_budget_cost_centers)
+    if initial_value > 0:
+        grand_total_available_budget_percentage = (total_available_budget / initial_value) * 100
+        grand_total_commitet_percentage = (total_commiment / initial_value) * 100
+        grand_total_by_engaded_percentage = (total_by_engaded / initial_value) * 100
+        grand_total_provisioned_percentage = (total_provisioned_amount / initial_value) * 100
+    else:
+        grand_total_available_budget_percentage = 0
+        grand_total_commitet_percentage = 0
+        grand_total_by_engaded_percentage = 0
+        grand_total_provisioned_percentage = 0
 
-    cost_center_budget = 0
-    cost_center_used_budget = 0
-    cost_center_available_budget = 0
-    for cost_center_data in cost_centers_data:
-        cost_center_budget += cost_center_data["cost_center_budget"]
-        cost_center_used_budget += cost_center_data["cost_center_used_budget"]
-        cost_center_available_budget += cost_center_data["cost_center_available_budget"]
-
-    cost_center_used_budget_percentage = (cost_center_used_budget / cost_center_budget) * 100
-    cost_center_available_budget_percentage = (cost_center_available_budget / cost_center_budget) * 100
     graph_data = {
+        "values": {
+            "initial_value": initial_value,
+            "total_available_budget": total_available_budget,
+            "total_commiment": total_commiment,
+            "total_by_engaded": total_by_engaded,
+            "total_provisioned_amount": total_provisioned_amount,
+            "grand_total_available_budget_percentage": f"{grand_total_available_budget_percentage:.2f}",
+            "grand_total_provisioned_percentage": f"{grand_total_provisioned_percentage:.2f}",
+            "grand_total_commitet_percentage": f"{grand_total_commitet_percentage:.2f}",
+            "grand_total_by_engaded_percentage": f"{grand_total_by_engaded_percentage:.2f}",
+        },
         "data": {
-            "labels": [_("Used"), _("Available")],
+            "labels": [_("Available"), _("Engaged"), _("By Engaged")],
             "datasets": [
                 {
                     "label": business_unit.name,
                     "data": [
-                        f"{cost_center_available_budget_percentage:.2f}",
-                        f"{cost_center_used_budget_percentage:.2f}",
+                        f"{total_available_budget_percentage:.2f}",
+                        f"{total_commitet_percentage:.2f}",
+                        f"{total_by_engaded_percentage:.2f}",
                     ],
-                    "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)"],
+                    "backgroundColor": [
+                        "rgb(255, 99, 132)",
+                        "rgb(54, 162, 235)",
+                        "rgb(255, 205, 86)",
+                    ],
                     "hoverOffset": 4,
                 }
             ],
-        }
+        },
     }
-    return cost_centers_data, graph_data, cost_center_used_budget, cost_center_available_budget
+
+    return cost_center_data, graph_data
