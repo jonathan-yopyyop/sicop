@@ -849,11 +849,11 @@ msgstr "Ítems de liberación del compromiso"
 
 #: sicop/budget/models/commitment.py:364
 msgid "Commitment Orphan Release"
-msgstr "liberación presupuestal herfanas"
+msgstr "liberación presupuestal no relacionado"
 
 #: sicop/budget/models/commitment.py:365
 msgid "Commitment Orphan Releases"
-msgstr "Libreaciones de compromiso huerfanoss"
+msgstr "Libreaciones de compromiso no relacionados"
 
 #: sicop/budget/models/commitment.py:404 sicop/budget/models/commitment.py:405
 msgid "New budget amount"
@@ -861,11 +861,11 @@ msgstr "Nuevo valor del resupuesto"
 
 #: sicop/budget/models/commitment.py:422
 msgid "Commitment Realease Orphan Item"
-msgstr "Ítem de liberación de presupuesto"
+msgstr "Ítem de liberación de presupuesto no relacionado"
 
 #: sicop/budget/models/commitment.py:423
 msgid "Commitment Realease Orphan Items"
-msgstr "Ítems de liberación de presupuesto"
+msgstr "Ítems de liberación de presupuesto no relacionado"
 
 #: sicop/budget/models/provision.py:29 sicop/budget/models/provision.py:30
 #: sicop/budget/models/provision.py:226 sicop/budget/models/provision.py:227
@@ -5150,23 +5150,23 @@ msgstr "Puede cambiar entrada de registro"
 
 #: sicop/users/utils/permission_names.py:5
 msgid "Can view Commitment Realease Orphan Item"
-msgstr "Puede ver ítems de liberación del compromiso"
+msgstr "Puede ver ítems de liberación del compromiso no relacionados"
 
 #: sicop/users/utils/permission_names.py:6
 msgid "Can add Commitment Orphan Release"
-msgstr "Puede agregar liberación del compromiso huerfanos"
+msgstr "Puede agregar liberación del compromiso no relacionados"
 
 #: sicop/users/utils/permission_names.py:7
 msgid "Can change Commitment Orphan Release"
-msgstr "Puede cambiar liberación del compromiso huerfanos"
+msgstr "Puede cambiar liberación del compromiso no relacionados"
 
 #: sicop/users/utils/permission_names.py:8
 msgid "Can delete Commitment Orphan Release"
-msgstr "Puede borrar liberación del compromiso huerfanos"
+msgstr "Puede borrar liberación del compromiso no relacionados"
 
 #: sicop/users/utils/permission_names.py:9
 msgid "Can view Commitment Orphan Release"
-msgstr "Puede ver liberación del compromiso huerfanos"
+msgstr "Puede ver liberación del compromiso no relacionados"
 
 #: sicop/users/utils/permission_names.py:10
 msgid "Can add Commitment PO"
@@ -6198,15 +6198,15 @@ msgstr "Puede ver compromiso no relacionado"
 
 #: sicop/users/utils/permission_names.py:288
 msgid "Can add Commitment Realease Orphan Item"
-msgstr "Puede agregar ítems de liberación del compromiso"
+msgstr "Puede agregar ítems de liberación del compromiso no relacionados"
 
 #: sicop/users/utils/permission_names.py:289
 msgid "Can change Commitment Realease Orphan Item"
-msgstr "Puede cambiar ítems de liberación del compromiso"
+msgstr "Puede cambiar ítems de liberación del compromiso no relacionados"
 
 #: sicop/users/utils/permission_names.py:290
 msgid "Can delete Commitment Realease Orphan Item"
-msgstr "Puede borrar ítems de liberación del compromiso"
+msgstr "Puede borrar ítems de liberación del compromiso no relacionados"
 
 #: sicop/users/views/groups.py:65
 msgid "Group updated successfully"
