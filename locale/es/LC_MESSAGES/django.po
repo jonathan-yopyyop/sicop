@@ -849,11 +849,11 @@ msgstr "Ítems de liberación del compromiso"
 
 #: sicop/budget/models/commitment.py:364
 msgid "Commitment Orphan Release"
-msgstr "liberación presupuestal"
+msgstr "liberación presupuestal herfanas"
 
 #: sicop/budget/models/commitment.py:365
 msgid "Commitment Orphan Releases"
-msgstr "Libreaciones de compromisos"
+msgstr "Libreaciones de compromiso huerfanoss"
 
 #: sicop/budget/models/commitment.py:404 sicop/budget/models/commitment.py:405
 msgid "New budget amount"
@@ -5154,19 +5154,19 @@ msgstr "Puede ver ítems de liberación del compromiso"
 
 #: sicop/users/utils/permission_names.py:6
 msgid "Can add Commitment Orphan Release"
-msgstr "Puede agregar liberación del compromiso"
+msgstr "Puede agregar liberación del compromiso huerfanos"
 
 #: sicop/users/utils/permission_names.py:7
 msgid "Can change Commitment Orphan Release"
-msgstr "Puede cambiar liberación del compromiso"
+msgstr "Puede cambiar liberación del compromiso huerfanos"
 
 #: sicop/users/utils/permission_names.py:8
 msgid "Can delete Commitment Orphan Release"
-msgstr "Puede borrar liberación del compromiso"
+msgstr "Puede borrar liberación del compromiso huerfanos"
 
 #: sicop/users/utils/permission_names.py:9
 msgid "Can view Commitment Orphan Release"
-msgstr "Puede ver liberación del compromiso"
+msgstr "Puede ver liberación del compromiso huerfanos"
 
 #: sicop/users/utils/permission_names.py:10
 msgid "Can add Commitment PO"
