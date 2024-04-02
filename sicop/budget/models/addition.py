@@ -58,6 +58,23 @@ class BudgetAddition(BaseModel):
         null=True,
         blank=True,
     )
+    approved_by = models.ForeignKey(
+        "users.User",
+        verbose_name=_("Approved by"),
+        help_text=_("Approved by"),
+        related_name="+",
+        on_delete=models.DO_NOTHING,
+        null=True,
+        blank=True,
+    )
+    rejected_by = models.ForeignKey(
+        "users.User",
+        verbose_name=_("Rejected by"),
+        help_text=_("Rejected by"),
+        related_name="+",
+        on_delete=models.DO_NOTHING,
+        null=True,
+    )
 
     class Meta:
         """Meta definition for Budget Addition."""

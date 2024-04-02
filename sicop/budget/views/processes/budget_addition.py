@@ -249,12 +249,13 @@ class AdditionApprovalUpdateView(LoginRequiredMixin, TemplateView):
                         new_amount=budget.available_budget + added_amount,
                         addition_item=item,
                     )
-
+                addition.approved_by = request.user
                 messages.success(request, _("Budget addition approved successfully."))
             else:
                 approved = False
                 rejected = True
                 budget_addition_items = addition.budgetadditionitem_set.all()
+                addition.rejected_by = request.user
                 for item in budget_addition_items:
                     # update the status
                     item.approved = False
