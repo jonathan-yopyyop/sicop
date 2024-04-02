@@ -317,8 +317,8 @@ class ProvisionCartBudgetHistory(BaseModel):
     class Meta:
         """Meta definition for Provision Budget history."""
 
-        verbose_name = _("Provision Budget history")
-        verbose_name_plural = _("Provision Budget histories")
+        verbose_name = _("Provision history budget")
+        verbose_name_plural = _("Provision history budgets")
 
     def __str__(self):
         """Unicode representation of Provision Budget history."""

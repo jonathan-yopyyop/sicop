@@ -461,17 +461,17 @@ urlpatterns = [
         name="commitment_release_list",
     ),
     path(
-        "budget/provision/addition/update/<int:pk>/",
+        "provision/addition/update/<int:pk>/",
         ProvisionCartUpdateView.as_view(),
         name="budget_arrange_update",
     ),
     path(
-        "addition/provision/budget/list/",
+        "provision/addition/list/",
         ProvisionCartAdditionListView.as_view(),
         name="budget_arrange_addition_list",
     ),
     path(
-        "budget/provision/addition/search/",
+        "provision/addition/search/",
         ProvisionCartSearchView.as_view(),
         name="budget_arrange_addition_search",
     ),

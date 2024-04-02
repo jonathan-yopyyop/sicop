@@ -40,6 +40,7 @@ class MenuOptionAdmin(admin.ModelAdmin):
     ]
     search_fields = [
         "name",
+        "url_name",
     ]
 
 

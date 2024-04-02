@@ -424,9 +424,6 @@ class ProvisionCartApprovalUpdateView(PermissionRequiredMixin, LoginRequiredMixi
             current_budget = Budget.objects.get(id=provision_cart_budget.budget.id)
             available_budget = current_budget.available_budget
             if available_budget >= provision_cart_budget.provosioned_amount:
-                print("------------------------------------------------------------------")
-                print(f"{available_budget} >= {provision_cart_budget.provosioned_amount}")
-                print("------------------------------------------------------------------")
                 is_viable = False
             test.append(
                 {
@@ -444,62 +441,112 @@ class ProvisionCartApprovalUpdateView(PermissionRequiredMixin, LoginRequiredMixi
         try:
             request.POST._mutable = True
             provision_cart_approval: ProvisionCartApproval = ProvisionCartApproval.objects.get(id=kwargs["pk"])
-            if request.POST.get("approved") == "True":
-                request.POST["approved"] = True
-                # Go to approve
-                provision_cart = provision_cart_approval.provision_cart
-                provision_cart_budgets = ProvisionCartBudget.objects.filter(provision_cart=provision_cart)
-                cart = provision_cart_approval.provision_cart
-                project = cart.project
-                cart.approved = True
-                cart.save()
-                provision_cart_approval.rejected = False
-                provision_cart_approval.approved = True
-                provision_cart_approval.approved_by = request.user
-                provision_cart_approval.save()
-                test = []
-                is_viable = True
-                for provision_cart_budget in provision_cart_budgets:
-                    current_budget = Budget.objects.get(id=provision_cart_budget.budget.id)
-                    available_budget = current_budget.available_budget
-                    if available_budget >= provision_cart_budget.provosioned_amount:
-                        is_viable = False
-                    test.append(
-                        {
-                            "id": provision_cart_budget.budget.id,
-                            "available_budget": provision_cart_budget.budget.available_budget,
-                            "provosioned_amount": provision_cart_budget.provosioned_amount,
-                        }
+            provision_cart = provision_cart_approval.provision_cart
+            provision_cart_budgets = ProvisionCartBudget.objects.filter(provision_cart=provision_cart)
+            cart = provision_cart_approval.provision_cart
+            project = cart.project
+            provision_cart_hitories_count = ProvisionCartHistory.objects.filter(
+                requires_approval=True,
+                provision_cart=cart,
+                approved=False,
+                finished=True,
+            ).count()
+            if provision_cart_hitories_count > 0:
+                provision_cart_history = ProvisionCartHistory.objects.filter(
+                    requires_approval=True,
+                    provision_cart=cart,
+                    approved=False,
+                    finished=True,
+                ).last()
+                if request.POST.get("approved") == "True":
+                    request.POST["approved"] = True
+                    cart = provision_cart_approval.provision_cart
+                    cart.rejected = False
+                    cart.approved = True
+                    cart.save()
+                    provision_cart_approval.rejected = False
+                    provision_cart_approval.approved = True
+                    provision_cart_approval.approved_by = request.user
+                    provision_cart_approval.save()
+                    provision_cart_history.rejected = True
+                    provision_cart_history.approved = False
+                    provision_cart_history.save()
+                    provision_cart_budget_histories = ProvisionCartBudgetHistory.objects.filter(
+                        provision_cart_history=provision_cart_history,
                     )
-
-                for provision_cart_budget in provision_cart_budgets:
-                    current_budget = Budget.objects.get(id=provision_cart_budget.budget.id)
-                    available_budget = current_budget.available_budget
-
-                    budget = provision_cart_budget.budget
-                    old_value = budget.current_budget
-                    new_value = old_value - provision_cart_budget.provosioned_amount
-                    if available_budget >= provision_cart_budget.provosioned_amount:
-                        provosioned_amount = provision_cart_budget.provosioned_amount
-                        budget.budget_decrease_control = budget.budget_decrease_control + provosioned_amount
-                        budget.save()
-                        BudgetDecreaseTransaction.objects.create(
-                            budget=budget,
-                            old_amount=old_value,
-                            requiered_amount=old_value - new_value,
-                            new_amount=new_value,
-                            project=project,
-                            provision_cart=cart,
+                    for provision_cart_budget_history in provision_cart_budget_histories:
+                        budget = provision_cart_budget_history.budget
+                        budget.budget_decrease_control = (
+                            budget.budget_decrease_control + provision_cart_budget_history.provosioned_amount
                         )
+                        budget.save()
+                else:
+                    request.POST["approved"] = False
+                    cart = provision_cart_approval.provision_cart
+                    cart.rejected = True
+                    cart.approved = False
+                    cart.save()
+                    provision_cart_approval.rejected = True
+                    provision_cart_approval.approved = False
+                    provision_cart_approval.approved_by = request.user
+                    provision_cart_approval.save()
+                    provision_cart_history.rejected = True
+                    provision_cart_history.approved = False
+                    provision_cart_history.save()
             else:
-                request.POST["approved"] = False
-                cart = provision_cart_approval.provision_cart
-                cart.rejected = True
-                cart.approved = False
-                cart.save()
-                provision_cart_approval.rejected = True
-                provision_cart_approval.approved = False
-                provision_cart_approval.save()
+                if request.POST.get("approved") == "True":
+                    request.POST["approved"] = True
+                    # Go to approve
+                    cart.approved = True
+                    cart.save()
+                    provision_cart_approval.rejected = False
+                    provision_cart_approval.approved = True
+                    provision_cart_approval.approved_by = request.user
+                    provision_cart_approval.save()
+                    test = []
+                    is_viable = True
+                    for provision_cart_budget in provision_cart_budgets:
+                        current_budget = Budget.objects.get(id=provision_cart_budget.budget.id)
+                        available_budget = current_budget.available_budget
+                        if available_budget >= provision_cart_budget.provosioned_amount:
+                            is_viable = False
+                        test.append(
+                            {
+                                "id": provision_cart_budget.budget.id,
+                                "available_budget": provision_cart_budget.budget.available_budget,
+                                "provosioned_amount": provision_cart_budget.provosioned_amount,
+                            }
+                        )
+
+                    for provision_cart_budget in provision_cart_budgets:
+                        current_budget = Budget.objects.get(id=provision_cart_budget.budget.id)
+                        available_budget = current_budget.available_budget
+
+                        budget = provision_cart_budget.budget
+                        old_value = budget.current_budget
+                        new_value = old_value - provision_cart_budget.provosioned_amount
+                        if available_budget >= provision_cart_budget.provosioned_amount:
+                            provosioned_amount = provision_cart_budget.provosioned_amount
+                            budget.budget_decrease_control = budget.budget_decrease_control + provosioned_amount
+                            budget.save()
+                            BudgetDecreaseTransaction.objects.create(
+                                budget=budget,
+                                old_amount=old_value,
+                                requiered_amount=old_value - new_value,
+                                new_amount=new_value,
+                                project=project,
+                                provision_cart=cart,
+                            )
+                else:
+                    request.POST["approved"] = False
+                    cart = provision_cart_approval.provision_cart
+                    cart.rejected = True
+                    cart.approved = False
+                    cart.save()
+                    provision_cart_approval.rejected = True
+                    provision_cart_approval.approved = False
+                    provision_cart_approval.save()
+
             url = reverse(
                 "provision_certificate",
                 kwargs={"pk": cart.id},

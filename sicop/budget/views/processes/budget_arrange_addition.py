@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
+from datetime import datetime
 
 from sicop.budget.models import Budget
 from sicop.budget.models.provision import (
@@ -110,11 +111,31 @@ class ProvisionCartUpdateView(PermissionRequiredMixin, LoginRequiredMixin, Templ
     def post(self, request, *args, **kwargs):
         provision_cart_history_id = request.POST.get("cart_id")
         provision_cart_history = ProvisionCartHistory.objects.get(id=provision_cart_history_id)
-        provision_cart_history_budgets = ProvisionCartBudgetHistory.objects.filter(
-            provision_cart_history=provision_cart_history
-        ).all()
         provision_cart = ProvisionCart.objects.get(id=provision_cart_history.provision_cart.id)
-        # provision_cart_budgets = ProvisionCartBudget.objects.filter(provision_cart=provision_cart)
+        provision_cart_budgets = ProvisionCartBudget.objects.filter(provision_cart=provision_cart)
+
+        total_provisioned_amount_to_add = 0
+        for provision_cart_budget in provision_cart_budgets:
+            budget = provision_cart_budget.budget
+            provision_cart_budget_history = ProvisionCartBudgetHistory.objects.filter(
+                provision_cart_history=provision_cart_history,
+                budget=budget,
+            ).last()
+            total_provisioned_amount_to_add += provision_cart_budget_history.provosioned_amount
+            provision_cart_budget.provosioned_amount = (
+                provision_cart_budget.provosioned_amount + provision_cart_budget_history.provosioned_amount
+            )
+            provision_cart_budget.available_budget = (
+                provision_cart_budget.available_budget - provision_cart_budget_history.provosioned_amount
+            )
+            provision_cart_budget.save()
+        provision_cart.total_provisioned_amount = (
+            provision_cart.total_provisioned_amount + total_provisioned_amount_to_add
+        )
+        new_total_missing = provision_cart.total_required_amount - provision_cart.total_provisioned_amount
+        if new_total_missing < 0:
+            new_total_missing = 0
+        provision_cart.total_missing_amount = new_total_missing
 
         # Require approval
         project = provision_cart.project
@@ -125,7 +146,33 @@ class ProvisionCartUpdateView(PermissionRequiredMixin, LoginRequiredMixin, Templ
         else:
             provision_cart.requires_approval = False
             provision_cart.approved = True
+
+            # To update budgets
+            provision_cart_budget_histories = ProvisionCartBudgetHistory.objects.filter(
+                provision_cart_history=provision_cart_history,
+            )
+            for provision_cart_budget_history in provision_cart_budget_histories:
+                budget = provision_cart_budget_history.budget
+                budget.budget_decrease_control = (
+                    budget.budget_decrease_control + provision_cart_budget_history.provosioned_amount
+                )
+                budget.save()
+        today = datetime.now()
+        # today on format YYY-mm-dd
+        today = today.strftime("%Y-%m-%d")
+        user = request.user
+        observation = (
+            f" CAP adicionado por valor de ${total_provisioned_amount_to_add} el día {today} y creado por {user.name}"
+        )
+        provision_cart.observation = (
+            str(provision_cart.observation) + " " + str(request.POST.get("observation")) + observation
+        )
         provision_cart.save()
+
+        provision_cart_history.finished = True
+        provision_cart_history.approved = provision_cart.approved
+        provision_cart_history.requires_approval = provision_cart.requires_approval
+        provision_cart_history.save()
         # provision_certificate
         return HttpResponseRedirect(
             reverse(
@@ -133,11 +180,3 @@ class ProvisionCartUpdateView(PermissionRequiredMixin, LoginRequiredMixin, Templ
                 kwargs={"pk": provision_cart.id},
             )
         )
-        # return JsonResponse(
-        #     {
-        #         "status": "success",
-        #         "post": request.POST,
-        #         "provision_cart": provision_cart.id,
-        #         "provision_cart_history_budgets": list(provision_cart_history_budgets.values()),
-        #     }
-        # )
