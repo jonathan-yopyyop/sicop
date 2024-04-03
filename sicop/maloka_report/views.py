@@ -19,12 +19,12 @@ from sicop.budget.models import Budget, ProvisionCart, ProvisionCartBudget
 
 class ReportHomeView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = "sicop/frontend/report/home.html"
-    permission_required = "report.view_report"
+    permission_required = "maloka_report.view_report"
 
 
 class ReportByAreasView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = "sicop/frontend/report/area/areas.html"
-    permission_required = "report.view_report"
+    permission_required = "maloka_report.view_report"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -34,7 +34,7 @@ class ReportByAreasView(PermissionRequiredMixin, LoginRequiredMixin, TemplateVie
 
 class ReportByProjectView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = "sicop/frontend/report/area/projects.html"
-    permission_required = "report.view_report"
+    permission_required = "maloka_report.view_report"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -47,7 +47,7 @@ class ReportByProjectView(PermissionRequiredMixin, LoginRequiredMixin, TemplateV
 
 class ReportProjectDetailView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = "sicop/frontend/report/area/project.html"
-    permission_required = "report.view_report"
+    permission_required = "maloka_report.view_report"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -64,7 +64,7 @@ class ReportProjectDetailView(PermissionRequiredMixin, LoginRequiredMixin, Templ
 
 class ReportSelectBussinesUnitView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = "sicop/frontend/report/bussines_unit/select.html"
-    permission_required = "report.view_report"
+    permission_required = "maloka_report.view_report"
 
     def post(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
         business_unit = request.POST.get("bussines_unit")
@@ -77,7 +77,7 @@ class ReportSelectBussinesUnitView(PermissionRequiredMixin, LoginRequiredMixin, 
 
 class ReportBussinesUnitView(PermissionRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = "sicop/frontend/report/bussines_unit/bussines_unit.html"
-    permission_required = "report.view_report"
+    permission_required = "maloka_report.view_report"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
