@@ -562,6 +562,7 @@
 
       </style>
       <div class="card">
+        --{{area_role.name}}--
         {% if budget_addition.requires_approval and not budget_addition.rejected %}
         {% if area_role.name == 'Presidente' or area_role.name == 'President' or area_role.name == 'presidente' or area_role.name == 'president' %}
         <div class="card-body p-2">
