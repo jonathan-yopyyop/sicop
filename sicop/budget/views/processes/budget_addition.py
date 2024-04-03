@@ -201,12 +201,12 @@ class AdditionCertificateView(LoginRequiredMixin, TemplateView):
         user = budget_addition.user
         if AreaMember.objects.filter(user=user).exists():
             area_member = AreaMember.objects.filter(user=user).last()
-            area_rol = area_member.role
+            area_role = area_member.role
         else:
             area_member = None
-            area_rol = None
+            area_role = None
         context["budget_addition"] = budget_addition
-        context["area_rol"] = area_rol
+        context["area_role"] = area_role
         context["area_member"] = area_member
         context["certificate_version"] = Certificate.objects.filter(slug="addition").first()
 

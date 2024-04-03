@@ -563,6 +563,7 @@
       </style>
       <div class="card">
         {% if budget_addition.requires_approval and not budget_addition.rejected %}
+        {% if area_role.name == 'Presidente' or area_role.name == 'President' or area_role.name == 'presidente' or area_role.name == 'president' %}
         <div class="card-body p-2">
           <form action="{% url 'addition_approval_update' budget_addition.id %}" method="post">
             {% csrf_token %}
@@ -596,6 +597,7 @@
             </div>
           </form>
         </div>
+        {% endif %}
         {% endif %}
       </div>
       {% endif %}

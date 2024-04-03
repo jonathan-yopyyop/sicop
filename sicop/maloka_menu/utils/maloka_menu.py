@@ -7,6 +7,8 @@ from django.contrib.auth.models import Permission
 def get_menu_and_menu_options(user: User):
     """Get menu and menu options."""
     user_permissions = user.get_all_permissions()
+    area_member = AreaMember.objects.filter(user=user).last()
+    roles = [area_member.role] if area_member else []
     permissions = []
     menu = {}
     for user_permission in user_permissions:
@@ -16,6 +18,7 @@ def get_menu_and_menu_options(user: User):
 
     menu_options_queryset = MenuOption.objects.filter(
         permissions__in=permissions,
+        roles__in=roles,
     ).order_by("menu__group__order")
     # print(menu_options_queryset)
     for menu_option in menu_options_queryset:
