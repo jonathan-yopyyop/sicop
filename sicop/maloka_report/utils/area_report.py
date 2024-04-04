@@ -102,9 +102,9 @@ def get_budget_by_areas():
             total_available_budget_percentage = 0
             total_by_engaded_percentage = 0
         else:
-            total_commitet_percentage = round(((total_commiment / total_current_budget) * 100), 2)
-            total_available_budget_percentage = round(((total_available_budget / total_current_budget) * 100), 2)
-            total_by_engaded_percentage = round(((total_by_engaded / total_current_budget) * 100), 2)
+            total_commitet_percentage = round(((total_commiment / total_current_budget) * 100), 1)
+            total_available_budget_percentage = round(((total_available_budget / total_current_budget) * 100), 1)
+            total_by_engaded_percentage = round(((total_by_engaded / total_current_budget) * 100), 1)
             difference = 100 - (
                 total_commitet_percentage + total_available_budget_percentage + total_by_engaded_percentage
             )
@@ -221,9 +221,9 @@ def get_budget_by_projects_in_area(area: Area):
             total_available_budget_percentage = 0
             total_by_engaded_percentage = 0
         else:
-            total_commitet_percentage = round(((total_commiment / total_current_budget) * 100), 2)
-            total_available_budget_percentage = round(((total_available_budget / total_current_budget) * 100), 2)
-            total_by_engaded_percentage = round(((total_by_engaded / total_current_budget) * 100), 2)
+            total_commitet_percentage = round(((total_commiment / total_current_budget) * 100), 1)
+            total_available_budget_percentage = round(((total_available_budget / total_current_budget) * 100), 1)
+            total_by_engaded_percentage = round(((total_by_engaded / total_current_budget) * 100), 1)
             difference = 100 - (
                 total_commitet_percentage + total_available_budget_percentage + total_by_engaded_percentage
             )
@@ -360,8 +360,8 @@ def get_project_detail(project: Project):
         totals_by_engaded_percentage = 0
         totals_commiment_percentage = 0
     else:
-        totals_by_engaded_percentage = round(((totals_by_engaded / totals_provisioned_amount) * 100), 2)
-        totals_commiment_percentage = round(((totals_commiment / totals_provisioned_amount) * 100), 2)
+        totals_by_engaded_percentage = round(((totals_by_engaded / totals_provisioned_amount) * 100), 1)
+        totals_commiment_percentage = round(((totals_commiment / totals_provisioned_amount) * 100), 1)
         difference = 100 - (
             totals_commiment_percentage + totals_available_budget_percentage + totals_by_engaded_percentage
         )
@@ -548,9 +548,9 @@ def get_budget_by_business_unit(business_unit: BusinessUnit):
         total_available_budget_percentage = 0
         total_by_engaded_percentage = 0
     else:
-        total_commitet_percentage = round(((total_commiment / available_budget) * 100), 2)
-        total_available_budget_percentage = round(((total_available_budget / available_budget) * 100), 2)
-        total_by_engaded_percentage = round(((total_by_engaded / available_budget) * 100), 2)
+        total_commitet_percentage = round(((total_commiment / available_budget) * 100), 1)
+        total_available_budget_percentage = round(((total_available_budget / available_budget) * 100), 1)
+        total_by_engaded_percentage = round(((total_by_engaded / available_budget) * 100), 1)
         difference = 100 - (
             total_commitet_percentage + total_available_budget_percentage + total_by_engaded_percentage
         )
@@ -604,10 +604,10 @@ def get_budget_by_business_unit(business_unit: BusinessUnit):
             }
         )
     if initial_value > 0:
-        grand_total_available_budget_percentage = round(((total_available_budget / initial_value) * 100), 2)
-        grand_total_commitet_percentage = round(((total_commiment / initial_value) * 100), 2)
-        grand_total_by_engaded_percentage = round(((total_by_engaded / initial_value) * 100), 2)
-        grand_total_provisioned_percentage = round(((total_provisioned_amount / initial_value) * 100), 2)
+        grand_total_available_budget_percentage = round(((total_available_budget / initial_value) * 100), 1)
+        grand_total_commitet_percentage = round(((total_commiment / initial_value) * 100), 1)
+        grand_total_by_engaded_percentage = round(((total_by_engaded / initial_value) * 100), 1)
+        grand_total_provisioned_percentage = round(((total_provisioned_amount / initial_value) * 100), 1)
     else:
         grand_total_available_budget_percentage = 0
         grand_total_commitet_percentage = 0
