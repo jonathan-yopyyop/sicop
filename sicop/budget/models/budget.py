@@ -129,6 +129,61 @@ class Budget(BaseModel):
             + self.anulled_amount
         )
 
+    @property
+    def report_current_budget(self) -> float:
+        return (
+            self.initial_value
+            - self.budget_decrease_control
+            + self.budget_addition
+            + self.released_amount
+            + self.anulled_amount
+        )
+
+    @property
+    def report_requested_budget(self) -> float:
+        budget_provision_budgets = self.budget_provision_budgets.filter(
+            provision_cart__approved=True,
+            provision_cart__rejected=False,
+            provision_cart__annulled=False,
+            provision_cart__finished=True,
+        )
+        total_requested = 0
+        for budget_provision_budget in budget_provision_budgets:
+            total_requested = total_requested + (
+                budget_provision_budget.provosioned_amount - budget_provision_budget.released_amount
+            )
+        return total_requested
+
+    @property
+    def report_available_budget(self) -> float:
+        return self.report_current_budget - self.report_requested_budget
+
+    @property
+    def report_available_budget_percentage(self) -> float:
+        if self.report_current_budget == 0:
+            return 0
+        else:
+            return self.report_available_budget / self.report_current_budget * 100
+
+    @property
+    def report_committed_budget(self) -> float:
+        budget_provision_budgets = self.budget_provision_budgets.filter(
+            provision_cart__approved=True,
+            provision_cart__rejected=False,
+            provision_cart__annulled=False,
+            provision_cart__finished=True,
+        )
+        carts = []
+        total_committed = 0
+        for budget_provision_budget in budget_provision_budgets:
+            cart = budget_provision_budget.budget_provision_budget
+            commitments = cart.provision_cart_commitments.filter(
+                finished=True,
+            )
+            # for commitment in commitments:
+            #     total_committed = total_committed + commitment.amount
+        return total_committed
+
     class Meta:
         """Meta definition for Budget."""
 

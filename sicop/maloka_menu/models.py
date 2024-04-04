@@ -123,8 +123,6 @@ class MenuOption(BaseModel):
         verbose_name=_("Special roles"),
         help_text=_("Special roles"),
         related_name="menu_special_options",
-        null=True,
-        blank=True,
     )
 
     class Meta:

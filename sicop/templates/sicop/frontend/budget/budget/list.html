@@ -47,6 +47,12 @@
                   <th>{% trans "Area" %}</th>
                   <th>{% trans "Current budget" %}</th>
                   <th>{% trans "Quantity" %}</th>
+                  <th>{% trans "Unit value" %}</th>
+                  <th>{% trans "Initial value" %}</th>
+                  <th>{% trans "Addition" %}</th>
+                  <th>{% trans "Requested" %}</th>
+                  <th>{% trans "Released" %}</th>
+                  <th>{% trans "Annulled" %}</th>
                   <th>{% trans "Status" %}</th>
                   <th>{% trans 'Detail' %}</th>
                 </tr>
@@ -60,6 +66,12 @@
                   <td>{{ budget.project.area }}</td>
                   <td>{{ budget.available_budget|format_to_cop }}</td>
                   <td>{{ budget.quantity }}</td>
+                  <td>{{ budget.unit_value|format_to_cop }}</td>
+                  <td>{{ budget.initial_value|format_to_cop }}</td>
+                  <td>{{ budget.budget_addition|format_to_cop }}</td>
+                  <td>{{ budget.budget_decrease_control|format_to_cop }}</td>
+                  <td>{{ budget.released_amount|format_to_cop }}</td>
+                  <td>{{ budget.anulled_amount|format_to_cop }}</td>
                   <td>
                     {% if budget.status %}
                     <div class="badge badge-success">{% trans 'Active' %}</div>

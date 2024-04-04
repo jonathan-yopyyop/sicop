@@ -22,13 +22,24 @@ def get_current_budget_by_area(area: Area):
     unit_value = 0
     initial_value = 0
     available_budget = 0
+    report_current_budget = 0
+    report_requested_budget = 0
+    report_available_budget = 0
     for budget in budgets:
         unit_value += budget.unit_value
         initial_value += budget.initial_value
         available_budget += budget.available_budget
-    if area.name == "Comunicaciones y Cultura":
-        print(unit_value, initial_value, available_budget)
-    return unit_value, initial_value, available_budget
+        report_current_budget += budget.report_current_budget
+        report_requested_budget += budget.report_requested_budget
+        report_available_budget += budget.report_available_budget
+    return (
+        unit_value,
+        initial_value,
+        available_budget,
+        report_current_budget,
+        report_requested_budget,
+        report_available_budget,
+    )
 
 
 def get_total_cap_requested_by_area(area: Area):
@@ -57,7 +68,7 @@ def get_total_commiment_by_area(area: Area):
         finished=True,
     )
     for commitment in commitments:
-        total_commiment += commitment.provision_budget_amount
+        total_commiment += commitment.provision_budget_amount - commitment.total_released
     return total_commiment
 
 
@@ -65,7 +76,14 @@ def get_budget_by_areas():
     areas = Area.objects.all()
     budgets = []
     for area in areas:
-        unit_value, initial_value, available_budget = get_current_budget_by_area(area)
+        (
+            unit_value,
+            initial_value,
+            available_budget,
+            report_current_budget,
+            report_requested_budget,
+            report_available_budget,
+        ) = get_current_budget_by_area(area)
         total_provisioned_amount, total_required_amount = get_total_cap_requested_by_area(area)
         # Graph totals
         total_commiment = get_total_commiment_by_area(area)
@@ -97,6 +115,9 @@ def get_budget_by_areas():
                     "total_commitet_percentage": f"{total_commitet_percentage:.2f}",
                     "total_available_budget_percentage": f"{total_available_budget_percentage:.2f}",
                     "total_by_engaded_percentage": f"{total_by_engaded_percentage:.2f}",
+                    "report_current_budget": report_current_budget,
+                    "report_requested_budget": report_requested_budget,
+                    "report_available_budget": report_available_budget,
                 },
                 "data": {
                     "labels": [_("Available"), _("Engaged"), _("By Engaged")],
