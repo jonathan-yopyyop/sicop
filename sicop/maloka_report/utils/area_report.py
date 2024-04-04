@@ -22,23 +22,25 @@ def get_current_budget_by_area(area: Area):
     unit_value = 0
     initial_value = 0
     available_budget = 0
-    report_current_budget = 0
+    budget_addition = 0
+    released_amount = 0
     report_requested_budget = 0
-    report_available_budget = 0
+
     for budget in budgets:
         unit_value += budget.unit_value
         initial_value += budget.initial_value
         available_budget += budget.available_budget
-        report_current_budget += budget.report_current_budget
+        budget_addition += budget.budget_addition
+        released_amount += budget.released_amount
         report_requested_budget += budget.report_requested_budget
-        report_available_budget += budget.report_available_budget
+
     return (
         unit_value,
         initial_value,
         available_budget,
-        report_current_budget,
+        budget_addition,
+        released_amount,
         report_requested_budget,
-        report_available_budget,
     )
 
 
@@ -68,7 +70,7 @@ def get_total_commiment_by_area(area: Area):
         finished=True,
     )
     for commitment in commitments:
-        total_commiment += commitment.provision_budget_amount - commitment.total_released
+        total_commiment += commitment.required_amount
     return total_commiment
 
 
@@ -80,14 +82,19 @@ def get_budget_by_areas():
             unit_value,
             initial_value,
             available_budget,
-            report_current_budget,
+            budget_addition,
+            released_amount,
             report_requested_budget,
-            report_available_budget,
         ) = get_current_budget_by_area(area)
         total_provisioned_amount, total_required_amount = get_total_cap_requested_by_area(area)
-        # Graph totals
         total_commiment = get_total_commiment_by_area(area)
-        total_available_budget = available_budget - total_provisioned_amount
+        # Graph totals
+        total_current_budget = unit_value + budget_addition
+        total_requested_budget = report_requested_budget - released_amount
+        total_available_budget = total_current_budget - total_requested_budget
+        total_to_be_committed = total_requested_budget - total_commiment
+
+        # total_available_budget = available_budget - total_provisioned_amount
         total_by_engaded = total_provisioned_amount - total_commiment
         # Graph percents
         if available_budget == 0:
@@ -95,9 +102,9 @@ def get_budget_by_areas():
             total_available_budget_percentage = 0
             total_by_engaded_percentage = 0
         else:
-            total_commitet_percentage = (total_commiment / available_budget) * 100
-            total_available_budget_percentage = (total_available_budget / available_budget) * 100
-            total_by_engaded_percentage = (total_by_engaded / available_budget) * 100
+            total_commitet_percentage = (total_commiment / total_current_budget) * 100
+            total_available_budget_percentage = (total_available_budget / total_current_budget) * 100
+            total_by_engaded_percentage = (total_by_engaded / total_current_budget) * 100
 
         budgets.append(
             {
@@ -105,19 +112,10 @@ def get_budget_by_areas():
                 "id": area.id,
                 "slug": text_to_slug(area.name),
                 "values": {
-                    "unit_value": unit_value,
-                    "initial_value": initial_value,
-                    "available_budget": available_budget,
-                    "total_provisioned_amount": total_provisioned_amount,
+                    "total_current_budget": total_current_budget,
                     "total_available_budget": total_available_budget,
                     "total_commiment": total_commiment,
-                    "total_by_engaded": total_by_engaded,
-                    "total_commitet_percentage": f"{total_commitet_percentage:.2f}",
-                    "total_available_budget_percentage": f"{total_available_budget_percentage:.2f}",
-                    "total_by_engaded_percentage": f"{total_by_engaded_percentage:.2f}",
-                    "report_current_budget": report_current_budget,
-                    "report_requested_budget": report_requested_budget,
-                    "report_available_budget": report_available_budget,
+                    "total_to_be_committed": total_to_be_committed,
                 },
                 "data": {
                     "labels": [_("Available"), _("Engaged"), _("By Engaged")],
@@ -149,16 +147,18 @@ def get_current_budget_by_project(project: Project):
     unit_value = 0
     initial_value = 0
     available_budget = 0
+    budget_addition = 0
+    released_amount = 0
+    report_requested_budget = 0
     for budget in budgets:
         unit_value += budget.unit_value
         initial_value += budget.initial_value
         available_budget += budget.available_budget
-        if project.area.name == "Comunicaciones y Cultura":
-            print(budget.available_budget)
-    if project.area.name == "Comunicaciones y Cultura":
-        print("=================")
-        print(unit_value, initial_value, available_budget)
-    return unit_value, initial_value, available_budget
+        budget_addition += budget.budget_addition
+        released_amount += budget.released_amount
+        report_requested_budget += budget.report_requested_budget
+
+    return unit_value, initial_value, available_budget, budget_addition, released_amount, report_requested_budget
 
 
 def get_total_cap_requested_by_project(project: Project):
@@ -196,11 +196,19 @@ def get_budget_by_projects_in_area(area: Area):
     budgets = []
 
     for project in projects:
-        unit_value, initial_value, available_budget = get_current_budget_by_project(project)
+        unit_value, initial_value, available_budget, budget_addition, released_amount, report_requested_budget = (
+            get_current_budget_by_project(project)
+        )
         total_provisioned_amount, total_required_amount = get_total_cap_requested_by_project(project)
         # Graph totals
         total_commiment = get_total_commiment_by_project(project)
-        total_available_budget = available_budget - total_provisioned_amount
+        # Graph totals
+        total_current_budget = unit_value + budget_addition
+        total_requested_budget = report_requested_budget - released_amount
+        total_available_budget = total_current_budget - total_requested_budget
+        total_to_be_committed = total_requested_budget - total_commiment
+
+        # total_available_budget = available_budget - total_provisioned_amount
         total_by_engaded = total_provisioned_amount - total_commiment
         # Graph percents
         if available_budget == 0:
@@ -208,25 +216,19 @@ def get_budget_by_projects_in_area(area: Area):
             total_available_budget_percentage = 0
             total_by_engaded_percentage = 0
         else:
-            total_commitet_percentage = (total_commiment / available_budget) * 100
-            total_available_budget_percentage = (total_available_budget / available_budget) * 100
-            total_by_engaded_percentage = (total_by_engaded / available_budget) * 100
+            total_commitet_percentage = (total_commiment / total_current_budget) * 100
+            total_available_budget_percentage = (total_available_budget / total_current_budget) * 100
+            total_by_engaded_percentage = (total_by_engaded / total_current_budget) * 100
         budgets.append(
             {
                 "project": project.name,
                 "id": project.id,
                 "slug": text_to_slug(project.name),
                 "values": {
-                    "unit_value": unit_value,
-                    "initial_value": initial_value,
-                    "available_budget": available_budget,
-                    "total_provisioned_amount": total_provisioned_amount,
+                    "total_current_budget": total_current_budget,
                     "total_available_budget": total_available_budget,
                     "total_commiment": total_commiment,
-                    "total_by_engaded": total_by_engaded,
-                    "total_commitet_percentage": f"{total_commitet_percentage:.2f}",
-                    "total_available_budget_percentage": f"{total_available_budget_percentage:.2f}",
-                    "total_by_engaded_percentage": f"{total_by_engaded_percentage:.2f}",
+                    "total_to_be_committed": total_to_be_committed,
                 },
                 "data": {
                     "labels": [_("Available"), _("Engaged"), _("By Engaged")],
@@ -284,11 +286,18 @@ def get_current_budget_by_project_detail(project: Project):
     unit_value = 0
     initial_value = 0
     available_budget = 0
+    budget_addition = 0
+    released_amount = 0
+    report_requested_budget = 0
     for budget in budgets:
         unit_value += budget.unit_value
         initial_value += budget.initial_value
         available_budget += budget.available_budget
-    return unit_value, initial_value, available_budget
+        budget_addition += budget.budget_addition
+        released_amount += budget.released_amount
+        report_requested_budget += budget.report_requested_budget
+
+    return unit_value, initial_value, available_budget, budget_addition, released_amount, report_requested_budget
 
 
 def get_total_cap_requested_by_project_detail(project: Project):
@@ -322,64 +331,81 @@ def get_total_commiment_by_project_detail(project: Project):
 
 
 def get_project_detail(project: Project):
-    project_budgets = project.project_budgets.all()
-    budgets = []
-    # ---------------------------------
-    unit_value, initial_value, available_budget = get_current_budget_by_project_detail(project)
-    total_provisioned_amount, total_required_amount = get_total_cap_requested_by_project_detail(project)
-    # Graph totals
-    total_commiment = get_total_commiment_by_project_detail(project)
-    total_available_budget = available_budget - total_provisioned_amount
-    total_by_engaded = total_provisioned_amount - total_commiment
-    # Graph percents
-    if available_budget == 0:
-        total_commitet_percentage = 0
-        total_available_budget_percentage = 0
-        total_by_engaded_percentage = 0
+    # Totals for the table
+    unit_value, initial_value, available_budget, budget_addition, released_amount, report_requested_budget = (
+        get_current_budget_by_project_detail(project)
+    )
+    totals_commiment = get_total_commiment_by_project_detail(project)
+    totals_provisioned_amount = report_requested_budget - released_amount
+    totals_current_budget = initial_value + budget_addition
+    totals_available_budget = totals_current_budget - totals_provisioned_amount
+    totals_by_engaded = totals_provisioned_amount - totals_commiment
+    # Total percentages
+    if totals_current_budget > 0:
+        totals_available_budget_percentage = (totals_available_budget / totals_current_budget) * 100
     else:
-        total_commitet_percentage = (total_commiment / available_budget) * 100
-        total_available_budget_percentage = (total_available_budget / available_budget) * 100
-        total_by_engaded_percentage = (total_by_engaded / available_budget) * 100
-    # ---------------------------------
-    for project_budget in project_budgets:
-
-        budget: Budget = project_budget
-        provisioned_amount, commitment_amount = get_total_cap_requested_by_budget(budget)
-        if budget.unit_value > 0:
-            available_percentage = (budget.available_budget / budget.unit_value) * 100
-        else:
-            available_percentage = 0
-        if budget.available_budget > 0:
-            commitment_percentage = (commitment_amount / budget.unit_value) * 100
-            by_engaged_percentage = ((provisioned_amount - commitment_amount) / budget.unit_value) * 100
-        else:
-            commitment_percentage = 0
-            by_engaged_percentage = 0
-        data = {
-            "budget": budget,
-            "initial_value": budget.initial_value,
-            "available_budget": budget.available_budget,
-            "provisioned_amount": provisioned_amount,
-            "available_percentage": f"{available_percentage:.2f}",
-            "commitment_amount": commitment_amount,
-            "commitment_percentage": f"{commitment_percentage:.2f}",
-            "by_engaged": provisioned_amount - commitment_amount,
-            "by_engaged_percentage": f"{by_engaged_percentage:.2f}",
-        }
-        budgets.append(data)
+        totals_available_budget_percentage = 0
+    if totals_available_budget == 0:
+        totals_by_engaded_percentage = 0
+        totals_commiment_percentage = 0
+    else:
+        totals_by_engaded_percentage = (totals_by_engaded / totals_provisioned_amount) * 100
+        totals_commiment_percentage = (totals_commiment / totals_provisioned_amount) * 100
     totals = {
         "provisioned_amount": 0,
-        "total_available_budget": total_available_budget,
-        "total_commiment": total_commiment,
-        "total_by_engaded": total_by_engaded,
-        "total_commitet_percentage": f"{total_commitet_percentage:.2f}",
-        "total_available_budget_percentage": f"{total_available_budget_percentage:.2f}",
-        "total_by_engaded_percentage": f"{total_by_engaded_percentage:.2f}",
+        "total_available_budget": totals_available_budget,
+        "total_commiment": totals_commiment,
+        "total_by_engaded": totals_by_engaded,
+        "total_commitet_percentage": f"{totals_commiment_percentage:.2f}",
+        "total_available_budget_percentage": f"{totals_available_budget_percentage:.2f}",
+        "total_by_engaded_percentage": f"{totals_by_engaded_percentage:.2f}",
     }
-    for budget in budgets:
-        totals["provisioned_amount"] += budget["provisioned_amount"]
-    totals["total_budget"] = totals["provisioned_amount"] + totals["total_available_budget"]
-    print(totals)
+    totals["provisioned_amount"] = totals_provisioned_amount
+    totals["total_budget"] = totals_current_budget
+
+    # Table detail by budget
+    budgets = []
+    project_budgets = project.project_budgets.all()
+    for project_budget in project_budgets:
+        # Budget data
+        budget: Budget = project_budget
+        provisioned_amount, commitment_amount = get_total_cap_requested_by_budget(budget)
+        budget_initial_value = budget.initial_value
+        budget_budget_addition = budget.budget_addition
+        budget_released_amount = budget.released_amount
+        budget_report_requested_budget = budget.report_requested_budget
+        # Budget data end
+        budget_totals_provisioned_amount = budget_report_requested_budget - budget_released_amount
+        budget_totals_current_budget = budget_initial_value + budget_budget_addition
+        budget_totals_available_budget = budget_totals_current_budget - budget_totals_current_budget
+        budget_totals_by_engaded = budget_totals_provisioned_amount - commitment_amount
+        # Total budget percentages
+        if budget_totals_current_budget > 0:
+            budget_totals_available_budget_percentage = (
+                budget_totals_available_budget / budget_totals_current_budget
+            ) * 100
+        else:
+            budget_totals_available_budget_percentage = 0
+        if budget_totals_provisioned_amount == 0:
+            budget_totals_by_engaded_percentage = 0
+            budget_totals_commiment_percentage = 0
+        else:
+            budget_totals_by_engaded_percentage = (budget_totals_by_engaded / budget_totals_provisioned_amount) * 100
+            budget_totals_commiment_percentage = (commitment_amount / budget_totals_provisioned_amount) * 100
+
+        data = {
+            "budget": budget,
+            "initial_value": budget_totals_current_budget,
+            "available_budget": budget_totals_available_budget,
+            "provisioned_amount": budget_totals_provisioned_amount,
+            "available_percentage": f"{budget_totals_available_budget_percentage:.2f}",
+            "commitment_amount": commitment_amount,
+            "commitment_percentage": f"{budget_totals_commiment_percentage:.2f}",
+            "by_engaged": budget_totals_by_engaded,
+            "by_engaged_percentage": f"{budget_totals_by_engaded_percentage:.2f}",
+        }
+        budgets.append(data)
+
     return budgets, totals
 
 

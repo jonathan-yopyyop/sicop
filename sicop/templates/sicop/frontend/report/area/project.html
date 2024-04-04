@@ -128,6 +128,8 @@ Report project detail
                         <th>{{totals.total_commitet_percentage}}%</th>
                         <th>{{totals.total_by_engaded|format_to_cop}}</th>
                         <th>{{totals.total_by_engaded_percentage}}%</th>
+                        <th></th>
+                        <th></th>
                       </tr>
                       <tr>
                         <th>{% trans "Budget item / type of expense" %}</th>
@@ -139,6 +141,8 @@ Report project detail
                         <th>{% trans "% engaged" %}</th>
                         <th>{% trans "By Commit" %}</th>
                         <th>{% trans "% by Commit" %}</th>
+                        <th>{% trans "Costs" %}</th>
+                        <th>{% trans "Compliance" %}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -153,6 +157,8 @@ Report project detail
                         <td>{{budget.commitment_percentage}}%</td>
                         <td>{{budget.by_engaged|format_to_cop}}</td>
                         <td>{{budget.by_engaged_percentage}}%</td>
+                        <td></td>
+                        <td></td>
                       </tr>
                       {% endfor %}
                     </tbody>

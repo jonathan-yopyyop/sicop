@@ -48,6 +48,10 @@ Report Area
             <div class="text-center p-2">
               <table class="table table-striped table-bordered table-text-size">
                 <tbody>
+                  <tr>
+                    <td>{% trans "Current" %}</td>
+                    <td>{{area.values.total_current_budget|format_to_cop}}</td>
+                  </tr>
                   <tr class="table-row-height">
                     <td>{% trans "Available" %}</td>
                     <td>{{area.values.total_available_budget|format_to_cop}}</td>
@@ -58,19 +62,7 @@ Report Area
                   </tr>
                   <tr class="table-row-height">
                     <td>{% trans "By Engaged" %}</td>
-                    <td>{{area.values.total_by_engaded|format_to_cop}}</td>
-                  </tr>
-                  <tr>
-                    <td>report_current_budget</td>
-                    <td>{{area.values.report_current_budget|format_to_cop}}</td>
-                  </tr>
-                  <tr>
-                    <td>report_requested_budget</td>
-                    <td>{{area.values.report_requested_budget|format_to_cop}}</td>
-                  </tr>
-                  <tr>
-                    <td>report_available_budget</td>
-                    <td>{{area.values.report_available_budget|format_to_cop}}</td>
+                    <td>{{area.values.total_to_be_committed|format_to_cop}}</td>
                   </tr>
                 </tbody>
               </table>
