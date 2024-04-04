@@ -336,7 +336,7 @@ def get_total_commiment_by_project_detail(project: Project):
         finished=True,
     )
     for commitment in commitments:
-        total_commiment += commitment.provision_budget_amount
+        total_commiment += commitment.required_amount
     return total_commiment
 
 
@@ -512,7 +512,7 @@ def get_total_commiment_by_business_unit(business_unit: BusinessUnit):
         finished=True,
     )
     for commitment in commitments:
-        total_commiment += commitment.provision_budget_amount
+        total_commiment += commitment.required_amount
     return total_commiment
 
 
@@ -530,7 +530,7 @@ def get_total_commiment_by_cost_center(cost_center: CostCenter):
         finished=True,
     )
     for commitment in commitments:
-        total_commiment += commitment.provision_budget_amount
+        total_commiment += commitment.required_amount
     return total_commiment
 
 
