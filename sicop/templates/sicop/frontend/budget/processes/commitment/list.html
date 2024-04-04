@@ -48,8 +48,8 @@
                   <th>{% trans "Required" %}</th>
                   <th>{% trans "Difference" %}</th>
                   <th>{% trans "Released" %}</th>
-                  <th>
-                    {% trans "Hax tax?" %}</th>
+                  <th>{% trans "Hax tax?" %}</th>
+                  <th>{% trans "Tax" %}</th>
                   <th>{% trans "Finished?" %}</th>
                   <th>{% trans 'Detail' %}</th>
                 </tr>
@@ -74,6 +74,7 @@
                     <div class="badge badge-warning">{% trans 'No' %}</div>
                     {% endif %}
                   </td>
+                  <td>{{commitment.tax_amount|format_to_cop}}</td>
                   <td>
                     {% if commitment.finished %}
                     <div class="badge badge-success">{% trans 'Yes' %}</div>
