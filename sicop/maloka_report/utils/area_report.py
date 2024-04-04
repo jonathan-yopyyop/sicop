@@ -204,11 +204,13 @@ def get_budget_by_projects_in_area(area: Area):
         unit_value, initial_value, available_budget, budget_addition, released_amount, report_requested_budget = (
             get_current_budget_by_project(project)
         )
+        # if project.name =="DEFENSORÍA 2024":
+
         total_provisioned_amount, total_required_amount = get_total_cap_requested_by_project(project)
         # Graph totals
         total_commiment = get_total_commiment_by_project(project)
         # Graph totals
-        total_current_budget = unit_value + budget_addition
+        total_current_budget = initial_value + budget_addition
         total_requested_budget = report_requested_budget - released_amount
         total_available_budget = total_current_budget - total_requested_budget
         total_to_be_committed = total_requested_budget - total_commiment
@@ -229,6 +231,7 @@ def get_budget_by_projects_in_area(area: Area):
             )
             if difference > 0:
                 total_by_engaded_percentage += difference
+
         budgets.append(
             {
                 "project": project.name,
