@@ -209,7 +209,7 @@ def get_budget_by_projects_in_area(area: Area):
         total_commiment = get_total_commiment_by_project(project)
         # Graph totals
         total_current_budget = unit_value + budget_addition + released_amount
-        total_requested_budget = report_requested_budget - released_amount
+        total_requested_budget = report_requested_budget
         total_available_budget = total_current_budget - total_requested_budget
         total_to_be_committed = total_requested_budget - total_commiment
 
