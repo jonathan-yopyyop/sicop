@@ -83,6 +83,7 @@
                   <th>{% trans "Budgets" %}</th>
                   <th>{% trans "Managed by" %}</th>
                   <th>{% trans "Provisionado" %}</th>
+                  <th>{% trans "Released" %}</th>
                   <th>{% trans "Finished?" %}</th>
                   <th>{% trans "Status" %}</th>
                   <th>{% trans 'Detail' %}</th>
@@ -109,6 +110,7 @@
                     <p class="p-style">{{ provision_cart.user.name }}</p>
                   </td>
                   <td class="td-style">{{ provision_cart.total_provisioned_amount| format_to_cop }}</td>
+                  <td class="td-style">{{ provision_cart.total_released_amount| format_to_cop }}</td>
                   <td class="td-style">
                     {% if provision_cart.finished %}
                     <div class="badge badge-success">{% trans 'Yes' %}</div>
