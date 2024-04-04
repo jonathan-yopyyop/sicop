@@ -43,6 +43,7 @@
                 <tr>
                   <th>{% trans "ID" %}</th>
                   <th>{% trans "Project" %}</th>
+                  <th>{% trans "Has tax?" %}</th>
                   <th>{% trans 'Budget description' %}</th>
                   <th>{% trans "Area" %}</th>
                   <th>{% trans "Current budget" %}</th>
@@ -62,6 +63,13 @@
                 <tr>
                   <td>{{ budget.id }}</td>
                   <td>{{ budget.project.name|multiline_text:20|safe }}</td>
+                  <td>
+                    {% if budget.project.is_it_taxable %}
+                    <div class="badge badge-success">{% trans 'Yes' %}</div>
+                    {% else %}
+                    <div class="badge badge-warning">{% trans 'No' %}</div>
+                    {% endif %}
+                  </td>
                   <td>{{ budget.budget_description.description|multiline_text:20|safe }}</td>
                   <td>{{ budget.project.area }}</td>
                   <td>{{ budget.available_budget|format_to_cop }}</td>
