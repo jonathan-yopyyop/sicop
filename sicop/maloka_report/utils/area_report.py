@@ -192,7 +192,7 @@ def get_total_commiment_by_project(project: Project):
         finished=True,
     )
     for commitment in commitments:
-        total_commiment += commitment.provision_budget_amount
+        total_commiment += commitment.required_amount
     return total_commiment
 
 
