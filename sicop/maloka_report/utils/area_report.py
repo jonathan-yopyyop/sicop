@@ -102,9 +102,14 @@ def get_budget_by_areas():
             total_available_budget_percentage = 0
             total_by_engaded_percentage = 0
         else:
-            total_commitet_percentage = (total_commiment / total_current_budget) * 100
-            total_available_budget_percentage = (total_available_budget / total_current_budget) * 100
-            total_by_engaded_percentage = (total_by_engaded / total_current_budget) * 100
+            total_commitet_percentage = round(((total_commiment / total_current_budget) * 100), 2)
+            total_available_budget_percentage = round(((total_available_budget / total_current_budget) * 100), 2)
+            total_by_engaded_percentage = round(((total_by_engaded / total_current_budget) * 100), 2)
+            difference = 100 - (
+                total_commitet_percentage + total_available_budget_percentage + total_by_engaded_percentage
+            )
+            if difference > 0:
+                total_by_engaded_percentage += difference
 
         budgets.append(
             {
@@ -123,9 +128,9 @@ def get_budget_by_areas():
                         {
                             "label": area.name,
                             "data": [
-                                f"{total_available_budget_percentage:.2f}",
-                                f"{total_commitet_percentage:.2f}",
-                                f"{total_by_engaded_percentage:.2f}",
+                                f"{total_available_budget_percentage}",
+                                f"{total_commitet_percentage}",
+                                f"{total_by_engaded_percentage}",
                             ],
                             "backgroundColor": [
                                 "rgb(255, 99, 132)",
@@ -216,9 +221,14 @@ def get_budget_by_projects_in_area(area: Area):
             total_available_budget_percentage = 0
             total_by_engaded_percentage = 0
         else:
-            total_commitet_percentage = (total_commiment / total_current_budget) * 100
-            total_available_budget_percentage = (total_available_budget / total_current_budget) * 100
-            total_by_engaded_percentage = (total_by_engaded / total_current_budget) * 100
+            total_commitet_percentage = round(((total_commiment / total_current_budget) * 100), 2)
+            total_available_budget_percentage = round(((total_available_budget / total_current_budget) * 100), 2)
+            total_by_engaded_percentage = round(((total_by_engaded / total_current_budget) * 100), 2)
+            difference = 100 - (
+                total_commitet_percentage + total_available_budget_percentage + total_by_engaded_percentage
+            )
+            if difference > 0:
+                total_by_engaded_percentage += difference
         budgets.append(
             {
                 "project": project.name,
@@ -236,9 +246,9 @@ def get_budget_by_projects_in_area(area: Area):
                         {
                             "label": project.name,
                             "data": [
-                                f"{total_available_budget_percentage:.2f}",
-                                f"{total_commitet_percentage:.2f}",
-                                f"{total_by_engaded_percentage:.2f}",
+                                f"{total_available_budget_percentage}",
+                                f"{total_commitet_percentage}",
+                                f"{total_by_engaded_percentage}",
                             ],
                             "backgroundColor": [
                                 "rgb(255, 99, 132)",
@@ -349,16 +359,21 @@ def get_project_detail(project: Project):
         totals_by_engaded_percentage = 0
         totals_commiment_percentage = 0
     else:
-        totals_by_engaded_percentage = (totals_by_engaded / totals_provisioned_amount) * 100
-        totals_commiment_percentage = (totals_commiment / totals_provisioned_amount) * 100
+        totals_by_engaded_percentage = round(((totals_by_engaded / totals_provisioned_amount) * 100), 2)
+        totals_commiment_percentage = round(((totals_commiment / totals_provisioned_amount) * 100), 2)
+        difference = 100 - (
+            totals_commiment_percentage + totals_available_budget_percentage + totals_by_engaded_percentage
+        )
+        if difference > 0:
+            totals_by_engaded_percentage += difference
     totals = {
         "provisioned_amount": 0,
         "total_available_budget": totals_available_budget,
         "total_commiment": totals_commiment,
         "total_by_engaded": totals_by_engaded,
-        "total_commitet_percentage": f"{totals_commiment_percentage:.2f}",
-        "total_available_budget_percentage": f"{totals_available_budget_percentage:.2f}",
-        "total_by_engaded_percentage": f"{totals_by_engaded_percentage:.2f}",
+        "total_commitet_percentage": f"{totals_commiment_percentage}",
+        "total_available_budget_percentage": f"{totals_available_budget_percentage}",
+        "total_by_engaded_percentage": f"{totals_by_engaded_percentage}",
     }
     totals["provisioned_amount"] = totals_provisioned_amount
     totals["total_budget"] = totals_current_budget
@@ -390,19 +405,23 @@ def get_project_detail(project: Project):
             budget_totals_by_engaded_percentage = 0
             budget_totals_commiment_percentage = 0
         else:
-            budget_totals_by_engaded_percentage = (budget_totals_by_engaded / budget_totals_provisioned_amount) * 100
-            budget_totals_commiment_percentage = (commitment_amount / budget_totals_provisioned_amount) * 100
+            budget_totals_by_engaded_percentage = round(
+                ((budget_totals_by_engaded / budget_totals_provisioned_amount) * 100),
+            )
+            budget_totals_commiment_percentage = round(
+                ((commitment_amount / budget_totals_provisioned_amount) * 100),
+            )
 
         data = {
             "budget": budget,
             "initial_value": budget_totals_current_budget,
             "available_budget": budget_totals_available_budget,
             "provisioned_amount": budget_totals_provisioned_amount,
-            "available_percentage": f"{budget_totals_available_budget_percentage:.2f}",
+            "available_percentage": f"{budget_totals_available_budget_percentage}",
             "commitment_amount": commitment_amount,
-            "commitment_percentage": f"{budget_totals_commiment_percentage:.2f}",
+            "commitment_percentage": f"{budget_totals_commiment_percentage}",
             "by_engaged": budget_totals_by_engaded,
-            "by_engaged_percentage": f"{budget_totals_by_engaded_percentage:.2f}",
+            "by_engaged_percentage": f"{budget_totals_by_engaded_percentage}",
         }
         budgets.append(data)
 
@@ -528,9 +547,14 @@ def get_budget_by_business_unit(business_unit: BusinessUnit):
         total_available_budget_percentage = 0
         total_by_engaded_percentage = 0
     else:
-        total_commitet_percentage = (total_commiment / available_budget) * 100
-        total_available_budget_percentage = (total_available_budget / available_budget) * 100
-        total_by_engaded_percentage = (total_by_engaded / available_budget) * 100
+        total_commitet_percentage = round(((total_commiment / available_budget) * 100), 2)
+        total_available_budget_percentage = round(((total_available_budget / available_budget) * 100), 2)
+        total_by_engaded_percentage = round(((total_by_engaded / available_budget) * 100), 2)
+        difference = 100 - (
+            total_commitet_percentage + total_available_budget_percentage + total_by_engaded_percentage
+        )
+        if difference > 0:
+            total_by_engaded_percentage += difference
 
     cost_centers = business_unit.cost_centers.all()
     cost_center_data = []
@@ -553,13 +577,15 @@ def get_budget_by_business_unit(business_unit: BusinessUnit):
             cost_center_total_available_budget_percentage = 0
             cost_center_total_by_engaded_percentage = 0
         else:
-            cost_center_total_commitet_percentage = (cost_center_total_commiment / cost_center_available_budget) * 100
-            cost_center_total_available_budget_percentage = (
-                cost_center_total_available_budget / cost_center_available_budget
-            ) * 100
-            cost_center_total_by_engaded_percentage = (
-                cost_center_total_by_engaded / cost_center_available_budget
-            ) * 100
+            cost_center_total_commitet_percentage = round(
+                ((cost_center_total_commiment / cost_center_available_budget) * 100), 2
+            )
+            cost_center_total_available_budget_percentage = round(
+                ((cost_center_total_available_budget / cost_center_available_budget) * 100), 2
+            )
+            cost_center_total_by_engaded_percentage = round(
+                ((cost_center_total_by_engaded / cost_center_available_budget) * 100), 2
+            )
         # Totals end
         cost_center_data.append(
             {
@@ -571,16 +597,16 @@ def get_budget_by_business_unit(business_unit: BusinessUnit):
                 "cost_center_total_available_budget": cost_center_total_available_budget,
                 "cost_center_total_provisioned_amount": cost_center_total_provisioned_amount,
                 "cost_center_total_by_engaded": cost_center_total_by_engaded,
-                "cost_center_total_commitet_percentage": f"{cost_center_total_commitet_percentage:.2f}",
-                "cost_center_total_available_budget_percentage": f"{cost_center_total_available_budget_percentage:.2f}",
-                "cost_center_total_by_engaded_percentage": f"{cost_center_total_by_engaded_percentage:.2f}",
+                "cost_center_total_commitet_percentage": f"{cost_center_total_commitet_percentage}",
+                "cost_center_total_available_budget_percentage": f"{cost_center_total_available_budget_percentage}",
+                "cost_center_total_by_engaded_percentage": f"{cost_center_total_by_engaded_percentage}",
             }
         )
     if initial_value > 0:
-        grand_total_available_budget_percentage = (total_available_budget / initial_value) * 100
-        grand_total_commitet_percentage = (total_commiment / initial_value) * 100
-        grand_total_by_engaded_percentage = (total_by_engaded / initial_value) * 100
-        grand_total_provisioned_percentage = (total_provisioned_amount / initial_value) * 100
+        grand_total_available_budget_percentage = round(((total_available_budget / initial_value) * 100), 2)
+        grand_total_commitet_percentage = round(((total_commiment / initial_value) * 100), 2)
+        grand_total_by_engaded_percentage = round(((total_by_engaded / initial_value) * 100), 2)
+        grand_total_provisioned_percentage = round(((total_provisioned_amount / initial_value) * 100), 2)
     else:
         grand_total_available_budget_percentage = 0
         grand_total_commitet_percentage = 0
@@ -594,10 +620,10 @@ def get_budget_by_business_unit(business_unit: BusinessUnit):
             "total_commiment": total_commiment,
             "total_by_engaded": total_by_engaded,
             "total_provisioned_amount": total_provisioned_amount,
-            "grand_total_available_budget_percentage": f"{grand_total_available_budget_percentage:.2f}",
-            "grand_total_provisioned_percentage": f"{grand_total_provisioned_percentage:.2f}",
-            "grand_total_commitet_percentage": f"{grand_total_commitet_percentage:.2f}",
-            "grand_total_by_engaded_percentage": f"{grand_total_by_engaded_percentage:.2f}",
+            "grand_total_available_budget_percentage": f"{grand_total_available_budget_percentage}",
+            "grand_total_provisioned_percentage": f"{grand_total_provisioned_percentage}",
+            "grand_total_commitet_percentage": f"{grand_total_commitet_percentage}",
+            "grand_total_by_engaded_percentage": f"{grand_total_by_engaded_percentage}",
         },
         "data": {
             "labels": [_("Available"), _("Engaged"), _("By Engaged")],
@@ -605,9 +631,9 @@ def get_budget_by_business_unit(business_unit: BusinessUnit):
                 {
                     "label": business_unit.name,
                     "data": [
-                        f"{total_available_budget_percentage:.2f}",
-                        f"{total_commitet_percentage:.2f}",
-                        f"{total_by_engaded_percentage:.2f}",
+                        f"{total_available_budget_percentage}",
+                        f"{total_commitet_percentage}",
+                        f"{total_by_engaded_percentage}",
                     ],
                     "backgroundColor": [
                         "rgb(255, 99, 132)",
