@@ -19,37 +19,44 @@ def text_to_slug(text):
 # Report functions by areas
 def get_current_budget_by_area(area: Area):
     projects = Project.objects.filter(area=area)
-    unit_value = 0
-    initial_value = 0
-    available_budget = 0
-    budget_addition = 0
-    released_amount = 0
-    report_requested_budget = 0
+    area_unit_value = 0
+    area_initial_value = 0
+    area_available_budget = 0
+    area_budget_addition = 0
+    area_released_amount = 0
+    area_report_requested_budget = 0
     for project in projects:
         unit_value, initial_value, available_budget, budget_addition, released_amount, report_requested_budget = (
             get_current_budget_by_project(project)
         )
         # if project.name == "Defensoría 2024":
-        unit_value += unit_value
-        initial_value += initial_value
-        available_budget += available_budget
-        budget_addition += budget_addition
-        released_amount += released_amount
-        report_requested_budget += report_requested_budget
+        if area.name == "Proyectos":
+            print(
+                "**************************************> ID",
+                project.id,
+                " -> initial_value",
+                initial_value,
+            )
+        area_unit_value += unit_value
+        area_initial_value += initial_value
+        area_available_budget += available_budget
+        area_budget_addition += budget_addition
+        area_released_amount += released_amount
+        area_report_requested_budget += report_requested_budget
     if area.name == "Proyectos":
         print(
             "================================> ID",
             project.id,
             " -> initial_value",
-            initial_value,
+            area_initial_value,
         )
     return (
-        unit_value,
-        initial_value,
-        available_budget,
-        budget_addition,
-        released_amount,
-        report_requested_budget,
+        area_unit_value,
+        area_initial_value,
+        area_available_budget,
+        area_budget_addition,
+        area_released_amount,
+        area_report_requested_budget,
     )
 
 
