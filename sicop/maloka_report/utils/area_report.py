@@ -33,10 +33,12 @@ def get_current_budget_by_area(area: Area):
         budget_addition += budget.budget_addition
         released_amount += budget.released_amount
         report_requested_budget += budget.report_requested_budget
+        if area.name == "Proyectos":
+            print(f"== area: {area.name} -> budget.initial_value.name: {budget.initial_value}")
 
-    print(
-        f"area: {area.name} -> initial_value: {initial_value} -> available_budget: {available_budget} -> budget_addition: {budget_addition} -> released_amount: {released_amount} -> report_requested_budget: {report_requested_budget}"
-    )
+    # print(
+    #     f"area: {area.name} -> initial_value: {initial_value} -> available_budget: {available_budget} -> budget_addition: {budget_addition} -> released_amount: {released_amount} -> report_requested_budget: {report_requested_budget}"
+    # )
 
     return (
         unit_value,
