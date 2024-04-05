@@ -102,6 +102,7 @@ def get_budget_by_areas():
             )
             if difference > 0:
                 total_by_engaded_percentage += difference
+                total_by_engaded_percentage = round(total_by_engaded_percentage, 1)
 
         budgets.append(
             {
@@ -221,6 +222,7 @@ def get_budget_by_projects_in_area(area: Area):
             )
             if difference > 0:
                 total_by_engaded_percentage += difference
+                total_by_engaded_percentage = round(total_by_engaded_percentage, 1)
 
         budgets.append(
             {
@@ -358,6 +360,7 @@ def get_project_detail(project: Project):
         )
         if difference > 0:
             total_by_engaded_percentage += difference
+            total_by_engaded_percentage = round(total_by_engaded_percentage, 1)
     totals = {
         "provisioned_amount": 0,
         "total_available_budget": total_available_budget,
@@ -547,6 +550,7 @@ def get_budget_by_business_unit(business_unit: BusinessUnit):
         )
         if difference > 0:
             total_by_engaded_percentage += difference
+            total_by_engaded_percentage = round(total_by_engaded_percentage, 1)
 
     cost_centers = business_unit.cost_centers.all()
     cost_center_data = []
