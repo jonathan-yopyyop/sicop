@@ -185,13 +185,13 @@ def get_total_cap_requested_by_project(project: Project):
     total_provisioned_amount = 0
     total_required_amount = 0
     for cap in caps:
-        commitment_count = Commitment.objects.filter(
-            provision_cart=cap,
-            finished=True,
-        ).count()
-        if commitment_count > 0:
-            total_provisioned_amount += cap.total_provisioned_amount
-            total_required_amount += cap.total_required_amount
+        # commitment_count = Commitment.objects.filter(
+        #     provision_cart=cap,
+        #     finished=True,
+        # ).count()
+        # if commitment_count > 0:
+        total_provisioned_amount += cap.total_provisioned_amount
+        total_required_amount += cap.total_required_amount
     return total_provisioned_amount, total_required_amount
 
 
