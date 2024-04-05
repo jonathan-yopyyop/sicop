@@ -31,12 +31,13 @@ def get_current_budget_by_area(area: Area):
             get_current_budget_by_project(project)
         )
         # if project.name == "Defensoría 2024":
-        print(
-            "================================> ID",
-            project.id,
-            " -> initial_value",
-            initial_value,
-        )
+        if area.name == "Proyectos":
+            print(
+                "================================> ID",
+                project.id,
+                " -> initial_value",
+                initial_value,
+            )
         unit_value += unit_value
         initial_value += initial_value
         available_budget += available_budget
