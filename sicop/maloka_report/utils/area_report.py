@@ -89,7 +89,7 @@ def get_budget_by_areas():
         total_provisioned_amount, total_required_amount = get_total_cap_requested_by_area(area)
         total_commiment = get_total_commiment_by_area(area)
         # Graph totals
-        total_current_budget = initial_value + budget_addition
+        total_current_budget = initial_value
         total_requested_budget = report_requested_budget - released_amount
         total_available_budget = total_current_budget - total_requested_budget
         total_to_be_committed = total_requested_budget - total_commiment
@@ -189,9 +189,6 @@ def get_total_cap_requested_by_project(project: Project):
         #         )
         total_provisioned_amount += cap.total_provisioned_amount
         total_required_amount += cap.total_required_amount
-    if project.name == "Defensoría 2024":
-        print("cap.total_provisioned_amount", total_provisioned_amount)
-        print("cap.total_required_amount", total_required_amount)
     return total_provisioned_amount, total_required_amount
 
 
@@ -205,14 +202,7 @@ def get_total_commiment_by_project(project: Project):
         finished=True,
     )
     for commitment in commitments:
-        if project.name == "Defensoría 2024":
-            print(
-                f"ID: {commitment.id} -> commitment.real_provision_budget_amount: {commitment.real_provision_budget_amount}"
-            )
-
         total_commiment += commitment.real_provision_budget_amount
-    if project.name == "Defensoría 2024":
-        print("------------->>>total_commiment", total_commiment)
     return total_commiment
 
 
