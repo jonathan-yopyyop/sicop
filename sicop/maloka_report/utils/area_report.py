@@ -182,9 +182,9 @@ def get_total_cap_requested_by_project(project: Project):
                 print("ID", cap.id)
             total_provisioned_amount += cap.total_provisioned_amount
             total_required_amount += cap.total_required_amount
-            if project.name == "Defensoría 2024":
-                print("cap.total_provisioned_amount", cap.total_provisioned_amount)
-                print("cap.total_required_amount", cap.total_required_amount)
+            # if project.name == "Defensoría 2024":
+            #     print("cap.total_provisioned_amount", cap.total_provisioned_amount)
+            #     print("cap.total_required_amount", cap.total_required_amount)
     return total_provisioned_amount, total_required_amount
 
 
