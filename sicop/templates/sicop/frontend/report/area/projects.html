@@ -52,19 +52,19 @@ Report projects by area
                 <tbody>
                   <tr>
                     <td>{% trans "Current" %}</td>
-                    <td>{{project.values.total_current_budget|format_to_cop}}</td>
+                    <td>{{project.values.total_current_budget}}</td>
                   </tr>
                   <tr class="table-row-height">
                     <td>{% trans "Available" %}</td>
-                    <td>{{project.values.total_available_budget|format_to_cop}}</td>
+                    <td>{{project.values.total_available_budget}}</td>
                   </tr>
                   <tr class="table-row-height">
                     <td>{% trans "Engaged" %}</td>
-                    <td>{{project.values.total_commiment|format_to_cop}}</td>
+                    <td>{{project.values.total_commiment}}</td>
                   </tr>
                   <tr class="table-row-height">
                     <td>{% trans "By Engaged" %}</td>
-                    <td>{{project.values.total_to_be_committed|format_to_cop}}</td>
+                    <td>{{project.values.total_to_be_committed}}</td>
                   <tr>
                 </tbody>
               </table>
@@ -81,7 +81,11 @@ Report projects by area
 
 {% for project in projects %}
 <script>
-  var data = {{project.data | safe}}
+  var data = {
+    {
+      project.data | safe
+    }
+  }
   var ctx = document.getElementById('{{project.slug}}');
   new Chart(ctx, {
     type: 'pie',
