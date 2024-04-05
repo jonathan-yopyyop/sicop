@@ -241,7 +241,7 @@ def get_budget_by_projects_in_area(area: Area):
             total_available_budget_percentage = 0
             total_by_engaded_percentage = 0
         else:
-            total_commitet_percentage = round(((total_commiment / total_current_budget) * 100), 1)
+            total_commitet_percentage = round(((total_to_be_committed / total_current_budget) * 100), 1)
             total_available_budget_percentage = round(((total_available_budget / total_current_budget) * 100), 1)
             total_by_engaded_percentage = round(((total_by_engaded / total_current_budget) * 100), 1)
             difference = 100 - (
