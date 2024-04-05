@@ -218,7 +218,7 @@ def get_budget_by_projects_in_area(area: Area):
         # total_available_budget = available_budget - total_provisioned_amount
         total_by_engaded = total_provisioned_amount - total_commiment
         # Graph percents
-        if available_budget == 0:
+        if total_current_budget == 0:
             total_commitet_percentage = 0
             total_available_budget_percentage = 0
             total_by_engaded_percentage = 0
