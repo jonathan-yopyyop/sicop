@@ -401,11 +401,9 @@ def get_project_detail(project: Project):
             budget_totals_commiment_percentage = 0
         else:
             budget_totals_by_engaded_percentage = round(
-                ((budget_totals_by_engaded / budget_totals_provisioned_amount) * 100), 1
+                ((budget_totals_by_engaded / budget_totals_current_budget) * 100), 1
             )
-            budget_totals_commiment_percentage = round(
-                ((commitment_amount / budget_totals_provisioned_amount) * 100), 1
-            )
+            budget_totals_commiment_percentage = round(((commitment_amount / budget_totals_current_budget) * 100), 1)
 
         data = {
             "budget": budget,
