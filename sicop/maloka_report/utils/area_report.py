@@ -179,7 +179,14 @@ def get_total_cap_requested_by_project(project: Project):
     for cap in caps:
         if not cap.has_commitment:
             if project.name == "Defensoría 2024":
-                print("ID", cap.id)
+                print(
+                    "ID",
+                    cap.id,
+                    " -> cap.total_provisioned_amount",
+                    cap.total_provisioned_amount,
+                    " -> cap.total_required_amount",
+                    cap.total_required_amount,
+                )
             total_provisioned_amount += cap.total_provisioned_amount
             total_required_amount += cap.total_required_amount
     if project.name == "Defensoría 2024":
