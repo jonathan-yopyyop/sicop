@@ -205,7 +205,11 @@ def get_total_commiment_by_project(project: Project):
         finished=True,
     )
     for commitment in commitments:
+        if project.name == "Defensoría 2024":
+            print("commitment.real_provision_budget_amount", commitment.real_provision_budget_amount)
         total_commiment += commitment.real_provision_budget_amount
+    if project.name == "Defensoría 2024":
+        print("------------->>>total_commiment", total_commiment)
     return total_commiment
 
 
