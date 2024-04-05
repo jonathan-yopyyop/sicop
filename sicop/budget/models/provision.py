@@ -89,6 +89,18 @@ class ProvisionCart(BaseModel):
         return self.total_provisioned_amount
         # return self.total_provisioned_amount - self.total_released_amount
 
+    @property
+    def has_commitment(self):
+        if self.provision_cart_commitments.count() > 0:
+            return True
+        return False
+
+    @property
+    def commitment_ids(self):
+        commitments = [commitment.id for commitment in self.provision_cart_commitments.all()]
+        # convert list to string
+        return ",".join(map(str, commitments))
+
     class Meta:
         """Meta definition for Provision Cart."""
 

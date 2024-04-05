@@ -40,6 +40,7 @@
               <thead>
                 <tr>
                   <th>{% trans "ID" %}</th>
+                  <th>{% trans "ID CAP" %}</th>
                   <th>{% trans "CAP" %}</th>
                   <th>{% trans "Area" %}</th>
                   <th>{% trans "Contrat/PO" %}</th>
@@ -59,6 +60,7 @@
                 {% for commitment in commitments %}
                 <tr>
                   <td class="redistribution_font_size">{{ commitment.id }}</td>
+                  <td class="redistribution_font_size">{{ commitment.provision_cart.id }}</td>
                   <td class="redistribution_font_size">{{ commitment.provision_cart }}</td>
                   <td class="redistribution_font_size">{{ commitment.provision_cart.project.area }}</td>
                   <td class="redistribution_font_size">{{ commitment.get_contract_or_po_display }}</td>

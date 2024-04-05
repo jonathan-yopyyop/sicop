@@ -85,6 +85,8 @@
                   <th>{% trans "Provisionado" %}</th>
                   <th>{% trans "Released" %}</th>
                   <th>{% trans "Finished?" %}</th>
+                  <th>{% trans "Has commitments?" %}</th>
+                  <th>{% trans "Commitments" %}</th>
                   <th>{% trans "Status" %}</th>
                   <th>{% trans 'Detail' %}</th>
                 </tr>
@@ -118,6 +120,14 @@
                     <div class="badge badge-warning">{% trans 'No' %}</div>
                     {% endif %}
                   </td>
+                  <td class="td-style">
+                    {% if provision_cart.has_commitment %}
+                    <div class="badge badge-success">{% trans 'Yes' %}</div>
+                    {% else %}
+                    <div class="badge badge-warning">{% trans 'No' %}</div>
+                    {% endif %}
+                  </td>
+                  <td class="td-style">{{ provision_cart.commitment_ids }}</td>
                   <td class="td-style">
                     {% if provision_cart.annulled %}
                     <div class="badge badge-secondary">{% trans 'Anulled' %}</div>
