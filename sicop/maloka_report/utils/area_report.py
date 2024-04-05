@@ -121,8 +121,8 @@ def get_budget_by_areas():
                             "label": area.name,
                             "data": [
                                 f"{total_available_budget_percentage}",
-                                f"{total_commitet_percentage}",
                                 f"{total_by_engaded_percentage}",
+                                f"{total_commitet_percentage}",
                             ],
                             "backgroundColor": [
                                 "rgb(255, 99, 132)",
