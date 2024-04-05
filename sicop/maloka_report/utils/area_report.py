@@ -385,9 +385,9 @@ def get_project_detail(project: Project):
         budget_released_amount = budget.released_amount
         budget_report_requested_budget = budget.report_requested_budget
         # Budget data end
+        budget_totals_current_budget = budget_initial_value
         budget_totals_provisioned_amount = budget_report_requested_budget - budget_released_amount
-        budget_totals_current_budget = budget_initial_value + budget_budget_addition
-        budget_totals_available_budget = budget_totals_current_budget - budget_totals_current_budget
+        budget_totals_available_budget = budget_totals_current_budget - budget_totals_provisioned_amount
         budget_totals_by_engaded = budget_totals_provisioned_amount - commitment_amount
         # Total budget percentages
         if budget_totals_current_budget > 0:
