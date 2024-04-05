@@ -85,7 +85,11 @@ Report projects by area
 
 {% for project in projects %}
 <script>
-  var data = {{<project.data | safe}}
+  var data = {
+    {
+      project.data | safe
+    }
+  }
   var ctx = document.getElementById('{{project.slug}}');
   new Chart(ctx, {
     type: 'pie',
