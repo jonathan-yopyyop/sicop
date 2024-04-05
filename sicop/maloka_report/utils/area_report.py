@@ -260,8 +260,7 @@ def get_budget_by_projects_in_area(area: Area):
                     "total_available_budget": total_available_budget,
                     "total_requested_budget": total_requested_budget,
                     "total_commiment": total_commiment,
-                    "total_to_be_committed": total_by_engaded,
-                    "test": f"{total_to_be_committed} = {total_available_budget} - {total_commiment}",
+                    "total_to_be_committed": total_to_be_committed,
                     "total_provisioned_amount": total_requested_budget,
                 },
                 "data": {
