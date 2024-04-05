@@ -391,9 +391,9 @@ def get_project_detail(project: Project):
         budget_totals_by_engaded = budget_totals_provisioned_amount - commitment_amount
         # Total budget percentages
         if budget_totals_current_budget > 0:
-            budget_totals_available_budget_percentage = (
-                budget_totals_available_budget / budget_totals_current_budget
-            ) * 100
+            budget_totals_available_budget_percentage = round(
+                ((budget_totals_available_budget / budget_totals_current_budget) * 100), 1
+            )
         else:
             budget_totals_available_budget_percentage = 0
         if budget_totals_provisioned_amount == 0:
