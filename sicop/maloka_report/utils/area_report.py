@@ -182,6 +182,7 @@ def get_total_cap_requested_by_project(project: Project):
             finished=True,
         ).count()
         if project.name == "Defensoría 2024":
+            print("ID", cap.id)
             print("commitment_count", commitment_count)
         if commitment_count > 0:
             total_provisioned_amount += cap.total_provisioned_amount
