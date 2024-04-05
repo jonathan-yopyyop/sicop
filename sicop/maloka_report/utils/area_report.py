@@ -177,14 +177,9 @@ def get_total_cap_requested_by_project(project: Project):
     total_provisioned_amount = 0
     total_required_amount = 0
     for cap in caps:
-        commitment_count = Commitment.objects.filter(
-            provision_cart=cap,
-            finished=True,
-        ).count()
-        if project.name == "Defensoría 2024":
-            print("ID", cap.id)
-            print("commitment_count", commitment_count)
-        if commitment_count > 0:
+        if not cap.has_commitment:
+            if project.name == "Defensoría 2024":
+                print("ID", cap.id)
             total_provisioned_amount += cap.total_provisioned_amount
             total_required_amount += cap.total_required_amount
             if project.name == "Defensoría 2024":
