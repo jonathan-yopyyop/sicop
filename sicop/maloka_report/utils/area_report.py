@@ -231,7 +231,7 @@ def get_budget_by_projects_in_area(area: Area):
         total_current_budget = available_budget
         total_requested_budget = total_provisioned_amount
         total_available_budget = total_current_budget - total_requested_budget
-        total_to_be_committed = total_requested_budget - total_commiment
+        total_to_be_committed = total_available_budget - total_commiment
 
         # total_available_budget = available_budget - total_provisioned_amount
         total_by_engaded = total_provisioned_amount - total_commiment
