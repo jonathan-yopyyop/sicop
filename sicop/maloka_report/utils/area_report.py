@@ -169,16 +169,6 @@ def get_total_cap_requested_by_project(project: Project):
     total_provisioned_amount = 0
     total_required_amount = 0
     for cap in caps:
-        # if not cap.has_commitment:
-        #     if project.name == "Defensoría 2024":
-        #         print(
-        #             "ID",
-        #             cap.id,
-        #             " -> cap.total_provisioned_amount",
-        #             cap.total_provisioned_amount,
-        #             " -> cap.total_required_amount",
-        #             cap.total_required_amount,
-        #         )
         total_provisioned_amount += cap.total_provisioned_amount
         total_required_amount += cap.total_required_amount
     return total_provisioned_amount, total_required_amount
@@ -330,56 +320,55 @@ def get_total_cap_requested_by_project_detail(project: Project):
 
 
 def get_total_commiment_by_project_detail(project: Project):
-    total_commiment = 0
-    commitments = Commitment.objects.filter(
-        provision_cart__project=project,
-        provision_cart__approved=True,
-        provision_cart__rejected=False,
-        provision_cart__annulled=False,
-        finished=True,
-    )
-    for commitment in commitments:
-        total_commiment += commitment.real_provision_budget_amount
+    total_commiment = get_total_commiment_by_project(project)
     return total_commiment
 
 
 def get_project_detail(project: Project):
     # Totals for the table
     unit_value, initial_value, available_budget, budget_addition, released_amount, report_requested_budget = (
-        get_current_budget_by_project_detail(project)
+        get_current_budget_by_project(project)
     )
     totals_commiment = get_total_commiment_by_project_detail(project)
-    totals_provisioned_amount = report_requested_budget - released_amount
-    totals_current_budget = initial_value + budget_addition
-    totals_available_budget = totals_current_budget - totals_provisioned_amount
-    totals_by_engaded = totals_provisioned_amount - totals_commiment
-    # Total percentages
-    if totals_current_budget > 0:
-        totals_available_budget_percentage = (totals_available_budget / totals_current_budget) * 100
+
+    total_provisioned_amount, total_required_amount = get_total_cap_requested_by_project(project)
+    # Graph totals
+    total_commiment = get_total_commiment_by_project(project)
+    # Graph totals
+    total_commiment = get_total_commiment_by_project(project)
+    # Graph totals
+    total_current_budget = initial_value
+    total_requested_budget = total_provisioned_amount
+    total_available_budget = total_current_budget - total_requested_budget
+    total_to_be_committed = total_provisioned_amount - total_commiment
+
+    # total_available_budget = available_budget - total_provisioned_amount
+    total_by_engaded = total_requested_budget - total_commiment
+    # Graph percents
+    if total_current_budget == 0:
+        total_commitet_percentage = 0
+        total_available_budget_percentage = 0
+        total_by_engaded_percentage = 0
     else:
-        totals_available_budget_percentage = 0
-    if totals_available_budget == 0:
-        totals_by_engaded_percentage = 0
-        totals_commiment_percentage = 0
-    else:
-        totals_by_engaded_percentage = round(((totals_by_engaded / totals_provisioned_amount) * 100), 1)
-        totals_commiment_percentage = round(((totals_commiment / totals_provisioned_amount) * 100), 1)
+        total_commitet_percentage = round(((total_to_be_committed / total_current_budget) * 100), 1)
+        total_available_budget_percentage = round(((total_available_budget / total_current_budget) * 100), 1)
+        total_by_engaded_percentage = round(((total_by_engaded / total_current_budget) * 100), 1)
         difference = 100 - (
-            totals_commiment_percentage + totals_available_budget_percentage + totals_by_engaded_percentage
+            total_commitet_percentage + total_available_budget_percentage + total_by_engaded_percentage
         )
         if difference > 0:
-            totals_by_engaded_percentage += difference
+            total_by_engaded_percentage += difference
     totals = {
         "provisioned_amount": 0,
-        "total_available_budget": totals_available_budget,
+        "total_available_budget": total_available_budget,
         "total_commiment": totals_commiment,
-        "total_by_engaded": totals_by_engaded,
-        "total_commitet_percentage": f"{totals_commiment_percentage}",
-        "total_available_budget_percentage": f"{totals_available_budget_percentage}",
-        "total_by_engaded_percentage": f"{totals_by_engaded_percentage}",
+        "total_by_engaded": total_by_engaded,
+        "total_commitet_percentage": f"{total_commitet_percentage}",
+        "total_available_budget_percentage": f"{total_available_budget_percentage}",
+        "total_by_engaded_percentage": f"{total_by_engaded_percentage}",
     }
-    totals["provisioned_amount"] = totals_provisioned_amount
-    totals["total_budget"] = totals_current_budget
+    totals["provisioned_amount"] = total_provisioned_amount
+    totals["total_budget"] = total_current_budget
 
     # Table detail by budget
     budgets = []
