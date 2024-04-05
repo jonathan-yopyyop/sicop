@@ -363,9 +363,9 @@ def get_project_detail(project: Project):
         "total_available_budget": total_available_budget,
         "total_commiment": totals_commiment,
         "total_by_engaded": total_by_engaded,
-        "total_commitet_percentage": f"{total_commitet_percentage}",
+        "total_commitet_percentage": f"{total_by_engaded_percentage}",
         "total_available_budget_percentage": f"{total_available_budget_percentage}",
-        "total_by_engaded_percentage": f"{total_by_engaded_percentage}",
+        "total_by_engaded_percentage": f"{total_commitet_percentage}",
     }
     totals["provisioned_amount"] = total_provisioned_amount
     totals["total_budget"] = total_current_budget
