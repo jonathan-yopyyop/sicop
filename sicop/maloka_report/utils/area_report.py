@@ -29,27 +29,12 @@ def get_current_budget_by_area(area: Area):
         unit_value, initial_value, available_budget, budget_addition, released_amount, report_requested_budget = (
             get_current_budget_by_project(project)
         )
-        # if project.name == "Defensoría 2024":
-        if area.name == "Proyectos":
-            print(
-                "**************************************> ID",
-                project.id,
-                " -> initial_value",
-                initial_value,
-            )
         area_unit_value += unit_value
         area_initial_value += initial_value
         area_available_budget += available_budget
         area_budget_addition += budget_addition
         area_released_amount += released_amount
         area_report_requested_budget += report_requested_budget
-    if area.name == "Proyectos":
-        print(
-            "================================> ID",
-            project.id,
-            " -> initial_value",
-            area_initial_value,
-        )
     return (
         area_unit_value,
         area_initial_value,
@@ -61,32 +46,23 @@ def get_current_budget_by_area(area: Area):
 
 
 def get_total_cap_requested_by_area(area: Area):
-    caps = ProvisionCart.objects.filter(
-        project__area=area,
-        approved=True,
-        rejected=False,
-        annulled=False,
-        finished=True,
-    )
-    total_provisioned_amount = 0
-    total_required_amount = 0
-    for cap in caps:
-        total_provisioned_amount += cap.total_provisioned_amount
-        total_required_amount += cap.total_required_amount
-    return total_provisioned_amount, total_required_amount
+    area_total_provisioned_amount = 0
+    area_total_required_amount = 0
+    projects = Project.objects.filter(area=area)
+    for project in projects:
+        total_provisioned_amount, total_required_amount = get_total_cap_requested_by_project(project)
+        area_total_provisioned_amount += total_provisioned_amount
+        area_total_required_amount += total_required_amount
+
+    return area_total_provisioned_amount, area_total_required_amount
 
 
 def get_total_commiment_by_area(area: Area):
+    projects = Project.objects.filter(area=area)
     total_commiment = 0
-    commitments = Commitment.objects.filter(
-        provision_cart__project__area=area,
-        provision_cart__approved=True,
-        provision_cart__rejected=False,
-        provision_cart__annulled=False,
-        finished=True,
-    )
-    for commitment in commitments:
-        total_commiment += commitment.real_provision_budget_amount
+    for project in projects:
+        total_commiment += get_total_commiment_by_project(project)
+
     return total_commiment
 
 
@@ -106,19 +82,19 @@ def get_budget_by_areas():
         total_commiment = get_total_commiment_by_area(area)
         # Graph totals
         total_current_budget = initial_value
-        total_requested_budget = report_requested_budget - released_amount
+        total_requested_budget = total_provisioned_amount
         total_available_budget = total_current_budget - total_requested_budget
-        total_to_be_committed = total_requested_budget - total_commiment
+        total_to_be_committed = total_provisioned_amount - total_commiment
 
         # total_available_budget = available_budget - total_provisioned_amount
-        total_by_engaded = total_provisioned_amount - total_commiment
+        total_by_engaded = total_requested_budget - total_commiment
         # Graph percents
-        if available_budget == 0:
+        if total_current_budget == 0:
             total_commitet_percentage = 0
             total_available_budget_percentage = 0
             total_by_engaded_percentage = 0
         else:
-            total_commitet_percentage = round(((total_commiment / total_current_budget) * 100), 1)
+            total_commitet_percentage = round(((total_to_be_committed / total_current_budget) * 100), 1)
             total_available_budget_percentage = round(((total_available_budget / total_current_budget) * 100), 1)
             total_by_engaded_percentage = round(((total_by_engaded / total_current_budget) * 100), 1)
             difference = 100 - (
