@@ -19,7 +19,6 @@ def text_to_slug(text):
 # Report functions by areas
 def get_current_budget_by_area(area: Area):
     projects = Project.objects.filter(area=area)
-    budgets = []
     unit_value = 0
     initial_value = 0
     available_budget = 0
@@ -31,19 +30,19 @@ def get_current_budget_by_area(area: Area):
             get_current_budget_by_project(project)
         )
         # if project.name == "Defensoría 2024":
-        if area.name == "Proyectos":
-            print(
-                "================================> ID",
-                project.id,
-                " -> initial_value",
-                initial_value,
-            )
         unit_value += unit_value
         initial_value += initial_value
         available_budget += available_budget
         budget_addition += budget_addition
         released_amount += released_amount
         report_requested_budget += report_requested_budget
+    if area.name == "Proyectos":
+        print(
+            "================================> ID",
+            project.id,
+            " -> initial_value",
+            initial_value,
+        )
     return (
         unit_value,
         initial_value,
