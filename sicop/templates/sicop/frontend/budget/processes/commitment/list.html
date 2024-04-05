@@ -50,6 +50,7 @@
                   <th>{% trans "Released" %}</th>
                   <th>{% trans "Hax tax?" %}</th>
                   <th>{% trans "Tax" %}</th>
+                  <th>{% trans "Real" %}</th>
                   <th>{% trans "Finished?" %}</th>
                   <th>{% trans 'Detail' %}</th>
                 </tr>
@@ -75,6 +76,7 @@
                     {% endif %}
                   </td>
                   <td>{{commitment.tax_amount|format_to_cop}}</td>
+                  <td>{{commitment.real_provision_budget_amount|format_to_cop}}</td>
                   <td>
                     {% if commitment.finished %}
                     <div class="badge badge-success">{% trans 'Yes' %}</div>
