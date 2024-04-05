@@ -80,11 +80,7 @@ Report Area
 
 {% for area in areas %}
 <script>
-  var data = {
-    {
-      area.data | safe
-    }
-  }
+  var data = {{area.data | safe}}
   var ctx = document.getElementById('{{area.slug}}');
   new Chart(ctx, {
     type: 'pie',
