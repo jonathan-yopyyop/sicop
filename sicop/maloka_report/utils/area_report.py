@@ -257,9 +257,9 @@ def get_budget_by_projects_in_area(area: Area):
                 "slug": text_to_slug(project.name),
                 "values": {
                     "total_current_budget": total_current_budget,
-                    "total_available_budget": f"{total_available_budget} {total_available_budget_percentage}%",
-                    "total_commiment": f"{total_commiment} {total_by_engaded_percentage}%",
-                    "total_to_be_committed": f"{total_to_be_committed} {total_commitet_percentage}%",
+                    "total_available_budget": total_available_budget,
+                    "total_commiment": total_commiment,
+                    "total_to_be_committed": total_to_be_committed,
                 },
                 "data": {
                     "labels": [_("Available"), _("Engaged"), _("By Engaged")],
