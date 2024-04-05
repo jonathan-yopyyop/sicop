@@ -155,7 +155,6 @@ def get_current_budget_by_project(project: Project):
     budget_addition = 0
     released_amount = 0
     report_requested_budget = 0
-    print(project.name)
     for budget in budgets:
         unit_value += budget.unit_value
         initial_value += budget.initial_value
@@ -163,13 +162,6 @@ def get_current_budget_by_project(project: Project):
         budget_addition += budget.budget_addition
         released_amount += budget.released_amount
         report_requested_budget += budget.report_requested_budget
-    if project.name == "Defensoría 2024":
-        # print("unit_value", unit_value)
-        # print("-----> initial_value", initial_value)
-        # print("available_budget", available_budget)
-        print("------> budget_addition", budget_addition)
-        # print("released_amount", released_amount)
-        # print("report_requested_budget", report_requested_budget)
 
     return unit_value, initial_value, available_budget, budget_addition, released_amount, report_requested_budget
 
@@ -189,9 +181,14 @@ def get_total_cap_requested_by_project(project: Project):
             provision_cart=cap,
             finished=True,
         ).count()
+        if project.name == "Defensoría 2024":
+            print("commitment_count", commitment_count)
         if commitment_count > 0:
             total_provisioned_amount += cap.total_provisioned_amount
             total_required_amount += cap.total_required_amount
+            if project.name == "Defensoría 2024":
+                print("cap.total_provisioned_amount", cap.total_provisioned_amount)
+                print("cap.total_required_amount", cap.total_required_amount)
     return total_provisioned_amount, total_required_amount
 
 
