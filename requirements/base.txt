@@ -30,7 +30,7 @@ django-colorfield==0.10.1
 #Others
 twilio==8.12.0
 sendgrid==6.11.0
-django-import-export==3.3.6
+django-import-export==3.3.8
 
 # Swagger
 drf-yasg==1.21.7
