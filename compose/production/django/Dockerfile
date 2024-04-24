@@ -1,8 +1,8 @@
 # define an alias for the specific python version used in this file.
-FROM python:3.11-bullseye as python
+FROM python:3.11.9-bullseye as python
 
 # Python build stage
-FROM python:3.11-bullseye as python-build-stage
+FROM python:3.11.9-bullseye as python-build-stage
 
 ARG BUILD_ENVIRONMENT=local
 
